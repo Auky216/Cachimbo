@@ -1,0 +1,15 @@
+# Front-end
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+*/node_modules
+dist
+*/pnpm-lock.yaml
+
+# Back-end
+
+*/__pycache__
+*/env
