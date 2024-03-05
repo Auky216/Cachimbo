@@ -6,14 +6,26 @@
   <h1>💻 <em>Cachimbo</em> 💻</h1>
 </div>
 
-### Contributing
+## Tecnologías
 
-<div align="center">
+### Librerías
 
-<!-- Con https://repobeats.axiom.co/configs/new se sabe las contribuciones -->
+    React.js con Javascript
+    CSS nativo
 
-<!-- ![Alt](https://repobeats.axiom.co/api/embed/8345d369ea8e3eab3bbabaad467545ecd6303c62.svg "Repobeats analytics image") -->
+### Inicializando
 
-</div><hr>
+> [!NOTE]
+> 🌐 **Proyecto en desarrollo**
+
+    npm install
+    npm run dev
+### 
+    pnpm install
+    pnpm run dev
+
+> [!IMPORTANT]
+> **Activar Prettier Autoformatter para un codigo más legible**
+
 
 <p align="right"><a href="#top">Back to top 🔼</a></p>
