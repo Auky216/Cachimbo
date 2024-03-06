@@ -1,21 +1,26 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+import { Routes, Route } from "react-router-dom";
+import router from "@/routes/root.jsx";
+import NavBar from "@/components/Navbar.jsx";
 
 const App = () => {
-  const [count, setCount] = useState(0);
+  const [showNavBar, setShowNavBar] = useState(false);
 
   return (
-    <>
-      <a href="https://react.dev" target="_blank" rel="noreferrer">
-        <img src={reactLogo} className="logo react" alt="React logo" />
-      </a>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-    </>
+    <div id="App" className="w-full h-full">
+      {/* [Proximamente] Mostrar navbar solo cuando el usuario ha sido logeado */}
+      {showNavBar || <NavBar />}
+
+      <Routes>
+        {router.map((route) => (
+          <Route
+            key={route.path}
+            path={route.path}
+            element={route.element}
+          ></Route>
+        ))}
+      </Routes>
+    </div>
   );
 };
 
