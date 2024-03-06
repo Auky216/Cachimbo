@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <section className="flex flex-col w-[500px] m-auto">
       <ThemeButton />
-      <div className=" mt-8 flex justify-center text-cach-l3 dark:text-cach-l1 font-bold text-5xl">
+      <div className=" mt-8 flex justify-center text-cach-l3 dark:text-cach-l2 font-bold text-5xl">
         Iniciar sesión
       </div>
       <div className="w-full">
@@ -13,7 +13,7 @@ const Login = () => {
           <div className="mb-4">
             <label htmlFor="email">
               <input
-                className="border border-cach-l3 dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
+                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
                 type="text"
                 id="email"
                 placeholder="Correo"
@@ -23,7 +23,7 @@ const Login = () => {
           <div className="mb-6">
             <label htmlFor="password">
               <input
-                className="border border-cach-l3 dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
+                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
                 type="password"
                 id="password"
                 placeholder="Contraseña"
