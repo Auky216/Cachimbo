@@ -20,6 +20,7 @@
 
     npm install
     npm run dev
+    npm install --save-dev tailwindcss
 ### 
     pnpm install
     pnpm run dev
