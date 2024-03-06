@@ -18,9 +18,9 @@
 > [!NOTE]
 > 🌐 **Proyecto en desarrollo**
 
+    npm install --save-dev tailwindcss
     npm install
     npm run dev
-    npm install --save-dev tailwindcss
 ### 
     pnpm install
     pnpm run dev
