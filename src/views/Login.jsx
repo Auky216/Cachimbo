@@ -1,11 +1,16 @@
 import ThemeButton from "@/components/ThemeButton";
 import { Link } from "react-router-dom";
+import { CachimboLogo } from "@/components/icons/CachimoLogo";
 
 const Login = () => {
   return (
     <section className="flex flex-col w-[500px] m-auto">
-      <ThemeButton />
-      <div className=" mt-8 flex justify-center text-cach-l3 dark:text-cach-l2 font-bold text-5xl">
+      <CachimboLogo />
+      <div className="mt-5 flex justify-center">
+        <ThemeButton />
+      </div>
+
+      <div className="mt-8 flex justify-center text-cach-l3 dark:text-cach-l2 font-bold text-5xl">
         Iniciar sesión
       </div>
       <div className="w-full">
@@ -40,7 +45,7 @@ const Login = () => {
             </button>
           </div>
           <div className="text-cach-l3 font-light dark:text-cach-l2 flex justify-center">
-            ¿No tienes una cuenta? &nbsp;{" "}
+            ¿No tienes una cuenta? &nbsp;
             <Link to="/register">
               <strong>Regístrate</strong>
             </Link>

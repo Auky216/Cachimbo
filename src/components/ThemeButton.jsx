@@ -18,14 +18,12 @@ const ThemeButton = () => {
   };
 
   return (
-    <div className="flex justify-center">
-      <button
-        className="bg-slate-200 text-cach-l3 dark:text-cach-l1 dark:bg-transparent dark:border dark:border-cach-l2 px-4 py-1 rounded-xl"
-        onClick={toggleTheme}
-      >
-        Cambiar a "{theme === "light" ? "dark" : "light"}"
-      </button>
-    </div>
+    <button
+      className="bg-slate-200 text-cach-l3 dark:text-cach-l1 dark:bg-transparent dark:border dark:border-cach-l2 px-4 py-1 rounded-xl"
+      onClick={toggleTheme}
+    >
+      Cambiar a "{theme === "light" ? "dark" : "light"}"
+    </button>
   );
 };
 
