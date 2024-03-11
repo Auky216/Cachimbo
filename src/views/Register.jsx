@@ -1,11 +1,14 @@
 import ThemeButton from "@/components/ThemeButton";
 import { Link } from "react-router-dom";
-
+import { CachimboLogo } from "@/components/icons/CachimoLogo";
 const Register = () => {
   return (
     <section className="flex flex-col w-[500px] m-auto">
+      <CachimboLogo />
+      <div className="mt-5 flex justify-center">
+        <ThemeButton />
+      </div>
       
-      <ThemeButton />
       <div className="mt-8 flex justify-center text-cach-l3 dark:text-cach-l2 font-bold text-5xl">
         Registrarse
       </div>
