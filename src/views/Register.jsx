@@ -1,16 +1,12 @@
 import ThemeButton from "@/components/ThemeButton";
 import { Link } from "react-router-dom";
-import { CachimboLogo } from "@/components/icons/CachimoLogo";
 
 const Register = () => {
   return (
-    <section className="mt-10 flex flex-col w-full max-w-[500px] m-auto lg:max-w-none lg:w-full">
-      <CachimboLogo className="mx-auto" />
-      <div className="mt-5 flex justify-center">
-        <ThemeButton />
-      </div>
-
-      <div className="mt-8 flex justify-center text-cach-l3 dark:text-cach-l2 font-bold text-3xl lg:text-5xl">
+    <section className="flex flex-col w-[500px] m-auto">
+      
+      <ThemeButton />
+      <div className="mt-8 flex justify-center text-cach-l3 dark:text-cach-l2 font-bold text-5xl">
         Registrarse
       </div>
       <div className="w-full">
@@ -18,7 +14,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="username">
               <input
-                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-lg placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
+                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
                 type="text"
                 id="username"
                 placeholder="Nombre de usuario"
@@ -28,7 +24,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="email">
               <input
-                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-lg placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
+                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
                 type="email"
                 id="email"
                 placeholder="Correo electrónico"
@@ -38,7 +34,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="password">
               <input
-                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-lg placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
+                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
                 type="password"
                 id="password"
                 placeholder="Contraseña"
@@ -48,7 +44,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="confirmPassword">
               <input
-                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-lg placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
+                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
                 type="password"
                 id="confirmPassword"
                 placeholder="Confirmar contraseña"
@@ -58,7 +54,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="lastname">
               <input
-                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-lg placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
+                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
                 type="text"
                 id="lastname"
                 placeholder="Apellido"
@@ -68,7 +64,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="age">
               <input
-                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-lg placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
+                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
                 type="number"
                 id="age"
                 placeholder="Edad"
@@ -78,7 +74,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="degree">
               <input
-                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-lg placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
+                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
                 type="text"
                 id="degree"
                 placeholder="Grado"
@@ -88,7 +84,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="startYear">
               <input
-                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-lg placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
+                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
                 type="number"
                 id="startYear"
                 placeholder="Año de inicio"
@@ -98,7 +94,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="term">
               <input
-                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-lg placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
+                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
                 type="text"
                 id="term"
                 placeholder="Término"
