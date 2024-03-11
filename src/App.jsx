@@ -1,10 +1,23 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import router from "@/routes/root.jsx";
 import NavBar from "@/components/Navbar.jsx";
+import ThemeButton from "@/components/ThemeButton";
 
 const App = () => {
+  const storedTheme = localStorage.getItem("theme");
+  const [theme, setTheme] = useState(storedTheme ||  "light" );
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
   const [showNavBar, setShowNavBar] = useState(false);
+
 
   return (
     <div id="App" className="w-full h-full">

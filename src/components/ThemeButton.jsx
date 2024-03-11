@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
 const ThemeButton = () => {
-  const [theme, setTheme] = useState(
-    window.matchMedia("(prefers-color-schema: dark)").matches ? "dark" : "light"
-  );
+  const storedTheme = localStorage.getItem("theme");
+  const [theme, setTheme] = useState(storedTheme ||  "light" );
 
   useEffect(() => {
+    localStorage.setItem("theme", theme);
     if (theme === "dark") {
       document.querySelector("html").classList.add("dark");
     } else {
