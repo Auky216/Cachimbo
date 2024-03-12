@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import discordIcon from "@/assets/discord.svg";
+import linkedinIcon from "@/assets/linkedin.svg";
+import instagramIcon from "@/assets/instagram.svg";
+
 const LandingPage = () => {
   return (
     <div className="min-h-screen bg-cach-l4">
@@ -75,11 +79,22 @@ const LandingPage = () => {
         </Link>
       </section>
 
-      {/* Footer */}
       <footer className="bg-cach-l3 py-8 px-4 text-center text-cach-l1">
-        <p>&copy; 2024 Todos los derechos reservados - Nombre de tu empresa</p>
+        <p>&copy; 2024 Todos los derechos reservados - Cachimbo</p>
+        <div className="flex justify-center mt-4">
+          <a href="url_al_discord" className="mx-2">
+            <img src={discordIcon} alt="Discord" className="w-8 h-8" />
+          </a>
+          <a href="url_al_linkedin" className="mx-2">
+            <img src={linkedinIcon} alt="LinkedIn" className="w-8 h-8" />
+          </a>
+          <a href="url_al_instagram" className="mx-2">
+            <img src={instagramIcon} alt="Instagram" className="w-8 h-8" />
+          </a>
+          {/* Agrega más iconos de redes sociales según sea necesario */}
+        </div>
       </footer>
-    </div>
+</div>
   );
 };
 
