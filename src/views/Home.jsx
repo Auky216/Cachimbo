@@ -95,7 +95,6 @@ const LandingPage = () => {
           <a href="https://chat.whatsapp.com/HHaCYwpnXZD4NmQT3xZnyS" className="mx-2">
             <img src={whatsAppIcon} alt="WhatsApp" className="w-8 h-8" />
           </a>
-          {/* Agrega más iconos de redes sociales según sea necesario */}
         </div>
       </footer>
 </div>
