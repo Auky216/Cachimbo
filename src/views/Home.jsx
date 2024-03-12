@@ -86,7 +86,7 @@ const LandingPage = () => {
           <a href="https://discord.gg/B6TcBnvs" className="mx-2">
             <img src={discordIcon} alt="Discord" className="w-8 h-8" />
           </a>
-          <a href="url_al_linkedin" className="mx-2">
+          <a href="https://www.linkedin.com/company/102821332" className="mx-2">
             <img src={linkedinIcon} alt="LinkedIn" className="w-8 h-8" />
           </a>
           <a href="https://www.instagram.com/cachimbo.utec/" className="mx-2">
