@@ -17,27 +17,42 @@ const LandingPage = () => {
         
       </header>
 
-      {/* CTA Section */}
-      <section className="bg-white py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="flex flex-col items-center">
-            <img className="h-80" src={hatIcon}></img>
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              Comienza tu viaje lingüístico hoy mismo
-            </h2>
-            <p className="text-lg text-gray-700 mb-8">
-              Únete a millones de estudiantes que ya están aprendiendo con
-              nosotros.
-            </p>
-            <Link
-              to="/register"
-              className="bg-cach-l3 text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-cach-l2 transition duration-300"
-            >
-              Regístrate gratis
-            </Link>
-          </div>
-        </div>
-      </section>
+{/* CTA Section */}
+<section className="bg-white py-16 px-4">
+  <div className="max-w-4xl mx-auto flex items-center justify-between">
+    {/* Logo Section */}
+    <div className="flex-shrink-0">
+      <img className="h-80" src={hatIcon} alt="Logo"></img>
+    </div>
+    {/* CTA Buttons Section */}
+    <div className="flex flex-col items-center">
+    <h2 className="text-3xl font-bold text-purple-500 mb-4">
+        ¡Facilitamos tu éxito académico y personal!
+      </h2>
+
+      {/* 
+      <p className="text-lg text-gray-700 mb-8">
+        Únete a más estudiantes que ya están aprendiendo con nosotros.
+      </p>
+      */}
+
+      <Link
+        to="/register"
+        className="bg-cach-l3 text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-cach-l2 transition duration-300 mb-4 w-60 text-center"
+      >
+        Regístrate gratis
+      </Link>
+      <Link
+        to="/login"
+        className="bg-cach-l3 text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-cach-l2 transition duration-300 w-60 text-center"
+      >
+        Iniciar Sesión
+      </Link>
+
+    </div>
+  </div>
+</section>
+
 
       {/* Features Section */}
       <section className="py-16 px-4 text-center">
