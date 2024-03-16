@@ -5,128 +5,92 @@ import discordIcon from "@/assets/discord.svg";
 import linkedinIcon from "@/assets/linkedin.svg";
 import instagramIcon from "@/assets/instagram.svg";
 import whatsAppIcon from "@/assets/whatsapp.svg";
-import hatIcon from "@/assets/hat.png"
+import hatIcon from "@/assets/hat.png";
+import ThemeButton from "@/components/ThemeButton";
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen dark:bg-cach-l4">
       {/* Header */}
-      <header className="py-8 px-4 text-center">
+      <header className="flex justify-between px-12 py-8 text-center">
         <CachimboLogo />
-        
-        
+        <div className="flex justify-center">
+          <ThemeButton />
+        </div>
       </header>
 
-{/* CTA Section */}
-<section className="bg-white py-16 px-4">
-  <div className="max-w-4xl mx-auto flex items-center justify-between">
-    {/* Logo Section */}
-    <div className="flex-shrink-0">
-      <img className="h-80 mr-20" src={hatIcon} alt="Logo"></img>
-    </div>
-    {/* CTA Buttons Section */}
-    <div className="flex flex-col items-center text-center">
-    <h2 className="text-3xl font-bold text-purple-500 mb-4">
-        ¡Facilitamos tu éxito académico y personal!
-      </h2>
+      {/* CTA Section */}
+      <section className="px-4 py-16">
+        <div className="mx-auto flex max-w-4xl items-center justify-between">
+          {/* Logo Section */}
+          <div className="flex-shrink-0">
+            <img className="mr-20 h-80" src={hatIcon} alt="Logo"></img>
+          </div>
+          {/* CTA Buttons Section */}
+          <div className="flex flex-col items-center text-center">
+            <h2 className="mb-10 text-3xl font-bold text-cach-l3">
+              ¡Facilitamos tu éxito académico y personal!
+            </h2>
 
-      {/* 
-      <p className="text-lg text-gray-700 mb-8">
-        Únete a más estudiantes que ya están aprendiendo con nosotros.
-      </p>
-      */}
-
-      <Link
-        to="/register"
-        className="bg-cach-l3 text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-cach-l2 transition duration-300 mb-4 w-60 text-center"
-      >
-        Regístrate gratis
-      </Link>
-      <Link
-        to="/login"
-        className="bg-cach-l3 text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-cach-l2 transition duration-300 w-60 text-center"
-      >
-        Iniciar Sesión
-      </Link>
-
-    </div>
-  </div>
-</section>
-
+            <Link
+              to="/register"
+              className="mb-4 w-60 rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white transition duration-300 hover:bg-cach-l2"
+            >
+              Regístrate gratis
+            </Link>
+            <Link
+              to="/login"
+              className="w-60 rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white transition duration-300 hover:bg-cach-l2"
+            >
+              Iniciar Sesión
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Features Section */}
-      <section className="py-16 px-4 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-cach-l1 mb-8">
-            Por qué elegirnos
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div>
-              <img
-                src="https://via.placeholder.com/150"
-                alt="Feature"
-                className="mx-auto mb-4"
-              />
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                Lecciones divertidas
-              </h3>
-              <p className="text-gray-700">
-                Aprende con juegos, ejercicios interactivos y desafíos.
-              </p>
-            </div>
-            <div>
-              <img
-                src="https://via.placeholder.com/150"
-                alt="Feature"
-                className="mx-auto mb-4"
-              />
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                Personalizado para ti
-              </h3>
-              <p className="text-gray-700">
-                Adapta tu aprendizaje a tu nivel y tus objetivos.
-              </p>
-            </div>
-            <div>
-              <img
-                src="https://via.placeholder.com/150"
-                alt="Feature"
-                className="mx-auto mb-4"
-              />
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                Seguimiento de progreso
-              </h3>
-              <p className="text-gray-700">
-                Mantén un registro de tus avances y logros.
-              </p>
-            </div>
+      <section className="flex h-[30rem] flex-col items-center justify-center px-4 py-16">
+        <div className="flex h-full w-3/4 items-center justify-evenly bg-slate-700">
+          <div className="flex h-full flex-col items-center justify-center bg-slate-400 p-2 text-cach-l3">
+            <h1 className="mb-3 text-center text-4xl font-bold">
+              Quienes somos
+            </h1>
+            <p className="text-left">Text</p>
+          </div>
+          <div>
+            <img
+              src="https://www.picsum.photos/200/200"
+              className="w-fit"
+              alt="feature"
+              loading="lazy"
+            />
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-gray-100 py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-cach-l1 mb-8">
+      <section className="bg-gray-100 px-4 py-16">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="mb-8 text-3xl font-bold text-cach-l1">
             Lo que dicen nuestros estudiantes
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <p className="text-gray-800 mb-4">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="rounded-lg bg-white p-6 shadow-md">
+              <p className="mb-4 text-gray-800">
                 "¡Increíble! Gracias a esta plataforma, finalmente puedo hablar
                 francés con confianza."
               </p>
               <p className="text-gray-600">- María, estudiante de francés</p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <p className="text-gray-800 mb-4">
+            <div className="rounded-lg bg-white p-6 shadow-md">
+              <p className="mb-4 text-gray-800">
                 "Nunca pensé que aprender un idioma pudiera ser tan divertido.
                 ¡Gracias, equipo de Duolingo!"
               </p>
               <p className="text-gray-600">- Juan, estudiante de alemán</p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <p className="text-gray-800 mb-4">
+            <div className="rounded-lg bg-white p-6 shadow-md">
+              <p className="mb-4 text-gray-800">
                 "¡He probado muchas aplicaciones de idiomas y esta es, con
                 diferencia, la mejor!"
               </p>
@@ -137,39 +101,39 @@ const LandingPage = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 px-4 text-center">
-        <h2 className="text-3xl font-bold text-white mb-4">
+      <section className="px-4 py-16 text-center">
+        <h2 className="mb-4 text-3xl font-bold text-white">
           ¿Listo para comenzar?
         </h2>
-        <p className="text-lg text-white mb-8">
+        <p className="mb-8 text-lg text-white">
           Únete a millones de estudiantes satisfechos y comienza tu viaje
           lingüístico hoy mismo.
         </p>
         <Link
           to="/register"
-          className="bg-cach-l3 text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-cach-l2 transition duration-300"
+          className="rounded-full bg-cach-l3 px-8 py-3 text-lg font-semibold text-white transition duration-300 hover:bg-cach-l2"
         >
           Regístrate gratis
         </Link>
       </section>
 
-      <footer className="bg-cach-l3 py-8 px-4 text-center text-cach-l1">
+      <footer className="bg-cach-l3 px-4 py-8 text-center text-cach-l1">
         <p>&copy; 2024 Todos los derechos reservados - Cachimbo</p>
-        <div className="flex justify-center mt-4">
+        <div className="mt-4 flex justify-center">
           <a href="https://discord.gg/B6TcBnvs" className="mx-2">
-            <img src={discordIcon} alt="Discord" className="w-8 h-8" />
+            <img src={discordIcon} alt="Discord" className="h-8 w-8" />
           </a>
           <a href="https://www.linkedin.com/company/102821332" className="mx-2">
-            <img src={linkedinIcon} alt="LinkedIn" className="w-8 h-8" />
+            <img src={linkedinIcon} alt="LinkedIn" className="h-8 w-8" />
           </a>
           <a href="https://www.instagram.com/cachimbo.utec/" className="mx-2">
-            <img src={instagramIcon} alt="Instagram" className="w-8 h-8" />
+            <img src={instagramIcon} alt="Instagram" className="h-8 w-8" />
           </a>
           <a
             href="https://chat.whatsapp.com/HHaCYwpnXZD4NmQT3xZnyS"
             className="mx-2"
           >
-            <img src={whatsAppIcon} alt="WhatsApp" className="w-8 h-8" />
+            <img src={whatsAppIcon} alt="WhatsApp" className="h-8 w-8" />
           </a>
         </div>
       </footer>

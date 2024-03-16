@@ -1,6 +1,6 @@
 import Login from "@/views/Login";
 import Register from "@/views/Register";
-import Home from "@/views/Home";
+import LandingPage from "@/views/Home";
 
 const router = [
   {
@@ -13,8 +13,12 @@ const router = [
   },
   {
     path: "/",
-    element: <Home />,
-  }
+    element: <LandingPage />,
+  },
+  {
+    path: "/home",
+    element: <LandingPage />,
+  },
 ];
 
 export default router;

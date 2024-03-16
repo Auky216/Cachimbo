@@ -11,22 +11,19 @@
 ### Librerías
 
     React.js con Javascript
-    CSS nativo
+    TailwindCSS
 
 ### Inicializando
 
 > [!NOTE]
 > 🌐 **Proyecto en desarrollo**
 
-    npm install --save-dev tailwindcss
     npm install
     npm run dev
-### 
-    pnpm install
-    pnpm run dev
 
 > [!IMPORTANT]
-> **Activar Prettier Autoformatter para un codigo más legible**
+> **Activar Prettier Autoformatter y la Extensión Prettier de VsCode para un codigo más legible**
 
+    npm install -D prettier prettier-plugin-tailwindcss
 
 <p align="right"><a href="#top">Back to top 🔼</a></p>

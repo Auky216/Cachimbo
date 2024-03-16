@@ -6,7 +6,7 @@ import ThemeButton from "@/components/ThemeButton";
 
 const App = () => {
   const storedTheme = localStorage.getItem("theme");
-  const [theme, setTheme] = useState(storedTheme ||  "light" );
+  const [theme, setTheme] = useState(storedTheme || "light");
 
   useEffect(() => {
     if (theme === "dark") {
@@ -18,9 +18,8 @@ const App = () => {
 
   const [showNavBar, setShowNavBar] = useState(false);
 
-
   return (
-    <div id="App" className="w-full h-full">
+    <div id="App" className="h-full w-full">
       {/* [Proximamente] Mostrar navbar solo cuando el usuario ha sido logeado */}
       {showNavBar || <NavBar />}
 

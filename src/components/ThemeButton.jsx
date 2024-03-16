@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const ThemeButton = () => {
   const storedTheme = localStorage.getItem("theme");
-  const [theme, setTheme] = useState(storedTheme ||  "light" );
+  const [theme, setTheme] = useState(storedTheme || "light");
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -19,7 +19,7 @@ const ThemeButton = () => {
 
   return (
     <button
-      className="bg-slate-200 text-cach-l3 dark:text-cach-l1 dark:bg-transparent dark:border dark:border-cach-l2 px-4 py-1 rounded-xl"
+      className="m-auto rounded-xl bg-slate-200 px-4 py-1 text-cach-l3 dark:border dark:border-cach-l2 dark:bg-transparent dark:text-cach-l1"
       onClick={toggleTheme}
     >
       Cambiar a "{theme === "light" ? "dark" : "light"}"

@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import { CachimboLogo } from "@/components/icons/CachimoLogo";
+import ThemeButton from "@/components/ThemeButton";
 
 const Login = () => {
   return (
-    <section className="flex flex-col w-[500px] m-auto">
+    <section className="m-auto flex w-[500px] flex-col">
       <CachimboLogo />
       <div className="mt-5 flex justify-center">
+        <ThemeButton />
       </div>
 
-      <div className="mt-8 flex justify-center text-cach-l3 dark:text-cach-l2 font-bold text-5xl">
+      <div className="mt-8 flex justify-center text-5xl font-bold text-cach-l3 dark:text-cach-l2">
         Iniciar sesión
       </div>
       <div className="w-full">
@@ -16,7 +18,7 @@ const Login = () => {
           <div className="mb-4">
             <label htmlFor="email">
               <input
-                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:bg-transparent dark:text-cach-l1"
                 type="text"
                 id="email"
                 placeholder="Correo"
@@ -26,7 +28,7 @@ const Login = () => {
           <div className="mb-6">
             <label htmlFor="password">
               <input
-                className="border border-cach-l3 dark:bg-transparent dark:text-cach-l1 rounded-xl w-full py-3 px-4 text-gray-700 placeholder:text-cach-l2 focus:outline-none focus:shadow-outline"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:bg-transparent dark:text-cach-l1"
                 type="password"
                 id="password"
                 placeholder="Contraseña"
@@ -35,14 +37,14 @@ const Login = () => {
           </div>
           <div className="mb-4 flex items-center justify-center">
             <button
-              className="bg-cach-l3 w-full text-white font-bold py-4 px-4 rounded-xl focus:outline-none focus:shadow-outline"
+              className="focus:shadow-outline w-full rounded-xl bg-cach-l3 px-4 py-4 font-bold text-white focus:outline-none"
               type="submit"
               value="Submit"
             >
               Iniciar Sesión
             </button>
           </div>
-          <div className="text-cach-l3 font-light dark:text-cach-l2 flex justify-center">
+          <div className="flex justify-center font-light text-cach-l3 dark:text-cach-l2">
             ¿No tienes una cuenta? &nbsp;
             <Link to="/register">
               <strong>Regístrate</strong>
