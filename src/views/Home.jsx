@@ -22,10 +22,10 @@ const LandingPage = () => {
   <div className="max-w-4xl mx-auto flex items-center justify-between">
     {/* Logo Section */}
     <div className="flex-shrink-0">
-      <img className="h-80" src={hatIcon} alt="Logo"></img>
+      <img className="h-80 mr-20" src={hatIcon} alt="Logo"></img>
     </div>
     {/* CTA Buttons Section */}
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center text-center">
     <h2 className="text-3xl font-bold text-purple-500 mb-4">
         ¡Facilitamos tu éxito académico y personal!
       </h2>
