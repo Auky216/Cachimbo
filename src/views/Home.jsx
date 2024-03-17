@@ -49,53 +49,130 @@ const LandingPage = () => {
       </section>
 
       {/* Features Section */}
-      <section className="flex h-[30rem] flex-col items-center justify-center px-4 py-16">
-        <div className="flex h-full w-3/4 items-center justify-evenly bg-slate-700">
-          <div className="flex h-full flex-col items-center justify-center bg-slate-400 p-2 text-cach-l3">
-            <h1 className="mb-3 text-center text-4xl font-bold">
-              Quienes somos
-            </h1>
+      <section className="flex h-[90rem] flex-col items-center justify-between">
+        <article className="my-4 flex h-full w-3/4 items-center justify-evenly">
+          <div className="flex h-full flex-col items-center justify-center p-2 text-cach-l3">
+            <h1 className="mb-12 text-center text-4xl font-bold">Title</h1>
             <p className="text-left">Text</p>
           </div>
           <div>
             <img
               src="https://www.picsum.photos/200/200"
-              className="w-fit"
+              className="size-[250px]"
               alt="feature"
               loading="lazy"
             />
           </div>
-        </div>
+        </article>
+
+        <article className="text-cach-l3">
+          <div className="mb-12 text-center text-4xl font-bold">
+            Nuestros servicios
+          </div>
+          <div className="grid grid-cols-2 grid-rows-2 gap-10">
+            <div className="flex h-[100px] w-[200px] items-center justify-evenly rounded-xl border border-solid border-cach-l3">
+              <div>
+                <img
+                  src="https://www.picsum.photos/200/200"
+                  className="size-[50px]"
+                  alt="feature"
+                  loading="lazy"
+                />
+              </div>
+              <div className="flex h-full flex-col items-center justify-center p-2 text-cach-l3">
+                <h1 className="mb-3 text-center text-xl font-bold">Title</h1>
+                <p className="text-left">Text</p>
+              </div>
+            </div>
+            <div className="col-start-1 row-start-2 flex items-center justify-evenly rounded-xl border border-solid border-cach-l3">
+              <div>
+                <img
+                  src="https://www.picsum.photos/200/200"
+                  className="size-[50px]"
+                  alt="feature"
+                  loading="lazy"
+                />
+              </div>
+              <div className="flex h-full flex-col items-center justify-center p-2 text-cach-l3">
+                <h1 className="mb-3 text-center text-xl font-bold">Title</h1>
+                <p className="text-left">Text</p>
+              </div>
+            </div>
+            <div className="col-start-2 row-start-1 flex items-center justify-evenly rounded-xl border border-solid border-cach-l3">
+              <div>
+                <img
+                  src="https://www.picsum.photos/200/200"
+                  className="size-[50px]"
+                  alt="feature"
+                  loading="lazy"
+                />
+              </div>
+              <div className="flex h-full flex-col items-center justify-center p-2 text-cach-l3">
+                <h1 className="mb-3 text-center text-xl font-bold">Title</h1>
+                <p className="text-left">Text</p>
+              </div>
+            </div>
+            <div className="row-start-2 flex items-center justify-evenly rounded-xl border border-solid border-cach-l3">
+              <div>
+                <img
+                  src="https://www.picsum.photos/200/200"
+                  className="size-[50px]"
+                  alt="feature"
+                  loading="lazy"
+                />
+              </div>
+              <div className="flex h-full flex-col items-center justify-center p-2 text-cach-l3">
+                <h1 className="mb-3 text-center text-xl font-bold">Title</h1>
+                <p className="text-left">Text</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article className="flex h-full w-3/4 items-center justify-evenly">
+          <div>
+            <img
+              src="https://www.picsum.photos/200/200"
+              className="size-[250px]"
+              alt="feature"
+              loading="lazy"
+            />
+          </div>
+          <div className="flex h-full flex-col items-center justify-center p-2 text-cach-l3">
+            <h1 className="mb-12 text-center text-4xl font-bold">Title</h1>
+            <p className="text-left">Text</p>
+          </div>
+        </article>
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-gray-100 px-4 py-16">
+      <section className="px-4 py-16">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-8 text-3xl font-bold text-cach-l1">
             Lo que dicen nuestros estudiantes
           </h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <div className="rounded-lg bg-white p-6 shadow-md">
+            <aeticle className="rounded-lg bg-white p-6 shadow-md">
               <p className="mb-4 text-gray-800">
                 "¡Increíble! Gracias a esta plataforma, finalmente puedo hablar
                 francés con confianza."
               </p>
               <p className="text-gray-600">- María, estudiante de francés</p>
-            </div>
-            <div className="rounded-lg bg-white p-6 shadow-md">
+            </aeticle>
+            <article className="rounded-lg bg-white p-6 shadow-md">
               <p className="mb-4 text-gray-800">
                 "Nunca pensé que aprender un idioma pudiera ser tan divertido.
                 ¡Gracias, equipo de Duolingo!"
               </p>
               <p className="text-gray-600">- Juan, estudiante de alemán</p>
-            </div>
-            <div className="rounded-lg bg-white p-6 shadow-md">
+            </article>
+            <article className="rounded-lg bg-white p-6 shadow-md">
               <p className="mb-4 text-gray-800">
                 "¡He probado muchas aplicaciones de idiomas y esta es, con
                 diferencia, la mejor!"
               </p>
               <p className="text-gray-600">- Ana, estudiante de italiano</p>
-            </div>
+            </article>
           </div>
         </div>
       </section>
@@ -106,8 +183,7 @@ const LandingPage = () => {
           ¿Listo para comenzar?
         </h2>
         <p className="mb-8 text-lg text-white">
-          Únete a millones de estudiantes satisfechos y comienza tu viaje
-          lingüístico hoy mismo.
+          Únete a nuestra comunidad y refuerza tus conocimientos hoy mismo.
         </p>
         <Link
           to="/register"
