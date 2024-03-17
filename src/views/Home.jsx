@@ -148,7 +148,7 @@ const LandingPage = () => {
       {/* Testimonials Section */}
       <section className="px-4 py-16">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-8 text-3xl font-bold text-cach-l1">
+          <h2 className="mb-8 text-3xl font-bold text-cach-l3">
             Lo que dicen nuestros estudiantes
           </h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -179,10 +179,10 @@ const LandingPage = () => {
 
       {/* Call to Action */}
       <section className="px-4 py-16 text-center">
-        <h2 className="mb-4 text-3xl font-bold text-white">
+        <h2 className="mb-4 text-3xl font-bold text-cach-l3">
           ¿Listo para comenzar?
         </h2>
-        <p className="mb-8 text-lg text-white">
+        <p className="mb-8 text-lg text-cach-l3">
           Únete a nuestra comunidad y refuerza tus conocimientos hoy mismo.
         </p>
         <Link
