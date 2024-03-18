@@ -48,14 +48,22 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* ¿Quienes somos? */}
       <section className="flex h-[90rem] flex-col items-center justify-between">
         <article className="my-4 flex h-full w-3/4 items-center justify-evenly">
-          <div className="flex h-full flex-col items-center justify-center p-2 text-cach-l3">
-            <h1 className="mb-12 text-center text-4xl font-bold">Title</h1>
-            <p className="text-left">Text</p>
+          <div className="flex h-full w-1/2 flex-col items-center justify-center p-2 text-cach-l3">
+            <h1 className="mb-12 text-center text-4xl font-bold">
+              ¿Quiénes Somos?
+            </h1>
+            <p className="text-left">
+              Cachimbo es una organización oficial de la UTEC que se dedica a
+              facilitar la transición académica y profesional de los estudiantes
+              universitarios. Nuestra plataforma utiliza herramientas basadas en
+              inteligencia artificial para ofrecer orientación personalizada y
+              recursos educativos que te ayudarán a alcanzar tus metas.
+            </p>
           </div>
-          <div>
+          <div className="flex w-1/2 justify-center">
             <img
               src="https://www.picsum.photos/200/200"
               className="size-[250px]"
@@ -65,69 +73,87 @@ const LandingPage = () => {
           </div>
         </article>
 
-        <article className="text-cach-l3">
-          <div className="mb-12 text-center text-4xl font-bold">
-            Nuestros servicios
-          </div>
-          <div className="grid grid-cols-2 grid-rows-2 gap-10">
-            <div className="flex h-[100px] w-[200px] items-center justify-evenly rounded-xl border border-solid border-cach-l3">
-              <div>
+        {/* Contenedor principal */}
+        <div className="flex justify-center">
+          {/* Nuestros Servicios */}
+          <article className="mx-4 max-w-[800px] text-cach-l3">
+            <div className="mb-8 text-center text-3xl font-bold">
+              Nuestros servicios
+            </div>
+            <div className="grid grid-cols-2 grid-rows-2 gap-6">
+              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3">
                 <img
                   src="https://www.picsum.photos/200/200"
-                  className="size-[50px]"
+                  className="m-4 h-[100px] w-[100px]"
                   alt="feature"
                   loading="lazy"
                 />
+                <div className="p-2 text-center text-cach-l3">
+                  <h1 className="mb-2 text-lg font-bold">Asistente Virtual</h1>
+                  <p className="text-left">
+                    Obtén orientación académica específica para ti, basada en un
+                    chat-bot que integra inteligencia artificial para una
+                    experiencia más personalizada.
+                  </p>
+                </div>
               </div>
-              <div className="flex h-full flex-col items-center justify-center p-2 text-cach-l3">
-                <h1 className="mb-3 text-center text-xl font-bold">Title</h1>
-                <p className="text-left">Text</p>
-              </div>
-            </div>
-            <div className="col-start-1 row-start-2 flex items-center justify-evenly rounded-xl border border-solid border-cach-l3">
-              <div>
+
+              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3">
                 <img
                   src="https://www.picsum.photos/200/200"
-                  className="size-[50px]"
+                  className="m-4 h-[100px] w-[100px]"
                   alt="feature"
                   loading="lazy"
                 />
+                <div className="p-2 text-center text-cach-l3">
+                  <h1 className="mb-2 text-lg font-bold">
+                    Comunidad Colaborativa
+                  </h1>
+                  <p className="text-left">
+                    Disfruta el contenido que la comunidad aporta con la
+                    calificacion de profesores, calificacion de los cursos,
+                    organizaciones de tu interes, grupos de estudios y mucho
+                    mas.,
+                  </p>
+                </div>
               </div>
-              <div className="flex h-full flex-col items-center justify-center p-2 text-cach-l3">
-                <h1 className="mb-3 text-center text-xl font-bold">Title</h1>
-                <p className="text-left">Text</p>
-              </div>
-            </div>
-            <div className="col-start-2 row-start-1 flex items-center justify-evenly rounded-xl border border-solid border-cach-l3">
-              <div>
+
+              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3">
                 <img
                   src="https://www.picsum.photos/200/200"
-                  className="size-[50px]"
+                  className="m-4 h-[100px] w-[100px]"
                   alt="feature"
                   loading="lazy"
                 />
+                <div className="p-2 text-center text-cach-l3">
+                  <h1 className="mb-2 text-lg font-bold">Eventos</h1>
+                  <p className="text-left">
+                    Se parte de eventos sociales con el fin de escuchar a
+                    estudiastes experimentados y crear nuevas amistades
+                  </p>
+                </div>
               </div>
-              <div className="flex h-full flex-col items-center justify-center p-2 text-cach-l3">
-                <h1 className="mb-3 text-center text-xl font-bold">Title</h1>
-                <p className="text-left">Text</p>
-              </div>
-            </div>
-            <div className="row-start-2 flex items-center justify-evenly rounded-xl border border-solid border-cach-l3">
-              <div>
+
+              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3">
                 <img
                   src="https://www.picsum.photos/200/200"
-                  className="size-[50px]"
+                  className="m-4 h-[100px] w-[100px]"
                   alt="feature"
                   loading="lazy"
                 />
-              </div>
-              <div className="flex h-full flex-col items-center justify-center p-2 text-cach-l3">
-                <h1 className="mb-3 text-center text-xl font-bold">Title</h1>
-                <p className="text-left">Text</p>
+                <div className="p-2 text-center text-cach-l3">
+                  <h1 className="mb-2 text-lg font-bold">
+                    Recursos Educativos
+                  </h1>
+                  <p className="text-left">
+                    Accede a una amplia variedad de recursos educativos para
+                    complementar tu rendimiento academico
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
 
         <article className="flex h-full w-3/4 items-center justify-evenly">
           <div>
