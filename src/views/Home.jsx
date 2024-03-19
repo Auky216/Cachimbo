@@ -8,6 +8,11 @@ import whatsAppIcon from "@/assets/whatsapp.svg";
 import hatIcon from "@/assets/hat.png";
 import ThemeButton from "@/components/ThemeButton";
 
+
+import AI_icon from "@/assets/AI_icon.png";
+import Comunity_icon from "@/assets/Comunity_Icon.png";
+import Event_Icon from "@/assets/Event_Icon.png";
+import Resources_Icon from "@/assets/Resources_Icon.png";
 const LandingPage = () => {
   return (
     <div className="min-h-screen dark:bg-cach-l4">
@@ -83,7 +88,7 @@ const LandingPage = () => {
             <div className="grid grid-cols-2 grid-rows-2 gap-6">
               <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3">
                 <img
-                  src="https://www.picsum.photos/200/200"
+                  src={AI_icon}
                   className="m-4 h-[100px] w-[100px]"
                   alt="feature"
                   loading="lazy"
@@ -100,7 +105,7 @@ const LandingPage = () => {
 
               <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3">
                 <img
-                  src="https://www.picsum.photos/200/200"
+                  src={Comunity_icon}
                   className="m-4 h-[100px] w-[100px]"
                   alt="feature"
                   loading="lazy"
@@ -120,7 +125,7 @@ const LandingPage = () => {
 
               <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3">
                 <img
-                  src="https://www.picsum.photos/200/200"
+                  src={Event_Icon}
                   className="m-4 h-[100px] w-[100px]"
                   alt="feature"
                   loading="lazy"
@@ -136,7 +141,7 @@ const LandingPage = () => {
 
               <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3">
                 <img
-                  src="https://www.picsum.photos/200/200"
+                  src={Resources_Icon}
                   className="m-4 h-[100px] w-[100px]"
                   alt="feature"
                   loading="lazy"
