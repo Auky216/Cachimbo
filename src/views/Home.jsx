@@ -26,7 +26,7 @@ const LandingPage = () => {
 
       {/* CTA Section */}
       <section className="px-4 py-16">
-        <div className="mx-auto flex max-w-4xl items-center justify-between">
+        <div className="mx-auto flex max-w-5xl items-center justify-between">
           {/* Logo Section */}
           <div className="flex-shrink-0">
             <img className="mr-20 h-96" src={hatIcon} alt="Logo"></img>
@@ -55,7 +55,7 @@ const LandingPage = () => {
 
       {/* ¿Quienes somos? */}
       <section className="flex h-[90rem] flex-col items-center justify-between">
-        <article className="my-4 flex h-full w-3/4 items-center justify-evenly">
+        <article className="my-4 flex h-full w-3/4 max-w-4xl items-center justify-evenly">
           <div className="flex h-full w-1/2 flex-col items-center justify-center p-2 text-cach-l3">
             <h1 className="mb-12 text-center text-4xl font-bold dark:text-cach-l2">
               ¿Quiénes Somos?
@@ -81,19 +81,19 @@ const LandingPage = () => {
         {/* Contenedor principal */}
         <div className="flex justify-center">
           {/* Nuestros Servicios */}
-          <article className="mx-4 max-w-[800px] text-cach-l3">
+          <article className="mx-4 max-w-[900px] text-cach-l3">
             <div className="mb-8 text-center text-3xl font-bold dark:text-cach-l2">
               Nuestros servicios
             </div>
             <div className="grid grid-cols-2 grid-rows-2 gap-6">
-              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 dark:border-cach-l2">
+              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
                 <img
                   src={AI_icon}
                   className="m-4 h-[100px] w-[100px]"
                   alt="feature"
                   loading="lazy"
                 />
-                <div className="p-2 text-center text-cach-l3 dark:text-cach-l2">
+                <div className="p-4 text-center text-cach-l3 dark:text-cach-l2">
                   <h1 className="mb-2 text-lg font-bold ">Asistente Virtual</h1>
                   <p className="text-left">
                     Obtén orientación académica específica para ti, basada en un
@@ -103,14 +103,14 @@ const LandingPage = () => {
                 </div>
               </div>
 
-              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 dark:border-cach-l2">
+              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
                 <img
                   src={Comunity_icon}
                   className="m-4 h-[100px] w-[100px]"
                   alt="feature"
                   loading="lazy"
                 />
-                <div className="p-2 text-center text-cach-l3 dark:text-cach-l2">
+                <div className="p-4 text-center text-cach-l3 dark:text-cach-l2">
                   <h1 className="mb-2 text-lg font-bold">
                     Comunidad Colaborativa
                   </h1>
@@ -123,7 +123,7 @@ const LandingPage = () => {
                 </div>
               </div>
 
-              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 dark:border-cach-l2">
+              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
                 <img
                   src={Event_Icon}
                   className="m-4 h-[100px] w-[100px]"
@@ -131,7 +131,9 @@ const LandingPage = () => {
                   loading="lazy"
                 />
                 <div className="p-2 text-center text-cach-l3">
-                  <h1 className="mb-2 text-lg font-bold dark:text-cach-l2">Eventos</h1>
+                  <h1 className="mb-2 text-lg font-bold dark:text-cach-l2">
+                    Eventos
+                  </h1>
                   <p className="text-left dark:text-cach-l2">
                     Se parte de eventos sociales con el fin de escuchar a
                     estudiastes experimentados y crear nuevas amistades
@@ -139,7 +141,7 @@ const LandingPage = () => {
                 </div>
               </div>
 
-              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 dark:border-cach-l2">
+              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
                 <img
                   src={Resources_Icon}
                   className="m-4 h-[100px] w-[100px]"
