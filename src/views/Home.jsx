@@ -5,10 +5,10 @@ import discordIcon from "@/assets/discord.svg";
 import linkedinIcon from "@/assets/linkedin.svg";
 import instagramIcon from "@/assets/instagram.svg";
 import whatsAppIcon from "@/assets/whatsapp.svg";
-import hatIcon from "@/assets/hat.png";
+import hatIcon from "@/assets/hat2.png";
 import ThemeButton from "@/components/ThemeButton";
 
-
+import UTEC_Icon from "@/assets/Utec_Icon.png";
 import AI_icon from "@/assets/AI_icon.png";
 import Comunity_icon from "@/assets/Comunity_Icon.png";
 import Event_Icon from "@/assets/Event_Icon.png";
@@ -29,11 +29,11 @@ const LandingPage = () => {
         <div className="mx-auto flex max-w-4xl items-center justify-between">
           {/* Logo Section */}
           <div className="flex-shrink-0">
-            <img className="mr-20 h-80" src={hatIcon} alt="Logo"></img>
+            <img className="mr-20 h-96" src={hatIcon} alt="Logo"></img>
           </div>
           {/* CTA Buttons Section */}
           <div className="flex flex-col items-center text-center">
-            <h2 className="mb-10 text-3xl font-bold text-cach-l3">
+            <h2 className="mb-10 text-3xl font-bold text-cach-l3 dark:text-cach-l2">
               ¡Facilitamos tu éxito académico y personal!
             </h2>
 
@@ -57,10 +57,10 @@ const LandingPage = () => {
       <section className="flex h-[90rem] flex-col items-center justify-between">
         <article className="my-4 flex h-full w-3/4 items-center justify-evenly">
           <div className="flex h-full w-1/2 flex-col items-center justify-center p-2 text-cach-l3">
-            <h1 className="mb-12 text-center text-4xl font-bold">
+            <h1 className="mb-12 text-center text-4xl font-bold dark:text-cach-l2">
               ¿Quiénes Somos?
             </h1>
-            <p className="text-left">
+            <p className="text-left dark:text-cach-l2">
               Cachimbo es una organización oficial de la UTEC que se dedica a
               facilitar la transición académica y profesional de los estudiantes
               universitarios. Nuestra plataforma utiliza herramientas basadas en
@@ -70,7 +70,7 @@ const LandingPage = () => {
           </div>
           <div className="flex w-1/2 justify-center">
             <img
-              src="https://www.picsum.photos/200/200"
+              src={UTEC_Icon}
               className="size-[250px]"
               alt="feature"
               loading="lazy"
@@ -82,19 +82,19 @@ const LandingPage = () => {
         <div className="flex justify-center">
           {/* Nuestros Servicios */}
           <article className="mx-4 max-w-[800px] text-cach-l3">
-            <div className="mb-8 text-center text-3xl font-bold">
+            <div className="mb-8 text-center text-3xl font-bold dark:text-cach-l2">
               Nuestros servicios
             </div>
             <div className="grid grid-cols-2 grid-rows-2 gap-6">
-              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3">
+              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 dark:border-cach-l2">
                 <img
                   src={AI_icon}
                   className="m-4 h-[100px] w-[100px]"
                   alt="feature"
                   loading="lazy"
                 />
-                <div className="p-2 text-center text-cach-l3">
-                  <h1 className="mb-2 text-lg font-bold">Asistente Virtual</h1>
+                <div className="p-2 text-center text-cach-l3 dark:text-cach-l2">
+                  <h1 className="mb-2 text-lg font-bold ">Asistente Virtual</h1>
                   <p className="text-left">
                     Obtén orientación académica específica para ti, basada en un
                     chat-bot que integra inteligencia artificial para una
@@ -103,18 +103,18 @@ const LandingPage = () => {
                 </div>
               </div>
 
-              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3">
+              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 dark:border-cach-l2">
                 <img
                   src={Comunity_icon}
                   className="m-4 h-[100px] w-[100px]"
                   alt="feature"
                   loading="lazy"
                 />
-                <div className="p-2 text-center text-cach-l3">
+                <div className="p-2 text-center text-cach-l3 dark:text-cach-l2">
                   <h1 className="mb-2 text-lg font-bold">
                     Comunidad Colaborativa
                   </h1>
-                  <p className="text-left">
+                  <p className="text-left dark:text-cach-l2">
                     Disfruta el contenido que la comunidad aporta con la
                     calificacion de profesores, calificacion de los cursos,
                     organizaciones de tu interes, grupos de estudios y mucho
@@ -123,7 +123,7 @@ const LandingPage = () => {
                 </div>
               </div>
 
-              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3">
+              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 dark:border-cach-l2">
                 <img
                   src={Event_Icon}
                   className="m-4 h-[100px] w-[100px]"
@@ -131,15 +131,15 @@ const LandingPage = () => {
                   loading="lazy"
                 />
                 <div className="p-2 text-center text-cach-l3">
-                  <h1 className="mb-2 text-lg font-bold">Eventos</h1>
-                  <p className="text-left">
+                  <h1 className="mb-2 text-lg font-bold dark:text-cach-l2">Eventos</h1>
+                  <p className="text-left dark:text-cach-l2">
                     Se parte de eventos sociales con el fin de escuchar a
                     estudiastes experimentados y crear nuevas amistades
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3">
+              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 dark:border-cach-l2">
                 <img
                   src={Resources_Icon}
                   className="m-4 h-[100px] w-[100px]"
@@ -147,10 +147,10 @@ const LandingPage = () => {
                   loading="lazy"
                 />
                 <div className="p-2 text-center text-cach-l3">
-                  <h1 className="mb-2 text-lg font-bold">
+                  <h1 className="mb-2 text-lg font-bold dark:text-cach-l2">
                     Recursos Educativos
                   </h1>
-                  <p className="text-left">
+                  <p className="text-left dark:text-cach-l2">
                     Accede a una amplia variedad de recursos educativos para
                     complementar tu rendimiento academico
                   </p>
