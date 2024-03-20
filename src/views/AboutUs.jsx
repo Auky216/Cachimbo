@@ -1,4 +1,5 @@
 import { CachimboLogo } from "@/components/icons/CachimoLogo";
+import { Link } from "react-router-dom";
 
 const AboutUs = () => {
   const Team = [
@@ -23,14 +24,14 @@ const AboutUs = () => {
         <div className="pb-20 text-3xl font-bold text-cach-l2">
           Nuestro equipo
         </div>
-        <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 bg-cach-l3 px-6 py-7 dark:border-cach-l2 dark:bg-transparent">
+        <div className="py-30 mb-10 flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 bg-cach-l3 px-6 dark:border-cach-l2 dark:bg-transparent">
           <ul className="text-cach-l2">
             {Team.map((member) => (
               <li key={member.name}>
                 <article className="flex flex-row items-center justify-between gap-4">
                   <div className="h-full w-full">
                     <img
-                      className="m-4 size-[150px] object-fill"
+                      className="m-4 aspect-[12/9] size-[150px] object-fill"
                       src={member.image}
                     ></img>
                   </div>
@@ -46,6 +47,12 @@ const AboutUs = () => {
             ))}
           </ul>
         </div>
+        <Link
+          to="/home"
+          className="w-30 mb-4 rounded-full bg-cach-l3 px-8 py-3 text-center font-semibold text-white duration-300 hover:bg-cach-l2"
+        >
+          Ir atrás
+        </Link>
       </section>
     </main>
   );

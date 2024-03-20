@@ -2,17 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import router from "@/routes/root.jsx";
 import NavBar from "@/components/Navbar.jsx";
-import ThemeButton from "@/components/ThemeButton";
 
 const App = () => {
   const storedTheme = localStorage.getItem("theme");
   const [theme, setTheme] = useState(storedTheme || "light");
 
   useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
+    if (localStorage.getItem("initCachimboPlatform")) {
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     } else {
-      document.documentElement.classList.remove("dark");
+      localStorage.setItem("initCachimboPlatform", true);
     }
   }, [theme]);
 
