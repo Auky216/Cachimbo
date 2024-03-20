@@ -66,7 +66,11 @@ const AboutUs = () => {
   return (
     <main className="m-auto flex flex-col items-center min-h-screen px-4">
       <div className="py-10 pt-20">
-        <CachimboLogo />
+      <div className="mt-5 flex justify-center">
+        <Link to="/">
+          <CachimboLogo />
+        </Link>
+      </div>
       </div>
       <section className="w-full max-w-lg grid grid-cols-1 md:grid-cols-2 gap-6">
         {Team.map((member, index) => (
