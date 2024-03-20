@@ -17,205 +17,194 @@ const LandingPage = () => {
   return (
     <main className="min-h-screen">
       {/* Header */}
-      <header className="flex justify-between px-12 py-8 text-center">
-        <CachimboLogo />
-        <div className="flex justify-center">
-          <ThemeButton />
-        </div>
-      </header>
+      <header class="flex flex-col lg:flex-row lg:justify-between px-4 lg:px-12 py-8 text-center items-center">
+  <CachimboLogo class="mb-4 lg:mb-0" />
+  <div class="flex justify-center">
+    <ThemeButton />
+  </div>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       {/* CTA Section */}
-      <section className="px-4 py-16">
-        <div className="mx-auto flex max-w-5xl items-center justify-between">
-          {/* Logo Section */}
-          <div className="flex-shrink-0">
-            <img className="mr-20 h-96" src={hatIcon} alt="Logo"></img>
-          </div>
-          {/* CTA Buttons Section */}
-          <div className="flex flex-col items-center text-center">
-            <h2 className="mb-10 text-3xl font-bold text-cach-l3 dark:text-cach-l2">
-              ¡Facilitamos tu éxito académico y personal!
-            </h2>
+      <section class="px-4 lg:px-0 py-16">
+  <div class="mx-auto flex flex-col lg:flex-row max-w-5xl items-center justify-center lg:justify-between">
+    <div class="flex-shrink-0 mb-8 lg:mb-0">
+      <img class="h-64 lg:h-96" src={hatIcon} alt="Logo" />
+    </div>
+    <div class="flex flex-col items-center text-center">
+      <h2 class="mb-10 text-2xl lg:text-3xl font-bold text-cach-l3 dark:text-cach-l2">
+        ¡Facilitamos tu éxito académico y personal!
+      </h2>
+      <div class="flex flex-col lg:flex-row items-center">
+        <Link
+          to="/register"
+          class="mb-4 lg:mb-0 mr-0 lg:mr-4 w-full lg:w-auto rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white duration-300 hover:bg-cach-l2"
+        >
+          Regístrate gratis
+        </Link>
+        <Link
+          to="/login"
+          class="w-full lg:w-auto rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white transition duration-300 hover:bg-cach-l2"
+        >
+          Iniciar Sesión
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <Link
-              to="/register"
-              className="mb-4 w-60 rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white duration-300 hover:bg-cach-l2"
-            >
-              Regístrate gratis
-            </Link>
-            <Link
-              to="/login"
-              className="w-60 rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white transition duration-300 hover:bg-cach-l2"
-            >
-              Iniciar Sesión
-            </Link>
-          </div>
-        </div>
-      </section>
 
-      {/* ¿Quienes somos? */}
-      <section className="flex h-[80rem] max-h-fit flex-col items-center justify-center">
-        <article className="my-4 flex h-full w-3/4 max-w-4xl items-center">
-          <div className="flex h-full w-4/5 flex-col items-center justify-center p-10 text-cach-l3">
-            <h1 className="mb-12 text-center text-4xl font-bold dark:text-cach-l2">
-              ¿Quiénes Somos?
-            </h1>
-            <p className="text-left dark:text-cach-l2">
-              Cachimbo es una organización oficial de la UTEC que se dedica a
-              facilitar la transición académica y profesional de los estudiantes
-              universitarios. Nuestra plataforma utiliza herramientas basadas en
-              inteligencia artificial para ofrecer orientación personalizada y
-              recursos educativos que te ayudarán a alcanzar tus metas.
-            </p>
-            <br />
-            <Link
-              to="/about"
-              className="w-30 mb-4 rounded-full bg-cach-l3 px-8 py-3 text-center font-semibold text-white duration-300 hover:bg-cach-l2"
-            >
-              Nuestro equipo
-            </Link>
-          </div>
-          <div className="flex w-1/2 justify-center">
-            <img
-              src={UTEC_Icon}
-              className="size-[250px]"
-              alt="feature"
-              loading="lazy"
-            />
-          </div>
-        </article>
 
-        {/* Contenedor principal */}
-        <article className="flex justify-center">
-          {/* Nuestros Servicios */}
-          <div className="mx-4 max-w-[900px] py-20 text-cach-l3">
-            <div className="mb-8 text-center text-3xl font-bold dark:text-cach-l2">
-              Nuestros servicios
-            </div>
-            <div className="grid grid-cols-2 grid-rows-2 gap-6">
-              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
-                <img
-                  src={AI_icon}
-                  className="m-4 h-[100px] w-[100px]"
-                  alt="feature"
-                  loading="lazy"
-                />
-                <div className="p-4 text-center text-cach-l3 dark:text-cach-l2">
-                  <h1 className="mb-2 text-lg font-bold ">Asistente Virtual</h1>
-                  <p className="text-pretty text-left">
-                    Obtén orientación académica específica para ti, basada en un
-                    chat-bot que integra inteligencia artificial para una
-                    experiencia más personalizada.
-                  </p>
-                </div>
-              </div>
 
-              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
-                <img
-                  src={Comunity_icon}
-                  className="m-4 h-[100px] w-[100px]"
-                  alt="feature"
-                  loading="lazy"
-                />
-                <div className="p-4 text-center text-cach-l3 dark:text-cach-l2">
-                  <h1 className="mb-2 text-lg font-bold">
-                    Comunidad Colaborativa
-                  </h1>
-                  <p className="text-pretty text-left dark:text-cach-l2">
-                    Disfruta el contenido que la comunidad aporta con la
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="px-4 lg:px-0 py-16">
+  <div class="mx-auto flex flex-col lg:flex-row max-w-5xl items-center justify-center lg:justify-between">
+    <div class="flex-shrink-0 mb-8 lg:mb-0">
+      <img class="h-64 lg:h-96" src={UTEC_Icon} alt="Logo" />
+    </div>
+    <div class="flex flex-col items-center text-center">
+      <div class="flex flex-col items-center justify-center lg:items-start lg:text-left">
+        <h1 class="mb-6 text-4xl font-bold dark:text-cach-l2">¿Quiénes Somos?</h1>
+        <p class="mb-6 text-left dark:text-cach-l2">
+          Cachimbo es una organización oficial de la UTEC que se dedica a facilitar
+          la transición académica y profesional de los estudiantes universitarios.
+          Nuestra plataforma utiliza herramientas basadas en inteligencia artificial
+          para ofrecer orientación personalizada y recursos educativos que te
+          ayudarán a alcanzar tus metas.
+        </p>
+        <Link
+          to="/about"
+          class="w-full lg:w-auto rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white duration-300 hover:bg-cach-l2"
+        >
+          Nuestro equipo
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<article className="flex flex-col items-center justify-center max-w-full py-8 px-4 md:px-0 text-cach-l3">
+  <div className="mb-8 text-center text-3xl font-bold dark:text-cach-l2">
+    Nuestros servicios
+  </div>
+  <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+    {/* Primer servicio */}
+    <div className="flex flex-col items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
+      <img
+        src={AI_icon}
+        className="m-4 h-20 md:h-32 w-20 md:w-32"
+        alt="feature"
+        loading="lazy"
+      />
+      <div className="p-4 text-center text-cach-l3 dark:text-cach-l2">
+        <h1 className="mb-2 text-lg font-bold ">Asistente Virtual</h1>
+        <p className="text-pretty text-left">
+          Obtén orientación académica específica para ti, basada en un chat-bot
+          que integra inteligencia artificial para una experiencia más
+          personalizada.
+        </p>
+      </div>
+    </div>
+
+    {/* Segundo servicio */}
+    <div className="flex flex-col items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
+      <img
+        src={Comunity_icon}
+        className="m-4 h-20 md:h-32 w-20 md:w-32"
+        alt="feature"
+        loading="lazy"
+      />
+      <div className="p-4 text-center text-cach-l3 dark:text-cach-l2">
+        <h1 className="mb-2 text-lg font-bold ">Comunidad Colaborativa</h1>
+        <p className="text-pretty text-left">
+        Disfruta el contenido que la comunidad aporta con la
                     calificacion de profesores, calificacion de los cursos,
                     organizaciones de tu interes, grupos de estudios y mucho
-                    mas.,
-                  </p>
-                </div>
-              </div>
+                    mas.
+        </p>
+      </div>
+    </div>
 
-              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
-                <img
-                  src={Event_Icon}
-                  className="m-4 h-fit max-h-[100px] w-fit max-w-[100px]"
-                  alt="feature"
-                  loading="lazy"
-                />
-                <div className="p-2 text-center text-cach-l3">
-                  <h1 className="mb-2 text-lg font-bold dark:text-cach-l2">
-                    Eventos
-                  </h1>
-                  <p className="text-pretty text-left dark:text-cach-l2">
-                    Se parte de eventos sociales con el fin de escuchar a
-                    estudiastes experimentados y crear nuevas amistades
-                  </p>
-                </div>
-              </div>
+    {/* Tercer servicio */}
+    <div className="flex flex-col items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
+      <img
+        src={Event_Icon}
+        className="m-4 h-20 md:h-32 w-20 md:w-32"
+        alt="feature"
+        loading="lazy"
+      />
+      <div className="p-4 text-center text-cach-l3 dark:text-cach-l2">
+        <h1 className="mb-2 text-lg font-bold ">Eventos</h1>
+        <p className="text-pretty text-left">
+        Se parte de eventos sociales con el fin de escuchar a
+                    estudiastes experimentados y crear nuevas amistades.
+        </p>
+      </div>
+    </div>
 
-              <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
-                <img
-                  src={Resources_Icon}
-                  className="m-4 h-[100px] w-[100px]"
-                  alt="feature"
-                  loading="lazy"
-                />
-                <div className="p-2 text-center text-cach-l3">
-                  <h1 className="mb-2 text-lg font-bold dark:text-cach-l2">
-                    Recursos Educativos
-                  </h1>
-                  <p className="text-pretty text-left dark:text-cach-l2">
-                    Accede a una amplia variedad de recursos educativos para
-                    complementar tu rendimiento academico
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
+    {/* Cuarto servicio */}
+    <div className="flex flex-col items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
+      <img
+        src={Resources_Icon}
+        className="m-4 h-20 md:h-32 w-20 md:w-32"
+        alt="feature"
+        loading="lazy"
+      />
+      <div className="p-4 text-center text-cach-l3 dark:text-cach-l2">
+        <h1 className="mb-2 text-lg font-bold ">Recursos Educativos</h1>
+        <p className="text-pretty text-left">
+          Obtén orientación académica específica para ti, basada en un chat-bot
+          que integra inteligencia artificial para una experiencia más
+          personalizada.
+        </p>
+      </div>
+    </div>
+  </div>
+</article>
 
-        {/* <article className="flex h-full w-3/4 items-center justify-evenly">
-          <div>
-            <img
-              src="https://www.picsum.photos/200/200"
-              className="size-[250px]"
-              alt="feature"
-              loading="lazy"
-            />
-          </div>
-          <div className="flex h-full flex-col items-center justify-center p-2 text-cach-l3">
-            <h1 className="mb-12 text-center text-4xl font-bold">Title</h1>
-            <p className="text-left">Text</p>
-          </div>
-        </article> */}
-      </section>
 
-      {/* Testimonials Section */}
-      {/* <section className="px-4 py-16">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-8 text-3xl font-bold text-cach-l3 dark:text-cach-l2">
-            Lo que dicen nuestros estudiantes
-          </h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <aeticle className="rounded-lg bg-white p-6 shadow-md">
-              <p className="mb-4 text-gray-800">
-                "¡Increíble! Gracias a esta plataforma, finalmente puedo hablar
-                francés con confianza."
-              </p>
-              <p className="text-gray-600">- María, estudiante de francés</p>
-            </aeticle>
-            <article className="rounded-lg bg-white p-6 shadow-md">
-              <p className="mb-4 text-gray-800">
-                "Nunca pensé que aprender un idioma pudiera ser tan divertido.
-                ¡Gracias, equipo de Duolingo!"
-              </p>
-              <p className="text-gray-600">- Juan, estudiante de alemán</p>
-            </article>
-            <article className="rounded-lg bg-white p-6 shadow-md">
-              <p className="mb-4 text-gray-800">
-                "¡He probado muchas aplicaciones de idiomas y esta es, con
-                diferencia, la mejor!"
-              </p>
-              <p className="text-gray-600">- Ana, estudiante de italiano</p>
-            </article>
-          </div>
-        </div>
-      </section> */}
 
       {/* Call to Action */}
       <section className="px-4 py-16 text-center">
