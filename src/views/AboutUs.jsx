@@ -6,6 +6,7 @@ import Brigit from "@/assets/TeamPhoto/Brigit.jpeg";
 import Adrian from "@/assets/TeamPhoto/Adrian.jpeg";
 import Noe from "@/assets/TeamPhoto/Noe.jpeg";
 import Danilo from "@/assets/TeamPhoto/Danilo.jpeg";
+import Javier from "@/assets/TeamPhoto/Javier.jpeg";
 
 
 const AboutUs = () => {
@@ -35,7 +36,7 @@ const AboutUs = () => {
       name: "Adrian",
       lastName: "Sandoval Huamani",
       email: "adrian.sandoval@utec.edu.pe",
-      rol: "Backend Developerr",
+      rol: "Backend Developer",
       image: Adrian,
     },
     {
@@ -51,6 +52,13 @@ const AboutUs = () => {
       email: "danilo.becerra@utec.edu.pe",
       rol: "Tesorero",
       image: Danilo,
+    },
+    {
+      name: "Javier Omar",
+      lastName: "Chavarria Humareda",
+      email: "javier.chavarria@utec.edu.pe",
+      rol: "Frontend Developer",
+      image: Javier,
     },
     // Más integrantes...
   ];
