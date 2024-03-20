@@ -17,7 +17,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="username">
               <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:bg-transparent dark:text-cach-l1"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
                 type="text"
                 id="username"
                 placeholder="Nombre de usuario"
@@ -27,7 +27,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="email">
               <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:bg-transparent dark:text-cach-l1"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
                 type="email"
                 id="email"
                 placeholder="Correo electrónico"
@@ -37,7 +37,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="password">
               <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:bg-transparent dark:text-cach-l1"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
                 type="password"
                 id="password"
                 placeholder="Contraseña"
@@ -47,7 +47,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="confirmPassword">
               <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:bg-transparent dark:text-cach-l1"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
                 type="password"
                 id="confirmPassword"
                 placeholder="Confirmar contraseña"
@@ -57,7 +57,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="lastname">
               <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:bg-transparent dark:text-cach-l1"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
                 type="text"
                 id="lastname"
                 placeholder="Apellido"
@@ -67,7 +67,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="age">
               <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:bg-transparent dark:text-cach-l1"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
                 type="number"
                 id="age"
                 placeholder="Edad"
@@ -77,7 +77,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="degree">
               <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:bg-transparent dark:text-cach-l1"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
                 type="text"
                 id="degree"
                 placeholder="Grado"
@@ -87,7 +87,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="startYear">
               <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:bg-transparent dark:text-cach-l1"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
                 type="number"
                 id="startYear"
                 placeholder="Año de inicio"
@@ -97,7 +97,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="term">
               <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:bg-transparent dark:text-cach-l1"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
                 type="text"
                 id="term"
                 placeholder="Término"

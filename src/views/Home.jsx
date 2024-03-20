@@ -15,7 +15,7 @@ import Event_Icon from "@/assets/Event_Icon.png";
 import Resources_Icon from "@/assets/Resources_Icon.png";
 const LandingPage = () => {
   return (
-    <div className="min-h-screen dark:bg-cach-l4">
+    <main className="min-h-screen">
       {/* Header */}
       <header className="flex justify-between px-12 py-8 text-center">
         <CachimboLogo />
@@ -39,7 +39,7 @@ const LandingPage = () => {
 
             <Link
               to="/register"
-              className="mb-4 w-60 rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white transition duration-300 hover:bg-cach-l2"
+              className="mb-4 w-60 rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white duration-300 hover:bg-cach-l2"
             >
               Regístrate gratis
             </Link>
@@ -54,9 +54,9 @@ const LandingPage = () => {
       </section>
 
       {/* ¿Quienes somos? */}
-      <section className="flex h-[90rem] flex-col items-center justify-between">
-        <article className="my-4 flex h-full w-3/4 max-w-4xl items-center justify-evenly">
-          <div className="flex h-full w-1/2 flex-col items-center justify-center p-2 text-cach-l3">
+      <section className="flex h-[80rem] max-h-fit flex-col items-center justify-center">
+        <article className="my-4 flex h-full w-3/4 max-w-4xl items-center">
+          <div className="flex h-full w-4/5 flex-col items-center justify-center p-10 text-cach-l3">
             <h1 className="mb-12 text-center text-4xl font-bold dark:text-cach-l2">
               ¿Quiénes Somos?
             </h1>
@@ -67,6 +67,13 @@ const LandingPage = () => {
               inteligencia artificial para ofrecer orientación personalizada y
               recursos educativos que te ayudarán a alcanzar tus metas.
             </p>
+            <br />
+            <Link
+              to="/about"
+              className="w-30 mb-4 rounded-full bg-cach-l3 px-8 py-3 text-center font-semibold text-white duration-300 hover:bg-cach-l2"
+            >
+              Nuestro equipo
+            </Link>
           </div>
           <div className="flex w-1/2 justify-center">
             <img
@@ -79,9 +86,9 @@ const LandingPage = () => {
         </article>
 
         {/* Contenedor principal */}
-        <div className="flex justify-center">
+        <article className="flex justify-center">
           {/* Nuestros Servicios */}
-          <article className="mx-4 max-w-[900px] text-cach-l3">
+          <div className="mx-4 max-w-[900px] py-20 text-cach-l3">
             <div className="mb-8 text-center text-3xl font-bold dark:text-cach-l2">
               Nuestros servicios
             </div>
@@ -95,7 +102,7 @@ const LandingPage = () => {
                 />
                 <div className="p-4 text-center text-cach-l3 dark:text-cach-l2">
                   <h1 className="mb-2 text-lg font-bold ">Asistente Virtual</h1>
-                  <p className="text-left">
+                  <p className="text-pretty text-left">
                     Obtén orientación académica específica para ti, basada en un
                     chat-bot que integra inteligencia artificial para una
                     experiencia más personalizada.
@@ -114,7 +121,7 @@ const LandingPage = () => {
                   <h1 className="mb-2 text-lg font-bold">
                     Comunidad Colaborativa
                   </h1>
-                  <p className="text-left dark:text-cach-l2">
+                  <p className="text-pretty text-left dark:text-cach-l2">
                     Disfruta el contenido que la comunidad aporta con la
                     calificacion de profesores, calificacion de los cursos,
                     organizaciones de tu interes, grupos de estudios y mucho
@@ -126,7 +133,7 @@ const LandingPage = () => {
               <div className="flex flex-row items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
                 <img
                   src={Event_Icon}
-                  className="m-4 h-[100px] w-[100px]"
+                  className="m-4 h-fit max-h-[100px] w-fit max-w-[100px]"
                   alt="feature"
                   loading="lazy"
                 />
@@ -134,7 +141,7 @@ const LandingPage = () => {
                   <h1 className="mb-2 text-lg font-bold dark:text-cach-l2">
                     Eventos
                   </h1>
-                  <p className="text-left dark:text-cach-l2">
+                  <p className="text-pretty text-left dark:text-cach-l2">
                     Se parte de eventos sociales con el fin de escuchar a
                     estudiastes experimentados y crear nuevas amistades
                   </p>
@@ -152,17 +159,17 @@ const LandingPage = () => {
                   <h1 className="mb-2 text-lg font-bold dark:text-cach-l2">
                     Recursos Educativos
                   </h1>
-                  <p className="text-left dark:text-cach-l2">
+                  <p className="text-pretty text-left dark:text-cach-l2">
                     Accede a una amplia variedad de recursos educativos para
                     complementar tu rendimiento academico
                   </p>
                 </div>
               </div>
             </div>
-          </article>
-        </div>
+          </div>
+        </article>
 
-        <article className="flex h-full w-3/4 items-center justify-evenly">
+        {/* <article className="flex h-full w-3/4 items-center justify-evenly">
           <div>
             <img
               src="https://www.picsum.photos/200/200"
@@ -175,13 +182,13 @@ const LandingPage = () => {
             <h1 className="mb-12 text-center text-4xl font-bold">Title</h1>
             <p className="text-left">Text</p>
           </div>
-        </article>
+        </article> */}
       </section>
 
       {/* Testimonials Section */}
-      <section className="px-4 py-16">
+      {/* <section className="px-4 py-16">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-8 text-3xl font-bold text-cach-l3">
+          <h2 className="mb-8 text-3xl font-bold text-cach-l3 dark:text-cach-l2">
             Lo que dicen nuestros estudiantes
           </h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -208,14 +215,14 @@ const LandingPage = () => {
             </article>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Call to Action */}
       <section className="px-4 py-16 text-center">
-        <h2 className="mb-4 text-3xl font-bold text-cach-l3">
+        <h2 className="mb-4 text-3xl font-bold text-cach-l3 dark:text-cach-l2">
           ¿Listo para comenzar?
         </h2>
-        <p className="mb-8 text-lg text-cach-l3">
+        <p className="mb-8 text-lg text-cach-l3 dark:text-cach-l2">
           Únete a nuestra comunidad y refuerza tus conocimientos hoy mismo.
         </p>
         <Link
@@ -246,7 +253,7 @@ const LandingPage = () => {
           </a>
         </div>
       </footer>
-    </div>
+    </main>
   );
 };
 

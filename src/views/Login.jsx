@@ -18,7 +18,7 @@ const Login = () => {
           <div className="mb-4">
             <label htmlFor="email">
               <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:bg-transparent dark:text-cach-l1"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
                 type="text"
                 id="email"
                 placeholder="Correo"
@@ -28,7 +28,7 @@ const Login = () => {
           <div className="mb-6">
             <label htmlFor="password">
               <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:bg-transparent dark:text-cach-l1"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
                 type="password"
                 id="password"
                 placeholder="Contraseña"
