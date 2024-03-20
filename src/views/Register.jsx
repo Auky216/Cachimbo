@@ -4,7 +4,13 @@ import ThemeButton from "@/components/ThemeButton";
 const Register = () => {
   return (
     <section className="m-auto mt-12 flex w-[500px] flex-col">
-      <CachimboLogo />
+      
+      <div className="mt-5 flex justify-center">
+        <Link to="/">
+          <CachimboLogo />
+        </Link>
+      </div>
+
       <div className="mt-5 flex justify-center">
         <ThemeButton />
       </div>
