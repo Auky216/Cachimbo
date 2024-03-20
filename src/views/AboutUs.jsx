@@ -15,49 +15,49 @@ const AboutUs = () => {
       name: "Adrian",
       lastName: "Antonio Auqui Perez",
       email: "adrian.auqui@utec.edu.pe",
-      rol: "Presidente",
+      role: "Presidente",
       image: Antonio,
     },
     {
       name: "Yanelit",
       lastName: "Picon Huaman",
       email: "yanelit.huaman@utec.edu.pe",
-      rol: "Secretaria",
+      role: "Secretaria",
       image: Yanelit,
     },
     {
       name: "Brigitte Dayane",
       lastName: "Rojas Leon",
       email: "brigitte.rojas@utec.edu.pe",
-      rol: "Coordinadora Recursos Educativos",
+      role: "Coordinadora Recursos Educativos",
       image: Brigit,
     },
     {
       name: "Adrian",
       lastName: "Sandoval Huamani",
       email: "adrian.sandoval@utec.edu.pe",
-      rol: "Backend Developer",
+      role: "Backend Developerr",
       image: Adrian,
     },
     {
       name: "Noe",
       lastName: "Paredes Rauraico",
       email: "ananias.paredes@utec.edu.pe",
-      rol: "Web Designer",
+      role: "Web Designer",
       image: Noe,
     },
     {
       name: "Danilo Caleb",
       lastName: "Becerra Balvin",
       email: "danilo.becerra@utec.edu.pe",
-      rol: "Tesorero",
+      role: "Tesorero",
       image: Danilo,
     },
     {
       name: "Javier Omar",
       lastName: "Chavarria Humareda",
       email: "javier.chavarria@utec.edu.pe",
-      rol: "Frontend Developer",
+      role: "Frontend Developer",
       image: Javier,
     },
     // Más integrantes...
@@ -79,11 +79,12 @@ const AboutUs = () => {
             <div className="p-4">
               <h1 className="text-xl font-semibold">{member.name} {member.lastName}</h1>
               <h2 className="text-sm text-gray-600">{member.email}</h2>
-              <p className="text-sm text-pretty">{member.rol}</p>
+              <p className="text-sm text-pretty">{member.role}</p>
             </div>
           </div>
         ))}
       </section>
+      
       <div className="py-6">
         <Link
           to="/home"
