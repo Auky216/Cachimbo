@@ -8,7 +8,6 @@ import Noe from "@/assets/TeamPhoto/Noe.jpeg";
 import Danilo from "@/assets/TeamPhoto/Danilo.jpeg";
 import Javier from "@/assets/TeamPhoto/Javier.jpeg";
 
-
 const AboutUs = () => {
   const Team = [
     {
@@ -36,7 +35,7 @@ const AboutUs = () => {
       name: "Adrian",
       lastName: "Sandoval Huamani",
       email: "adrian.sandoval@utec.edu.pe",
-      role: "Backend Developerr",
+      role: "Frontend/Backend Developerr",
       image: Adrian,
     },
     {
@@ -64,27 +63,32 @@ const AboutUs = () => {
   ];
 
   return (
-    <main className="m-auto flex flex-col items-center min-h-screen px-4">
+    <main className="m-auto flex min-h-screen flex-col items-center px-4">
       <div className="py-10 pt-20">
         <CachimboLogo />
       </div>
-      <section className="w-full max-w-lg grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section className="grid w-full max-w-lg grid-cols-1 gap-6 md:grid-cols-2">
         {Team.map((member, index) => (
-          <div key={index} className="bg-cach-l3 rounded-xl border border-solid border-cach-l3 dark:border-cach-l2 dark:bg-transparent p-2">
+          <div
+            key={index}
+            className="rounded-xl border border-solid border-cach-l3 bg-cach-l3 p-2 dark:border-cach-l2 dark:bg-transparent"
+          >
             <img
-              className="w-full h-64 object-cover rounded-t-xl"
+              className="h-64 w-full rounded-t-xl object-cover"
               src={member.image}
               alt={`${member.name} ${member.lastName}`}
             />
             <div className="p-4">
-              <h1 className="text-xl font-semibold">{member.name} {member.lastName}</h1>
+              <h1 className="text-xl font-semibold">
+                {member.name} {member.lastName}
+              </h1>
               <h2 className="text-sm text-gray-600">{member.email}</h2>
-              <p className="text-sm text-pretty">{member.role}</p>
+              <p className="text-pretty text-sm">{member.role}</p>
             </div>
           </div>
         ))}
       </section>
-      
+
       <div className="py-6">
         <Link
           to="/home"
