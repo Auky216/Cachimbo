@@ -10,3 +10,18 @@
   min-width: 320px;
   min-height: 100vh;
 }
+
+.aboutgrid {
+  grid-template-areas: 
+    "title title title"
+    "bleft cont bright";
+  }
+  
+  @media (width <= 768px) {
+    .aboutgrid {
+      grid-template-areas: 
+      "title title"
+      "cont cont"
+      "bleft bright";
+  }
+}

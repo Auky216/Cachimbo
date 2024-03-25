@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { CachimboLogo } from "@/components/icons/CachimoLogo";
-import ThemeButton from "@/components/ThemeButton";
+import { CachimboLogo } from "../components/icons/CachimoLogo";
+import ThemeButton from "../components/ThemeButton";
 
 const Login = () => {
   return (
