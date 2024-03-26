@@ -1,9 +1,9 @@
 import { CachimboLogo } from "@/components/icons/CachimoLogo";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Team } from "../constant/const";
 
-const AboutUs = (close) => {
+const AboutUs = () => {
   const [mPos, setMPos] = useState(0);
   const last = Team.length - 1;
 
@@ -32,9 +32,10 @@ const AboutUs = (close) => {
           </div>
           <div className="flex flex-col items-center rounded-xl border border-solid border-cach-l3 bg-cach-l3 p-2 [grid-area:cont] max-md:max-w-[20rem] dark:border-cach-l2 dark:bg-transparent">
             <img
-              className="h-64 w-64 rounded-t-xl duration-200"
+              className="aspect-[16/11] h-64 w-64 rounded-t-xl duration-200"
               src={Team[mPos].image}
               alt={`${Team[mPos].name} ${Team[mPos].lastName}`}
+              loading="lazy"
             />
             <div className="space-y-2 p-4">
               <h1 className="text-2xl font-bold text-cach-l1">
@@ -60,4 +61,6 @@ const AboutUs = (close) => {
   );
 };
 
-export default AboutUs;
+export default React.forwardRef((props, ref) => (
+  <AboutUs {...props} forwardedRef={ref} />
+));
