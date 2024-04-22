@@ -1,16 +1,9 @@
+import Aside from "../sections/Aside";
+
 const HomePage = () => {
   return (
     <main>
-      <aside>
-        <div>
-          {/* logo cachimbo */}
-          <div>
-            {/* componente cuadro de perfil */}
-            {/* datos de perfil */}
-          </div>
-          {/* componente de section buttons */}
-        </div>
-      </aside>
+      <Aside />
       <section>{/* section principal dinámica */}</section>
       <aside>
         <div>{/* lado de publicidad */}</div>
