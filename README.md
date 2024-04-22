@@ -6,23 +6,14 @@
   <h1>💻 <em>Cachimbo</em> 💻</h1>
 </div>
 
-## Tecnologías
-
-### Librerías
-
-    React.js con Javascript
-    TailwindCSS
 
 ### Inicializando
-
-> [!NOTE]
-> 🌐 **Proyecto en desarrollo**
 
     npm install
     npm run dev
 
 > [!IMPORTANT]
-> **Activar Prettier Autoformatter y la Extensión Prettier de VsCode para un codigo más legible**
+> **Activar Prettier Autoformatter y la Extensión Prettier de VsCode para un codigo más legible (ya incluído)**
 
     npm install -D prettier prettier-plugin-tailwindcss
 

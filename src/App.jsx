@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import router from "@/routes/root.jsx";
-import NavBar from "@/components/Navbar.jsx";
+import router from "./routes/root.jsx";
 
 const App = () => {
   const storedTheme = localStorage.getItem("theme");
@@ -19,13 +18,9 @@ const App = () => {
     }
   }, [theme]);
 
-  const [showNavBar, setShowNavBar] = useState(false);
-
   return (
     <div id="App" className="h-full w-full">
       {/* [Proximamente] Mostrar navbar solo cuando el usuario ha sido logeado */}
-      {showNavBar || <NavBar />}
-
       <Routes>
         {router.map((route) => (
           <Route

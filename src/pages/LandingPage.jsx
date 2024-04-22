@@ -66,7 +66,7 @@ const LandingPage = () => {
           </div>
           <div className="flex flex-col items-center text-center">
             <div className="flex flex-col items-center justify-center lg:items-start lg:text-left">
-              <h1 className="mb-6 text-4xl font-bold dark:text-cach-l2">
+              <h1 className="mb-6 text-4xl font-bold text-cach-l3 dark:text-cach-l2">
                 ¿Quiénes Somos?
               </h1>
               <p className="mb-6 text-left dark:text-cach-l2">

@@ -1,6 +1,11 @@
-import Login from "@/views/Login";
-import Register from "@/views/Register";
-import LandingPage from "@/views/Home";
+/***
+ * Agregar las rutas necesarias para las secciones para testear
+ */
+
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import LandingPage from "../pages/LandingPage";
+import Principal from "../sections/Principal";
 
 const router = [
   {
@@ -16,8 +21,12 @@ const router = [
     element: <LandingPage />,
   },
   {
-    path: "/home",
+    path: "/welcome",
     element: <LandingPage />,
+  },
+  {
+    path: "/dashboard/main",
+    element: <Principal />,
   },
 ];
 
