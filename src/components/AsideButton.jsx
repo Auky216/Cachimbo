@@ -1,5 +1,5 @@
 /**
- * Compoennte agnostico del botón para elegir secciones en el aside derecho.
+ * Compoennte agnostico del botón para elegir secciones en el aside izquierdo.
  */
 
 const AsideButton = () => {
