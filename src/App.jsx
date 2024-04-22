@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import router from "./routes/root.jsx";
+import Aside from "./sections/Aside.jsx";
 
 const App = () => {
   const storedTheme = localStorage.getItem("theme");
@@ -18,9 +19,13 @@ const App = () => {
     }
   }, [theme]);
 
+  const [showAside, setShowAside] = useState(false);
+
   return (
     <div id="App" className="h-full w-full">
-      {/* [Proximamente] Mostrar navbar solo cuando el usuario ha sido logeado */}
+      {/* [Proximamente] Mostrar aside estático solo cuando el usuario ha sido logeado */}
+      {showAside || <Aside />}
+
       <Routes>
         {router.map((route) => (
           <Route
