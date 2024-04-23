@@ -2,8 +2,10 @@ import { CachimboLogo } from "../components/icons/CachimoLogo";
 import ThemeButton from "../components/ThemeButton";
 import profileTemplate from "../assets/profile-template.png";
 import uploadIcon from "../assets/icons8-subir-96.png"
+import { NavLink, useLocation } from 'react-router-dom';
 
 const Aside = () => {
+  const location = useLocation();
   return (
     <aside className="min-h-screen min-w-[20%] border border-black p-4">
       <div className="h-full w-full pt-2">
@@ -44,7 +46,9 @@ const Aside = () => {
           </button>
         </div>
         {/* componente de section buttons */}
-      
+        <NavLink to="/seccion1" className={`p-4 ${location.pathname === "/seccion1" ? "bg-gray-200" : ""}`}>Sección 1</NavLink>
+        <NavLink to="/seccion2" className={`p-4 ${location.pathname === "/seccion2" ? "bg-gray-200" : ""}`}>Sección 2</NavLink>
+        <NavLink to="/seccion3" className={`p-4 ${location.pathname === "/seccion3" ? "bg-gray-200" : ""}`}>Sección 3</NavLink>
         <div className="flex justify-center">
             <ThemeButton />
         </div>
