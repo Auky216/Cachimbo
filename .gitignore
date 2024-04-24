@@ -4,6 +4,7 @@ yarn-error.log*
 pnpm-debug.log*
 
 node_modules
+Iconos
 dist
 pnpm-lock.yaml
 package-lock.json
