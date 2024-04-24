@@ -1,5 +1,4 @@
-import { CachimboLogo } from "@/components/icons/CachimoLogo";
-import { Link } from "react-router-dom";
+import { CachimboLogo } from "../components/icons/CachimoLogo";
 import React, { useState } from "react";
 import { Team } from "../constant/const";
 

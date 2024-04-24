@@ -9,6 +9,7 @@ export default {
         "cach-l2": "#cbb7f7",
         "cach-l3": "#7f6afc",
         "cach-l4": "#2b2c41",
+        "cach-l5": "#797979",
       },
     },
   },

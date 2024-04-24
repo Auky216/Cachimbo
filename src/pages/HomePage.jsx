@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <main className="flex flex-row justify-center gap-5">
       <Aside />
-      <section className="min-h-screen min-w-[55%] border border-black p-4">
+      <section className="min-h-screen min-w-[55%] border border-black px-9 py-7">
         <Routes>
           {router.map((route) => (
             <Route
@@ -17,7 +17,7 @@ const HomePage = () => {
           ))}
         </Routes>
       </section>
-      <aside className="min-h-screen min-w-[15%] border border-black p-4">
+      <aside className="min-h-screen min-w-[15%] border border-black px-4 py-7">
         <div>{/* lado de publicidad */}Publicidad</div>
       </aside>
     </main>
