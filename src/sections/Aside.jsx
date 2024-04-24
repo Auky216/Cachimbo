@@ -32,7 +32,7 @@ const Aside = () => {
             </div>
           </div>
 
-          <div class="flex justify-between ml-5 mr-5 items-center text-base text-cach-l2">
+          <div class="flex justify-between ml-5 mr-5 items-center text-base text-cach-l5">
             <div class="flex justify-center items-center flex-col">
               <p className="font-extrabold">30</p>
               <p className="font-semibold">Amigos</p>
@@ -54,16 +54,16 @@ const Aside = () => {
         {/* componente de section buttons */}
         
         <div className="flex flex-col justify-start mt-7 mb-7 text-lg">
-          <NavLink to="/dashboard/main" className={`p-2 flex items-center gap-3 ${location.pathname === "/dashboard/main" ? "text-cach-l3 font-semibold" : "text-cach-l2 font-semibold"}`}>
+          <NavLink to="/dashboard/main" className={`p-2 flex items-center gap-3 ${location.pathname === "/dashboard/main" ? "text-cach-l3 font-semibold" : "text-cach-l5 font-semibold"}`}>
             <img src={mainIcon} alt="icon" className="w-7"/> Inicio
           </NavLink>
-          <NavLink to="/dashboard/library" className={`p-2 flex items-center gap-3 ${location.pathname === "/dashboard/library" ? "text-cach-l3 font-semibold" : "text-cach-l2 font-semibold"}`}>
+          <NavLink to="/dashboard/library" className={`p-2 flex items-center gap-3 ${location.pathname === "/dashboard/library" ? "text-cach-l3 font-semibold" : "text-cach-l5 font-semibold"}`}>
             <img src={lbIcon} alt="icon" className="w-7"/> Biblioteca
           </NavLink>
-          <NavLink to="/dashboard/asistant" className={`p-2 flex items-center gap-3 ${location.pathname === "/dashboard/asistant" ? "text-cach-l3 font-semibold" : "text-cach-l2 font-semibold"}`}>
+          <NavLink to="/dashboard/asistant" className={`p-2 flex items-center gap-3 ${location.pathname === "/dashboard/asistant" ? "text-cach-l3 font-semibold" : "text-cach-l5 font-semibold"}`}>
             <img src={asistantIcon} alt="icon" className="w-7"/> Asistente IA
           </NavLink>
-          <NavLink to="/dashboard/groups" className={`p-2 flex items-center gap-3 ${location.pathname === "/dashboard/groups" ? "text-cach-l3 font-semibold" : "text-cach-l2 font-semibold"}`}>
+          <NavLink to="/dashboard/groups" className={`p-2 flex items-center gap-3 ${location.pathname === "/dashboard/groups" ? "text-cach-l3 font-semibold" : "text-cach-l5 font-semibold"}`}>
             <img src={groupsIcon} alt="icon" className="w-7"/> Grupos
           </NavLink>
           <div className="flex justify-center">
@@ -72,10 +72,10 @@ const Aside = () => {
         </div>
 
         <div className="absolute bottom-0">
-          <NavLink to="/dashboard/setting" className={`p-1 flex items-center gap-3 ${location.pathname === "/dashboard/setting" ? "text-cach-l3 font-semibold" : "text-cach-l2 font-semibold"}`}>
+          <NavLink to="/dashboard/setting" className={`p-1 flex items-center gap-3 ${location.pathname === "/dashboard/setting" ? "text-cach-l3 font-semibold" : "text-cach-l5 font-semibold"}`}>
             <img src={settingIcon} alt="icon" className="w-7"/> Configuracion
           </NavLink>
-          <NavLink to="/dashboard/logout" className={`p-1 flex items-center gap-3 ${location.pathname === "/dashboard/logout" ? "text-cach-l3 font-semibold" : "text-cach-l2 font-semibold"}`}>
+          <NavLink to="/dashboard/logout" className={`p-1 flex items-center gap-3 ${location.pathname === "/dashboard/logout" ? "text-cach-l3 font-semibold" : "text-cach-l5 font-semibold"}`}>
             <img src={logOutIcon} alt="icon" className="w-7"/> Cerrar Secion
           </NavLink>
         </div>
