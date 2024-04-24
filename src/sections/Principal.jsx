@@ -1,8 +1,24 @@
 import { NavLink } from "react-router-dom";
 import { CardInfo, MiniCard } from "../components/Cards";
+import ThemeButton from "../components/ThemeButton";
 
 const Principal = () => {
   const getCursos = [
+    {
+      iconfile: "",
+      title: "Calculo de una Variable",
+      route: "calcvar",
+    },
+    {
+      iconfile: "",
+      title: "Calculo de una Variable",
+      route: "calcvar",
+    },
+    {
+      iconfile: "",
+      title: "Calculo de una Variable",
+      route: "calcvar",
+    },
     {
       iconfile: "",
       title: "Calculo de una Variable",
@@ -18,11 +34,12 @@ const Principal = () => {
 
   return (
     <div className="h-full overflow-y-scroll">
-      <article>
-        <div className="text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
+      {/* <ThemeButton /> */}
+      <article className="pb-7">
+        <div className="pt-1 text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
           Tus Cursos
         </div>
-        <div>
+        <div className="grid grid-cols-2 gap-4 pt-3 md:grid-cols-3">
           {getCursos.map((c) => (
             <NavLink key={c.route} to={`/dashboard/course/${c.route}`}>
               <MiniCard iconfile={c.iconfile} title={c.title} />
@@ -31,12 +48,14 @@ const Principal = () => {
         </div>
       </article>
 
-      <article>
-        <div className="text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
+      <article className="pb-7">
+        <div className="pt-1 text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
           Ambiente Académico
         </div>
-        <div>
+        <div className="space-y-4 pt-10">
           <CardInfo iconfile="" title="Profesores" info="sss" />
+          <CardInfo iconfile="" title="Profesores" info="sss" />
+          <CardInfo iconfile="" title="Sugerencias" info="sss" />
         </div>
       </article>
     </div>

@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <main className="flex flex-row justify-center gap-5">
       <Aside />
-      <section className="min-h-screen min-w-[55%] border border-black px-9 py-7">
+      <section className="min-h-screen min-w-[55%] border border-black px-10 py-10">
         <Routes>
           {router.map((route) => (
             <Route
