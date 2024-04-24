@@ -19,10 +19,10 @@ const ThemeButton = () => {
 
   return (
     <button
-      className="m-auto rounded-xl bg-slate-200 px-4 py-1 text-cach-l3 dark:border dark:border-cach-l2 dark:bg-transparent dark:text-cach-l1"
+      className="m-auto rounded-2xl bg-slate-200 px-4 py-1 text-sm text-cach-l3 dark:border dark:border-cach-l2 dark:bg-transparent dark:text-cach-l1"
       onClick={toggleTheme}
     >
-      Cambiar a "{theme === "light" ? "dark" : "light"}"
+      {theme === "light" ? "dark" : "light"}
     </button>
   );
 };
