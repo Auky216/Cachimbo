@@ -1,8 +1,45 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { CachimboLogo } from "../components/icons/CachimoLogo";
 import ThemeButton from "../components/ThemeButton";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleLogin = async (event) => {
+    event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+    try {
+      const response = await fetch(
+        "https://iownbjppr5.execute-api.us-east-1.amazonaws.com/test/student/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
+      if (response.ok) {
+        console.log("Inicio de sesión exitoso");
+      } else {
+        console.error("Error al iniciar sesión");
+      }
+    } catch (error) {
+      console.error("Error de red:", error);
+    }
+  };
+
   return (
     <section className="m-auto flex w-[500px] flex-col">
       <div className="mt-5 flex justify-center">
@@ -27,6 +64,8 @@ const Login = () => {
                 type="text"
                 id="email"
                 placeholder="Correo"
+                value={email}
+                onChange={handleEmailChange}
               />
             </label>
           </div>
@@ -37,6 +76,8 @@ const Login = () => {
                 type="password"
                 id="password"
                 placeholder="Contraseña"
+                value={password}
+                onChange={handlePasswordChange}
               />
             </label>
           </div>
@@ -44,7 +85,7 @@ const Login = () => {
             <button
               className="focus:shadow-outline w-full rounded-xl bg-cach-l3 px-4 py-4 font-bold text-white focus:outline-none"
               type="submit"
-              value="Submit"
+              onClick={handleLogin}
             >
               Iniciar Sesión
             </button>
