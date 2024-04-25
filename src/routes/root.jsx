@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import LandingPage from "../pages/LandingPage";
 import Principal from "../sections/Principal";
+import Library from "../sections/Library";
 
 const router = [
   {
@@ -28,6 +29,10 @@ const router = [
     path: "/dashboard/main",
     element: <Principal />,
   },
+  {
+    path: "/dashboard/library",
+    element: <Library />,
+  }
 ];
 
 export default router;
