@@ -90,8 +90,8 @@ const Aside = () => {
             Asistente IA
           </NavLink>
           <NavLink
-            to="/dashboard/groups"
-            className={`flex items-center gap-3 p-2 ${location.pathname === "/dashboard/groups" ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            to="/dashboard/InteractionGroups"
+            className={`flex items-center gap-3 p-2 ${location.pathname === "/dashboard/InteractionGroups" ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
             <img src={groupsIcon} alt="icon" className="mr-2 w-7" /> Grupos
           </NavLink>

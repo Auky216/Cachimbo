@@ -7,6 +7,7 @@ import Register from "../pages/Register";
 import LandingPage from "../pages/LandingPage";
 import Principal from "../sections/Principal";
 import Library from "../sections/Library";
+import InteractionGroups from "../sections/InteractionGroups";
 
 const router = [
   {
@@ -32,7 +33,11 @@ const router = [
   {
     path: "/dashboard/library",
     element: <Library />,
-  }
+  },
+  {
+    path: "/dashboard/InteractionGroups",
+    element: <InteractionGroups />,
+  },
 ];
 
 export default router;
