@@ -79,8 +79,8 @@ const Aside = () => {
             Biblioteca
           </NavLink>
           <NavLink
-            to="/dashboard/asistant"
-            className={`flex items-center gap-3 p-2 ${location.pathname === "/dashboard/asistant" ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            to="/dashboard/assistant"
+            className={`flex items-center gap-3 p-2 ${location.pathname === "/dashboard/assistant" ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
             <img
               src={asistantIcon}
