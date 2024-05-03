@@ -41,12 +41,12 @@ const Aside = () => {
           </div>
 
           {/* Cararteristicas */}
-          <div class="ml-5 mr-5 flex items-center justify-between pb-2 text-base text-cach-l5 dark:text-cach-l1">
-            <div class="flex flex-col items-center justify-center">
+          <div class="ml-5 mr-5 flex items-center justify-between pb-2 text-base text-cach-l5 dark:text-cach-l1 ">
+            <div class="flex flex-col items-center justify-center cursor-pointer">
               <p className="font-extrabold">30</p>
               <p className="font-semibold">Amigos</p>
             </div>
-            <div class="flex flex-col items-center justify-center">
+            <div class="flex flex-col items-center justify-center cursor-pointer">
               <p className="font-extrabold">12</p>
               <p className="font-semibold">Subidos</p>
             </div>
@@ -66,21 +66,21 @@ const Aside = () => {
         <div className="mb-7 mt-7 flex flex-col justify-start space-y-1 text-lg">
           <NavLink
             to="/dashboard/main"
-            className={`flex items-center gap-3 p-2 ${location.pathname === "/dashboard/main" ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            className={`flex items-center gap-3 p-2 ${location.pathname.includes("/dashboard/main") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
             <img src={mainIcon} alt="icon" className="mr-2 w-7 dark:invert" />{" "}
             Inicio
           </NavLink>
           <NavLink
             to="/dashboard/library"
-            className={`flex items-center gap-3 p-2 ${location.pathname === "/dashboard/library" ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            className={`flex items-center gap-3 p-2 ${location.pathname.includes("/dashboard/library") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
             <img src={lbIcon} alt="icon" className="mr-2 w-7 dark:invert" />{" "}
             Biblioteca
           </NavLink>
           <NavLink
             to="/dashboard/asistant"
-            className={`flex items-center gap-3 p-2 ${location.pathname === "/dashboard/asistant" ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            className={`flex items-center gap-3 p-2 ${location.pathname.includes("/dashboard/asistant") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
             <img
               src={asistantIcon}
@@ -91,9 +91,9 @@ const Aside = () => {
           </NavLink>
           <NavLink
             to="/dashboard/InteractionGroups"
-            className={`flex items-center gap-3 p-2 ${location.pathname === "/dashboard/InteractionGroups" ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            className={`flex items-center gap-3 p-2 ${location.pathname.includes("/dashboard/InteractionGroups") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
-            <img src={groupsIcon} alt="icon" className="mr-2 w-7" /> Grupos
+            <img src={groupsIcon} alt="icon" className="mr-2 w-7 dark:invert " /> Grupos
           </NavLink>
         </div>
 
@@ -101,7 +101,7 @@ const Aside = () => {
         <div className="absolute bottom-0 space-y-3 text-lg">
           <NavLink
             to="/dashboard/setting"
-            className={`flex items-center gap-3 p-1 ${location.pathname === "/dashboard/setting" ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            className={`flex items-center gap-3 p-1 ${location.pathname.includes("/dashboard/setting") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
             <img
               src={settingIcon}
@@ -112,9 +112,9 @@ const Aside = () => {
           </NavLink>
           <NavLink
             to="/dashboard/logout"
-            className={`flex items-center gap-3 p-1 ${location.pathname === "/dashboard/logout" ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            className={`flex items-center gap-3 p-1 ${location.pathname.includes("/dashboard/logout") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
-            <img src={logOutIcon} alt="icon" className="mr-2 w-7 dark:invert" />{" "}
+            <img src={logOutIcon} alt="icon" className="mr-2 w-7 dark:invert" />
             Cerrar Secion
           </NavLink>
         </div>
