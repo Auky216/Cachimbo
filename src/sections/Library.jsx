@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import corazonlogo from "../assets/like-icon.png";
 import profileTemplate from "../assets/profile-template.png";
 import pdflogo from "../assets/pdf-icon.png";
 import universitylogo from "../assets/university-icon.png";
+import HeartLogo from "../components/icons/HearLogo.jsx"
 
 const Library = () => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -62,7 +62,7 @@ const Library = () => {
             className={`flex items-center space-x-1 px-2 py-1 text-cach-l3 ${isFavorite ? "text-red-500" : ""}`}
           >
             <div>
-              <img src={corazonlogo} alt="Like" className="w-13 h-13" />
+              <HeartLogo filled={isFavorite} />
               <p>{likeCount}</p>
             </div>
           </button>
