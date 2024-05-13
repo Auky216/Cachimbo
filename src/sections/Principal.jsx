@@ -11,18 +11,18 @@ const Principal = () => {
     },
     {
       iconfile: "",
-      title: "Calculo de una Variable",
-      route: "calcvar",
+      title: "Matemáticas Discretas I",
+      route: "matedisc1",
     },
     {
       iconfile: "",
-      title: "Calculo de una Variable",
-      route: "calcvar",
+      title: "Programación I",
+      route: "progra1",
     },
     {
       iconfile: "",
-      title: "Calculo de una Variable",
-      route: "calcvar",
+      title: "Proyectos Interdisciplinarios I",
+      route: "pi1",
     },
     // { ... }
   ];
@@ -33,13 +33,13 @@ const Principal = () => {
    */
 
   return (
-    <div className="h-full overflow-y-scroll">
+    <div className="h-full">
       {/* <ThemeButton /> */}
-      <article className="pb-7">
-        <div className="pt-1 text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
+      <article className="pb-10">
+        <div className="pb-8 pt-3 text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
           Tus Cursos
         </div>
-        <div className="grid grid-cols-2 gap-4 pt-3 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 pt-3 md:grid-cols-2">
           {getCursos.map((c) => (
             <NavLink key={c.route} to={`/dashboard/course/${c.route}`}>
               <MiniCard iconfile={c.iconfile} title={c.title} />
@@ -48,13 +48,18 @@ const Principal = () => {
         </div>
       </article>
 
-      <article className="pb-7">
-        <div className="pt-1 text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
+      <article className="pb-10">
+        <div className="py-3 text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
           Ambiente Académico
         </div>
         <div className="space-y-4 pt-10">
           <CardInfo iconfile="" title="Profesores" info="sss" />
           <CardInfo iconfile="" title="Profesores" info="sss" />
+          <CardInfo iconfile="" title="Sugerencias" info="sss" />
+          <CardInfo iconfile="" title="Sugerencias" info="sss" />
+          <CardInfo iconfile="" title="Sugerencias" info="sss" />
+          <CardInfo iconfile="" title="Sugerencias" info="sss" />
+          <CardInfo iconfile="" title="Sugerencias" info="sss" />
           <CardInfo iconfile="" title="Sugerencias" info="sss" />
         </div>
       </article>

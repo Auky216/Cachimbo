@@ -1,10 +1,10 @@
-import Antonio from "@/assets/TeamPhoto/Antonio.jpg";
-import Yanelit from "@/assets/TeamPhoto/Yanelit.jpg";
-import Brigit from "@/assets/TeamPhoto/Brigit.jpeg";
-import Adrian from "@/assets/TeamPhoto/Adrian.jpeg";
-import Noe from "@/assets/TeamPhoto/Noe.jpeg";
-import Danilo from "@/assets/TeamPhoto/Danilo.jpeg";
-import Javier from "@/assets/TeamPhoto/Javier.jpeg";
+import Antonio from "../assets/TeamPhoto/Antonio.jpg";
+import Yanelit from "../assets/TeamPhoto/Yanelit.jpg";
+import Brigit from "../assets/TeamPhoto/Brigit.jpeg";
+import Adrian from "../assets/TeamPhoto/Adrian.jpeg";
+import Noe from "../assets/TeamPhoto/Noe.jpeg";
+import Danilo from "../assets/TeamPhoto/Danilo.jpeg";
+import Javier from "../assets/TeamPhoto/Javier.jpeg";
 
 export const Team = [
   {

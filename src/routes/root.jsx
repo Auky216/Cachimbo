@@ -28,6 +28,10 @@ const router = [
     element: <LandingPage />,
   },
   {
+    path: "/dashboard",
+    element: <Principal />,
+  },
+  {
     path: "/dashboard/main",
     element: <Principal />,
   },
@@ -42,7 +46,7 @@ const router = [
   {
     path: "/dashboard/asistant",
     element: <ChatAssistant />,
-  }
+  },
 ];
 
 export default router;

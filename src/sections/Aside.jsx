@@ -13,7 +13,7 @@ import { NavLink, useLocation } from "react-router-dom";
 const Aside = () => {
   const location = useLocation();
   return (
-    <aside className="min-h-screen min-w-[20%] px-4 py-7">
+    <aside className="h-screen min-w-[20%] px-4 py-7">
       <div className="relative h-full w-full pt-2">
         {/* logo cachimbo */}
         <div className="flex h-fit w-fit flex-row gap-5">
@@ -42,11 +42,11 @@ const Aside = () => {
 
           {/* Cararteristicas */}
           <div class="ml-5 mr-5 flex items-center justify-between pb-2 text-base text-cach-l5 dark:text-cach-l1 ">
-            <div class="flex flex-col items-center justify-center cursor-pointer">
+            <div class="flex cursor-pointer flex-col items-center justify-center">
               <p className="font-extrabold">30</p>
               <p className="font-semibold">Amigos</p>
             </div>
-            <div class="flex flex-col items-center justify-center cursor-pointer">
+            <div class="flex cursor-pointer flex-col items-center justify-center">
               <p className="font-extrabold">12</p>
               <p className="font-semibold">Subidos</p>
             </div>
@@ -93,7 +93,12 @@ const Aside = () => {
             to="/dashboard/InteractionGroups"
             className={`flex items-center gap-3 p-2 ${location.pathname.includes("/dashboard/InteractionGroups") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
-            <img src={groupsIcon} alt="icon" className="mr-2 w-7 dark:invert " /> Grupos
+            <img
+              src={groupsIcon}
+              alt="icon"
+              className="mr-2 w-7 dark:invert "
+            />{" "}
+            Grupos
           </NavLink>
         </div>
 
@@ -111,11 +116,12 @@ const Aside = () => {
             Configuracion
           </NavLink>
           <NavLink
-            to="/dashboard/logout"
+            // to="/dashboard/logout"
+            to="/"
             className={`flex items-center gap-3 p-1 ${location.pathname.includes("/dashboard/logout") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
             <img src={logOutIcon} alt="icon" className="mr-2 w-7 dark:invert" />
-            Cerrar Secion
+            Cerrar Sesión
           </NavLink>
         </div>
       </div>

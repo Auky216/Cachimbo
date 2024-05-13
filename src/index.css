@@ -2,26 +2,33 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+
 #root {
   margin: 0 auto;
   display: flex;
   justify-content: center;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  height: fit-content;
+  /* scrollbar; */
+  
 }
 
 .aboutgrid {
   grid-template-areas: 
     "title title title"
     "bleft cont bright";
-  }
+}
   
-  @media (width <= 768px) {
-    .aboutgrid {
-      grid-template-areas: 
-      "title title"
-      "cont cont"
-      "bleft bright";
+@media (width <= 768px) {
+  .aboutgrid {
+    grid-template-areas: 
+    "title title"
+    "cont cont"
+    "bleft bright";
   }
+}
+
+section::-webkit-scrollbar {
+  display: none;
 }
