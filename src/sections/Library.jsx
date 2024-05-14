@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import profileTemplate from "../assets/profile-template.png";
 import pdflogo from "../assets/pdf-icon.png";
 import universitylogo from "../assets/university-icon.png";
-import HeartLogo from "../components/icons/HearLogo.jsx"
+import HeartLogo from "../components/icons/HearLogo.jsx";
 
 const Library = () => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -14,25 +14,25 @@ const Library = () => {
   };
 
   return (
-    <section id="library">
+    <section id="library" className="pr-8">
       <div className="mb-4">
         <input
           type="text"
           placeholder="Buscar libros, documentos y más"
-          className="w-full rounded-full border border-cach-l3 bg-cach-l1 p-2 text-cach-l3 placeholder-cach-l3 focus:outline-none dark:border-cach-l2 dark:bg-[#2B2C41] dark:text-cach-l2 dark:placeholder-cach-l2"
+          className="w-full rounded-full border border-cach-l3 bg-cach-l1 bg-transparent px-5 py-2 text-cach-l3 placeholder-cach-l3/70 focus:outline-none dark:border-cach-l2 dark:text-cach-l2 dark:placeholder-cach-l2/40"
         />
       </div>
 
-      <div className="mb-4 flex space-x-4">
-        <button className="rounded-full bg-cach-l3 px-5 py-1 text-sm text-cach-l1 focus:outline-none">
+      <div className="my-5 flex space-x-4">
+        <button className="rounded-full bg-cach-l3 px-5 py-1 text-cach-l1 focus:outline-none">
           Todos
         </button>
-        <button className="rounded-full bg-cach-l3 px-5 py-1 text-sm text-cach-l1 focus:outline-none">
+        <button className="rounded-full bg-cach-l3 px-5 py-1 text-cach-l1 focus:outline-none">
           Favoritos
         </button>
       </div>
 
-      <div className="rounded-lg border border-cach-l3 p-2 dark:border-cach-l2">
+      <div className="rounded-lg border border-cach-l3 px-4 py-2 dark:border-cach-l2">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <img src={pdflogo} alt="PDF" className="h-[4rem] w-[4rem]" />
@@ -46,7 +46,7 @@ const Library = () => {
                   alt="profile"
                   className="h-8 w-8 grayscale filter dark:invert"
                 />
-                <p className="text-cach-l5 dark:text-cach-l3">@Jojiz</p>
+                <p className="pr-3 text-cach-l5 dark:text-cach-l3">@Jojiz</p>
                 <img
                   src={universitylogo}
                   alt="Universidad"
@@ -59,7 +59,7 @@ const Library = () => {
 
           <button
             onClick={handleLike}
-            className={`flex items-center space-x-1 px-2 py-1 text-cach-l3 ${isFavorite ? "text-red-500" : ""}`}
+            className={`flex items-center space-x-1 px-2 py-1 duration-100 ${isFavorite ? "text-red-500" : "text-cach-l3 dark:text-cach-l2"}`}
           >
             <div>
               <HeartLogo filled={isFavorite} />

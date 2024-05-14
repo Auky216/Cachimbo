@@ -13,8 +13,8 @@ import { NavLink, useLocation } from "react-router-dom";
 const Aside = () => {
   const location = useLocation();
   return (
-    <aside className="h-screen min-w-[20%] px-4 py-7">
-      <div className="relative h-full w-full pt-2">
+    <aside className="h-screen min-w-[20%] px-7 py-10">
+      <div className="relative h-full w-full">
         {/* logo cachimbo */}
         <div className="flex h-fit w-fit flex-row gap-5">
           <CachimboLogo className="mb-4 lg:mb-0" />
@@ -66,21 +66,21 @@ const Aside = () => {
         <div className="mb-7 mt-7 flex flex-col justify-start space-y-1 text-lg">
           <NavLink
             to="/dashboard/main"
-            className={`flex items-center gap-3 p-2 ${location.pathname.includes("/dashboard/main") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            className={`flex items-center gap-3 p-2 ${location.pathname.includes("main") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
             <img src={mainIcon} alt="icon" className="mr-2 w-7 dark:invert" />{" "}
             Inicio
           </NavLink>
           <NavLink
             to="/dashboard/library"
-            className={`flex items-center gap-3 p-2 ${location.pathname.includes("/dashboard/library") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            className={`flex items-center gap-3 p-2 ${location.pathname.includes("library") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
             <img src={lbIcon} alt="icon" className="mr-2 w-7 dark:invert" />{" "}
             Biblioteca
           </NavLink>
           <NavLink
             to="/dashboard/asistant"
-            className={`flex items-center gap-3 p-2 ${location.pathname.includes("/dashboard/asistant") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            className={`flex items-center gap-3 p-2 ${location.pathname.includes("asistant") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
             <img
               src={asistantIcon}
@@ -90,8 +90,8 @@ const Aside = () => {
             Asistente IA
           </NavLink>
           <NavLink
-            to="/dashboard/InteractionGroups"
-            className={`flex items-center gap-3 p-2 ${location.pathname.includes("/dashboard/InteractionGroups") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            to="/dashboard/intergroups"
+            className={`flex items-center gap-3 p-2 ${location.pathname.includes("intergroups") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
             <img
               src={groupsIcon}
@@ -106,7 +106,7 @@ const Aside = () => {
         <div className="absolute bottom-0 space-y-3 text-lg">
           <NavLink
             to="/dashboard/setting"
-            className={`flex items-center gap-3 p-1 ${location.pathname.includes("/dashboard/setting") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            className={`flex items-center gap-3 p-1 ${location.pathname.includes("setting") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
           >
             <img
               src={settingIcon}
@@ -118,7 +118,7 @@ const Aside = () => {
           <NavLink
             // to="/dashboard/logout"
             to="/"
-            className={`flex items-center gap-3 p-1 ${location.pathname.includes("/dashboard/logout") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            className="flex items-center gap-3 p-1 font-bold text-cach-l5 dark:text-cach-l1"
           >
             <img src={logOutIcon} alt="icon" className="mr-2 w-7 dark:invert" />
             Cerrar Sesión

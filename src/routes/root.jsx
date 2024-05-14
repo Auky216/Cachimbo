@@ -28,10 +28,6 @@ const router = [
     element: <LandingPage />,
   },
   {
-    path: "/dashboard",
-    element: <Principal />,
-  },
-  {
     path: "/dashboard/main",
     element: <Principal />,
   },
@@ -40,7 +36,7 @@ const router = [
     element: <Library />,
   },
   {
-    path: "/dashboard/InteractionGroups",
+    path: "/dashboard/intergroups",
     element: <InteractionGroups />,
   },
   {

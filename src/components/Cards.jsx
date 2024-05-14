@@ -16,9 +16,9 @@ export const CardInfo = ({ iconfile, title, info }) => {
 
 export const MiniCard = ({ iconfile, title }) => {
   return (
-    <div className="spacing-x-2 flex h-fit items-center gap-2 rounded-3xl border border-cach-l3 px-3 py-1 font-bold text-cach-l5 dark:border-cach-l2 dark:text-cach-l1">
-      <img src={iconfile || Default} className="size-10" />
-      <span className="text-sm">{title}</span>
+    <div className="spacing-x-2 flex h-fit items-center gap-2 py-1 font-bold text-cach-l5 dark:text-cach-l1">
+      <img src={iconfile || Default} className="size-12" />
+      <span className="text-md">{title}</span>
     </div>
   );
 };

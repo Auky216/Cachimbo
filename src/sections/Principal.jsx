@@ -33,23 +33,23 @@ const Principal = () => {
    */
 
   return (
-    <div className="h-full">
+    <div className="h-full overflow-auto pr-8">
       {/* <ThemeButton /> */}
-      <article className="pb-10">
-        <div className="pb-8 pt-3 text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
+      <article className="pb-8">
+        <div className="pb-3 pt-3 text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
           Tus Cursos
         </div>
         <div className="grid grid-cols-1 gap-4 pt-3 md:grid-cols-2">
           {getCursos.map((c) => (
-            <NavLink key={c.route} to={`/dashboard/course/${c.route}`}>
+            <NavLink key={c.route} to={`/dashboard/main/course/${c.route}`}>
               <MiniCard iconfile={c.iconfile} title={c.title} />
             </NavLink>
           ))}
         </div>
       </article>
 
-      <article className="pb-10">
-        <div className="py-3 text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
+      <article className="pb-8">
+        <div className="pb-3 text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
           Ambiente Académico
         </div>
         <div className="space-y-4 pt-10">

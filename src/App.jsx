@@ -24,7 +24,7 @@ const App = () => {
   const showMainPage = location.pathname.includes("dashboard");
 
   return (
-    <div id="App" className="h-screen w-full">
+    <div id="App" className="h-full w-full">
       {/* [Proximamente] Mostrar aside estático solo cuando el usuario ha sido logeado */}
       {!showMainPage || <HomePage />}
 

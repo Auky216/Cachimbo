@@ -4,9 +4,9 @@ import router from "../routes/root";
 
 const HomePage = () => {
   return (
-    <main className="flex flex-row justify-center gap-5 scroll-smooth">
+    <main className="flex flex-row justify-center gap-5">
       <Aside />
-      <section className="h-screen min-w-[55%] overflow-auto px-10 py-10">
+      <section className="h-screen w-[59%] px-8 py-10">
         <Routes>
           {router.map((route) => (
             <Route
@@ -17,8 +17,8 @@ const HomePage = () => {
           ))}
         </Routes>
       </section>
-      <aside className="h-screen min-w-[15%] px-4 py-7">
-        <div>{/* lado de publicidad */}Publicidad</div>
+      <aside className="h-screen min-w-[12%] px-4 py-7">
+        <div className="text-cach-l1">{/* lado de publicidad */}Publicidad</div>
       </aside>
     </main>
   );
