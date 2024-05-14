@@ -29,6 +29,17 @@
   }
 }
 
+button {
+  transition: 0.1s;
+
+  &:hover {
+    transition: 0.1s;
+    transform: scale(1.05);
+  }
+}
+
+/* Style scroolbar */
+
 *::-webkit-scrollbar {
   width: 8px;
 }

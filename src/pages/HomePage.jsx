@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <main className="flex flex-row justify-center gap-5">
       <Aside />
-      <section className="h-screen w-[59%] px-8 py-10">
+      <section className="h-screen w-[59%] px-8">
         <Routes>
           {router.map((route) => (
             <Route

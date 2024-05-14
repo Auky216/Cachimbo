@@ -22,7 +22,7 @@ const LandingPage = () => {
   const deactiveAbout = () => setShowAbout(false);
 
   return (
-    <main className="min-h-screen">
+    <main className="max-h-screen overflow-auto">
       {/* Header */}
       <header className="flex flex-col items-center px-4 py-8 text-center lg:flex-row lg:justify-between lg:px-12">
         <CachimboLogo className="mb-4 lg:mb-0" />
@@ -41,44 +41,50 @@ const LandingPage = () => {
             <h2 className="mb-10 text-2xl font-bold text-cach-l3 lg:text-3xl dark:text-cach-l2">
               ¡Facilitamos tu éxito académico y personal!
             </h2>
-            <div className="flex flex-col items-center lg:flex-row">
+            <div className="flex flex-col items-center gap-8 lg:flex-row">
               <Link
                 to="/register"
-                className="mb-4 mr-0 w-full rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white duration-300 hover:bg-cach-l2 lg:mb-0 lg:mr-4 lg:w-auto"
+                className="mb-4 mr-0 w-full rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white duration-300 hover:bg-cach-l2/50 lg:mb-0 lg:w-auto"
               >
-                Regístrate gratis
+                Regístrate
               </Link>
               <Link
                 to="/login"
-                className="w-full rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white transition duration-300 hover:bg-cach-l2 lg:w-auto"
+                className="w-full rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white transition duration-300 hover:bg-cach-l2/50 lg:w-auto"
               >
                 Iniciar Sesión
+              </Link>
+              <Link
+                to="/dashboard/main"
+                className="w-full rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white transition duration-300 hover:bg-cach-l2/50 lg:w-auto"
+              >
+                Ir a dashboard
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="px-4 py-16 lg:px-0">
-        <div className="mx-auto flex max-w-5xl flex-col items-center justify-center lg:flex-row lg:justify-between">
-          <div className="mb-8 flex-shrink-0 lg:mb-0">
+      <section className="px-4 py-8 lg:px-0">
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-center lg:flex-row lg:justify-center">
+          {/* <div className="mb-8 flex-shrink-0 lg:mb-0">
             <img className="h-64 lg:h-96" src={UTEC_Icon} alt="Logo" />
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <div className="flex flex-col items-center justify-center lg:items-start lg:text-left">
-              <h1 className="mb-6 text-4xl font-bold text-cach-l3 dark:text-cach-l2">
+          </div> */}
+          <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="mb-6 text-center text-4xl font-bold text-cach-l3 dark:text-cach-l2">
                 ¿Quiénes Somos?
               </h1>
-              <p className="mb-6 text-left dark:text-cach-l2">
+              <div className="mb-6 text-center dark:text-cach-l2">
                 Cachimbo es una organización oficial de la UTEC que se dedica a
                 facilitar la transición académica y profesional de los
                 estudiantes universitarios. Nuestra plataforma utiliza
                 herramientas basadas en inteligencia artificial para ofrecer
                 orientación personalizada y recursos educativos que te ayudarán
                 a alcanzar tus metas.
-              </p>
+              </div>
               <button
-                className="w-full rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white duration-300 hover:bg-cach-l2 lg:w-auto"
+                className="w-full rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white duration-300 hover:bg-cach-l2/50 lg:w-auto"
                 onClick={activeAbout}
               >
                 Nuestro equipo
@@ -169,7 +175,7 @@ const LandingPage = () => {
       </article>
 
       {/* Call to Action */}
-      <section className="px-4 py-16 text-center">
+      {/* <section className="px-4 py-16 text-center">
         <h2 className="mb-4 text-3xl font-bold text-cach-l3 dark:text-cach-l2">
           ¿Listo para comenzar?
         </h2>
@@ -182,9 +188,9 @@ const LandingPage = () => {
         >
           Regístrate gratis
         </Link>
-      </section>
+      </section> */}
 
-      <footer className="bg-cach-l3 px-4 py-8 text-center text-cach-l1">
+      <footer className="mt-4 bg-cach-l3 px-4 py-8 text-center text-cach-l1">
         <p>&copy; 2024 Todos los derechos reservados - Cachimbo</p>
         <div className="mt-4 flex justify-center">
           <a href="https://discord.gg/B6TcBnvs" className="mx-2">

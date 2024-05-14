@@ -33,10 +33,10 @@ const Principal = () => {
    */
 
   return (
-    <div className="h-full overflow-auto pr-8">
+    <div className="h-full overflow-auto py-10 pr-8">
       {/* <ThemeButton /> */}
-      <article className="pb-8">
-        <div className="pb-3 pt-3 text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
+      <article className="pb-10">
+        <div className="pb-3 pt-3 text-3xl font-extrabold text-cach-l3 dark:text-cach-l2">
           Tus Cursos
         </div>
         <div className="grid grid-cols-1 gap-4 pt-3 md:grid-cols-2">
@@ -48,19 +48,31 @@ const Principal = () => {
         </div>
       </article>
 
-      <article className="pb-8">
-        <div className="pb-3 text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
+      <article>
+        <div className="text-3xl font-extrabold text-cach-l3 dark:text-cach-l2">
           Ambiente Académico
         </div>
-        <div className="space-y-4 pt-10">
-          <CardInfo iconfile="" title="Profesores" info="sss" />
-          <CardInfo iconfile="" title="Profesores" info="sss" />
-          <CardInfo iconfile="" title="Sugerencias" info="sss" />
-          <CardInfo iconfile="" title="Sugerencias" info="sss" />
-          <CardInfo iconfile="" title="Sugerencias" info="sss" />
-          <CardInfo iconfile="" title="Sugerencias" info="sss" />
-          <CardInfo iconfile="" title="Sugerencias" info="sss" />
-          <CardInfo iconfile="" title="Sugerencias" info="sss" />
+        <div className="space-y-8 pt-10">
+          <CardInfo
+            iconfile=""
+            title="Profesores"
+            info="Escoge a tus profesores gracias a la opinión y calificación de la comunidad"
+          />
+          <CardInfo
+            iconfile=""
+            title="Próximos cursos"
+            info="Visualiza todos los cursos de UTEC para tu próxima matrícula de tu interés en base a la comunidad"
+          />
+          <CardInfo
+            iconfile=""
+            title="Eventos"
+            info="Participa de los eventos que las organizaciones y comunidades de UTEC realizan en este semetres académico"
+          />
+          <CardInfo
+            iconfile=""
+            title="Sugerencias"
+            info="Visualiza tus sugerencias, propuestas u opiniones y de otros estudiantes para mejorar aspectos de la universidad"
+          />
         </div>
       </article>
     </div>

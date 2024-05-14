@@ -9,7 +9,7 @@ import marketing from "../assets/Comunity_Icon.png";
 
 const InteractionGroups = () => {
   return (
-    <section id="interactionGroups" className="pr-8">
+    <section id="interactionGroups" className="py-10 pr-8">
       <div className="mb-4">
         <input
           type="text"

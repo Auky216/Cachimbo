@@ -13,7 +13,7 @@ import { NavLink, useLocation } from "react-router-dom";
 const Aside = () => {
   const location = useLocation();
   return (
-    <aside className="h-screen min-w-[20%] px-7 py-10">
+    <aside className="h-screen min-w-[20%] bg-cach-l2/20 px-7 py-10 shadow-xl dark:bg-transparent">
       <div className="relative h-full w-full">
         {/* logo cachimbo */}
         <div className="flex h-fit w-fit flex-row gap-5">
@@ -24,7 +24,7 @@ const Aside = () => {
         {/* componente cuadro de perfil */}
         <div className="mt-5 w-full items-center">
           {/* datos de perfil */}
-          <div className="flex flex-row pb-1">
+          <div className="flex flex-row pb-3">
             <div>
               <img
                 src={profileTemplate}
@@ -40,8 +40,8 @@ const Aside = () => {
             </div>
           </div>
 
-          {/* Cararteristicas */}
-          <div class="ml-5 mr-5 flex items-center justify-between pb-2 text-base text-cach-l5 dark:text-cach-l1 ">
+          {/* Caracteristicas */}
+          <div class="ml-5 mr-5 flex items-center justify-between pb-5 text-base text-cach-l5 dark:text-cach-l1 ">
             <div class="flex cursor-pointer flex-col items-center justify-center">
               <p className="font-extrabold">30</p>
               <p className="font-semibold">Amigos</p>

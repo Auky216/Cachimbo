@@ -42,7 +42,7 @@ const ChatAssistant = () => {
   }, [messages]);
 
   return (
-    <div className="chat-assistant flex h-full flex-col">
+    <div className="chat-assistant flex h-full flex-col py-8">
       <div className="chat-messages mb-4 grow overflow-auto px-4 py-4">
         {messages.map((message, index) => (
           <div
