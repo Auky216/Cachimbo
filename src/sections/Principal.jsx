@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import { CardInfo, MiniCard } from "../components/Cards";
 import ThemeButton from "../components/ThemeButton";
 import { getCursos } from "../constant/course";
@@ -8,17 +7,19 @@ const Principal = () => {
     <div className="h-full overflow-auto py-10 pr-8">
       {/* <ThemeButton /> */}
       <article className="pb-10">
-        <div className="pb-3 pt-3 text-3xl font-extrabold text-cach-l3 dark:text-cach-l2">
+        <div className="pb-4 pt-3 text-3xl font-extrabold text-cach-l3 dark:text-cach-l2">
           Tus Cursos
         </div>
-        <div className="grid grid-cols-1 gap-4 pt-3 md:grid-cols-2">
+        <div className="mx-6 grid grid-cols-1 gap-4 pt-3 md:grid-cols-2">
           {Object.keys(getCursos).map((c) => (
-            <NavLink key={c} to={`/dashboard/main/course/${c}`}>
-              <MiniCard
-                iconfile={getCursos[c].iconfile}
-                title={getCursos[c].title}
-              />
-            </NavLink>
+            <MiniCard
+              key={c}
+              classimg="size-[50px]"
+              classcont="text-md w-64"
+              link={`/dashboard/main/course/${c}`}
+              image={getCursos[c].iconfile}
+              title={getCursos[c].title}
+            />
           ))}
         </div>
       </article>

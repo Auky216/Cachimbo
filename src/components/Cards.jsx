@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Default from "../assets/profile-template.png";
 
 export const CardInfo = ({ iconfile, title, info }) => {
@@ -16,11 +17,24 @@ export const CardInfo = ({ iconfile, title, info }) => {
   );
 };
 
-export const MiniCard = ({ iconfile, title }) => {
+export const MiniCard = ({ classimg, classcont, link, image, title }) => {
   return (
-    <div className="flex h-fit items-center gap-4 py-1 font-bold text-cach-l5 dark:text-cach-l1">
-      <img src={iconfile || Default} className="size-12" />
-      <span className="text-md">{title}</span>
-    </div>
+    <Link to={link}>
+      <button className="flex h-fit items-center justify-around rounded-xl border border-cach-l2 py-1 pl-4 pr-8 font-bold text-cach-l5 dark:text-cach-l1">
+        <img src={image || Default} className={classimg} />
+        <span className={classcont}>{title}</span>
+      </button>
+    </Link>
   );
 };
+
+// export const CardTeacher = ({ image, title, link }) => {
+//   return (
+//     <Link to={link}>
+//       <button className="flex h-fit items-center justify-around rounded-xl border border-cach-l2 py-1 pl-4 pr-8 font-bold text-cach-l5 dark:text-cach-l1">
+//         <img src={image || Default} className="size-32" />
+//         <span className="text-md  w-32">{title}</span>
+//       </button>
+//     </Link>
+//   );
+// };
