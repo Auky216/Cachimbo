@@ -4,7 +4,7 @@ import { getCursos } from "../constant/course";
 
 const Principal = () => {
   return (
-    <div className="h-full overflow-auto py-10 pr-8">
+    <div className="h-full overflow-auto py-8 pr-8">
       {/* <ThemeButton /> */}
       <article className="pb-10">
         <div className="pb-4 pt-3 text-3xl font-extrabold text-cach-l3 dark:text-cach-l2">
@@ -34,11 +34,11 @@ const Principal = () => {
             title="Profesores"
             info="Escoge a tus profesores gracias a la opinión y calificación de la comunidad"
           />
-          <CardInfo
+          {/* <CardInfo
             iconfile=""
             title="Próximos cursos"
             info="Visualiza todos los cursos de UTEC para tu próxima matrícula de tu interés en base a la comunidad"
-          />
+          /> */}
           <CardInfo
             iconfile=""
             title="Eventos"

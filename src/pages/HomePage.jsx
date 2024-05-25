@@ -18,7 +18,7 @@ const HomePage = () => {
         </Routes>
       </section>
       <aside className="h-screen min-w-[12%] px-4 py-7">
-        <div className="text-cach-l1">{/* lado de publicidad */}Publicidad</div>
+        <div className="text-cach-l1">Publicidad</div>
       </aside>
     </main>
   );

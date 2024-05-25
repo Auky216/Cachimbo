@@ -9,9 +9,9 @@ export const getCursos = {
     info: "Analisis de modelos en ciencia e ingeniería mediante \
           herramientas de cálculo diferencial e integral, con funciones reales de variable real, \
           derivadas de integrales de funciones reales de una variable, las cuales se utilizarán como base y apoyo para \
-          el estudio de nuevos contenidos y materias para abordar problemas del mundo real.",
-    reqcourses: ["progra1"], // PARA TESTEAR
-    nextCourses: ["calvect", "estad", "optica", "alglin"],
+          el estudio de nuevos contenidos y materias en los problemas del mundo real.",
+    reqcourses: [], // PARA TESTEAR
+    nextCourses: ["progra1", "estad", "optica", "alglin"],
     rate: 0,
     keyKnowledges: [""],
   },
@@ -44,6 +44,16 @@ export const getCursos = {
     nextCourses: ["pi2"],
     rate: 0,
     keyKnowledges: [""],
+  },
+  calcvect: {
+    iconfile: "",
+    bannerImage: Antonio,
+    title: "Cálculo Vectorial",
+    info: "",
+    reqcourses: [],
+    nextCourses: ["edo"],
+    rate: 0,
+    keyKnowledges: ["integración por partes", "áreas de curvas"],
   },
   // { ... }
 };
