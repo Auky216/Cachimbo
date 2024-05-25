@@ -9,6 +9,7 @@ import Principal from "../sections/Principal";
 import Library from "../sections/Library";
 import InteractionGroups from "../sections/InteractionGroups";
 import ChatAssistant from "../sections/ChatAssistant";
+import CourseMain from "../sections/CourseMain";
 
 const router = [
   {
@@ -42,6 +43,10 @@ const router = [
   {
     path: "/dashboard/asistant",
     element: <ChatAssistant />,
+  },
+  {
+    path: "/dashboard/main/course/:course",
+    element: <CourseMain />,
   },
 ];
 

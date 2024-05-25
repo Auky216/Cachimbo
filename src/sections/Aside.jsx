@@ -32,31 +32,33 @@ const Aside = () => {
                 className="w-20 dark:invert"
               />
             </div>
-            <div class="items-left flex flex-col justify-center font-extrabold">
-              <p class="text-base text-cach-l3 dark:text-cach-l2">
+            <div className="items-left flex flex-col justify-center font-extrabold">
+              <p className="text-base text-cach-l3 dark:text-cach-l2">
                 Juan Salvatierra
               </p>
-              <h2 class="text-base text-cach-l3 dark:text-cach-l2">@Jojiz</h2>
+              <h2 className="text-base text-cach-l3 dark:text-cach-l2">
+                @Jojiz
+              </h2>
             </div>
           </div>
 
           {/* Caracteristicas */}
-          <div class="ml-5 mr-5 flex items-center justify-between pb-5 text-base text-cach-l5 dark:text-cach-l1 ">
-            <div class="flex cursor-pointer flex-col items-center justify-center">
+          <div className="ml-5 mr-5 flex items-center justify-between pb-5 text-base text-cach-l5 dark:text-cach-l1 ">
+            <div className="flex cursor-pointer flex-col items-center justify-center">
               <p className="font-extrabold">30</p>
               <p className="font-semibold">Amigos</p>
             </div>
-            <div class="flex cursor-pointer flex-col items-center justify-center">
+            <div className="flex cursor-pointer flex-col items-center justify-center">
               <p className="font-extrabold">12</p>
               <p className="font-semibold">Subidos</p>
             </div>
-            <div class="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center">
               <p className="font-extrabold">150</p>
               <p className="font-semibold">Puntos</p>
             </div>
           </div>
 
-          <button class="mb-3 mt-2 flex min-h-8 w-full items-center justify-center rounded-xl bg-cach-l3 text-cach-l1">
+          <button className="mb-3 mt-2 flex min-h-8 w-full items-center justify-center rounded-xl bg-cach-l3 text-cach-l1">
             <img src={uploadIcon} alt="icon" className="mr-1 w-4 invert" />{" "}
             Subir
           </button>

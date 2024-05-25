@@ -1,37 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { CardInfo, MiniCard } from "../components/Cards";
 import ThemeButton from "../components/ThemeButton";
+import { getCursos } from "../constant/course";
 
 const Principal = () => {
-  const getCursos = [
-    {
-      iconfile: "",
-      title: "Calculo de una Variable",
-      route: "calcvar",
-    },
-    {
-      iconfile: "",
-      title: "Matemáticas Discretas I",
-      route: "matedisc1",
-    },
-    {
-      iconfile: "",
-      title: "Programación I",
-      route: "progra1",
-    },
-    {
-      iconfile: "",
-      title: "Proyectos Interdisciplinarios I",
-      route: "pi1",
-    },
-    // { ... }
-  ];
-
-  /**
-   * Proximamente con el usuario de hara un useEffect donde se cargara en vivo los cursos que actualmente
-   * esta llevando y almacenara alli ↑
-   */
-
   return (
     <div className="h-full overflow-auto py-10 pr-8">
       {/* <ThemeButton /> */}
@@ -40,9 +12,12 @@ const Principal = () => {
           Tus Cursos
         </div>
         <div className="grid grid-cols-1 gap-4 pt-3 md:grid-cols-2">
-          {getCursos.map((c) => (
-            <NavLink key={c.route} to={`/dashboard/main/course/${c.route}`}>
-              <MiniCard iconfile={c.iconfile} title={c.title} />
+          {Object.keys(getCursos).map((c) => (
+            <NavLink key={c} to={`/dashboard/main/course/${c}`}>
+              <MiniCard
+                iconfile={getCursos[c].iconfile}
+                title={getCursos[c].title}
+              />
             </NavLink>
           ))}
         </div>
