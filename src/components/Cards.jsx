@@ -28,13 +28,16 @@ export const MiniCard = ({ classimg, classcont, link, image, title }) => {
   );
 };
 
-// export const CardTeacher = ({ image, title, link }) => {
-//   return (
-//     <Link to={link}>
-//       <button className="flex h-fit items-center justify-around rounded-xl border border-cach-l2 py-1 pl-4 pr-8 font-bold text-cach-l5 dark:text-cach-l1">
-//         <img src={image || Default} className="size-32" />
-//         <span className="text-md  w-32">{title}</span>
-//       </button>
-//     </Link>
-//   );
-// };
+export const CardAcademic = ({ refImg, title, preDescrip }) => {
+  return (
+    <div className="flex h-fit items-center justify-around rounded-xl border border-cach-l2 px-2 py-1 font-bold text-cach-l5 dark:text-cach-l1">
+      <div>
+        <span>{title}</span>
+        <div>{preDescrip}</div>
+      </div>
+      <div>
+        <img src={refImg} />
+      </div>
+    </div>
+  );
+};

@@ -30,11 +30,11 @@
 }
 
 button {
-  transition: 0.1s;
+  transition: 0.5s;
 
   &:hover {
-    transition: 0.1s;
-    transform: scale(1.05);
+    transition: 0.5s;
+    transform: scale(1.03);
   }
 }
 

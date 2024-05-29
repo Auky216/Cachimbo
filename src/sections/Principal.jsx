@@ -26,7 +26,7 @@ const Principal = () => {
 
       <article>
         <div className="text-3xl font-extrabold text-cach-l3 dark:text-cach-l2">
-          Ambiente Académico
+          Explorando
         </div>
         <div className="space-y-8 pt-10">
           <CardInfo
