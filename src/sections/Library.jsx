@@ -1,18 +1,8 @@
 import React, { useState } from "react";
-import profileTemplate from "../assets/profile-template.png";
-import pdflogo from "../assets/pdf-icon.png";
-import universitylogo from "../assets/university-icon.png";
-import HeartLogo from "../components/icons/HearLogo.jsx";
+import LibraryItem from "../components/LibraryItem";
+import { getPdfs } from "../constant/pdfs";
 
 const Library = () => {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
-
-  const handleLike = () => {
-    setIsFavorite(!isFavorite);
-    setLikeCount(likeCount + (isFavorite ? -1 : 1));
-  };
-
   return (
     <section id="library" className="py-10 pr-8">
       <div className="mb-4">
@@ -33,46 +23,17 @@ const Library = () => {
         <button className="rounded-full bg-cach-l3 px-5 py-1 text-cach-l1 focus:outline-none">
           Favoritos
         </button>
-        {/* ... mas filtros */}
+        <button className="rounded-full bg-cach-l3 px-5 py-1 text-cach-l1 focus:outline-none">
+          Tus me gusta
+        </button>
+        <button className="rounded-full bg-cach-l3 px-5 py-1 text-cach-l1 focus:outline-none">
+          Recientes
+        </button>
       </div>
 
-      {/* DIV -> component */}
-      <div className="rounded-2xl border border-cach-l3 px-4 py-2 dark:border-cach-l2">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <img src={pdflogo} alt="PDF" className="h-[4rem] w-[4rem]" />
-            <div>
-              <h3 className="text-10 text-lg font-bold text-cach-l3">
-                Cálculo de una Variable 1 - PC1 2021-2
-              </h3>
-              <div className="flex items-center space-x-2">
-                <img
-                  src={profileTemplate}
-                  alt="profile"
-                  className="h-8 w-8 grayscale filter dark:invert"
-                />
-                <p className="pr-3 text-cach-l5 dark:text-cach-l3">@Jojiz</p>
-                <img
-                  src={universitylogo}
-                  alt="Universidad"
-                  className="h-8 w-8 grayscale filter"
-                />
-                <p className="text-cach-l5 dark:text-cach-l3">UTEC</p>
-              </div>
-            </div>
-          </div>
-
-          <button
-            onClick={handleLike}
-            className={`flex items-center space-x-1 px-2 py-1 duration-100 ${isFavorite ? "text-red-500" : "text-cach-l3 dark:text-cach-l2"}`}
-          >
-            <div>
-              <HeartLogo filled={isFavorite} />
-              <p>{likeCount}</p>
-            </div>
-          </button>
-        </div>
-      </div>
+      {Object.values(getPdfs).map((item, index) => (
+        <LibraryItem key={index} item={item} />
+      ))}
     </section>
   );
 };
