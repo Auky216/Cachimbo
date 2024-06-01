@@ -10,6 +10,7 @@ import Library from "../sections/Library";
 import InteractionGroups from "../sections/InteractionGroups";
 import ChatAssistant from "../sections/ChatAssistant";
 import CourseMain from "../sections/CourseMain";
+import PdfLibrary from "../sections/PdfLibrary";
 
 const router = [
   {
@@ -48,6 +49,10 @@ const router = [
     path: "/dashboard/main/course/:course",
     element: <CourseMain />,
   },
+  {
+    path: "/dashboard/library/pdf/:pdf",
+    element: <PdfLibrary />,
+  }
 ];
 
 export default router;
