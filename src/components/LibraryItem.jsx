@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import profileTemplate from '../assets/profile-template.png';
 import pdflogo from '../assets/pdf-icon.png';
 import universitylogo from '../assets/university-icon.png';
 import HeartLogo from '../components/icons/HearLogo.jsx';
 
-const LibraryItem = ({ item }) => {
+const LibraryItem = ({ item, link}) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [likeCount, setLikeCount] = useState(item.likes);
 
@@ -20,7 +21,9 @@ const LibraryItem = ({ item }) => {
           <img src={pdflogo} alt="PDF" className="h-[4rem] w-[4rem]" />
           <div>
             <h3 className="text-10 text-lg font-bold text-cach-l3">
-              {item.title}
+              <Link to={link} className="text-cach-l3 dark:text-cach-l2 hover:underline">
+                {item.title}
+              </Link>
             </h3>
             <div className="flex items-center space-x-2">
               <img
