@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import LibraryItem from "../components/LibraryItem";
 import { getPdfs } from "../constant/pdfs";
 
@@ -31,8 +31,12 @@ const Library = () => {
         </button>
       </div>
 
-      {Object.values(getPdfs).map((item, index) => (
-        <LibraryItem key={index} item={item} />
+      {Object.entries(getPdfs).map(([id, item]) => (
+        <LibraryItem 
+          key={id} 
+          item={item}
+          link = {`/dashboard/library/pdf/${id}`}
+        />
       ))}
     </section>
   );
