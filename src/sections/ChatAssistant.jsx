@@ -31,18 +31,18 @@ const ChatAssistant = () => {
       ],
     },
     {
-    id: 3,
-    messages: [
-      {
-        text: "Escribeme un cuento para niños",
-        sender: "user",
-      },
-      {
-        text: "No",
-        sender: "assistant",
-      },
-    ],
-  },
+      id: 3,
+      messages: [
+        {
+          text: "Escribeme un cuento para niños",
+          sender: "user",
+        },
+        {
+          text: "No",
+          sender: "assistant",
+        },
+      ],
+    },
   ]);
   const [currentConversationId, setCurrentConversationId] = useState(1);
   const [inputValue, setInputValue] = useState("");
@@ -102,7 +102,7 @@ const ChatAssistant = () => {
 
   return (
     <div className="flex h-full">
-      <div className="w-1/5 bg-gray-100 p-4 border-r border-gray-300 dark:bg-gray-800 dark:border-gray-600">
+      <div className="w-1/5 bg-gray-100 bg-opacity-20 p-4 border-r border-gray-300 dark:bg-gray-800 dark:bg-opacity-20 dark:border-gray-600">
         <h3 className="font-bold text-lg mb-4 text-gray-900 dark:text-gray-200">
           Historial de Conversaciones
         </h3>
@@ -110,9 +110,9 @@ const ChatAssistant = () => {
           {conversations.map((conversation) => (
             <li
               key={conversation.id}
-              className={`cursor-pointer p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 ${
+              className={`cursor-pointer p-2 rounded-lg hover:bg-gray-200 hover:bg-opacity-20 dark:hover:bg-gray-700 dark:hover:bg-opacity-20 ${
                 currentConversationId === conversation.id
-                  ? "bg-gray-200 dark:bg-gray-700"
+                  ? "bg-gray-200 bg-opacity-20 dark:bg-gray-700 dark:bg-opacity-20"
                   : ""
               }`}
               onClick={() => handleConversationSelect(conversation.id)}
@@ -127,7 +127,7 @@ const ChatAssistant = () => {
           ))}
         </ul>
       </div>
-      <div className="flex-1 flex flex-col bg-gray-100 dark:bg-gray-900">
+      <div className="flex-1 flex flex-col bg-gray-100 bg-opacity-0 dark:bg-gray-900 dark:bg-opacity-0">
         <div className="chat-messages flex-1 overflow-auto p-4">
           {currentConversation.messages.map((message, index) => (
             <div
