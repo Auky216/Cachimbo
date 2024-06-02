@@ -13,7 +13,20 @@ export const getCursos = {
     reqcourses: [], // PARA TESTEAR
     nextCourses: ["progra1", "estad", "optica", "alglin"],
     rate: 0,
-    keyKnowledges: [""],
+    keyKnowledges: [
+      {
+        key: "derivadas",
+        title: "Derivadas",
+        content: "Derivadas de funciones reales de una variable",
+        image: Antonio,
+      },
+      {
+        key: "integrales",
+        title: "Integrales",
+        content: "Integrales de funciones reales de una variable",
+        image: Antonio,
+      },
+    ],
   },
   matedisc1: {
     iconfile: "",
@@ -23,7 +36,7 @@ export const getCursos = {
     reqcourses: [],
     nextCourses: ["matedisc2"],
     rate: 0,
-    keyKnowledges: [""],
+    keyKnowledges: [],
   },
   progra1: {
     iconfile: "",
@@ -33,7 +46,7 @@ export const getCursos = {
     reqcourses: [],
     nextCourses: ["progra2"],
     rate: 0,
-    keyKnowledges: [""],
+    keyKnowledges: [],
   },
   pi1: {
     iconfile: "",
@@ -43,7 +56,7 @@ export const getCursos = {
     reqcourses: [],
     nextCourses: ["pi2"],
     rate: 0,
-    keyKnowledges: [""],
+    keyKnowledges: [],
   },
   calcvect: {
     iconfile: "",

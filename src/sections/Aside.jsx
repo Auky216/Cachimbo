@@ -25,7 +25,7 @@ const Aside = () => {
         <div className="mt-5 w-full items-center">
           {/* datos de perfil */}
           <div className="flex flex-row pb-3">
-            <div>
+            <div className="pr-2">
               <img
                 src={profileTemplate}
                 alt="profile"
