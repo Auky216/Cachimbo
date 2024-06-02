@@ -3,33 +3,84 @@ import userAvatar from "../assets/profile-template.png";
 import assistantAvatar from "../assets/assistant-avatar.png";
 
 const ChatAssistant = () => {
-  const [messages, setMessages] = useState([
+  const [conversations, setConversations] = useState([
     {
-      text: "Puedes que cursos llevar para el 2024-2 si solo quiero llevar 4 cursos y que tenga el mayor número de créditos posibles.",
-      sender: "user",
+      id: 1,
+      messages: [
+        {
+          text: "Puedes que cursos llevar para el 2024-2 si solo quiero llevar 4 cursos y que tenga el mayor número de créditos posibles.",
+          sender: "user",
+        },
+        {
+          text: "Los cursos que te recomiendo siendo de Ciencias de la Computación para tu segundo ciclo serían Programación 2, Cálculo Vectorial, Laboratorio de Computación 2 y Proyecto Interdisciplinario 2. Con estos cursos tendrías un total de 16 créditos y no te atrasarías mucho.",
+          sender: "assistant",
+        },
+      ],
     },
     {
-      text: "Los cursos que te recomiendo siendo de Ciencias de la Computación para tu segundo ciclo serían Programación 2, Cálculo Vectorial, Laboratorio de Computación 2 y Proyecto Interdisciplinario 2. Con estos cursos tendrías un total de 16 créditos y no te atrasarías mucho.",
-      sender: "assistant",
+      id: 2,
+      messages: [
+        {
+          text: "Puedes que cursos llevar para el 2024-2 si.",
+          sender: "user",
+        },
+        {
+          text: "Los cursos de Computación 2 y Proyecto mucho.",
+          sender: "assistant",
+        },
+      ],
     },
     {
-      text: "Puedes que cursos llevar para el 2024-2 si.",
-      sender: "user",
-    },
-    {
-      text: "Los cursos de Computación 2 y Proyecto mucho.",
-      sender: "assistant",
-    },
+    id: 3,
+    messages: [
+      {
+        text: "Escribeme un cuento para niños",
+        sender: "user",
+      },
+      {
+        text: "No",
+        sender: "assistant",
+      },
+    ],
+  },
   ]);
+  const [currentConversationId, setCurrentConversationId] = useState(1);
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
   const messagesEndRef = useRef(null);
 
   const handleSendMessage = () => {
     if (inputValue.trim() !== "") {
-      setMessages([...messages, { text: inputValue, sender: "user" }]);
+      const newMessage = { text: inputValue, sender: "user" };
+      setConversations((prevConversations) =>
+        prevConversations.map((conversation) =>
+          conversation.id === currentConversationId
+            ? {
+                ...conversation,
+                messages: [...conversation.messages, newMessage],
+              }
+            : conversation
+        )
+      );
       setInputValue("");
+
       //aqui se puede obtener la respuesta del asistente
+      setTimeout(() => {
+        const assistantMessage = {
+          text: "Sí, dejame ayudarte con eso ...",
+          sender: "assistant",
+        };
+        setConversations((prevConversations) =>
+          prevConversations.map((conversation) =>
+            conversation.id === currentConversationId
+              ? {
+                  ...conversation,
+                  messages: [...conversation.messages, assistantMessage],
+                }
+              : conversation
+          )
+        );
+      }, 400);
     }
   };
 
@@ -39,65 +90,100 @@ const ChatAssistant = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [conversations, currentConversationId]);
+
+  const handleConversationSelect = (id) => {
+    setCurrentConversationId(id);
+  };
+
+  const currentConversation = conversations.find(
+    (conversation) => conversation.id === currentConversationId
+  );
 
   return (
-    <div className="chat-assistant flex h-full flex-col py-8">
-      <div className="chat-messages mb-4 grow overflow-auto px-4 py-4">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`message ${message.sender === "user" ? "user justify-end" : "assistant justify-start"} mb-6 flex`}
-          >
-            {message.sender === "assistant" && (
-              <img
-                src={assistantAvatar}
-                alt="Assistant Avatar"
-                className="avatar assistant-avatar mr-3 size-10"
-              />
-            )}
-            <div
-              className={`message-text ${message.sender === "user" ? "user-message" : "assistant-message"} 
-                          max-w-[60%] ${message.sender === "assistant" ? "ml-2.5" : ""} text-sm
-                          ${
-                            message.sender === "assistant"
-                              ? "rounded-2xl bg-cach-l3 px-5 py-3  text-cach-l1 focus:outline-none"
-                              : "rounded-xl border border-solid border-cach-l3 px-6 py-3 text-cach-l3 dark:border-cach-l2 dark:text-cach-l2"
-                          }`}
+    <div className="flex h-full">
+      <div className="w-1/5 bg-gray-100 p-4 border-r border-gray-300 dark:bg-gray-800 dark:border-gray-600">
+        <h3 className="font-bold text-lg mb-4 text-gray-900 dark:text-gray-200">
+          Historial de Conversaciones
+        </h3>
+        <ul className="space-y-2">
+          {conversations.map((conversation) => (
+            <li
+              key={conversation.id}
+              className={`cursor-pointer p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 ${
+                currentConversationId === conversation.id
+                  ? "bg-gray-200 dark:bg-gray-700"
+                  : ""
+              }`}
+              onClick={() => handleConversationSelect(conversation.id)}
             >
-              {message.text}
-            </div>
-            {message.sender === "user" && (
-              <img
-                src={userAvatar}
-                alt="User Avatar"
-                className="avatar user-avatar ml-2.5 size-10"
-              />
-            )}
-          </div>
-        ))}
-        <div ref={messagesEndRef} />
+              <div className="text-gray-800 dark:text-gray-300">
+                {conversation.messages[
+                  conversation.messages.length - 1
+                ].text.substring(0, 20)}
+                ...
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
-      <div className="chat-input flex bg-transparent p-2.5">
-        <input
-          type="text"
-          placeholder="Escriba su mensaje ..."
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              handleSendMessage();
-            }
-          }}
-          className="mr-4 w-full rounded-2xl border border-cach-l3 bg-transparent px-5 py-2 text-cach-l3 placeholder-cach-l3/70 focus:outline-none dark:border-cach-l2 dark:bg-transparent dark:text-cach-l2 dark:placeholder-cach-l2/40"
-          ref={inputRef}
-        />
-        <button
-          onClick={handleSendMessage}
-          className="ml-2 rounded-2xl bg-cach-l3 px-5 py-1 text-sm text-cach-l1 focus:outline-none"
-        >
-          Enviar
-        </button>
+      <div className="flex-1 flex flex-col bg-gray-100 dark:bg-gray-900">
+        <div className="chat-messages flex-1 overflow-auto p-4">
+          {currentConversation.messages.map((message, index) => (
+            <div
+              key={index}
+              className={`flex mb-4 ${
+                message.sender === "user" ? "justify-end" : "justify-start"
+              }`}
+            >
+              {message.sender === "assistant" && (
+                <img
+                  src={assistantAvatar}
+                  alt="Assistant Avatar"
+                  className="w-8 h-8 rounded-full mr-2"
+                />
+              )}
+              <div
+                className={`p-3 rounded-lg max-w-[60%] ${
+                  message.sender === "assistant"
+                    ? "bg-cach-l3 text-cach-l1"
+                    : "bg-transparent border border-cach-l3 text-cach-l3 dark:border-cach-l2 dark:text-cach-l2"
+                }`}
+              >
+                {message.text}
+              </div>
+              {message.sender === "user" && (
+                <img
+                  src={userAvatar}
+                  alt="User Avatar"
+                  className="w-8 h-8 rounded-full ml-2"
+                />
+              )}
+            </div>
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
+        <div className="chat-input flex bg-transparent p-4">
+          <input
+            type="text"
+            placeholder="Escriba su mensaje ..."
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                handleSendMessage();
+              }
+            }}
+            className="flex-1 bg-transparent border border-cach-l3 rounded-full py-2 px-4 text-cach-l3 placeholder-cach-l3/70 focus:outline-none dark:border-cach-l2 dark:text-cach-l2 dark:placeholder-cach-l2/40"
+            ref={inputRef}
+          />
+          <button
+            onClick={handleSendMessage}
+            className="ml-4 bg-cach-l3 text-cach-l1 py-2 px-4 rounded-full focus:outline-none"
+          >
+            Enviar
+          </button>
+        </div>
       </div>
     </div>
   );
