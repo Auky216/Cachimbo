@@ -83,6 +83,7 @@ const LandingPage = () => {
                 orientación personalizada y recursos educativos que te ayudarán
                 a alcanzar tus metas.
               </div>
+              
               <button
                 className="w-full rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white duration-300 hover:bg-cach-l2/50 lg:w-auto"
                 onClick={activeAbout}
