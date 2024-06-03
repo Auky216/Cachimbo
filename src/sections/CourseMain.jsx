@@ -27,7 +27,7 @@ const CourseMain = () => {
   return (
     <section className="max-h-full py-6 pr-8">
       <div className="flex w-full flex-col">
-        <div className="text-md flex h-10 w-full items-center justify-around">
+        <div className="text-md flex h-10 w-full items-center justify-around font-extrabold">
           {/* tres botones: descripcion, contenido y opiniones */}
           <a
             onClick={handleDesc}

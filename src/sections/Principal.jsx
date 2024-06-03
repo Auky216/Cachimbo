@@ -1,7 +1,8 @@
 import { CardInfo, MiniCard } from "../components/Cards";
 import ThemeButton from "../components/ThemeButton";
 import Events from "../assets/icons8-billete-con-estrella-96.png";
-import Comunity from "../assets/Comunity_Icon.png";
+import Electivo from "../assets/icons8-electivo-96.png";
+import Opinion from "../assets/icons8-opinión-opuesta-96.png";
 import Profesores from "../assets/icons8-profesor-96.png";
 import { getCursos } from "../constant/course";
 
@@ -37,18 +38,18 @@ const Principal = () => {
             title="Profesores"
             info="Escoge a tus profesores gracias a la opinión y calificación de la comunidad"
           />
-          {/* <CardInfo
-            iconfile=""
+          <CardInfo
+            iconfile={Electivo}
             title="Próximos cursos"
             info="Visualiza todos los cursos de UTEC para tu próxima matrícula de tu interés en base a la comunidad"
-          /> */}
+          />
           <CardInfo
             iconfile={Events}
             title="Eventos"
             info="Participa de los eventos que las organizaciones y comunidades de UTEC realizan en este semetres académico"
           />
           <CardInfo
-            iconfile={Comunity}
+            iconfile={Opinion}
             title="Sugerencias"
             info="Visualiza tus sugerencias, propuestas u opiniones y de otros estudiantes para mejorar aspectos de la universidad"
           />

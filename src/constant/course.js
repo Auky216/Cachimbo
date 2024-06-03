@@ -1,9 +1,10 @@
 /** Archivo TEMPORAL con los cursos de UTEC */
 import Antonio from "../assets/TeamPhoto/Antonio.jpg";
+import Curso from "../assets/icons8-cursos-96.png";
 
 export const getCursos = {
   calcvar: {
-    iconfile: "",
+    iconfile: Curso,
     bannerImage: Antonio,
     title: "Cálculo de una Variable",
     info: "Analisis de modelos en ciencia e ingeniería mediante \
@@ -29,7 +30,7 @@ export const getCursos = {
     ],
   },
   matedisc1: {
-    iconfile: "",
+    iconfile: Curso,
     bannerImage: Antonio,
     title: "Matemáticas Discretas I",
     info: "",
@@ -39,7 +40,7 @@ export const getCursos = {
     keyKnowledges: [],
   },
   progra1: {
-    iconfile: "",
+    iconfile: Curso,
     bannerImage: Antonio,
     title: "Programación I",
     info: "",
@@ -49,7 +50,7 @@ export const getCursos = {
     keyKnowledges: [],
   },
   pi1: {
-    iconfile: "",
+    iconfile: Curso,
     bannerImage: Antonio,
     title: "Proyectos Interdisciplinarios I",
     info: "",
@@ -59,7 +60,7 @@ export const getCursos = {
     keyKnowledges: [],
   },
   calcvect: {
-    iconfile: "",
+    iconfile: Curso,
     bannerImage: Antonio,
     title: "Cálculo Vectorial",
     info: "",
