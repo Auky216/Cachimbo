@@ -11,6 +11,7 @@ import InteractionGroups from "../sections/InteractionGroups";
 import ChatAssistant from "../sections/ChatAssistant";
 import CourseMain from "../sections/CourseMain";
 import PdfLibrary from "../sections/PdfLibrary";
+import TeacherMain from "../sections/TeacherMain";
 
 const router = [
   {
@@ -52,7 +53,11 @@ const router = [
   {
     path: "/dashboard/library/pdf/:pdf",
     element: <PdfLibrary />,
-  }
+  },
+  {
+    path: "/dashboard/main/teachers/",
+    element: <TeacherMain />,
+  },
 ];
 
 export default router;
