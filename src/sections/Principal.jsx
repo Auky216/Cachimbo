@@ -27,7 +27,6 @@ const Principal = () => {
           ))}
         </div>
       </article>
-
       <article>
         <div className="text-3xl font-extrabold text-cach-l3 dark:text-cach-l2">
           Explorando

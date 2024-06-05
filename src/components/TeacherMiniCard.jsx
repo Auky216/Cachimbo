@@ -8,3 +8,4 @@ const TeacherMiniCard = () =>{
         </div>
     )
 }
+export default TeacherMiniCard;
