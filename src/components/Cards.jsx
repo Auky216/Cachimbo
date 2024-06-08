@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import Default from "../assets/profile-template.png";
 
-export const Estrella = ({bg, wd, hg}) => {
+export const Estrella = ({bg, l}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={wd || "800"}
-      height={hg || "800"}
+      width={l || "800"}
+      height={l || "800"}
       version="1.1"
       viewBox="0 0 47.94 47.94"
       xmlSpace="preserve"
@@ -73,14 +73,21 @@ export const CardAcademic = ({ title, searchKey, preDescrip, imgRef }) => {
 };
 
 export const TeacherMiniCard = ({name, imageRoute, rate, course}) =>{
+  const stars = Array(5).fill(0);
+  const filledStars = Math.round(rate / 5 * 100) / 20;
   return (
-      <div className="flex">
+      <div className="flex min-w-56">
         <div className="h-20">
           <img src={imageRoute} alt="tchr"/>
         </div>
         <div className="h-20 flex items-center flex-col">
-          <p>{name}</p>
-          <Estrella bg="white" wd="10" hg="10"></Estrella>
+          <span>{name}</span>
+          <span>{course}</span>
+          <span className="flex flex-row">
+            {stars.map((_, index) => (
+              <Estrella className="" key={index} bg={index < filledStars ? "yellow" : "white"} l="10"></Estrella>
+            ))}
+          </span>
         </div>
       </div>
   )
