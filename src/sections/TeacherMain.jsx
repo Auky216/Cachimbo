@@ -1,8 +1,12 @@
-import TeacherMiniCard from "../components/TeacherMiniCard"
+import {TeacherMiniCard} from "../components/Cards"
 
 const TeacherMain = () => {
     return(
-        <TeacherMiniCard/>
+        <div className="pt-3">
+            <TeacherMiniCard name="Josmar"/>
+            <TeacherMiniCard name="Jorge"/>
+        </div>
+        
     )
 }
 

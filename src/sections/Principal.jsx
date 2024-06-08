@@ -5,6 +5,7 @@ import Electivo from "../assets/icons8-electivo-96.png";
 import Opinion from "../assets/icons8-opinión-opuesta-96.png";
 import Profesores from "../assets/icons8-profesor-96.png";
 import { getCursos } from "../constant/course";
+import {NavLink} from "react-router-dom";
 
 const Principal = () => {
   return (
@@ -32,11 +33,13 @@ const Principal = () => {
           Explorando
         </div>
         <div className="space-y-8 pt-10">
-          <CardInfo
+          <NavLink to="/dashboard/main/teachers">
+            <CardInfo
             iconfile={Profesores}
             title="Profesores"
             info="Escoge a tus profesores gracias a la opinión y calificación de la comunidad"
-          />
+            />
+          </NavLink>
           <CardInfo
             iconfile={Electivo}
             title="Próximos cursos"
