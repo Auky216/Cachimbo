@@ -1,4 +1,4 @@
-import { CardAcademic } from "./Cards";
+import { CardAcademic } from "../components/Cards";
 const CourseContent = ({ keys }) => {
   return (
     <div className="mt-6 flex h-full w-full grow flex-col">

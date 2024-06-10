@@ -1,10 +1,12 @@
 import { useParams } from "react-router-dom";
+import { useState } from "react";
+import CourseDescrip from "../subsections/CourseDescrip";
+import CourseContent from "../subsections/CourseContent";
+import CourseOpinion from "../subsections/CourseOpinion";
 // temporal files in local development
 import { getCursos } from "../constant/course";
 import { teachers } from "../constant/teachers";
-import { useState } from "react";
-import CourseDescrip from "../components/CourseDescrip";
-import CourseContent from "../components/CourseContent";
+import { CoursesOpinion } from "../constant/opinion";
 
 const CourseMain = () => {
   const params = useParams();
@@ -67,6 +69,9 @@ const CourseMain = () => {
         {/* si marca contenido ↓ */}
         {section === "content" && <CourseContent keys={curso.keyKnowledges} />}
         {/* si marca opinion ↓ */}
+        {section === "opinion" && (
+          <CourseOpinion listOpinions={CoursesOpinion} />
+        )}
       </div>
     </section>
   );

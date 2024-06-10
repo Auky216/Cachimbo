@@ -1,21 +1,33 @@
 import { Link } from "react-router-dom";
 import Default from "../assets/profile-template.png";
+import { MAX_RATE } from "../constant/opinion";
+import { Star } from "./icons/Star";
 
-export const Estrella = ({bg, l}) => {
+export const CardOpinion = ({ description, carrerUser, rate }) => {
+  const stars = Array(MAX_RATE).fill(0);
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={l || "800"}
-      height={l || "800"}
-      version="1.1"
-      viewBox="0 0 47.94 47.94"
-      xmlSpace="preserve"
-    >
-      <path
-        fill={bg || "#FFD700"}
-        d="M26.285 2.486l5.407 10.956a2.58 2.58 0 001.944 1.412l12.091 1.757c2.118.308 2.963 2.91 1.431 4.403l-8.749 8.528a2.582 2.582 0 00-.742 2.285l2.065 12.042c.362 2.109-1.852 3.717-3.746 2.722l-10.814-5.685a2.585 2.585 0 00-2.403 0l-10.814 5.685c-1.894.996-4.108-.613-3.746-2.722l2.065-12.042a2.582 2.582 0 00-.742-2.285L.783 21.014c-1.532-1.494-.687-4.096 1.431-4.403l12.091-1.757a2.58 2.58 0 001.944-1.412l5.407-10.956c.946-1.919 3.682-1.919 4.629 0z"
-      ></path>
-    </svg>
+    <div className="flex flex-col w-full h-full justify-between rounded-xl border-2 border-cach-l2 font-bold text-cach-l5 dark:text-cach-l1">
+      <div className="flex w-full flex-row items-center justify-center px-2 py-1">
+        <div className="flex w-[75%] flex-col space-y-1↑ px-4 py-2">
+          <div className="text-sm font-bold text-cach-l3 dark:text-cach-l2/30">
+            Un estudiante de {carrerUser} dijo:
+          </div>
+          <div className="flex items-center space-x-2">
+            <p className="text-cach-l5 dark:text-white">{description}</p>
+          </div>
+        </div>
+        <div className="flex flex-col items-center gap-1 justify-center w-[25%]">
+          <div className="flex items-center space-x-2">
+            {stars.map((_, index) => (
+              <Star
+                key={index} bg={index < Math.round(rate)} l="10"
+              />
+            ))}
+          </div>
+          <div className="text-cach-l5 text-sm dark:text-white">Calificación: {rate}</div>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -72,24 +84,23 @@ export const CardAcademic = ({ title, searchKey, preDescrip, imgRef }) => {
   );
 };
 
-export const TeacherMiniCard = ({name, imageRoute, rate, course}) =>{
-  const stars = Array(5).fill(0);
-  const filledStars = Math.round(rate / 5 * 100) / 20;
+export const TeacherMiniCard = ({ name, imageRoute, rate, course }) => {
+  const stars = Array(MAX_RATE).fill(0);
   return (
-      <div className="flex min-w-56">
-        <div className="h-20">
-          <img src={imageRoute} alt="tchr"/>
-        </div>
-        <div className="h-20 flex items-center flex-col">
-          <span>{name}</span>
-          <span>{course}</span>
-          <span className="flex flex-row">
-            {stars.map((_, index) => (
-              <Estrella className="" key={index} bg={index < filledStars ? "yellow" : "white"} l="10"></Estrella>
-            ))}
-          </span>
-        </div>
+    <div className="flex min-w-56">
+      <div className="h-20">
+        <img src={imageRoute} alt="tchr" />
       </div>
-  )
-}
-
+      <div className="flex h-20 flex-col items-center">
+        <span>{name}</span>
+        <span>{course}</span>
+        <span className="flex flex-row">
+          {stars.map((_, index) => (
+            <Star className="" key={index} bg={index < Math.round(rate)} l="10"
+            ></Star>
+          ))}
+        </span>
+      </div>
+    </div>
+  );
+};

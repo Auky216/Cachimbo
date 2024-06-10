@@ -1,16 +1,15 @@
 import { CardInfo, MiniCard } from "../components/Cards";
-import ThemeButton from "../components/ThemeButton";
 import Events from "../assets/icons8-billete-con-estrella-96.png";
 import Electivo from "../assets/icons8-electivo-96.png";
 import Opinion from "../assets/icons8-opinión-opuesta-96.png";
 import Profesores from "../assets/icons8-profesor-96.png";
 import { getCursos } from "../constant/course";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import Curso from "../assets/icons8-cursos-96.png";
 
 const Principal = () => {
   return (
     <div className="h-full overflow-auto py-8 pr-8">
-      {/* <ThemeButton /> */}
       <article className="pb-10">
         <div className="pb-4 pt-3 text-3xl font-extrabold text-cach-l3 dark:text-cach-l2">
           Tus Cursos
@@ -22,7 +21,7 @@ const Principal = () => {
               classimg="size-[50px]"
               classcont="text-md w-64"
               link={`/dashboard/main/course/${c}`}
-              image={getCursos[c].iconfile}
+              image={Curso}
               title={getCursos[c].title}
             />
           ))}
@@ -35,9 +34,9 @@ const Principal = () => {
         <div className="space-y-8 pt-10">
           <NavLink to="/dashboard/main/teachers">
             <CardInfo
-            iconfile={Profesores}
-            title="Profesores"
-            info="Escoge a tus profesores gracias a la opinión y calificación de la comunidad"
+              iconfile={Profesores}
+              title="Profesores"
+              info="Escoge a tus profesores gracias a la opinión y calificación de la comunidad"
             />
           </NavLink>
           <CardInfo

@@ -8,12 +8,11 @@ import whatsAppIcon from "../assets/whatsapp.svg";
 import hatIcon from "../assets/hat2.png";
 import ThemeButton from "../components/ThemeButton";
 
-import UTEC_Icon from "../assets/Utec_Icon.png";
 import AI_icon from "../assets/AI_icon.png";
 import Comunity_icon from "../assets/Comunity_Icon.png";
 import Event_Icon from "../assets/Event_Icon.png";
 import Resources_Icon from "../assets/Resources_Icon.png";
-import AboutUs from "../components/AboutUs";
+import AboutUs from "../subsections/AboutUs";
 import { Modal } from "@mui/material";
 
 const LandingPage = () => {
