@@ -1,6 +1,7 @@
 import { TeacherMiniCard } from "../components/Cards";
 import { NavLink } from "react-router-dom";
 import React, { useState } from 'react';
+import {teachers} from '../constant/teachers';
 
 const TeacherMain = () => {
     /** Estoy pensando en que cuando se pase
@@ -53,6 +54,14 @@ const TeacherMain = () => {
             </div>
             <div className="grid grid-cols-[repeat(auto-fill,_minmax(224px,_1fr))] gap-4">
                 {/* Se usará un map para generar todos los teaches mini card necesarios */}
+                {teachers.map((i) => (
+                    <TeacherMiniCard
+                    name={i.name}
+                    imageRoute={i.photo}
+                    course={i.courses[0]}
+                    rate={i.rate}
+                    />
+                ))}
                 <TeacherMiniCard
                 name="Josmar"
                 course="Cálculo de una Variable I"

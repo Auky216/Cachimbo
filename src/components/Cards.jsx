@@ -87,11 +87,11 @@ export const CardAcademic = ({ title, searchKey, preDescrip, imgRef }) => {
 export const TeacherMiniCard = ({ name, imageRoute, rate, course }) => {
   const stars = Array(MAX_RATE).fill(0);
   return (
-    <div className="flex min-w-56 border-2 rounded-xl border-cach-l3 p-2">
+    <div className="flex min-w-56 border-2 rounded-xl border-cach-l3 p-2 items-center">
       <div className="h-20 min-w-min p-2">
-        <img src={imageRoute} alt="tchr"/>
+        <img src={imageRoute} alt="tchr" className="h-18 w-24"/>
       </div>
-      <div className="flex max-w-max h-20 flex-col items-center">
+      <div className="flex max-w-max h-min flex-col items-center">
         <span className="text-center">{name}</span>
         <span className="text-center">{course}</span>
         <span className="flex flex-row">
