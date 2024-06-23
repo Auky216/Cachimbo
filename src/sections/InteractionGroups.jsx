@@ -1,34 +1,36 @@
 import React, { useState } from "react";
-import expertsPanel from "../assets/icons8-panel-of-experts-96.png";
-import teacher from "../assets/icons8-profesor-96.png";
-import marketing from "../assets/Comunity_Icon.png";
+import left from "../assets/left4.png";
+import Integral from "../assets/integral.png";
+import Marker from "../assets/marker.png";
 import GroupInfo from "../components/GroupInfo";
 import Modal from "react-modal";
+import Chess from "../assets/chess.png";
+
 Modal.setAppElement("#root");
 
 const InteractionGroups = () => {
   const infoGroups = [
     {
       title: "Grupo de ajedrez",
-      icon: expertsPanel,
+      icon: Chess,
       description:
         "Aquí puedes encontrar torneos de ajedrez tanto online como presencial en los talleres de UTEC",
     },
     {
       title: "Calculo 1 se pasa Solo",
-      icon: teacher,
+      icon: Integral,
       description:
         "Aquí puedes encontrar recursos y apoyo para aprobar Calculo 1 de manera efectiva",
     },
     {
       title: "Los Marketeros",
-      icon: marketing,
+      icon: Marker,
       description:
         "Aquí puedes encontrar gente con las misma pasión por el marketing",
     },
     {
       title: "Group Left 4 Dead 2",
-      icon: expertsPanel,
+      icon: left,
       description:
         "Aquí puedes encontrar gente con las misma pasión por el juego Left 4 Dead 2",
     },
@@ -58,10 +60,10 @@ const InteractionGroups = () => {
 
   const renderGroups = () => {
     return (
-      <div className="grid grid-cols-2 gap-60">
+      <div className="grid grid-cols-2 gap-7"> {/* Para manejar la distancia de sepracion de los cuadros de los grupos */}
         {/*Group Ajedrez*/}
         <GroupInfo
-          icon={expertsPanel}
+          icon={Chess}
           groupState={groupStates[0].joined}
           title="Grupo de ajedrez"
           numMembers={12}
@@ -74,7 +76,7 @@ const InteractionGroups = () => {
 
         {/* Grupo Calculo 1 */}
         <GroupInfo
-          icon={teacher}
+          icon={Integral}
           groupState={groupStates[1].joined}
           title="Calculo 1 se pasa Solo"
           numMembers={99}
@@ -87,7 +89,7 @@ const InteractionGroups = () => {
 
         {/* Grupo Marketing */}
         <GroupInfo
-          icon={marketing}
+          icon={Marker}
           groupState={groupStates[2].joined}
           title="Los Marketeros"
           numMembers={2}
@@ -100,7 +102,7 @@ const InteractionGroups = () => {
 
         {/*Group Left 4 Dead 2 UPC*/}
         <GroupInfo
-          icon={expertsPanel}
+          icon={left}
           groupState={groupStates[3].joined}
           title="Group Left 4 Dead 2"
           numMembers={122}
@@ -148,7 +150,6 @@ const InteractionGroups = () => {
             marginRight: "-50%",
             transform: "translate(-50%, -50%)",
             backgroundColor: "#cbb7f7",
-            color: "black",
             borderRadius: "10px",
             padding: "20px",
             width: "80%",

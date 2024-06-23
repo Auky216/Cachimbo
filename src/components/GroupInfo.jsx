@@ -29,7 +29,7 @@ const GroupInfo = ({
               alt="fig asistente"
               loading="lazy"
             />
-            <span className="text-pretty text-cach-l3 dark:text-cach-l2">
+            <span className="text-pretty text-cach-l3 dark:text-cach-l1">
               +{numMembers}
             </span>
           </div>

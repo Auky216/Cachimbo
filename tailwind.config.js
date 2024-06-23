@@ -13,5 +13,5 @@ export default {
       },
     },
   },
-  plugins: ["prettier-plugin-tailwindcss"],
+  plugins: ["prettier-plugin-tailwindcss", "postcss-nesting"], // Asegúrate de incluir el plugin de anidamiento aquí
 };
