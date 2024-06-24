@@ -13,7 +13,7 @@ import Comunity_icon from "../assets/Comunity_Icon.png";
 import Event_Icon from "../assets/Event_Icon.png";
 import Resources_Icon from "../assets/Resources_Icon.png";
 import AboutUs from "../subsections/AboutUs";
-import { Modal } from "@mui/material";
+import { Modal } from "../components/Modal";
 
 const LandingPage = () => {
   const [showAbout, setShowAbout] = useState(false);
@@ -82,7 +82,7 @@ const LandingPage = () => {
                 orientación personalizada y recursos educativos que te ayudarán
                 a alcanzar tus metas.
               </div>
-              
+
               <button
                 className="w-full rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white duration-300 hover:bg-cach-l2/50 lg:w-auto"
                 onClick={activeAbout}
@@ -211,12 +211,7 @@ const LandingPage = () => {
         </div>
       </footer>
 
-      <Modal
-        open={showAbout}
-        onClose={deactiveAbout}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={showAbout} onClose={deactiveAbout}>
         <AboutUs />
       </Modal>
     </main>
