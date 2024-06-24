@@ -1,7 +1,7 @@
-import { MiniCard } from "../components/Cards";
-import { getCursos } from "../constant/course";
+import { MiniCard } from "../../components/Cards";
+import { getCursos } from "../../constant/course";
 
-const CourseDescrip = ({ courseTeachers, cursoObj }) => {
+const CDescrip = ({ courseTeachers, cursoObj }) => {
   return (
     <div className="my-2 w-full">
       <article className="my-4 w-full rounded-3xl bg-transparent px-7 py-6 text-center shadow-xl dark:bg-cach-l2/20 dark:text-white">
@@ -14,7 +14,7 @@ const CourseDescrip = ({ courseTeachers, cursoObj }) => {
         <div className="flex h-fit w-full items-center justify-center px-6 pt-3">
           <div className="h-fit min-w-[75%]">
             <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
-              {courseTeachers.map((c) => (
+              {courseTeachers.map(c => (
                 <MiniCard
                   key={c}
                   classimg="size-24"
@@ -35,7 +35,7 @@ const CourseDescrip = ({ courseTeachers, cursoObj }) => {
           </div>
           {cursoObj.reqcourses.length ? (
             <div className="flex flex-col gap-3">
-              {cursoObj.reqcourses.map((c) => (
+              {cursoObj.reqcourses.map(c => (
                 <MiniCard
                   key={c}
                   classimg="size-[50px]"
@@ -58,7 +58,7 @@ const CourseDescrip = ({ courseTeachers, cursoObj }) => {
           </div>
           {cursoObj.nextCourses.length ? (
             <div className="flex flex-col gap-3">
-              {cursoObj.nextCourses.map((c) => (
+              {cursoObj.nextCourses.map(c => (
                 <MiniCard
                   key={c}
                   classimg="size-[20px]"
@@ -80,4 +80,4 @@ const CourseDescrip = ({ courseTeachers, cursoObj }) => {
   );
 };
 
-export default CourseDescrip;
+export default CDescrip;

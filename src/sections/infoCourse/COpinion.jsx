@@ -1,26 +1,25 @@
 import { useParams } from "react-router-dom";
-import { PiePercentage } from "../components/Stats";
-import { Star } from "../components/icons/Star";
-import { MAX_RATE, ratesLabels } from "../constant/opinion";
-import { CardOpinion } from "../components/Cards";
-
+import { PiePercentage } from "../../components/Stats";
+import { Star } from "../../components/icons/Star";
+import { MAX_RATE, ratesLabels } from "../../constant/opinion";
+import { CardOpinion } from "../../components/Cards";
 
 // ALTAMENTE conectado con la seccion CourseMain ( import from ../constant/opinion.js )
-const CourseOpinion = ({ listOpinions }) => {
+const COpinion = ({ listOpinions }) => {
   const params = useParams();
 
   // count of rating of the course if the params.course is the same as the course in the opinion
   const listCourse = listOpinions.filter(
-    (opinion) => params.course === opinion.course,
+    opinion => params.course === opinion.course,
   );
   // array con numeros del 1 al MAX_RATE
   let c = 0;
   let enumer = [];
   while (c < MAX_RATE) enumer.push(++c);
 
-  const percentage = enumer.map((rate) => ({
+  const percentage = enumer.map(rate => ({
     label: `Rate ${rate}`,
-    value: listCourse.filter((opinion) => opinion.rate === rate).length,
+    value: listCourse.filter(opinion => opinion.rate === rate).length,
   }));
 
   // mostrar el rate mas popular con el percentage mas alto
@@ -29,7 +28,13 @@ const CourseOpinion = ({ listOpinions }) => {
     .label.split(" ")[1];
   const popularRate = ratesLabels[ratePop - 1];
 
-  const colorss = ["#AAB7C0A0","#CBBCF7A0","#7F46FC40","#7F4683A0","#3A0C43"];
+  const colorss = [
+    "#AAB7C0A0",
+    "#CBBCF7A0",
+    "#7F46FC40",
+    "#7F4683A0",
+    "#3A0C43",
+  ];
 
   return (
     <div className="my-4 flex h-full w-full grow flex-col items-center">
@@ -45,25 +50,25 @@ const CourseOpinion = ({ listOpinions }) => {
                 <span className="text-3xl">{popularRate}</span>
               </div>
               <div className="my-4 flex gap-3">
-                {Array(MAX_RATE).fill(0)
+                {Array(MAX_RATE)
+                  .fill(0)
                   .map((_, index) => (
-                    <Star
-                      key={index} bg={index < Math.round(ratePop)} l="30"
-                    />
+                    <Star key={index} bg={index < Math.round(ratePop)} l="30" />
                   ))}
               </div>
               <div className="text-xl font-extrabold text-cach-l3 dark:text-cach-l2">
-                Con {listCourse.length} Estudiante{listCourse.length !== 1 ? "s" : ""}
+                Con {listCourse.length} Estudiante
+                {listCourse.length !== 1 ? "s" : ""}
               </div>
             </div>
           </article>
         </div>
       </section>
-      <div className="text-2xl font-extrabold text-cach-l3 pb-10 dark:text-cach-l2">
+      <div className="pb-10 text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
         Comentarios recientes
       </div>
-      <div className="w-[85%] flex flex-col items-center justify-center space-y-4">
-        {listCourse.map((opinion) => (
+      <div className="flex w-[85%] flex-col items-center justify-center space-y-4">
+        {listCourse.map(opinion => (
           <CardOpinion key={opinion.timestamp} {...opinion} />
         ))}
       </div>
@@ -71,4 +76,4 @@ const CourseOpinion = ({ listOpinions }) => {
   );
 };
 
-export default CourseOpinion;
+export default COpinion;

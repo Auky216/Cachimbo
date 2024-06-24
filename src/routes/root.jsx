@@ -6,11 +6,11 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import LandingPage from "../pages/LandingPage";
 import Principal from "../sections/Principal";
-import Library from "../sections/Library";
+import Library from "../sections/Library/Library";
 import InteractionGroups from "../sections/InteractionGroups";
 import ChatAssistant from "../sections/ChatAssistant";
-import CourseMain from "../sections/CourseMain";
-import PdfLibrary from "../sections/PdfLibrary";
+import CourseMain from "../sections/infoCourse/CourseMain";
+import PdfLibrary from "../sections/Library/PdfLibrary";
 import TeacherMain from "../sections/TeacherMain";
 
 const router = [

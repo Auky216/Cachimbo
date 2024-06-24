@@ -6,14 +6,14 @@ import linkedinIcon from "../assets/linkedin.svg";
 import instagramIcon from "../assets/instagram.svg";
 import whatsAppIcon from "../assets/whatsapp.svg";
 import hatIcon from "../assets/hat2.png";
-import ThemeButton from "../components/ThemeButton";
+import ThemeButton from "../components/extras/ThemeButton";
 
 import AI_icon from "../assets/AI_icon.png";
 import Comunity_icon from "../assets/Comunity_Icon.png";
 import Event_Icon from "../assets/Event_Icon.png";
 import Resources_Icon from "../assets/Resources_Icon.png";
-import AboutUs from "../subsections/AboutUs";
-import { Modal } from "../components/Modal";
+import AboutUs from "../components/extras/AboutUs";
+import Modal from "../components/Modal";
 
 const LandingPage = () => {
   const [showAbout, setShowAbout] = useState(false);
@@ -74,7 +74,7 @@ const LandingPage = () => {
               <h1 className="mb-6 text-center text-4xl font-bold text-cach-l3 dark:text-cach-l2">
                 ¿Quiénes Somos?
               </h1>
-              <div className="mb-6 text-center dark:text-cach-l2">
+              <div className="mb-6 text-center text-xl italic leading-9 dark:text-cach-l2">
                 Cachimbo es una organización oficial de la UTEC que se dedica a
                 facilitar la transición académica y profesional de los
                 estudiantes universitarios. Nuestra plataforma utiliza
@@ -211,7 +211,7 @@ const LandingPage = () => {
         </div>
       </footer>
 
-      <Modal open={showAbout} onClose={deactiveAbout}>
+      <Modal isOpen={showAbout} onClose={deactiveAbout}>
         <AboutUs />
       </Modal>
     </main>

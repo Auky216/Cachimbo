@@ -1,119 +1,29 @@
 import React, { useState } from "react";
-import left from "../assets/left4.png";
-import Integral from "../assets/integral.png";
-import Marker from "../assets/marker.png";
 import GroupInfo from "../components/GroupInfo";
-import Modal from "react-modal";
-import Chess from "../assets/chess.png";
-
-Modal.setAppElement("#root");
+import Modal from "../components/Modal";
+import { infoGroups } from "../constant/infoGroups";
 
 const InteractionGroups = () => {
-  const infoGroups = [
-    {
-      title: "Grupo de ajedrez",
-      icon: Chess,
-      description:
-        "Aquí puedes encontrar torneos de ajedrez tanto online como presencial en los talleres de UTEC",
-    },
-    {
-      title: "Calculo 1 se pasa Solo",
-      icon: Integral,
-      description:
-        "Aquí puedes encontrar recursos y apoyo para aprobar Calculo 1 de manera efectiva",
-    },
-    {
-      title: "Los Marketeros",
-      icon: Marker,
-      description:
-        "Aquí puedes encontrar gente con las misma pasión por el marketing",
-    },
-    {
-      title: "Group Left 4 Dead 2",
-      icon: left,
-      description:
-        "Aquí puedes encontrar gente con las misma pasión por el juego Left 4 Dead 2",
-    },
-  ];
-
   const [tempInfoVisible, setTempInfoVisible] = useState(false);
   const [index, setIndex] = useState(0);
 
+  // un array de numeros del 1 a infogroups.length
+  const arr = Array.from({ length: infoGroups.length }, (_, i) => i + 1);
+
+  const openModal = () => {
+    setTempInfoVisible(true);
+  };
   const closeModal = () => {
     setTempInfoVisible(false);
   };
-  const [groupStates, setGroupStates] = useState([
-    { id: 1, joined: false },
-    { id: 2, joined: false },
-    { id: 3, joined: false },
-    { id: 4, joined: false },
-    // Agregar más objetos
-  ]);
+  const [groupStates, setGroupStates] = useState(
+    Array(infoGroups.length).fill(false),
+  );
 
-  const toggleJoined = groupId => {
-    setGroupStates(prevStates =>
-      prevStates.map(state =>
-        state.id === groupId ? { ...state, joined: !state.joined } : state,
-      ),
-    );
-  };
-
-  const renderGroups = () => {
-    return (
-      <div className="grid grid-cols-2 gap-7"> {/* Para manejar la distancia de sepracion de los cuadros de los grupos */}
-        {/*Group Ajedrez*/}
-        <GroupInfo
-          icon={Chess}
-          groupState={groupStates[0].joined}
-          title="Grupo de ajedrez"
-          numMembers={12}
-          toggleJoined={() => toggleJoined(1)}
-          toggleTempInfo={() => {
-            setTempInfoVisible(true);
-            setIndex(0);
-          }}
-        />
-
-        {/* Grupo Calculo 1 */}
-        <GroupInfo
-          icon={Integral}
-          groupState={groupStates[1].joined}
-          title="Calculo 1 se pasa Solo"
-          numMembers={99}
-          toggleJoined={() => toggleJoined(2)}
-          toggleTempInfo={() => {
-            setTempInfoVisible(true);
-            setIndex(1);
-          }}
-        />
-
-        {/* Grupo Marketing */}
-        <GroupInfo
-          icon={Marker}
-          groupState={groupStates[2].joined}
-          title="Los Marketeros"
-          numMembers={2}
-          toggleJoined={() => toggleJoined(3)}
-          toggleTempInfo={() => {
-            setTempInfoVisible(true);
-            setIndex(2);
-          }}
-        />
-
-        {/*Group Left 4 Dead 2 UPC*/}
-        <GroupInfo
-          icon={left}
-          groupState={groupStates[3].joined}
-          title="Group Left 4 Dead 2"
-          numMembers={122}
-          toggleJoined={() => toggleJoined(4)}
-          toggleTempInfo={() => {
-            setTempInfoVisible(true);
-            setIndex(3);
-          }}
-        />
-      </div>
-    );
+  const toggleJoined = id => {
+    const newGroupStates = [...groupStates];
+    newGroupStates[id] = !newGroupStates[id];
+    setGroupStates(newGroupStates);
   };
 
   return (
@@ -135,31 +45,25 @@ const InteractionGroups = () => {
         </button>
       </div>
 
-      {renderGroups()}
+      <div className="grid grid-cols-2 gap-7">
+        {/* Para manejar la distancia de sepracion de los cuadros de los grupos */}
+        {arr.map(id => (
+          <GroupInfo
+            key={id}
+            icon={infoGroups[id - 1].icon}
+            groupState={groupStates[id - 1]}
+            title={infoGroups[id - 1].title}
+            numMembers={infoGroups[id - 1].numMembers}
+            toggleJoined={() => toggleJoined(id - 1)}
+            toggleTempInfo={() => {
+              setIndex(id - 1);
+              setTempInfoVisible(true);
+            }}
+          />
+        ))}
+      </div>
 
-      <Modal
-        isOpen={tempInfoVisible}
-        onRequestClose={closeModal}
-        contentLabel={infoGroups[index].title}
-        style={{
-          content: {
-            top: "50%",
-            left: "50%",
-            right: "auto",
-            bottom: "auto",
-            marginRight: "-50%",
-            transform: "translate(-50%, -50%)",
-            backgroundColor: "#cbb7f7",
-            borderRadius: "10px",
-            padding: "20px",
-            width: "80%",
-            maxWidth: "500px",
-          },
-          overlay: {
-            backgroundColor: "rgba(0, 0, 0, 0.75)",
-          },
-        }}
-      >
+      <Modal isOpen={tempInfoVisible} onClose={openModal}>
         {/* Contenido del modal */}
         <div
           className="-lg mt-4 rounded bg-white p-4 text-center text-black shadow-lg"

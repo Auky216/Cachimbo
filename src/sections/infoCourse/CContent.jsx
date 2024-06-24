@@ -1,10 +1,11 @@
-import { CardAcademic } from "../components/Cards";
-const CourseContent = ({ keys }) => {
+import { CardAcademic } from "../../components/Cards";
+
+const CContent = ({ keys }) => {
   return (
     <div className="mt-6 flex h-full w-full grow flex-col">
       <div className="flex h-full w-full flex-col gap-3 pb-10">
         <div className="flex h-fit w-full flex-col items-center justify-center space-y-8 px-6 pt-3">
-          {keys.map((c) => (
+          {keys.map(c => (
             <CardAcademic
               key={c.key}
               searchKey={c.key}
@@ -19,4 +20,4 @@ const CourseContent = ({ keys }) => {
   );
 };
 
-export default CourseContent;
+export default CContent;

@@ -1,17 +1,17 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import CourseDescrip from "../subsections/CourseDescrip";
-import CourseContent from "../subsections/CourseContent";
-import CourseOpinion from "../subsections/CourseOpinion";
+import CDescrip from "./CDescrip";
+import CContent from "./CContent";
+import COpinion from "./COpinion";
 // temporal files in local development
-import { getCursos } from "../constant/course";
-import { teachers } from "../constant/teachers";
-import { CoursesOpinion } from "../constant/opinion";
+import { getCursos } from "../../constant/course";
+import { teachers } from "../../constant/teachers";
+import { CoursesOpinion } from "../../constant/opinion";
 
 const CourseMain = () => {
   const params = useParams();
   const curso = getCursos[params.course];
-  const courseTeachers = teachers.filter((c) =>
+  const courseTeachers = teachers.filter(c =>
     c.courses.includes(params.course),
   );
 
@@ -64,14 +64,12 @@ const CourseMain = () => {
       <div className="flex h-[33em] flex-col overflow-auto">
         {/* si marca descripcion ↓ */}
         {section === "desc" && (
-          <CourseDescrip courseTeachers={courseTeachers} cursoObj={curso} />
+          <CDescrip courseTeachers={courseTeachers} cursoObj={curso} />
         )}
         {/* si marca contenido ↓ */}
-        {section === "content" && <CourseContent keys={curso.keyKnowledges} />}
+        {section === "content" && <CContent keys={curso.keyKnowledges} />}
         {/* si marca opinion ↓ */}
-        {section === "opinion" && (
-          <CourseOpinion listOpinions={CoursesOpinion} />
-        )}
+        {section === "opinion" && <COpinion listOpinions={CoursesOpinion} />}
       </div>
     </section>
   );

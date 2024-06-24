@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { CachimboLogo } from "../components/icons/CachimoLogo";
-import ThemeButton from "../components/ThemeButton";
+import ThemeButton from "../components/extras/ThemeButton";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleEmailChange = (event) => {
+  const handleEmailChange = event => {
     setEmail(event.target.value);
   };
 
-  const handlePasswordChange = (event) => {
+  const handlePasswordChange = event => {
     setPassword(event.target.value);
   };
 
-  const handleLogin = async (event) => {
+  const handleLogin = async event => {
     event.preventDefault(); // Evita que el formulario se envíe automáticamente
 
     try {

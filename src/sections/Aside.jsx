@@ -1,5 +1,5 @@
 import { CachimboLogo } from "../components/icons/CachimoLogo";
-import ThemeButton from "../components/ThemeButton";
+import ThemeButton from "../components/extras/ThemeButton";
 import profileTemplate from "../assets/profile-template.png";
 import uploadIcon from "../assets/upload-icon.png";
 import mainIcon from "../assets/main-icon.png";

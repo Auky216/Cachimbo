@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import LibraryItem from "../components/LibraryItem";
-import { getPdfs } from "../constant/pdfs";
+import LibraryItem from "../../components/LibraryItem";
+import { getPdfs } from "../../constant/pdfs";
 
 const Library = () => {
   const inputRef = useRef(null);
@@ -22,11 +22,11 @@ const Library = () => {
     <section id="library" className="py-10 pr-8">
       <div className="mb-4">
         <input
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={e => setInputValue(e.target.value)}
           type="text"
           ref={inputRef}
           value={inputValue}
-          onKeyUp={(e) => {
+          onKeyUp={e => {
             if (e.key === "Enter") handleOutputPdfs();
           }}
           placeholder="Buscar libros, documentos y más"
