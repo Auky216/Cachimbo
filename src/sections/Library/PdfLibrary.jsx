@@ -24,15 +24,15 @@ const PdfLibrary = () => {
 
   return (
     <section id="library" className="py-10 pr-8">
-      <div className="mx-auto max-w-3xl rounded-lg bg-white p-6">
-        <h1 className="mb-4 text-3xl font-bold text-cach-l3">
+      <div className="mx-auto max-w-3xl rounded-lg p-6">
+        <h1 className="mb-4 text-3xl font-bold text-cach-l3 dark:text-cach-l2">
           {pdfData.title}
         </h1>
-        <p className="mb-6 text-cach-l5">Autor: {pdfData.autor}</p>
+        <p className="mb-6 text-cach-l5  dark:text-cach-l1 font-bold">Autor: {pdfData.autor}</p>
 
         <div className="mb-4">
-          <div className="rounded-lg border bg-cach-l1 p-4">
-            <p className="text-cach-l3">{pdfData.descripcion}</p>
+          <div className="rounded-lg border border-cach-l2 p-4">
+            <p className=" text-cach-l5 dark:text-cach-l1 ">{pdfData.descripcion}</p>
           </div>
         </div>
 
@@ -86,7 +86,7 @@ const PdfLibrary = () => {
           </button>
         </div>
 
-        <div className="mb-4 rounded-lg border-2 border-cach-l2 bg-cach-l1 p-4">
+        <div className="mb-4 rounded-lg border-2 border-cach-l2 p-4">
           <p className="text-center text-cach-l2">
             Simulación del contenido del PDF
           </p>
