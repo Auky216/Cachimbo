@@ -12,6 +12,8 @@ import ChatAssistant from "../sections/ChatAssistant";
 import CourseMain from "../sections/infoCourse/CourseMain";
 import PdfLibrary from "../sections/Library/PdfLibrary";
 import TeacherMain from "../sections/TeacherMain";
+import Events from "../sections/Events/Events";
+import EventInfo from "../sections/Events/Eventinfo";
 
 const router = [
   {
@@ -58,6 +60,14 @@ const router = [
     path: "/dashboard/main/teachers/",
     element: <TeacherMain />,
   },
+  {
+    path: "/dashboard/main/events",
+    element: <Events />,
+  },
+  {
+    path: "/dashboard/main/events/:event",
+    element: <EventInfo />,
+  }
 ];
 
 export default router;

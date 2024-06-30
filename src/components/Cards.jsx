@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Default from "../assets/profile-template.png";
 import { MAX_RATE } from "../constant/opinion";
 import { Star } from "./icons/Star";
+import universitylogo from '../assets/university-icon.png';
 
 export const CardOpinion = ({ description, carrerUser, rate }) => {
   const stars = Array(MAX_RATE).fill(0);
@@ -100,6 +101,36 @@ export const TeacherMiniCard = ({ name, imageRoute, rate, course }) => {
             ></Star>
           ))}
         </span>
+      </div>
+    </div>
+  );
+};
+
+export const EventMiniCard = ({ title, date, hour , link}) => {
+  return (
+    <div className="flex flex-col items-center justify-between w-[200px] h-[250px] rounded-2xl border border-cach-l3 dark:border-cach-l2 p-4 shadow-lg text-gray-800 dark:text-gray-200">
+      <div className="flex flex-col items-center w-full h-[75%]">
+        <div className="flex flex-col items-center w-full h-full justify-center text-center">
+          <h3 className="text-lg font-bold">
+            <Link to={link} className="text-cach-l3 dark:text-cach-l2 hover:underline">
+              {title}
+            </Link>
+            </h3>
+        </div>
+      </div>
+      <div className="flex flex-col items-center w-full h-[25%]">
+        <div className="flex flex-col items-center justify-center text-center">
+          <p className="text-sm">{date}</p>
+          <p className="text-sm">{hour}</p>
+        </div>
+        <div className="flex items-center justify-center mt-2">
+            <img
+                src={universitylogo}
+                alt="Universidad"
+                className="h-4 w-4 grayscale filter"
+              />
+          <p className="text-xs text-gray-500 dark:text-gray-400"> UTEC</p>
+        </div>
       </div>
     </div>
   );

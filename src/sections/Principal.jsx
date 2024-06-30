@@ -44,11 +44,13 @@ const Principal = () => {
             title="Próximos cursos"
             info="Visualiza todos los cursos de UTEC para tu próxima matrícula de tu interés en base a la comunidad"
           />
+          <NavLink to="/dashboard/main/events">
           <CardInfo
             iconfile={Events}
             title="Eventos"
             info="Participa de los eventos que las organizaciones y comunidades de UTEC realizan en este semetres académico"
           />
+          </NavLink>
           <CardInfo
             iconfile={Opinion}
             title="Sugerencias"
