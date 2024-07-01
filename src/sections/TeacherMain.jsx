@@ -54,13 +54,15 @@ const TeacherMain = () => {
             </div>
             <div className="grid grid-cols-[repeat(auto-fill,_minmax(224px,_1fr))] gap-4">
                 {/* Se usará un map para generar todos los teaches mini card necesarios */}
-                {teachers.map((i) => (
-                    <TeacherMiniCard
-                    name={i.name}
-                    imageRoute={i.photo}
-                    course={i.courses[0]}
-                    rate={i.rate}
-                    />
+                {teachers.map((teacher, index) => (
+                    <NavLink to={`/dashboard/main/teachers/${teacher.id}`} key={teacher.id}>
+                        <TeacherMiniCard
+                            name={teacher.name}
+                            imageRoute={teacher.photo}
+                            course={teacher.courses[0]} // Asumiendo que quieres mostrar el primer curso
+                            rate={teacher.rate}
+                        />
+                    </NavLink>
                 ))}
             </div>
         </div>
