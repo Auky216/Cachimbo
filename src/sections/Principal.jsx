@@ -51,11 +51,13 @@ const Principal = () => {
             info="Participa de los eventos que las organizaciones y comunidades de UTEC realizan en este semetres académico"
           />
           </NavLink>
-          <CardInfo
-            iconfile={Opinion}
-            title="Sugerencias"
-            info="Visualiza tus sugerencias, propuestas u opiniones y de otros estudiantes para mejorar aspectos de la universidad"
-          />
+          <NavLink to="/dashboard/main/sugerencias">
+            <CardInfo
+              iconfile={Opinion}
+              title="Sugerencias"
+              info="Visualiza tus sugerencias, propuestas u opiniones y de otros estudiantes para mejorar aspectos de la universidad"
+            />
+          </NavLink>
         </div>
       </article>
     </div>

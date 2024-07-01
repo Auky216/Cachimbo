@@ -49,8 +49,8 @@ const ChatAssistant = () => {
   const inputRef = useRef(null);
   const messagesEndRef = useRef(null);
 
-  const messageLimit = 4; 
-  const blockTime = 60000;
+  const messageLimit = 4;
+  const blockTime = 600000;
 
   const [messageCount, setMessageCount] = useState(0);
   const [isBlocked, setIsBlocked] = useState(false);
@@ -129,31 +129,6 @@ const ChatAssistant = () => {
 
   return (
     <div className="flex h-full">
-      <div className="w-1/5 bg-gray-100 bg-opacity-20 p-4 border-r border-gray-300 dark:bg-gray-800 dark:bg-opacity-20 dark:border-gray-600">
-        <h3 className="font-bold text-lg mb-4 text-gray-900 dark:text-gray-200">
-          Historial de Conversaciones
-        </h3>
-        <ul className="space-y-2">
-          {conversations.map((conversation) => (
-            <li
-              key={conversation.id}
-              className={`cursor-pointer p-2 rounded-lg hover:bg-gray-200 hover:bg-opacity-20 dark:hover:bg-gray-700 dark:hover:bg-opacity-20 ${
-                currentConversationId === conversation.id
-                  ? "bg-gray-200 bg-opacity-20 dark:bg-gray-700 dark:bg-opacity-20"
-                  : ""
-              }`}
-              onClick={() => handleConversationSelect(conversation.id)}
-            >
-              <div className="text-gray-800 dark:text-gray-300">
-                {conversation.messages[
-                  conversation.messages.length - 1
-                ].text.substring(0, 20)}
-                ...
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
       <div className="flex-1 flex flex-col bg-gray-100 bg-opacity-0 dark:bg-gray-900 dark:bg-opacity-0">
         <div className="chat-messages flex-1 overflow-auto p-4">
           {currentConversation.messages.map((message, index) => (

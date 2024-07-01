@@ -14,6 +14,8 @@ import PdfLibrary from "../sections/Library/PdfLibrary";
 import TeacherMain from "../sections/TeacherMain";
 import Events from "../sections/Events/Events";
 import EventInfo from "../sections/Events/Eventinfo";
+import Sugerencias from "../sections/sugerencias/Suggestions";
+import SuggestionDetail from "../sections/sugerencias/SuggestionDetail";
 
 const router = [
   {
@@ -67,6 +69,14 @@ const router = [
   {
     path: "/dashboard/main/events/:event",
     element: <EventInfo />,
+  },
+  {
+    path: "/dashboard/main/Sugerencias",
+    element: <Sugerencias />,
+  },
+  {
+    path: "/dashboard/main/sugerencias/:id",
+    element: <SuggestionDetail />,
   }
 ];
 
