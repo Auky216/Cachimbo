@@ -62,17 +62,6 @@ const TeacherMain = () => {
                     rate={i.rate}
                     />
                 ))}
-                <TeacherMiniCard
-                name="Josmar"
-                course="Cálculo de una Variable I"
-                rate="1"
-                />
-                <TeacherMiniCard
-                name="Jorge"
-                course="Matemáticas Discretas I"
-                rate="5"
-                />
-                <TeacherMiniCard name="Henry" course="Programación I" rate="5" />
             </div>
         </div>
     );

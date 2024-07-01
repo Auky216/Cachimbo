@@ -21,6 +21,13 @@ export const teachers = [
     courses: ["progra1", "progra2"],
     rate: 4,
     descrip: "",
+  },
+  {
+    name: "Zorrilla",
+    photo: "",
+    courses: ["Lab. Com 1", "Lab. Com 2"],
+    rate: 4,
+    descrip: "",
   }
 ];
 
