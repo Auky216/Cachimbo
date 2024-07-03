@@ -6,7 +6,7 @@ export const teachers = [
     name: "Cordelia Khouri de Arciniegas",
     photo: "https://utec.edu.pe/sites/default/files/pictures/picture-1032-1621028186.png",
     courses: ["calcvar"],
-    rate: 0,
+    rate: 4,
     descrip: "La mejor profesora de cálculo en UTEC.",
   },
   {
@@ -14,7 +14,7 @@ export const teachers = [
     name: "Patricia Reynoso Quispe",
     photo: "https://utec.edu.pe/sites/default/files/pictures/picture-1031-1621028130.png",
     courses: ["calcvar", "calcvect", "edo"],
-    rate: 0,
+    rate: 3,
     descrip: "El profesor más amado por los estudiantes de UTEC.",
   },
   {
