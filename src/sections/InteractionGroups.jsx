@@ -54,6 +54,8 @@ const InteractionGroups = () => {
             groupState={groupStates[id - 1]}
             title={infoGroups[id - 1].title}
             numMembers={infoGroups[id - 1].numMembers}
+            discordLink={infoGroups[id - 1].discordLink}
+            whatsappLink={infoGroups[id - 1].whatsappLink} 
             toggleJoined={() => toggleJoined(id - 1)}
             toggleTempInfo={() => {
               setIndex(id - 1);

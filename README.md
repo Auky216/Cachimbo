@@ -24,6 +24,7 @@
 
     npm install -D prettier prettier-plugin-tailwindcss
     npm install react-modal
+    npm install react-icons
 
 
 

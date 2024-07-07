@@ -1,27 +1,33 @@
+import React from "react";
 import students from "../assets/icons8-grupo-de-primer-plano-seleccionado-96.png";
-// import utec from "../assets/Utec_Icon.png";
-// import university from "../assets/icons8-university-48.png";
+import discordIcon from "../assets/discord.svg";
+import whatsappIcon from "../assets/whatsapp.svg";
 
 const GroupInfo = ({
   icon,
-  groupState,
   title,
   numMembers,
   toggleJoined,
   toggleTempInfo,
+  discordLink,
+  whatsappLink
 }) => {
+  const openDiscordLink = () => {
+    window.open(discordLink, "_blank"); 
+  };
+
+  const openWhatsappLink = () => {
+    window.open(whatsappLink, "_blank"); 
+  };
+
   return (
     <div className="flex flex-col items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
-      {/* Contenido del grupo */}
       <div className="flex items-center space-x-4">
-        {/* Aquí va el icono */}
         <img src={icon} className="h-34 w-40" alt="panelistas" loading="lazy" />
         <div>
-          {/* Título del grupo */}
           <h1 className="text-lg font-bold text-cach-l3 dark:text-cach-l2">
             {title}
           </h1>
-          {/* Detalles del grupo */}
           <div className="flex items-center space-x-2">
             <img
               src={students}
@@ -36,16 +42,43 @@ const GroupInfo = ({
         </div>
       </div>
 
-      {/* Botones de unirse y mostrar información */}
+      {/* Mostrar iconos de redes sociales*/}
+      <div className="mt-2 flex items-center space-x-4">
+        <div className="flex items-center space-x-2">
+          <img
+            src={discordIcon}
+            className="w-8 h-8 cursor-pointer"
+            alt="Discord Icon"
+            loading="lazy"
+            onClick={openDiscordLink}
+          />
+          <span
+            className="text-cach-l3 dark:text-cach-l1 hover:underline cursor-pointer"
+            onClick={openDiscordLink}
+          >
+            Discord
+          </span>
+        </div>
+        <div className="flex items-center space-x-2">
+          <img
+            src={whatsappIcon}
+            className="w-8 h-8 cursor-pointer"
+            alt="WhatsApp Icon"
+            loading="lazy"
+            onClick={openWhatsappLink}
+          />
+          <span
+            className="text-cach-l3 dark:text-cach-l1 hover:underline cursor-pointer"
+            onClick={openWhatsappLink}
+          >
+            WhatsApp
+          </span>
+        </div>
+      </div>
+
       <div className="mt-4 flex w-full justify-center">
         <button
-          onClick={toggleJoined} // Cambiar el id del grupo según corresponda
-          className="rounded-full bg-cach-l3 px-8 py-2 text-sm text-cach-l1 focus:outline-none"
-        >
-          {groupState ? "Salir" : "Unirse"}
-        </button>
-        <button
-          onClick={toggleTempInfo} // Cambiar el id del grupo según corresponda
+          onClick={toggleTempInfo}
           className="ml-4 rounded-full bg-cach-l3 px-8 py-2 text-sm text-cach-l1 focus:outline-none"
         >
           Información
