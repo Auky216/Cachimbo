@@ -57,7 +57,7 @@ const TeacherMain = () => {
                 {teachers.map((teacher, index) => (
                     <NavLink to={`/dashboard/main/teachers/${teacher.id}`} key={teacher.id}>
                         <TeacherMiniCard
-                            name={teacher.name}
+                            name={teacher.name.split(' ').slice(0, 2).join(' ')}
                             imageRoute={teacher.photo}
                             course={teacher.courses[0]} // Asumiendo que quieres mostrar el primer curso
                             rate={teacher.rate}

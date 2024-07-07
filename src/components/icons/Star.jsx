@@ -1,6 +1,10 @@
-export const Star = ({ bg, l }) => {
+export const Star = ({ bg, l, onClick, onMouseEnter, onMouseLeave, item}) => {
   return (
     <svg
+      item={item}
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       xmlns="http://www.w3.org/2000/svg"
       width={l || "800"}
       height={l || "800"}

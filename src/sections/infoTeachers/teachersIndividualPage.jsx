@@ -1,15 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useParams } from "react-router-dom";
 import { teachers } from '../../constant/teachers';
 import Default from "../../assets/profile-template.png";
 import { NavLink } from "react-router-dom";
 import { Star } from "../../components/icons/Star";
 import { MAX_RATE } from "../../constant/opinion";
+import StarRating from './teacherRater';
+import CommentInput from './CustomInput';
 
 const TeachersIndividualPage = () => {
-    const stars = Array(MAX_RATE).fill(0);
     const params = useParams();
     const teacher = teachers.find(t => t.id === parseInt(params.id));
+    const stars = Array(MAX_RATE).fill(0);
+    const [selectedRate, setSelectedRate] = useState(teacher.rate);
+    const handleStarClick = (index) => {
+        setSelectedRate(index + 1);
+    };
     return (
         <div>
             <div className='w-full mt-16'>
@@ -31,8 +37,8 @@ const TeachersIndividualPage = () => {
                         </h1>
                         <div className='flex w-full justify-between mt-3 mb-3'>
                             {stars.map((_, index) => (
-                                <Star className="" key={index} bg={index < Math.round(teacher.rate)} l="19"
-                                ></Star>
+                                <Star className="" item={index} bg={index < Math.round(teacher.rate)} l="19"
+                                onClick={() => handleStarClick(index)}></Star>
                             ))}
                         </div>
                         <div className='flex justify-center gap-3'>
@@ -53,7 +59,7 @@ const TeachersIndividualPage = () => {
                     </div>
                 </div>
             </div>
-            {/* The section concerning  will come here */}
+            {/* The section concerning comments will come here */}
             <div className='w-full'>
                 <div className='w-full flex'>
                     <div className='w-2/4'>
@@ -63,15 +69,27 @@ const TeachersIndividualPage = () => {
                     </div>
                     <div className='w-2/4'>
                         {/*I want to made 5 starts interactable that according how the cursor cliked*/}
-                        <div className='flex justify-center gap-3'>
-                            {stars.map((_, index) => (
-                                <Star className="" key={index} bg={index < Math.round(teacher.rate)} l="19"
-                                ></Star>
-                            ))}
-                        </div>
+
+                        <StarRating initialRate={teacher.rate} />
+
                     </div> 
                 </div>
-                <input type="text" placeholder="Escribe tu opinión" className='w-full rounded-xl border-2 border-cach-l2 p-2'/>
+                <br />
+                <div className='w-full flex items-center justify-between'>
+                    {/* <input type="text" placeholder="Escribe tu opinión" className='w-3/5 rounded-xl border-2 border-cach-l2 p-2'/> */}
+                    <CommentInput
+                        placeholder="Escribe tu comentario aquí..."
+                        maxLength={500}
+                        className="w-3/5"
+                    />
+                    <div className='w-1/3' >
+                        <button className='w-32 bg-cach-l3 m-auto block rounded-md h-8'>
+                            Enviar
+                        </button>
+                    </div>
+                </div>
+                {/* The comments will come here */}
+                
             </div>
         </div>
     );
