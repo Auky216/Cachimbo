@@ -1,6 +1,6 @@
 import { CachimboLogo } from "../icons/CachimoLogo";
 import React, { useState } from "react";
-import { Team } from "../../constant/team";
+import { Team } from "../../static/team";
 
 const AboutUs = () => {
   const [mPos, setMPos] = useState(0);

@@ -67,7 +67,7 @@ const COpinion = ({ listOpinions }) => {
       <div className="pb-10 text-2xl font-extrabold text-cach-l3 dark:text-cach-l2">
         Comentarios recientes
       </div>
-      <div className="flex w-[85%] flex-col items-center justify-center space-y-4">
+      <div className="flex w-[85%] flex-col items-center justify-center space-y-4 pb-3">
         {listCourse.map(opinion => (
           <CardOpinion key={opinion.timestamp} {...opinion} />
         ))}
