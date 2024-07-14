@@ -7,17 +7,36 @@ import { Star } from "../../components/icons/Star";
 import { MAX_RATE } from "../../constant/opinion";
 import StarRating from './teacherRater';
 import CommentInput from './CustomInput';
+import {TeachersOpinion} from '../../constant/opinion'
+import TOpinion from './TOpinion';
 
 const TeachersIndividualPage = () => {
     const params = useParams();
+    
     const teacher = teachers.find(t => t.id === parseInt(params.id));
+    
+    const [opinions, setOpinions] = useState(TeachersOpinion.filter(o => o.teachercode === params.id));
+    
     const stars = Array(MAX_RATE).fill(0);
     const [selectedRate, setSelectedRate] = useState(teacher.rate);
+    
     const handleStarClick = (index) => {
         setSelectedRate(index + 1);
     };
+    
+    const [comment, setComment] = useState('');
+    const handleCommentChange = (event) => {
+        setComment(event.target.value);
+    };
+
+    
+    const sendOpinion = () => {
+        // Aquí se enviaría la opinión
+        const new_comment = {teachercode: params.id, description: comment, rate: selectedRate, carrerUser: "Computer Science", timestamp: "2021-10-10"}; // Paso 2: Crear new_comment
+        setOpinions([...opinions, new_comment]); 
+    }
     return (
-        <div>
+        <div className='overflow-scroll h-full'>
             <div className='w-full mt-16'>
                 <NavLink to="/dashboard/main/teachers">
                     <button className="mb-3 mt-2 flex min-h-8 w-1/6 items-center justify-center rounded-xl bg-cach-l3 text-cach-l1">
@@ -68,7 +87,6 @@ const TeachersIndividualPage = () => {
                         </span>
                     </div>
                     <div className='w-2/4'>
-                        {/*I want to made 5 starts interactable that according how the cursor cliked*/}
 
                         <StarRating initialRate={teacher.rate} />
 
@@ -80,16 +98,45 @@ const TeachersIndividualPage = () => {
                     <CommentInput
                         placeholder="Escribe tu comentario aquí..."
                         maxLength={500}
+                        value={comment}
                         className="w-3/5"
+                        onChange={handleCommentChange}
                     />
                     <div className='w-1/3' >
-                        <button className='w-32 bg-cach-l3 m-auto block rounded-md h-8'>
+                        <button className='w-32 bg-cach-l3 m-auto block rounded-md h-8' onClick={sendOpinion}>
                             Enviar
                         </button>
                     </div>
                 </div>
                 {/* The comments will come here */}
-                
+                <br />
+                <div className='w-full'>
+                    <p className='text-xl font-bold mt-2 mb-4 text-cach-l3 dark:text-cach-l2 '>
+                        Comentarios:
+                    </p>
+                    <div className='grid grid-cols-[repeat(auto-fill,_minmax(210px,_1fr))] gap-4'>
+                    {
+                        opinions.length === 0 ? (
+                            <div className='w-full text-center'>
+                            <p className='text-cach-l3 dark:text-cach-l2'>
+                                No hay comentarios.
+                            </p>
+                            </div>
+                        ) : (
+                            opinions.map((opinion) => (
+                            <TOpinion
+                                key={opinion.id} // Asumiendo que cada 'opinion' tiene un 'id' único. Es importante proporcionar una prop 'key' cuando se renderizan listas.
+                                profile_author_route={opinion.profile_author_route}
+                                rate={opinion.rate}
+                                author={opinion.carrerUser}
+                                date={opinion.timestamp}
+                                comment={opinion.description}
+                            />
+                            ))
+                        )
+                    }
+                    </div>
+                </div>
             </div>
         </div>
     );

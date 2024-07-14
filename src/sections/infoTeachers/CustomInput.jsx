@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
-const CommentInput = ({ label, placeholder, maxLength, className }) => {
+const CommentInput = ({ value, label, placeholder, maxLength, className, onChange}) => {
     const [isFocused, setIsFocused] = useState(false);
 
     return (
         <div className={className}>
             <label className="block font-bold mb-2">{label}</label>
             <textarea
-                
+                value={value}
+                onChange={onChange}
                 placeholder={placeholder}
                 maxLength={maxLength}
                 onFocus={() => setIsFocused(true)}

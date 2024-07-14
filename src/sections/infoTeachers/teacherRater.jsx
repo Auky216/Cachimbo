@@ -19,7 +19,7 @@ const StarRating = ({ initialRate = 0 }) => {
     };
 
     return (
-        <div className="flex justify-center gap-3">
+        <div className="flex justify-center gap-3 cursor-pointer">
         {stars.map((_, index) => (
             <Star
             key={index}

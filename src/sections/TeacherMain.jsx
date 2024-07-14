@@ -22,7 +22,7 @@ const TeacherMain = () => {
         setSeleccionCurso('');
     };
     return (
-        <div className="w-full pt-7">
+        <div className="w-full pt-7 overflow-scroll h-full">
             <div className="flex w-full justify-between items-center mb-5">
                 <h1 className="text-2xl font-bold text-cach-l3 dark:text-cach-l2" >Tus Queridos Profes</h1>
                 <NavLink to="/dashboard/main/" className="min-w-48">

@@ -2,7 +2,7 @@
 
 export const teachers = [
   {
-    id: 0,
+    id: 277,
     name: "Cordelia Khouri de Arciniegas",
     photo: "https://utec.edu.pe/sites/default/files/pictures/picture-1032-1621028186.png",
     courses: ["calcvar"],
@@ -26,7 +26,7 @@ export const teachers = [
     descrip: "El profesor mas tranquilo de la Utec",
   },
   {
-    id: 3,
+    id: 276,
     name: "Zorrilla",
     photo: "",
     courses: ["LabCom 1", "LabCom 2"],
