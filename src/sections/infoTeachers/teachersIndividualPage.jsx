@@ -32,7 +32,7 @@ const TeachersIndividualPage = () => {
     
     const sendOpinion = () => {
         // Aquí se enviaría la opinión
-        const new_comment = {teachercode: params.id, description: comment, rate: selectedRate, carrerUser: "Computer Science", timestamp: "2021-10-10"}; // Paso 2: Crear new_comment
+        const new_comment = {teachercode: params.id, description: comment, rate: selectedRate, carrerUser: "Computer Science", timestamp: `${new Date().toISOString().split('T')[0]}`};
         setOpinions([...opinions, new_comment]); 
     }
     return (
@@ -88,7 +88,7 @@ const TeachersIndividualPage = () => {
                     </div>
                     <div className='w-2/4'>
 
-                        <StarRating initialRate={teacher.rate} />
+                        <StarRating selectedRate={selectedRate} setSelectedRate={setSelectedRate} />
 
                     </div> 
                 </div>

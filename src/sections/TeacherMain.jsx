@@ -2,6 +2,7 @@ import { TeacherMiniCard } from "../components/Cards";
 import { NavLink } from "react-router-dom";
 import React, { useState } from 'react';
 import {teachers} from '../constant/teachers';
+import { getCursos } from "../constant/course";
 
 const TeacherMain = () => {
     /** Estoy pensando en que cuando se pase
@@ -9,12 +10,23 @@ const TeacherMain = () => {
     un parametro en especifico para cargar la imagen
     -De momento haré que el componente reciba la imagen como parametro
     */
+    const cursosArray = Object.keys(getCursos);
+    const [techers_section, filterTeachers] = useState(teachers)
     const [seleccionCurso, setSeleccionCurso] = useState('');
     const [seleccionCarrera, setSeleccionCarrera] = useState('');
 
+
+    
     const handleCambioCurso = (event) => {
         setSeleccionCurso(event.target.value);
         setSeleccionCarrera('');
+        if (event.target.value === 'Curso') {
+            filterTeachers(teachers);
+        }
+        else{
+            filterTeachers(teachers.filter(teacher => teacher.courses.includes(event.target.value)));
+        }
+        
     };
 
     const handleCambioCarrera = (event) => {
@@ -37,24 +49,24 @@ const TeacherMain = () => {
             <div className="w-full">
                 <div className="w-2/3 m-auto flex justify-between items-center">
                     <select value={seleccionCarrera} onChange={handleCambioCarrera} className="mb-3 mt-2 flex min-h-8 min-w-32 text-center items-center justify-center rounded-xl bg-cach-l3 text-cach-l1">
-                        <option value="">Carrera</option>
-                        <option value="opcion1">Carrera 1</option>
-                        <option value="opcion2">Carrera 2</option>
-                        <option value="opcion3">Carrera 3</option>
+                        <option value="Carrera">Carrera</option>
+                        <option value="Carrera2">Carrea 2</option>
                     </select>
                     <span className="text-md font-normal text-cach-l5 dark:text-cach-l1" >Ó</span>
                     <select value={seleccionCurso} onChange={handleCambioCurso} className="mb-3 mt-2 flex min-h-8 min-w-32 text-center items-center justify-center rounded-xl bg-cach-l3 text-cach-l1">
-                        <option value="">Curso</option>
-                        <option value="opcion1">Curso 1</option>
-                        <option value="opcion2">Curso 2</option>
-                        <option value="opcion3">Curso 3</option>
+                        <option value="Curso">Curso</option>
+                        {
+                            cursosArray.map((curso) => (
+                                <option key={curso} value={curso}>{getCursos[curso].title}</option>
+                            ))
+                        }
                     </select>
                 </div>
                 
             </div>
             <div className="grid grid-cols-[repeat(auto-fill,_minmax(224px,_1fr))] gap-4">
                 {/* Se usará un map para generar todos los teaches mini card necesarios */}
-                {teachers.map((teacher, index) => (
+                {techers_section.map((teacher, index) => (
                     <NavLink to={`/dashboard/main/teachers/${teacher.id}`} key={teacher.id}>
                         <TeacherMiniCard
                             name={teacher.name.split(' ').slice(0, 2).join(' ')}
