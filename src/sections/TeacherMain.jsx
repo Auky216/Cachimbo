@@ -15,7 +15,11 @@ const TeacherMain = () => {
     const [seleccionCurso, setSeleccionCurso] = useState('');
     const [seleccionCarrera, setSeleccionCarrera] = useState('');
 
-
+    const getNameOfCOurse = (course) => {
+        //console.log(getCursos);
+        //alert(getCursos[course]['title'] || 'No se encontro el curso');
+        console.log(course)
+    }
     
     const handleCambioCurso = (event) => {
         setSeleccionCurso(event.target.value);
@@ -71,11 +75,12 @@ const TeacherMain = () => {
                         <TeacherMiniCard
                             name={teacher.name.split(' ').slice(0, 2).join(' ')}
                             imageRoute={teacher.photo}
-                            course={teacher.courses[0]} // Asumiendo que quieres mostrar el primer curso
+                            course={getCursos[teacher.courses[0]].title} // Asumiendo que quieres mostrar el primer curso
                             rate={teacher.rate}
                         />
                     </NavLink>
-                ))}
+                ))
+                }
             </div>
         </div>
     );

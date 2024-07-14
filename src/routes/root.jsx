@@ -13,6 +13,7 @@ import CourseMain from "../sections/infoCourse/CourseMain";
 import PdfLibrary from "../sections/Library/PdfLibrary";
 import TeacherMain from "../sections/TeacherMain";
 import TeachersIndividualPage from "../sections/infoTeachers/teachersIndividualPage";
+import NextCourses from "../sections/NextCourses";
 import Events from "../sections/Events/Events";
 import EventInfo from "../sections/Events/Eventinfo";
 import Sugerencias from "../sections/sugerencias/Suggestions";
@@ -66,6 +67,10 @@ const router = [
   {
     path: "/dashboard/main/teachers/:id",
     element: <TeachersIndividualPage/>,
+  },
+  {
+    path: "/dashboard/main/nextcourses",
+    element: <NextCourses />,
   },
   {
     path: "/dashboard/main/events",

@@ -31,7 +31,7 @@ const Principal = () => {
         <div className="text-3xl font-extrabold text-cach-l3 dark:text-cach-l2">
           Explorando
         </div>
-        <div className="space-y-8 pt-10">
+        <div className="space-y-8 pt-10 flex flex-col">
           <NavLink to="/dashboard/main/teachers">
             <CardInfo
               iconfile={Profesores}
@@ -39,11 +39,13 @@ const Principal = () => {
               info="Escoge a tus profesores gracias a la opinión y calificación de la comunidad"
             />
           </NavLink>
-          <CardInfo
-            iconfile={Electivo}
-            title="Próximos cursos"
-            info="Visualiza todos los cursos de UTEC para tu próxima matrícula de tu interés en base a la comunidad"
-          />
+          <NavLink to="/dashboard/main/nextcourses">
+            <CardInfo
+              iconfile={Electivo}
+              title="Próximos cursos"
+              info="Visualiza todos los cursos de UTEC para tu próxima matrícula de tu interés en base a la comunidad"
+            />
+          </NavLink>
           <NavLink to="/dashboard/main/events">
           <CardInfo
             iconfile={Events}

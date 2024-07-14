@@ -9,6 +9,7 @@ import StarRating from './teacherRater';
 import CommentInput from './CustomInput';
 import {TeachersOpinion} from '../../constant/opinion'
 import TOpinion from './TOpinion';
+import { getCursos } from '../../constant/course';
 
 const TeachersIndividualPage = () => {
     const params = useParams();
@@ -64,7 +65,7 @@ const TeachersIndividualPage = () => {
                             {
                                 teacher.courses.map((course, index) => (
                                     <div className='text-xl text-cach-l3 dark:text-cach-l2'>
-                                        {course}
+                                        {getCursos[course].title}
                                     </div>
                                 ))
                             }

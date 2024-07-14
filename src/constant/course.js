@@ -39,7 +39,7 @@ export const getCursos = {
   progra1: {
     bannerImage: Antonio,
     title: "Programación I",
-    info: "",
+    info: "Se usa como loco Python",
     reqcourses: [],
     nextCourses: ["progra2"],
     rate: 0,
@@ -63,6 +63,24 @@ export const getCursos = {
     rate: 0,
     keyKnowledges: ["integración por partes", "áreas de curvas"],
   },
+  progra2:{
+    bannerImage: Antonio,
+    title: "Programación II",
+    info: "C++",
+    reqcourses: ["progra1"],
+    nextCourses: ["progra3"],
+    rate: 0,
+    keyKnowledges: [],
+  },
+  labCom1:{
+    bannerImage: Antonio,
+    title: "Laboratorio de comunicación I",
+    info: "Lectura y lectura y más lecturas",
+    reqcourses: [],
+    nextCourses: ["labCom2"],
+    rate: 0,
+    keyKnowledges: [],
+  }
   // { ... }
 };
 
