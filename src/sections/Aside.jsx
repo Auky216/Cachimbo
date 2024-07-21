@@ -117,14 +117,15 @@ const Aside = () => {
             />
             Configuracion
           </NavLink>
-          <NavLink
-            // to="/dashboard/logout"
-            to="/"
+          <button
+            onClick={() => {
+              window.location.href = "/";
+            }}
             className="flex items-center gap-3 p-1 font-bold text-cach-l5 dark:text-cach-l1"
           >
             <img src={logOutIcon} alt="icon" className="mr-2 w-7 dark:invert" />
             Cerrar Sesión
-          </NavLink>
+          </button>
         </div>
       </div>
     </aside>
