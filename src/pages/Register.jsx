@@ -13,6 +13,8 @@ import Verify from "../sections/RegisterSlide/Verify";
 import PhotoProfile from "../sections/RegisterSlide/PhotoProfile";
 import DescFinal from "../sections/RegisterSlide/DescFinal";
 
+import { useUserStore } from "../store/utils";
+
 const Register = () => {
   // en este pages se hara una serie de vistas slides para el registro de un usuario
   // 1. seleccionar universidad
@@ -34,42 +36,33 @@ const Register = () => {
   // debera haber un boton de siguiente y atras para cambiar de vista manteniedo los datos del usuario
 
   const [currentSlide, setCurrentSlide] = useState(
-    /* parseInt(localStorage.getItem("currentSlide")) || */ 0,
+    /* parseInt(localStorage.getItem("currentSlide")) || */ 1,
   );
 
-  const defaultData = [
-    /* university */ "UTEC",
-    /* career */ "CS",
-    /* cycle */ "",
-    /* enrolledCourses */ [],
-    /* otherCourses */ [],
-    /* name */ "",
-    /* lastname */ "",
-    /* email */ "",
-    /* password */ "",
-    /* confirmPassword */ "",
-    /* profileDescription */ "",
-  ];
-
-  const [userData, setUserData] = useState(defaultData);
+  const [user, setChangeUser] = useUserStore(state => [
+    state.user,
+    state.setChange,
+  ]);
 
   useEffect(() => {
     localStorage.setItem("currentSlide", currentSlide);
   }, [currentSlide]);
 
-  const nextSlide = (data, i) => {
-    const copy = userData;
-    copy[i] = data;
-    setUserData(copy);
-    setCurrentSlide(i + 1);
+  const nextSlide = (data, atr) => {
+    setChangeUser(data, atr);
+    setCurrentSlide(currentSlide + 1);
   };
 
-  const prevSlide = () => {
-    setCurrentSlide(currentSlide - 1);
+  // const prevSlide = () => {
+  //   setCurrentSlide(currentSlide - 1);
+  // };
+
+  const resetUser = () => {
+    setChangeUser({ [Object.keys(user)]: "" });
   };
 
   const slides = [
-    <University prev={prevSlide} next={nextSlide} />,
+    <University next={nextSlide} />,
     <Career next={nextSlide} />,
     // <Academic next={nextSlide} />,
     // <OtherCourses next={nextSlide} />,
@@ -84,15 +77,20 @@ const Register = () => {
 
   return (
     <section className="m-auto mt-12 flex h-[85%] w-[78%] flex-col">
-      <div className="absolute mx-auto mb-8 flex w-[78%] flex-col items-end">
-        <Link to="/">
-          <span className="text-xl text-cach-l3 dark:text-cach-l2">
-            ← Volver
-          </span>
-        </Link>
-      </div>
-      <div className="mb-8 flex w-full">
-        <ThemeButton />
+      <div className="mx-6 flex flex-row justify-between">
+        <div className="mb-8">
+          <ThemeButton />
+        </div>
+        <div className="mb-8">
+          <Link to="/">
+            <button
+              className="text-xl text-cach-l3 dark:text-cach-l2"
+              onClick={resetUser}
+            >
+              ← Volver
+            </button>
+          </Link>
+        </div>
       </div>
       {slides[currentSlide]}
     </section>

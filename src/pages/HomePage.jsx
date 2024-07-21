@@ -8,7 +8,7 @@ const HomePage = () => {
       <Aside />
       <section className="h-screen w-[59%] px-8 dark:bg-transparent">
         <Routes>
-          {router.map((route) => (
+          {router.map(route => (
             <Route
               key={route.path}
               path={route.path}

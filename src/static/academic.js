@@ -16,9 +16,25 @@ export const universities = [
   },
 ];
 
-export const careers = {
+export const carrers = {
   // solo en UTEC, por ahora
   UTEC: [
+    {
+      code: "AD",
+      name: "Administración y Negocios Digitales",
+    },
+    {
+      code: "AM",
+      name: "Ingeniería Ambiental",
+    },
+    {
+      code: "BI",
+      name: "Bioingeniería",
+    },
+    {
+      code: "CI",
+      name: "Ingeniería Civil",
+    },
     {
       code: "CS",
       name: "Ciencia de la Computación",
@@ -28,24 +44,20 @@ export const careers = {
       name: "Ciencia de Datos",
     },
     {
-      code: "SI",
-      name: "Sistemas de Información",
+      code: "EL",
+      name: "Ingeniería Electrónica",
     },
     {
-      code: "IQ",
-      name: "Ingeniería Química",
-    },
-    {
-      code: "AM",
-      name: "Ingeniería Ambiental",
+      code: "EN",
+      name: "Ingeniería de la Energía",
     },
     {
       code: "IN",
       name: "Ingeniería Industrial",
     },
     {
-      code: "EL",
-      name: "Ingeniería Electrónica",
+      code: "IQ",
+      name: "Ingeniería Química",
     },
     {
       code: "ME",
@@ -56,20 +68,8 @@ export const careers = {
       name: "Ingeniería Mecatrónica",
     },
     {
-      code: "EN",
-      name: "Ingeniería de la Energía",
-    },
-    {
-      code: "CI",
-      name: "Ingeniería Civil",
-    },
-    {
-      code: "BI",
-      name: "Bioingeniería",
-    },
-    {
-      code: "AD",
-      name: "Administración y Negocios Digitales",
+      code: "SI",
+      name: "Sistemas de Información",
     },
   ],
 };
@@ -81,7 +81,7 @@ export const UTECcourses = {
     ["calcvect", "progra2", "matedisc2", "optica", "labcom2", "alglin"],
   ], // etc
   DS: [
-    ["calcvar", "progra1", "matedisc1", "icc", "labcom1", "pi1"],
+    ["calcvar", "progra1", "matedisc1", "icd", "labcom1", "pi1"],
     ["calcvect", "progra2", "matedisc2", "optica", "labcom2", "alglin"],
   ], // etc
   // etc, etc

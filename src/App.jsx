@@ -1,27 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import router from "./routes/root.jsx";
 import HomePage from "./pages/HomePage.jsx";
+import { useThemeStore } from "./store/utils.js";
+import { useEffect } from "react";
 
 const App = () => {
-  const storedTheme = localStorage.getItem("theme");
-  const location = useLocation();
-  const [theme, setTheme] = useState(storedTheme || "light");
-
+  const route = useThemeStore(state => state.route);
   useEffect(() => {
-    if (localStorage.getItem("initCachimboPlatform")) {
-      if (theme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    } else {
-      localStorage.setItem("initCachimboPlatform", true);
-    }
-    // setShowMainPage
-  }, [theme]);
-
-  const showMainPage = location.pathname.includes("dashboard");
+    useThemeStore.setState({ route: window.location.pathname });
+  }, [route]);
+  const showMainPage = route.includes("dashboard");
 
   return (
     <div id="App" className="h-screen w-full">
