@@ -81,12 +81,21 @@ export const getCursos = {
     rate: 0,
     keyKnowledges: [],
   },
-  labCom1:{
+  labcom1:{
     bannerImage: Antonio,
     title: "Laboratorio de comunicación I",
     info: "Lectura y lectura y más lecturas",
     reqcourses: [],
-    nextCourses: ["labCom2"],
+    nextCourses: ["labcom2"],
+    rate: 0,
+    keyKnowledges: [],
+  },
+  labcom2:{
+    bannerImage: Antonio,
+    title: "Laboratorio de comunicación II",
+    info: "Lectura y lectura y más lecturas",
+    reqcourses: [],
+    nextCourses: [],
     rate: 0,
     keyKnowledges: [],
   },

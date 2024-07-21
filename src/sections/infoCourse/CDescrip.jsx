@@ -19,7 +19,7 @@ const CDescrip = ({ courseTeachers, cursoObj }) => {
                   key={c}
                   classimg="size-24"
                   classcont="text-md w-32 pr-3"
-                  link="#"
+                  link={`/dashboard/main/teachers/${c.id}`}
                   image={c.photo}
                   title={c.name}
                 />

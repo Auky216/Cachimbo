@@ -10,12 +10,12 @@ const TeacherMain = () => {
 
     const cursosArrayUser = Object.keys(data_user);
     const cursosTotales = Object.keys(getCursos);
-    const progress = (((data_user[cursosArrayUser[4]].length/cursosTotales.length))*100).toFixed(1);
+    const progress = (((data_user[cursosArrayUser[5]].length/cursosTotales.length))*100).toFixed(1);
     const [next_courses, update_course] = useState([]);
 
     useEffect(() => {
         const coursesSet = new Array();
-        data_user[cursosArrayUser[4]].forEach((c) => {
+        data_user[cursosArrayUser[5]].forEach((c) => {
             if ((getCursos[c]["nextCourses"]).length > 0) {
                 coursesSet.push(getCursos[c]["nextCourses"]);
             }
@@ -23,30 +23,41 @@ const TeacherMain = () => {
         update_course(coursesSet);
     }, []);
     //console.log(data_user[cursosArrayUser[4]]);
-    console.log(next_courses);
+    //console.log(next_courses);
     return(
-        <div>
-            <div className='w-full mt-16'>
-                <NavLink to="/dashboard/main/">
-                    <button className="mb-3 mt-2 flex min-h-8 w-1/6 items-center justify-center rounded-xl bg-cach-l3 text-cach-l1">
-                        Regresar
+        <div className='w-full'>
+            <div className="flex justify-between items-center mt-4 mb-5 m-auto">
+                <NavLink to="/dashboard/main/" className="min-w-48">
+                    <button className="mb-3 mt-2 flex min-h-8 w-full items-center justify-center rounded-xl bg-cach-l3 text-cach-l1">
+                        Regresar al menu
                     </button>
                 </NavLink>
             </div>
-            <h1>{progress}%</h1>
-            <div>
-                {
-                    Object.values(next_courses).map((c) => (
-                        <MiniCard
-                            key={c}
-                            classimg="size-[50px]"
-                            classcont="text-md w-64"
-                            link={`/dashboard/main/course/${c}`}
-                            image={Curso}
-                            title={getCursos[c].title}
-                        />
-                    ))
-                }
+            <div className='w-5/6 text-cach-l5 dark:text-cach-l1'>
+                {/*Sección de la barra de progreso*/}
+                <div className='m-auto'>
+                    <h1 className='text-center my-4 text-2xl font-bold'> Tienes un avance del <span className='text-cach-l3'>{progress}%</span></h1>
+                    <div className='w-full border rounded-lg'>
+                        <div style={{ width: `${progress}%` }} className={`rounded h-5 bg-cach-l3`}></div>
+                    </div>
+                </div>
+                <div className='mt-7'>
+                    <p className='font-bold'>Cursos del siguiente ciclo: </p>
+                    <div className="grid grid-cols-1 gap-2 pt-3 md:grid-cols-2">
+                    {
+                        Object.values(next_courses).map((c) => (
+                            <MiniCard
+                                key={c}
+                                classimg="size-[50px]"
+                                classcont="text-md w-64"
+                                link={`/dashboard/main/course/${c}`}
+                                image={Curso}
+                                title={getCursos[c].title}
+                            />
+                        ))
+                    }
+                </div>
+                </div>
             </div>
         </div>
     )

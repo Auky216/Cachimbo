@@ -29,7 +29,7 @@ export const teachers = [
     id: 276,
     name: "Zorrilla",
     photo: "https://utec.edu.pe/sites/default/files/pictures/picture-651-1565988664.png",
-    courses: ["labCom1"],
+    courses: ["labcom1"],
     rate: 4,
     descrip: "Sus coordinadores dan miedo",
   },
