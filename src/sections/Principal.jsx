@@ -4,6 +4,7 @@ import Electivo from "../assets/icons8-electivo-96.png";
 import Opinion from "../assets/icons8-opinión-opuesta-96.png";
 import Profesores from "../assets/icons8-profesor-96.png";
 import { getCursos } from "../constant/course";
+import { data_user } from "../constant/user_data";
 import { NavLink } from "react-router-dom";
 import Curso from "../assets/icons8-cursos-96.png";
 

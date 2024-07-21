@@ -10,7 +10,7 @@ export const getCursos = {
           derivadas de integrales de funciones reales de una variable, las cuales se utilizarán como base y apoyo para \
           el estudio de nuevos contenidos y materias en los problemas del mundo real.",
     reqcourses: [], // PARA TESTEAR
-    nextCourses: ["progra1", "estad", "optica", "alglin"],
+    nextCourses: ["calcvect"], //["progra1", "estad", "optica", "alglin"],
     rate: 0,
     keyKnowledges: [
       {
@@ -33,6 +33,15 @@ export const getCursos = {
     info: "",
     reqcourses: [],
     nextCourses: ["matedisc2"],
+    rate: 0,
+    keyKnowledges: [],
+  },
+  matedisc2: {
+    bannerImage: Antonio,
+    title: "Matemáticas Discretas II",
+    info: "",
+    reqcourses: [],
+    nextCourses: [],
     rate: 0,
     keyKnowledges: [],
   },
@@ -80,7 +89,16 @@ export const getCursos = {
     nextCourses: ["labCom2"],
     rate: 0,
     keyKnowledges: [],
-  }
+  },
+  pi2: {
+    bannerImage: Antonio,
+    title: "Proyectos Interdisciplinarios II",
+    info: "",
+    reqcourses: [],
+    nextCourses: ["pi3"],
+    rate: 0,
+    keyKnowledges: [],
+  },
   // { ... }
 };
 
