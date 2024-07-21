@@ -6,36 +6,47 @@ import ThemeButton from "../components/extras/ThemeButton";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const apiUrl = import.meta.env.VITE_API_URL;
+  
 
-  const handleEmailChange = event => {
+
+  const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
-  const handlePasswordChange = event => {
+  const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
-  const handleLogin = async event => {
+  const handleLogin = async (event) => {
     event.preventDefault(); // Evita que el formulario se envíe automáticamente
-
+    
     try {
-      const response = await fetch(
-        "https://iownbjppr5.execute-api.us-east-1.amazonaws.com/test/student/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
+      const response = await fetch(`${apiUrl}/test/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
       if (response.ok) {
-        console.log("Inicio de sesión exitoso");
+        // Manejar el éxito del inicio de sesión, por ejemplo, guardar el token en el almacenamiento local
+        console.log("Login successful:", data);
+        // Redirigir al usuario a la página principal u otra página
       } else {
-        console.error("Error al iniciar sesión");
+        // Manejar el error de inicio de sesión
+        setError(data.message || "Error de inicio de sesión");
       }
     } catch (error) {
-      console.error("Error de red:", error);
+      console.error("Error:", error);
+      setError("Error de red");
     }
   };
 
@@ -57,7 +68,7 @@ const Login = () => {
           Iniciar sesión
         </div>
         <div className="w-full">
-          <form className="rounded px-8 py-12">
+          <form className="rounded px-8 py-12" onSubmit={handleLogin}>
             <div className="mb-4">
               <label htmlFor="email">
                 <input
@@ -82,11 +93,15 @@ const Login = () => {
                 />
               </label>
             </div>
+            {error && (
+              <div className="mb-4 text-center text-red-500">
+                {error}
+              </div>
+            )}
             <div className="mb-4 flex items-center justify-center">
               <button
                 className="focus:shadow-outline w-full rounded-xl bg-cach-l3 px-4 py-4 font-bold text-white focus:outline-none"
                 type="submit"
-                onClick={handleLogin}
               >
                 Iniciar Sesión
               </button>
