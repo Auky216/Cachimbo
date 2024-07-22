@@ -26,7 +26,7 @@ const University = ({ next }) => {
   return (
     <div className="flex h-full w-full flex-col items-center rounded-[3.5rem]">
       <div className="flex h-[80%] flex-col items-center">
-        <div className="mt-4 flex px-1 text-center text-[3rem] font-bold text-cach-l4 dark:text-cach-l1">
+        <div className="mt-2 flex px-1 text-center text-[1.6rem] font-bold text-cach-l4 dark:text-cach-l1">
           Elige tu universidad
         </div>
         <div className="flex h-full items-center justify-center">

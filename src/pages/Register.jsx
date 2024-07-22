@@ -36,12 +36,12 @@ const Register = () => {
   // debera haber un boton de siguiente y atras para cambiar de vista manteniedo los datos del usuario
 
   const [currentSlide, setCurrentSlide] = useState(
-    /* parseInt(localStorage.getItem("currentSlide")) || */ 1,
+    /* parseInt(localStorage.getItem("currentSlide")) || */ 0,
   );
 
-  const [user, setChangeUser] = useUserStore(state => [
-    state.user,
+  const [setChangeUser, resetUser] = useUserStore(state => [
     state.setChange,
+    state.resetUser,
   ]);
 
   useEffect(() => {
@@ -56,10 +56,6 @@ const Register = () => {
   // const prevSlide = () => {
   //   setCurrentSlide(currentSlide - 1);
   // };
-
-  const resetUser = () => {
-    setChangeUser({ [Object.keys(user)]: "" });
-  };
 
   const slides = [
     <University next={nextSlide} />,
@@ -76,12 +72,12 @@ const Register = () => {
   /// -- CUANDO LLEGUE AL FINAL, ELIMINAR EL LOCALSTORAGE -- ///
 
   return (
-    <section className="m-auto mt-12 flex h-[85%] w-[78%] flex-col">
+    <section className="m-auto mt-12 flex h-[92%] w-[78%] flex-col">
       <div className="mx-6 flex flex-row justify-between">
-        <div className="mb-8">
+        <div className="mb-6">
           <ThemeButton />
         </div>
-        <div className="mb-8">
+        <div className="mb-6">
           <Link to="/">
             <button
               className="text-xl text-cach-l3 dark:text-cach-l2"
