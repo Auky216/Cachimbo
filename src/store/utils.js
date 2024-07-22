@@ -8,19 +8,21 @@ export const useThemeStore = create(set => ({
   setTheme: theme => set({ theme: theme === "light" ? "dark" : "light" }),
 }));
 
+/*I added new attributes*/
 export const useUserStore = create(set => ({
   user: {
     university: "UTEC",
-    career: "",
-    cycle: "",
-    enrolledCourses: [],
+    career: "Computer Science",
+    nickname:"@Jojiz",
+    cycle: "I",
+    enrolledCourses: ["calcvar", "matedisc1", "progra1", "pi1", "labcom1"],
     otherCourses: [],
-    name: "",
-    lastname: "",
-    email: "",
+    name: "Juan Salvatierra",
+    lastname: "Perez Gonzales",
+    email: "pepito@gonzales.com",
     password: "",
     confirmPassword: "",
-    profileDescription: "",
+    profileDescription: "I love to code and learn new things",
   },
   setChange: (data, atr) =>
     set(state => {

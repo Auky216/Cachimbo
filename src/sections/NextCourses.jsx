@@ -4,18 +4,19 @@ import {teachers} from '../constant/teachers';
 import { data_user } from '../constant/user_data';
 import { getCursos } from "../constant/course";
 import {MiniCard } from "../components/Cards";
+import { useUserStore } from '../store/utils';
 import Curso from "../assets/icons8-cursos-96.png";
 
 const TeacherMain = () => {
 
-    const cursosArrayUser = Object.keys(data_user);
+    const cursosArrayUser = useUserStore(state => state.user.enrolledCourses);
     const cursosTotales = Object.keys(getCursos);
-    const progress = (((data_user[cursosArrayUser[5]].length/cursosTotales.length))*100).toFixed(1);
+    const progress = (((cursosArrayUser.length/cursosTotales.length))*100).toFixed(1);
     const [next_courses, update_course] = useState([]);
 
     useEffect(() => {
         const coursesSet = new Array();
-        data_user[cursosArrayUser[5]].forEach((c) => {
+        cursosArrayUser.forEach((c) => {
             if ((getCursos[c]["nextCourses"]).length > 0) {
                 coursesSet.push(getCursos[c]["nextCourses"]);
             }

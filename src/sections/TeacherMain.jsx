@@ -11,32 +11,14 @@ const TeacherMain = () => {
     -De momento haré que el componente reciba la imagen como parametro
     */
     const cursosArray = Object.keys(getCursos);
-    const [techers_section, filterTeachers] = useState(teachers)
-    const [seleccionCurso, setSeleccionCurso] = useState('');
-    const [seleccionCarrera, setSeleccionCarrera] = useState('');
+    const [techers_section, filterTeachers] = useState(teachers);
+    const [inputValue, setInputValue] = useState("");
 
-    const getNameOfCOurse = (course) => {
-        //console.log(getCursos);
-        //alert(getCursos[course]['title'] || 'No se encontro el curso');
-        console.log(course)
+    const filterTeachersByCourse = (e) => {
+        setInputValue(e.target.value)
+        filterTeachers(teachers.filter(teacher => (teacher.name.toLocaleLowerCase()).includes((e.target.value).toLocaleLowerCase())));
     }
     
-    const handleCambioCurso = (event) => {
-        setSeleccionCurso(event.target.value);
-        setSeleccionCarrera('');
-        if (event.target.value === 'Curso') {
-            filterTeachers(teachers);
-        }
-        else{
-            filterTeachers(teachers.filter(teacher => teacher.courses.includes(event.target.value)));
-        }
-        
-    };
-
-    const handleCambioCarrera = (event) => {
-        setSeleccionCarrera(event.target.value);
-        setSeleccionCurso('');
-    };
     return (
         <div className="w-full pt-7 overflow-scroll h-full">
             <div className="flex w-full justify-between items-center mb-5">
@@ -48,25 +30,16 @@ const TeacherMain = () => {
                 </NavLink>
             </div>
             <p className="text-xl text-cach-l3 dark:text-cach-l2 mb-5" >
-                Filros por:
+                Filros por nombre:
             </p>
             <div className="w-full">
-                <div className="w-2/3 m-auto flex justify-between items-center">
-                    <select value={seleccionCarrera} onChange={handleCambioCarrera} className="mb-3 mt-2 flex min-h-8 min-w-32 text-center items-center justify-center rounded-xl bg-cach-l3 text-cach-l1">
-                        <option value="Carrera">Carrera</option>
-                        <option value="Carrera2">Carrea 2</option>
-                    </select>
-                    <span className="text-md font-normal text-cach-l5 dark:text-cach-l1" >Ó</span>
-                    <select value={seleccionCurso} onChange={handleCambioCurso} className="mb-3 mt-2 flex min-h-8 min-w-32 text-center items-center justify-center rounded-xl bg-cach-l3 text-cach-l1">
-                        <option value="Curso">Curso</option>
-                        {
-                            cursosArray.map((curso) => (
-                                <option key={curso} value={curso}>{getCursos[curso].title}</option>
-                            ))
-                        }
-                    </select>
-                </div>
-                
+                <input
+                    onChange={e => filterTeachersByCourse(e)}
+                    type="text"
+                    value={inputValue}
+                    placeholder="Prof."
+                    className="w-full my-5 rounded-full border border-cach-l3 bg-cach-l1 bg-transparent px-5 py-2 text-cach-l3 placeholder-cach-l3/70 focus:outline-none dark:border-cach-l2 dark:text-cach-l2 dark:placeholder-cach-l2/40"
+                />
             </div>
             <div className="grid grid-cols-[repeat(auto-fill,_minmax(224px,_1fr))] gap-4">
                 {/* Se usará un map para generar todos los teaches mini card necesarios */}

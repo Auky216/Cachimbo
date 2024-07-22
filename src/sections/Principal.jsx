@@ -7,8 +7,10 @@ import { getCursos } from "../constant/course";
 import { data_user } from "../constant/user_data";
 import { NavLink } from "react-router-dom";
 import Curso from "../assets/icons8-cursos-96.png";
+import { useUserStore } from "../store/utils";
 
 const Principal = () => {
+  const user = useUserStore((state) => state.user);
   return (
     <div className="h-full overflow-auto py-8 pr-8">
       <article className="pb-10">
@@ -16,7 +18,7 @@ const Principal = () => {
           Tus Cursos
         </div>
         <div className="mx-6 grid grid-cols-1 gap-4 pt-3 md:grid-cols-2">
-          {Object.keys(getCursos).map((c) => (
+          {(user.enrolledCourses).map((c) => (
             <MiniCard
               key={c}
               classimg="size-[50px]"

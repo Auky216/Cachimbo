@@ -9,9 +9,11 @@ import groupsIcon from "../assets/groups-icon.png";
 import settingIcon from "../assets/setting-icon.png";
 import logOutIcon from "../assets/logout-icon.png";
 import { NavLink, useLocation } from "react-router-dom";
+import { useUserStore } from "../store/utils";
 
 const Aside = () => {
   const location = useLocation();
+  const user = useUserStore(state => state.user);
   return (
     <aside className="h-screen min-w-[20%] bg-cach-l2/20 px-7 py-10 shadow-xl dark:bg-transparent">
       <div className="relative h-full w-full">
@@ -26,18 +28,14 @@ const Aside = () => {
           {/* datos de perfil */}
           <div className="flex flex-row pb-3">
             <div className="pr-2">
-              <img
-                src={profileTemplate}
-                alt="profile"
-                className="w-20 dark:invert"
-              />
+              <img src={profileTemplate} alt="profile" className="w-20 dark:invert"/>
             </div>
             <div className="items-left flex flex-col justify-center font-extrabold">
               <p className="text-base text-cach-l3 dark:text-cach-l2">
-                Juan Salvatierra
+                {user.name}
               </p>
               <h2 className="text-base text-cach-l3 dark:text-cach-l2">
-                @Jojiz
+                {user.nickname}
               </h2>
             </div>
           </div>
