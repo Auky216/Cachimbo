@@ -24,10 +24,15 @@ export const useUserStore = create(set => ({
     confirmPassword: "",
     profileDescription: "I love to code and learn new things",
   },
+  resetUser: () =>
+    set(state => {
+      state.user = { [Object.keys(state.user)]: "" };
+      return state;
+    }),
   setChange: (data, atr) =>
     set(state => {
       state.user[atr] = data;
-      console.log(state);
+      // console.log(state);
       return state;
     }),
 }));

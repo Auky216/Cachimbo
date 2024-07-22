@@ -1,5 +1,13 @@
+import { UTECcourses } from "../../static/academic";
+import { useUserStore } from "../../store/utils";
+
 // tercer slide del registro: seleccion de ciclo de ingreso y cursos matriculados
 const Academic = ({ next }) => {
+  const loadcarrer = useUserStore(state => state.user.carrer);
+  const resetable = {
+    [UTECcourses[loadcarrer].map(key => key.code)]: false,
+  };
+
   return (
     <div>
       <h2>Tu avance académico</h2>
