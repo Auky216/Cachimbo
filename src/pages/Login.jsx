@@ -8,8 +8,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const apiUrl = import.meta.env.VITE_API_URL;
-  console.log(apiUrl)
-
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);

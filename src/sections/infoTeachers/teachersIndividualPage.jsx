@@ -10,6 +10,7 @@ import CommentInput from './CustomInput';
 import {TeachersOpinion} from '../../constant/opinion'
 import TOpinion from './TOpinion';
 import { getCursos } from '../../constant/course';
+import BackButton from '../../components/backButton';
 
 const TeachersIndividualPage = () => {
     const params = useParams();
@@ -39,11 +40,7 @@ const TeachersIndividualPage = () => {
     return (
         <div className='overflow-scroll h-full'>
             <div className='w-full mt-16'>
-                <NavLink to="/dashboard/main/teachers">
-                    <button className="mb-3 mt-2 flex min-h-8 w-1/6 items-center justify-center rounded-xl bg-cach-l3 text-cach-l1">
-                        Regresar
-                    </button>
-                </NavLink>
+                <BackButton></BackButton>
             </div>
             {/* The profile will come here */}
             <div className='w-full mt-8'>

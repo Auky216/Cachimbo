@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import LandingPage from "../pages/LandingPage";
 import Principal from "../sections/Principal";
+import Profile from "../sections/Profile";
 import Library from "../sections/Library/Library";
 import InteractionGroups from "../sections/InteractionGroups";
 import ChatAssistant from "../sections/ChatAssistant";
@@ -39,6 +40,10 @@ const router = [
   {
     path: "/dashboard/main",
     element: <Principal />,
+  },
+  {
+    path: "/dashboard/profile",
+    element: <Profile />,
   },
   {
     path: "/dashboard/library",

@@ -27,16 +27,16 @@ const Aside = () => {
         <div className="mt-5 w-full items-center">
           {/* datos de perfil */}
           <div className="flex flex-row pb-3">
-            <div className="pr-2">
+            <NavLink to="/dashboard/profile" className="pr-2">
               <img src={profileTemplate} alt="profile" className="w-20 dark:invert"/>
-            </div>
+            </NavLink>
             <div className="items-left flex flex-col justify-center font-extrabold">
-              <p className="text-base text-cach-l3 dark:text-cach-l2">
+              <NavLink to="/dashboard/profile" className="text-base text-cach-l3 dark:text-cach-l2">
                 {user.name}
-              </p>
-              <h2 className="text-base text-cach-l3 dark:text-cach-l2">
+              </NavLink>
+              <NavLink to="/dashboard/profile" className="text-base text-cach-l3 dark:text-cach-l2">
                 {user.nickname}
-              </h2>
+              </NavLink>
             </div>
           </div>
 

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import React, { useState } from 'react';
 import {teachers} from '../constant/teachers';
 import { getCursos } from "../constant/course";
+import BackButton from "../components/backButton";
 
 const TeacherMain = () => {
     /** Estoy pensando en que cuando se pase
@@ -23,11 +24,9 @@ const TeacherMain = () => {
         <div className="w-full pt-7 overflow-scroll h-full">
             <div className="flex w-full justify-between items-center mb-5">
                 <h1 className="text-2xl font-bold text-cach-l3 dark:text-cach-l2" >Tus Queridos Profes</h1>
-                <NavLink to="/dashboard/main/" className="min-w-48">
-                    <button className="mb-3 mt-2 flex min-h-8 w-full items-center justify-center rounded-xl bg-cach-l3 text-cach-l1">
-                        Regresar al menu
-                    </button>
-                </NavLink>
+                    <BackButton className="mb-3 mt-2 flex min-h-8 w-full items-center justify-center rounded-xl bg-cach-l3 text-cach-l1">
+                    </BackButton>
+
             </div>
             <p className="text-xl text-cach-l3 dark:text-cach-l2 mb-5" >
                 Filros por nombre:

@@ -6,6 +6,7 @@ import { getCursos } from "../constant/course";
 import {MiniCard } from "../components/Cards";
 import { useUserStore } from '../store/utils';
 import Curso from "../assets/icons8-cursos-96.png";
+import BackButton from '../components/backButton';
 
 const TeacherMain = () => {
 
@@ -28,11 +29,7 @@ const TeacherMain = () => {
     return(
         <div className='w-full'>
             <div className="flex justify-between items-center mt-4 mb-5 m-auto">
-                <NavLink to="/dashboard/main/" className="min-w-48">
-                    <button className="mb-3 mt-2 flex min-h-8 w-full items-center justify-center rounded-xl bg-cach-l3 text-cach-l1">
-                        Regresar al menu
-                    </button>
-                </NavLink>
+                <BackButton></BackButton>
             </div>
             <div className='w-5/6 text-cach-l5 dark:text-cach-l1'>
                 {/*Sección de la barra de progreso*/}
