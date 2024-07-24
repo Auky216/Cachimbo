@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import {teachers} from '../constant/teachers';
-import { data_user } from '../constant/user_data';
 import { getCursos } from "../constant/course";
 import {MiniCard } from "../components/Cards";
 import { useUserStore } from '../store/utils';
@@ -24,7 +23,6 @@ const TeacherMain = () => {
         });
         update_course(coursesSet);
     }, []);
-    //console.log(data_user[cursosArrayUser[4]]);
     //console.log(next_courses);
     return(
         <div className='w-full'>

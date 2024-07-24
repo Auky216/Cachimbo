@@ -84,6 +84,20 @@ export const CardAcademic = ({ title, searchKey, preDescrip, imgRef }) => {
     </div>
   );
 };
+export const CardNumberStat = ({ title, number }) => {
+  return(
+    <div className="flex items-center justify-center rounded-xl border-2 border-cach-l2 font-bold text-cach-l5 dark:text-cach-l1">
+      <div className="flex w-full justify-between items-center text-center px-3 py-1">
+        <h3 className="text-3xl font-bold w-1/3">
+          {number}
+        </h3>
+        <h3 className="text-lg font-semibold w-2/3">
+          {title}
+        </h3>
+      </div>
+    </div>
+)
+}
 
 export const TeacherMiniCard = ({ name, imageRoute, rate, course }) => {
   const stars = Array(MAX_RATE).fill(0);
