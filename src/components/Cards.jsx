@@ -84,14 +84,17 @@ export const CardAcademic = ({ title, searchKey, preDescrip, imgRef }) => {
     </div>
   );
 };
-export const CardNumberStat = ({ title, number }) => {
+export const CardNumberStat = ({ title, number, imgsrc }) => {
   return(
-    <div className="flex items-center justify-center rounded-xl border-2 border-cach-l2 font-bold text-cach-l5 dark:text-cach-l1">
-      <div className="flex w-full justify-between items-center text-center px-3 py-1">
-        <h3 className="text-3xl font-bold w-1/3">
+    <div className="flex items-center rounded-xl border-2 px-3 py-1 cursor-pointer border-cach-l2 font-bold text-cach-l5 dark:text-cach-l1">
+      <div className="w-2/6">
+        <img src={imgsrc} className="w-5/6"/>
+      </div>
+      <div className="flex w-4/6 justify-center gap-1 items-center text-center">
+        <h3 className="text-xl font-bold">
           {number}
         </h3>
-        <h3 className="text-lg font-semibold w-2/3">
+        <h3 className="text-lg font-semibold">
           {title}
         </h3>
       </div>

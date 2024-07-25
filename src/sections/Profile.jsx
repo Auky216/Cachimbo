@@ -4,6 +4,9 @@ import BackButton from "../components/backButton";
 import { useUserStore } from "../store/utils";
 import profileTemplate from "../assets/profile-template.png";
 import uniDefault from "../assets/icons8-university-48.png";
+import friendsIcon from "../assets/icons8-grupo-de-primer-plano-seleccionado-96.png";
+import materialUploaded from "../assets/icons8-electivo-96.png";
+import rating from "../assets/starRating.png";
 import {universities} from "../static/academic";
 import { CardNumberStat } from "../components/Cards";
 
@@ -28,9 +31,6 @@ const Profile = () => {
                     <h1 className="text-xl font-semibold text-cach-l3 dark:text-cach-l2">
                         {user.career}
                     </h1>
-                    <p className="text-xl font-semibold text-cach-l3 dark:text-cach-l2">
-                        30 amigos
-                    </p>
                     <img src={uniImage} alt="uniImage" className="w-14"/>
                 </div>
                 
@@ -38,10 +38,10 @@ const Profile = () => {
 
             <div className="w-11/12 m-auto my-5">
                 <h1 className="text-2xl font-bold text-cach-l3 dark:text-cach-l2">Actividad</h1>
-                <div className="grid grid-cols-[repeat(auto-fill,_minmax(140px,_1fr))] gap-4 my-3">
-                    <CardNumberStat number={30} title="Amigos" />
-                    <CardNumberStat number={12} title="Subidos"/>
-                    <CardNumberStat number={150} title="Puntos"/>
+                <div className="grid grid-cols-[repeat(auto-fill,_minmax(150px,_1fr))] gap-4 my-3">
+                    <CardNumberStat number={30} title="Amigos" imgsrc={friendsIcon}/>
+                    <CardNumberStat number={12} title="Subidos" imgsrc={materialUploaded}/>
+                    <CardNumberStat number={150} title="Puntos" imgsrc={rating}/>
                 </div>
             </div>
         </div>
