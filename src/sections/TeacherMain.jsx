@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import {teachers} from '../constant/teachers';
 import { getCursos } from "../constant/course";
 import BackButton from "../components/backButton";
+import axios from 'axios';
 
 const TeacherMain = () => {
     /** Estoy pensando en que cuando se pase
@@ -14,24 +15,34 @@ const TeacherMain = () => {
     const cursosArray = Object.keys(getCursos);
     const [techers_section, filterTeachers] = useState(teachers);
     const [inputValue, setInputValue] = useState("");
-    const [data, setData] = useState(null);
 
-    const url = import.meta.env.API;
-    console.log(url);
+    const url = import.meta.env.VITE_API;
+    const token = import.meta.env.VITE_TOKEN;
     useEffect(() => {
-        const response = fetch(url, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body:JSON.stringify({
-                "name": "e",
-                "token": "c1ac4eca-b677-4bb6-aa53-41982ea3f656",
-                }),
-        });
-        console.log(response);
-    },[]); 
+        const fetchData = async () => {
+            
+            try {
+                const response = await fetch(`${url}`, {
+                    method:'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify({
+                        "name":"e",
+                        "token":token
+                    }),
+                });
+                /*if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                } */
+                console.log(response);
+                const data = await response.text();
+                console.log(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+            };
+        
+        fetchData();
+        }, []);
 
 
     const filterTeachersByCourse = (e) => {
