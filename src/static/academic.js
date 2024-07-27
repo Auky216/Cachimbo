@@ -77,12 +77,136 @@ export const carrers = {
 // por ahora es constante para testear con UTEC
 export const UTECcourses = {
   CS: [
-    ["calcvar", "progra1", "matedisc1", "icc", "labcom1", "pi1"],
-    ["calcvect", "progra2", "matedisc2", "optica", "labcom2", "alglin"],
+    [
+      {
+        credits: 3,
+        name: "Cálculo en una variable",
+        code: "calcvar",
+      },
+      {
+        credits: 4,
+        name: "Programación I",
+        code: "progra1",
+      },
+      {
+        credits: 4,
+        name: "Matemáticas Discreta I",
+        code: "matedisc1",
+      },
+      {
+        credits: 2,
+        name: "Introducción a la Ciencia de la Computación",
+        code: "icc",
+      },
+      {
+        credits: 3,
+        name: "Laboratorio de Comunicación I",
+        code: "labcom1",
+      },
+      {
+        credits: 3,
+        name: "Proyectos Interdisciplinarios I",
+        code: "pi1",
+      },
+    ],
+    [
+      {
+        credits: 3,
+        name: "Cálculo Vectorial",
+        code: "calcvect",
+      },
+      {
+        credits: 4,
+        name: "Programación II",
+        code: "progra2",
+      },
+      {
+        credits: 4,
+        name: "Matemáticas Discreta II",
+        code: "matedisc2",
+      },
+      {
+        credits: 3,
+        name: "Óptica y Ondas",
+        code: "optica",
+      },
+      {
+        credits: 3,
+        name: "Laboratorio de Comunicación II",
+        code: "labcom2",
+      },
+      {
+        credits: 3,
+        name: "Álgebra Lineal",
+        code: "alglin",
+      },
+    ],
   ], // etc
   DS: [
-    ["calcvar", "progra1", "matedisc1", "icd", "labcom1", "pi1"],
-    ["calcvect", "progra2", "matedisc2", "optica", "labcom2", "alglin"],
+    [
+      {
+        credits: 3,
+        name: "Cálculo en una variable",
+        code: "calcvar",
+      },
+      {
+        credits: 4,
+        name: "Programación I",
+        code: "progra1",
+      },
+      {
+        credits: 4,
+        name: "Matemáticas Discreta I",
+        code: "matedisc1",
+      },
+      {
+        credits: 2,
+        name: "Introducción a la Ciencia de Datos",
+        code: "icc",
+      },
+      {
+        credits: 3,
+        name: "Laboratorio de Comunicación I",
+        code: "labcom1",
+      },
+      {
+        credits: 3,
+        name: "Proyectos Interdisciplinarios I",
+        code: "pi1",
+      },
+    ],
+    [
+      {
+        credits: 3,
+        name: "Cálculo Vectorial",
+        code: "calcvect",
+      },
+      {
+        credits: 3,
+        name: "Programación II",
+        code: "progra2",
+      },
+      {
+        credits: 4,
+        name: "Matemáticas Discreta II",
+        code: "matedisc2",
+      },
+      {
+        credits: 3,
+        name: "Óptica y Ondas",
+        code: "optica",
+      },
+      {
+        credits: 3,
+        name: "Laboratorio de Comunicación II",
+        code: "labcom2",
+      },
+      {
+        credits: 3,
+        name: "Álgebra Lineal",
+        code: "alglin",
+      },
+    ],
   ], // etc
   // etc, etc
 };

@@ -43,3 +43,18 @@ button, label {
 *::-webkit-scrollbar {
   width: 0;
 }
+
+
+input[type="range"]::-webkit-slider-thumb {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none; 
+  /* creating a custom design */
+  height: 15px;
+  width: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 2px solid #7f6afc;
+  /*  slider progress trick  */
+  box-shadow: 0 22rem 0 22rem #7f6afc;
+}

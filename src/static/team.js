@@ -32,7 +32,7 @@ export const Team = [
     name: "Adrian",
     lastName: "Sandoval Huamani",
     email: "adrian.sandoval@utec.edu.pe",
-    role: "Frontend/Backend Developerr",
+    role: "Frontend Developerr",
     image: Adrian,
   },
   // {
