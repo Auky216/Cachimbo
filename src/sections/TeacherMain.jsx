@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import {teachers} from '../constant/teachers';
 import { getCursos } from "../constant/course";
 import BackButton from "../components/backButton";
-import axios from 'axios';
 
 const TeacherMain = () => {
     /** Estoy pensando en que cuando se pase
@@ -16,33 +15,36 @@ const TeacherMain = () => {
     const [techers_section, filterTeachers] = useState(teachers);
     const [inputValue, setInputValue] = useState("");
 
-    const url = import.meta.env.VITE_API;
     const token = import.meta.env.VITE_TOKEN;
     useEffect(() => {
         const fetchData = async () => {
-            
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+        
+            const raw = JSON.stringify({
+                "name": "Juan",
+                "token": token
+            });
+    
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+    
             try {
-                const response = await fetch(`${url}`, {
-                    method:'POST',
-                    mode: 'no-cors',
-                    body: JSON.stringify({
-                        "name":"e",
-                        "token":token
-                    }),
-                });
-                /*if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                } */
-                console.log(response);
-                const data = await response.text();
-                console.log(data);
+                const response = await fetch("/api/test/api/teacher/find_teacher", requestOptions);
+                const result = await response.json();
+                console.log(result);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('Error:', error);
             }
             };
         
         fetchData();
-        }, []);
+    }, []); 
 
 
     const filterTeachersByCourse = (e) => {
