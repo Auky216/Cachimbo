@@ -1,12 +1,25 @@
 import { UTECcourses } from "../../static/academic";
 import { useUserStore } from "../../store/utils";
+import { useState } from "react";
 
 // tercer slide del registro: seleccion de ciclo de ingreso y cursos matriculados
 const Academic = ({ next }) => {
   const loadcarrer = useUserStore(state => state.user.carrer);
-  const resetable = {
-    [UTECcourses[loadcarrer].map(key => key.code)]: false,
-  };
+  /*
+  const UTECcourses = {
+  CS: [
+    ["calcvar", "progra1", "matedisc1", "icc", "labcom1", "pi1"],
+    ["calcvect", "progra2", "matedisc2", "optica", "labcom2", "alglin"],
+  ], // etc
+  DS: [
+    ["calcvar", "progra1", "matedisc1", "icd", "labcom1", "pi1"],
+    ["calcvect", "progra2", "matedisc2", "optica", "labcom2", "alglin"],
+  ], // etc
+  // etc, etc
+};
+  */
+  const courses = UTECcourses[loadcarrer];
+  const [level, setLevel] = useState(0);
 
   return (
     <div>

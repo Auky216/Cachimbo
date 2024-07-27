@@ -2,30 +2,32 @@ import { Link } from "react-router-dom";
 import Default from "../assets/profile-template.png";
 import { MAX_RATE } from "../constant/opinion";
 import { Star } from "./icons/Star";
-import universitylogo from '../assets/university-icon.png';
+import universitylogo from "../assets/university-icon.png";
 
 export const CardOpinion = ({ description, carrerUser, rate }) => {
   const stars = Array(MAX_RATE).fill(0);
   return (
-    <div className="flex flex-col w-full h-full justify-between rounded-xl border-2 border-cach-l2 font-bold text-cach-l5 dark:text-cach-l1">
+    <div className="flex h-full w-full flex-col justify-between rounded-xl border-2 border-cach-l2 font-bold text-cach-l5 dark:text-cach-l1">
       <div className="flex w-full flex-row items-center justify-center px-2 py-1">
-        <div className="flex w-[75%] flex-col space-y-1↑ px-4 py-2">
-          <div className="text-sm font-bold text-cach-l3 dark:text-cach-l2/30">
+        <div className="space-y-1↑ flex w-[75%] flex-col px-4 py-2">
+          <div className="pb-3 text-sm font-bold text-cach-l3 dark:text-cach-l2/30">
             Un estudiante de {carrerUser} dijo:
           </div>
           <div className="flex items-center space-x-2">
-            <p className="text-cach-l5 dark:text-white">{description}</p>
+            <p className="text-xl text-cach-l5 dark:text-white">
+              {description}
+            </p>
           </div>
         </div>
-        <div className="flex flex-col items-center gap-1 justify-center w-[25%]">
+        <div className="flex w-[25%] flex-col items-center justify-center gap-1">
           <div className="flex items-center space-x-2">
             {stars.map((_, index) => (
-              <Star
-                key={index} bg={index < Math.round(rate)} l="10"
-              />
+              <Star key={index} bg={index < Math.round(rate)} l="10" />
             ))}
           </div>
-          <div className="text-cach-l5 text-sm dark:text-white">Calificación: {rate}</div>
+          <div className="text-sm text-cach-l5 dark:text-white">
+            Calificación: {rate}
+          </div>
         </div>
       </div>
     </div>
@@ -85,38 +87,42 @@ export const CardAcademic = ({ title, searchKey, preDescrip, imgRef }) => {
   );
 };
 export const CardNumberStat = ({ title, number, imgsrc }) => {
-  return(
-    <div className="flex items-center rounded-xl border-2 px-3 py-1 cursor-pointer border-cach-l2 font-bold text-cach-l5 dark:text-cach-l1">
+  return (
+    <div className="flex cursor-pointer items-center rounded-xl border-2 border-cach-l2 px-3 py-1 font-bold text-cach-l5 dark:text-cach-l1">
       <div className="w-2/6">
-        <img src={imgsrc} className="w-5/6"/>
+        <img src={imgsrc} className="w-5/6" />
       </div>
-      <div className="flex w-4/6 justify-center gap-1 items-center text-center">
-        <h3 className="text-xl font-bold">
-          {number}
-        </h3>
-        <h3 className="text-lg font-semibold">
-          {title}
-        </h3>
+      <div className="flex w-4/6 items-center justify-center gap-1 text-center">
+        <h3 className="text-xl font-bold">{number}</h3>
+        <h3 className="text-lg font-semibold">{title}</h3>
       </div>
     </div>
-)
-}
+  );
+};
 
 export const TeacherMiniCard = ({ name, imageRoute, rate, course }) => {
   const stars = Array(MAX_RATE).fill(0);
   //console.log(course);
   //console.log(getCursos[course[0]]);
   return (
-    <div className="flex min-w-56 border-2 rounded-xl border-cach-l3 p-2 items-center">
-      <div className="h-24 w-24 p-1 flex items-center justify-center">
-        <img src={imageRoute || Default} alt="tchr" className="h-20 rounded-full"/>
+    <div className="flex min-w-56 items-center rounded-xl border-2 border-cach-l3 p-2">
+      <div className="flex h-24 w-24 items-center justify-center p-1">
+        <img
+          src={imageRoute || Default}
+          alt="tchr"
+          className="h-20 rounded-full"
+        />
       </div>
-      <div className="flex flex-col items-center flex-1 justify-center">
+      <div className="flex flex-1 flex-col items-center justify-center">
         <span className="text-center">{name}</span>
         <span className="text-center">{course}</span>
         <span className="flex flex-row">
           {stars.map((_, index) => (
-            <Star className="" key={index} bg={index < Math.round(rate)} l="10"
+            <Star
+              className=""
+              key={index}
+              bg={index < Math.round(rate)}
+              l="10"
             ></Star>
           ))}
         </span>
@@ -125,29 +131,32 @@ export const TeacherMiniCard = ({ name, imageRoute, rate, course }) => {
   );
 };
 
-export const EventMiniCard = ({ title, date, hour , link}) => {
+export const EventMiniCard = ({ title, date, hour, link }) => {
   return (
-    <div className="flex flex-col items-center justify-between w-[200px] h-[250px] rounded-2xl border border-cach-l3 dark:border-cach-l2 p-4 shadow-lg text-gray-800 dark:text-gray-200">
-      <div className="flex flex-col items-center w-full h-[75%]">
-        <div className="flex flex-col items-center w-full h-full justify-center text-center">
+    <div className="flex h-[250px] w-[200px] flex-col items-center justify-between rounded-2xl border border-cach-l3 p-4 text-gray-800 shadow-lg dark:border-cach-l2 dark:text-gray-200">
+      <div className="flex h-[75%] w-full flex-col items-center">
+        <div className="flex h-full w-full flex-col items-center justify-center text-center">
           <h3 className="text-lg font-bold">
-            <Link to={link} className="text-cach-l3 dark:text-cach-l2 hover:underline">
+            <Link
+              to={link}
+              className="text-cach-l3 hover:underline dark:text-cach-l2"
+            >
               {title}
             </Link>
-            </h3>
+          </h3>
         </div>
       </div>
-      <div className="flex flex-col items-center w-full h-[25%]">
+      <div className="flex h-[25%] w-full flex-col items-center">
         <div className="flex flex-col items-center justify-center text-center">
           <p className="text-sm">{date}</p>
           <p className="text-sm">{hour}</p>
         </div>
-        <div className="flex items-center justify-center mt-2">
-            <img
-                src={universitylogo}
-                alt="Universidad"
-                className="h-4 w-4 grayscale filter"
-              />
+        <div className="mt-2 flex items-center justify-center">
+          <img
+            src={universitylogo}
+            alt="Universidad"
+            className="h-4 w-4 grayscale filter"
+          />
           <p className="text-xs text-gray-500 dark:text-gray-400"> UTEC</p>
         </div>
       </div>

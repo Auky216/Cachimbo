@@ -14,10 +14,10 @@ const Carrer = ({ next }) => {
   const [carr_name, setCarr_name] = useState("");
 
   useEffect(() => {
-    if (carrer) {
-      const find = carrers[loadUniv].find(carr => carr.code === carrer).name;
-      setCarr_name(find);
-    } else setCarr_name("");
+    let find = "";
+    if (carrer)
+      find = carrers[loadUniv].find(carr => carr.code === carrer).name;
+    setCarr_name(find);
   }, [carrer]);
 
   const handleClick = e => {

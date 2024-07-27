@@ -7,17 +7,16 @@ const GroupInfo = ({
   icon,
   title,
   numMembers,
-  toggleJoined,
   toggleTempInfo,
   discordLink,
-  whatsappLink
+  whatsappLink,
 }) => {
   const openDiscordLink = () => {
-    window.open(discordLink, "_blank"); 
+    window.open(discordLink, "_blank");
   };
 
   const openWhatsappLink = () => {
-    window.open(whatsappLink, "_blank"); 
+    window.open(whatsappLink, "_blank");
   };
 
   return (
@@ -47,13 +46,13 @@ const GroupInfo = ({
         <div className="flex items-center space-x-2">
           <img
             src={discordIcon}
-            className="w-8 h-8 cursor-pointer"
+            className="h-8 w-8 cursor-pointer"
             alt="Discord Icon"
             loading="lazy"
             onClick={openDiscordLink}
           />
           <span
-            className="text-cach-l3 dark:text-cach-l1 hover:underline cursor-pointer"
+            className="cursor-pointer text-cach-l3 hover:underline dark:text-cach-l1"
             onClick={openDiscordLink}
           >
             Discord
@@ -62,13 +61,13 @@ const GroupInfo = ({
         <div className="flex items-center space-x-2">
           <img
             src={whatsappIcon}
-            className="w-8 h-8 cursor-pointer"
+            className="h-8 w-8 cursor-pointer"
             alt="WhatsApp Icon"
             loading="lazy"
             onClick={openWhatsappLink}
           />
           <span
-            className="text-cach-l3 dark:text-cach-l1 hover:underline cursor-pointer"
+            className="cursor-pointer text-cach-l3 hover:underline dark:text-cach-l1"
             onClick={openWhatsappLink}
           >
             WhatsApp

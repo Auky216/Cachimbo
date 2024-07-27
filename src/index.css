@@ -29,7 +29,7 @@
   }
 }
 
-button {
+button, label {
   transition: 0.3s;
 
   &:hover {
