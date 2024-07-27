@@ -1,6 +1,6 @@
 import { TeacherMiniCard } from "../components/Cards";
 import { NavLink } from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {teachers} from '../constant/teachers';
 import { getCursos } from "../constant/course";
 import BackButton from "../components/backButton";
@@ -14,6 +14,25 @@ const TeacherMain = () => {
     const cursosArray = Object.keys(getCursos);
     const [techers_section, filterTeachers] = useState(teachers);
     const [inputValue, setInputValue] = useState("");
+    const [data, setData] = useState(null);
+
+    const url = import.meta.env.API;
+    console.log(url);
+    useEffect(() => {
+        const response = fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+                "name": "e",
+                "token": "c1ac4eca-b677-4bb6-aa53-41982ea3f656",
+                }),
+        });
+        console.log(response);
+    },[]); 
+
 
     const filterTeachersByCourse = (e) => {
         setInputValue(e.target.value)
