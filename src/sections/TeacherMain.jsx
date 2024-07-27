@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import {teachers} from '../constant/teachers';
 import { getCursos } from "../constant/course";
 import BackButton from "../components/backButton";
-import axios from 'axios';
 
 const TeacherMain = () => {
     /** Estoy pensando en que cuando se pase
