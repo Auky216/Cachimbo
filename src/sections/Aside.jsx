@@ -10,10 +10,29 @@ import settingIcon from "../assets/setting-icon.png";
 import logOutIcon from "../assets/logout-icon.png";
 import { NavLink, useLocation } from "react-router-dom";
 import { useUserStore } from "../store/utils";
+import { useState } from "react";
+import Modal from "../components/Modal";
+import SubmitFile from "../components/submitFile";
 
 const Aside = () => {
   const location = useLocation();
   const user = useUserStore(state => state.user);
+  const [modal, setModal] = useState(false);
+  const [namefile, setNamefile] = useState("");
+
+  const handleUpload = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append("file", file);
+    setModal(true);
+    setNamefile(file.name);
+    // await fetch("http://..../upload", {
+    //   method: "POST",
+    //   body: formData,
+    // });
+  };
+
   return (
     <aside className="h-screen min-w-[20%] bg-cach-l2/20 px-7 py-10 shadow-xl dark:bg-transparent">
       <div className="relative h-full w-full">
@@ -28,13 +47,23 @@ const Aside = () => {
           {/* datos de perfil */}
           <div className="flex flex-row pb-3">
             <NavLink to="/dashboard/profile" className="pr-2">
-              <img src={profileTemplate} alt="profile" className="w-20 dark:invert"/>
+              <img
+                src={profileTemplate}
+                alt="profile"
+                className="w-20 dark:invert"
+              />
             </NavLink>
             <div className="items-left flex flex-col justify-center font-extrabold">
-              <NavLink to="/dashboard/profile" className="text-base text-cach-l3 dark:text-cach-l2">
+              <NavLink
+                to="/dashboard/profile"
+                className="text-base text-cach-l3 dark:text-cach-l2"
+              >
                 {user.name}
               </NavLink>
-              <NavLink to="/dashboard/profile" className="text-base text-cach-l3 dark:text-cach-l2">
+              <NavLink
+                to="/dashboard/profile"
+                className="text-base text-cach-l3 dark:text-cach-l2"
+              >
                 {user.nickname}
               </NavLink>
             </div>
@@ -56,10 +85,21 @@ const Aside = () => {
             </div>
           </div>
 
-          <button className="mb-3 mt-2 flex min-h-8 w-full items-center justify-center rounded-xl bg-cach-l3 text-cach-l1">
-            <img src={uploadIcon} alt="icon" className="mr-1 w-4 invert" />{" "}
+          <input
+            type="file"
+            id="submit-file"
+            className="hidden"
+            onChange={handleUpload}
+            // extensiones permitidas
+            accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png"
+          />
+          <label
+            htmlFor="submit-file"
+            className="mb-3 mt-2 flex min-h-8 w-full cursor-pointer items-center justify-center rounded-xl bg-cach-l3 text-cach-l1"
+          >
+            <img src={uploadIcon} alt="icon" className="mr-1 w-4 invert" />
             Subir
-          </button>
+          </label>
         </div>
 
         {/* componente de section buttons */}
@@ -126,6 +166,11 @@ const Aside = () => {
           </button>
         </div>
       </div>
+
+      {/*  Modal cuando se sube un archivo */}
+      <Modal isOpen={modal} onClose={() => setModal(false)}>
+        <SubmitFile namefile={namefile} />
+      </Modal>
     </aside>
   );
 };

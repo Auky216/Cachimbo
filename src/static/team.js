@@ -1,8 +1,8 @@
 import Antonio from "../assets/TeamPhoto/Antonio.jpg";
 import Yanelit from "../assets/TeamPhoto/Yanelit.jpg";
-import Brigit from "../assets/TeamPhoto/Brigit.jpeg";
+// import Brigit from "../assets/TeamPhoto/Brigit.jpeg";
 import Adrian from "../assets/TeamPhoto/Adrian.jpeg";
-import Noe from "../assets/TeamPhoto/Noe.jpeg";
+// import Noe from "../assets/TeamPhoto/Noe.jpeg";
 import Danilo from "../assets/TeamPhoto/Danilo.jpeg";
 import Javier from "../assets/TeamPhoto/Javier.jpeg";
 
@@ -21,13 +21,13 @@ export const Team = [
     role: "Secretaria",
     image: Yanelit,
   },
-  {
-    name: "Brigitte Dayane",
-    lastName: "Rojas Leon",
-    email: "brigitte.rojas@utec.edu.pe",
-    role: "Coordinadora Recursos Educativos",
-    image: Brigit,
-  },
+  // {
+  //   name: "Brigitte Dayane",
+  //   lastName: "Rojas Leon",
+  //   email: "brigitte.rojas@utec.edu.pe",
+  //   role: "Coordinadora Recursos Educativos",
+  //   image: Brigit,
+  // },
   {
     name: "Adrian",
     lastName: "Sandoval Huamani",
@@ -35,13 +35,13 @@ export const Team = [
     role: "Frontend/Backend Developerr",
     image: Adrian,
   },
-  {
-    name: "Noe",
-    lastName: "Paredes Rauraico",
-    email: "ananias.paredes@utec.edu.pe",
-    role: "Web Designer",
-    image: Noe,
-  },
+  // {
+  //   name: "Noe",
+  //   lastName: "Paredes Rauraico",
+  //   email: "ananias.paredes@utec.edu.pe",
+  //   role: "Web Designer",
+  //   image: Noe,
+  // },
   {
     name: "Danilo Caleb",
     lastName: "Becerra Balvin",

@@ -53,9 +53,11 @@ const Register = () => {
     setCurrentSlide(currentSlide + 1);
   };
 
-  // const prevSlide = () => {
-  //   setCurrentSlide(currentSlide - 1);
-  // };
+  const finalize = () => {
+    // se realizaria un POST a la API para registrar al usuario
+    // dirigir al dashboard
+    window.location.href = "/dashboard/main";
+  };
 
   const slides = [
     <University next={nextSlide} />,
@@ -66,7 +68,7 @@ const Register = () => {
     // <Password next={nextSlide} />,
     // <Verify next={nextSlide} />,
     // <PhotoProfile next={nextSlide} />,
-    // <DescFinal next={nextSlide} />,
+    // <DescFinal final={finalize} />,
   ];
 
   /// -- CUANDO LLEGUE AL FINAL, ELIMINAR EL LOCALSTORAGE -- ///
