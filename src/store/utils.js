@@ -12,9 +12,9 @@ export const useThemeStore = create(set => ({
 export const useUserStore = create(set => ({
   user: {
     university: "UTEC",
-    career: "Computer Science",
-    nickname:"@Jojiz",
-    cycle: "I",
+    career: "CS",
+    nickname: "@Jojiz",
+    cycle: "1",
     enrolledCourses: ["calcvar", "matedisc1", "progra1", "pi1", "labcom1"],
     otherCourses: [],
     name: "Juan Salvatierra",
