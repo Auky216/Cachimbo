@@ -1,7 +1,7 @@
 /***
  * Agregar las rutas necesarias para las secciones para testear
  */
-
+import React from "react";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import LandingPage from "../pages/LandingPage";
@@ -19,6 +19,7 @@ import Events from "../sections/Events/Events";
 import EventInfo from "../sections/Events/Eventinfo";
 import Sugerencias from "../sections/sugerencias/Suggestions";
 import SuggestionDetail from "../sections/sugerencias/SuggestionDetail";
+import HomePage from "../pages/HomePage";
 
 export const routerNormal = [
   {
@@ -36,7 +37,7 @@ export const routerNormal = [
   {
     path: "/welcome",
     element: <LandingPage />,
-  }
+  },
 ];
 
 export const routerProtected = [

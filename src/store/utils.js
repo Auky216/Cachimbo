@@ -1,4 +1,6 @@
 import { create } from "zustand";
+import Cookies from 'js-cookie';
+
 
 export const useThemeStore = create(set => ({
   theme: localStorage.getItem("theme") || "light",
@@ -9,13 +11,20 @@ export const useThemeStore = create(set => ({
 }));
 
 
-export const stateLogged = create(set => ({
-  logged: {
-    state: null,
+export const stateLogged = create((set) => ({
+  isAuthenticated: false,
+  login: () => {
+    Cookies.set('isAuthenticated', true, { expires: 7 });
+    set({ isAuthenticated: true });
   },
-  setLogged: (login) => set(state => ({
-    logged: { state: login },
-  })),
+  logout: () => {
+    Cookies.remove('isAuthenticated'); 
+    set({ isAuthenticated: false });
+  },
+  checkAuth: () => {
+    const isAuthenticated = Cookies.get('isAuthenticated') === 'true';
+    set({ isAuthenticated });
+  },
 }));
 
 /*I added new attributes*/

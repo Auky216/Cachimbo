@@ -1,19 +1,21 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import {routerNormal, routerProtected} from "./routes/root.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
 import { useThemeStore, stateLogged } from "./store/utils.js";
 import { useEffect } from "react";
 import ProtectedRoutes from "./routes/protectedRoutes.jsx";
+import Cookies from "js-cookie";
 
 const App = () => {
-  const lgState = stateLogged(state => state.logged);
-  console.log(lgState.state);
+  const { isAuthenticated, checkAuth } = stateLogged();
+  //console.log(lgState.state);
   const route = useThemeStore(state => state.route);
   useEffect(() => {
     useThemeStore.setState({ route: window.location.pathname });
-  }, [route]);
-  const showMainPage = lgState.state;
+    checkAuth();
+  }, [route, checkAuth]);
+  const showMainPage = isAuthenticated;
 
   return (
     <div id="App" className="h-screen w-full">
@@ -30,16 +32,7 @@ const App = () => {
               element={route.element}
             ></Route>
             ))}
-            {/*Routes protected*/}
-            <Route element={<ProtectedRoutes/>}>
-            {routerProtected.map(route => (
-              <Route
-                key={route.path}
-                path={route.path}
-                element={route.element}
-              ></Route>
-              ))}
-            </Route>
+            <Route key="*" path="*" element={<Navigate to="./"/>}/>
         </Routes>
       )}
     </div>

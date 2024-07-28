@@ -35,7 +35,8 @@ const TeachersIndividualPage = () => {
     const sendOpinion = () => {
         // Aquí se enviaría la opinión
         const new_comment = {teachercode: params.id, description: comment, rate: selectedRate, carrerUser: "Computer Science", timestamp: `${new Date().toISOString().split('T')[0]}`};
-        setOpinions([...opinions, new_comment]); 
+        setOpinions([...opinions, new_comment]);
+        setComment("")
     }
     return (
         <div className='overflow-scroll h-full'>

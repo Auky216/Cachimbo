@@ -16,8 +16,8 @@ import SubmitFile from "../components/submitFile";
 
 const Aside = () => {
   const location = useLocation();
-  const { logged, setLogged } = stateLogged();
-  
+  const { logout} = stateLogged();
+
   const url = useNavigate();
   const user = useUserStore(state => state.user);
   const [modal, setModal] = useState(false);
@@ -160,7 +160,7 @@ const Aside = () => {
           </NavLink>
           <button
             onClick={() => {
-              setLogged(false);
+              logout();
               url("/");
             }}
             className="flex items-center gap-3 p-1 font-bold text-cach-l5 dark:text-cach-l1"

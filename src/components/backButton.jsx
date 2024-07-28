@@ -22,6 +22,7 @@ const usePreviousUrl = () => {
         }
         prevLocationRef.current = location;
     }, [location, navigationType]);  
+    console.log('previousUrl', previousUrl);
     return previousUrl;
 };
 

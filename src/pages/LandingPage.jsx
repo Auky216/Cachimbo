@@ -19,7 +19,7 @@ const LandingPage = () => {
   const [showAbout, setShowAbout] = useState(false);
   const activeAbout = () => setShowAbout(true);
   const deactiveAbout = () => setShowAbout(false);
-  const {setLogged} = stateLogged();
+  const { login} = stateLogged();
 
   return (
     <main className="max-h-screen overflow-auto">
@@ -56,7 +56,7 @@ const LandingPage = () => {
               </Link>
               <Link to="/dashboard/main"
                 onClick={() => {
-                  setLogged(true);
+                  login();
                 }}
                 className="w-full rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white transition duration-300 hover:bg-cach-l2/50 lg:w-auto"
               >

@@ -9,7 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const apiUrl = import.meta.env.VITE_API_URL;
-  const {setLogged} = stateLogged();
+  const {login} = stateLogged();
   const move = useNavigate();
 
   const handleEmailChange = (event) => {
@@ -41,7 +41,7 @@ const Login = () => {
       if (response.ok) {
         // Manejar el éxito del inicio de sesión, por ejemplo, guardar el token en el almacenamiento local
         //console.log("Login successful:", data);
-        setLogged(true)
+        login();
         move("/dashboard/main");
         // Redirigir al usuario a la página principal u otra página
       } else {
