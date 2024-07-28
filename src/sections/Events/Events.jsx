@@ -66,6 +66,7 @@ const Events = () => {
             date={event.date}
             hour={event.hour}
             link={`/dashboard/main/events/${id}`}
+            image={event.image} 
           />
         ))}
       </div>

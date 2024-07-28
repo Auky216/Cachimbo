@@ -3,9 +3,10 @@ export const getEvents = {
         title: "Lasu 2024",
         date: "12/12/2024",
         hour: "12:00",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nuncl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. ",
         address : "Jr. Medrano Silva 165, Barranco 15063",
         organizer: "Jojiz",
+        image: "url_to_image1.jpg",
     },
 
     evento2: {
@@ -15,6 +16,7 @@ export const getEvents = {
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc",
         address :"Jr. Medrano Silva 165, Barranco 15063",
         organizer: "Jojiz",
+        image: "url_to_image2.jpg",
     },
 
     evento3: {
@@ -24,6 +26,7 @@ export const getEvents = {
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc",
         address : "Jr. Medrano Silva 165, Barranco 15063",
         organizer: "Jojiz",
+        image: "url_to_image3.jpg",
     },
 
     evento4: {
@@ -33,6 +36,7 @@ export const getEvents = {
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc",
         address : "Jr. Medrano Silva 165, Barranco 15063",
         organizer: "Jojiz",
+        image: "url_to_image4.jpg",
     },
 
 }

@@ -130,35 +130,32 @@ export const TeacherMiniCard = ({ name, imageRoute, rate, course }) => {
     </div>
   );
 };
-
-export const EventMiniCard = ({ title, date, hour, link }) => {
+export const EventMiniCard = ({ title, date, hour, link, image }) => {
   return (
-    <div className="flex h-[250px] w-[200px] flex-col items-center justify-between rounded-2xl border border-cach-l3 p-4 text-gray-800 shadow-lg dark:border-cach-l2 dark:text-gray-200">
-      <div className="flex h-[75%] w-full flex-col items-center">
-        <div className="flex h-full w-full flex-col items-center justify-center text-center">
-          <h3 className="text-lg font-bold">
-            <Link
-              to={link}
-              className="text-cach-l3 hover:underline dark:text-cach-l2"
-            >
-              {title}
-            </Link>
-          </h3>
-        </div>
+    <div className="flex h-[250px] w-[200px] flex-col items-center justify-between rounded-2xl border border-cach-l3 text-gray-800 shadow-lg dark:border-cach-l2 dark:text-gray-200">
+      <div className="h-[50%] w-full">
+        <img src={image} alt={title} className="h-full w-full object-cover rounded-t-2xl" />
       </div>
-      <div className="flex h-[25%] w-full flex-col items-center">
-        <div className="flex flex-col items-center justify-center text-center">
-          <p className="text-sm">{date}</p>
-          <p className="text-sm">{hour}</p>
-        </div>
-        <div className="mt-2 flex items-center justify-center">
-          <img
-            src={universitylogo}
-            alt="Universidad"
-            className="h-4 w-4 grayscale filter"
-          />
-          <p className="text-xs text-gray-500 dark:text-gray-400"> UTEC</p>
-        </div>
+      <div className="w-full border-t border-cach-l3 dark:border-cach-l2"></div>
+      <div className="flex h-[40%] w-full flex-col items-center justify-center p-4 text-center">
+        <h3 className="text-lg font-bold">
+          <Link
+            to={link}
+            className="text-cach-l3 hover:underline dark:text-cach-l2"
+          >
+            {title}
+          </Link>
+        </h3>
+        <p className="text-sm">{date}</p>
+        <p className="text-sm">{hour}</p>
+      </div>
+      <div className="flex h-[10%] items-center justify-center">
+        <img
+          src={universitylogo}
+          alt="Universidad"
+          className="h-4 w-4 grayscale filter"
+        />
+        <p className="text-xs text-gray-500 dark:text-gray-400 ml-1">UTEC</p>
       </div>
     </div>
   );
