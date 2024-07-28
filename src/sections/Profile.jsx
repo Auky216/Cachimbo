@@ -41,7 +41,7 @@ const Profile = () => {
           <h1 className="text-xl font-semibold text-cach-l3 dark:text-cach-l2">
             {careerName}
           </h1>
-          <img src={uniImage} alt="uniImage" className="w-14" />
+          <img src={uniImage} alt="uniImage" className="w-9" />
         </div>
       </div>
 

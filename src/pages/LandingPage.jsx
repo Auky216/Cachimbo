@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CachimboLogo } from "../components/icons/CachimoLogo";
 import discordIcon from "../assets/discord.svg";
 import linkedinIcon from "../assets/linkedin.svg";
@@ -7,7 +7,7 @@ import instagramIcon from "../assets/instagram.svg";
 import whatsAppIcon from "../assets/whatsapp.svg";
 import hatIcon from "../assets/hat2.png";
 import ThemeButton from "../components/extras/ThemeButton";
-
+import { stateLogged } from "../store/utils";
 import AI_icon from "../assets/AI_icon.png";
 import Comunity_icon from "../assets/Comunity_Icon.png";
 import Event_Icon from "../assets/Event_Icon.png";
@@ -19,6 +19,7 @@ const LandingPage = () => {
   const [showAbout, setShowAbout] = useState(false);
   const activeAbout = () => setShowAbout(true);
   const deactiveAbout = () => setShowAbout(false);
+  const {setLogged} = stateLogged();
 
   return (
     <main className="max-h-screen overflow-auto">
@@ -53,9 +54,9 @@ const LandingPage = () => {
               >
                 Iniciar Sesión
               </Link>
-              <Link
+              <Link to="/dashboard/main"
                 onClick={() => {
-                  window.location.href = "/dashboard/main";
+                  setLogged(true);
                 }}
                 className="w-full rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white transition duration-300 hover:bg-cach-l2/50 lg:w-auto"
               >

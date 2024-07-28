@@ -25,7 +25,7 @@ const usePreviousUrl = () => {
     return previousUrl;
 };
 
-const BackButton = ({message}) => {
+const BackButton = ({message="Regresar"}) => {
     const last_path = usePreviousUrl();
     const safeNavigate = useSafeNavigate();
     const navigate = useNavigate();
@@ -41,7 +41,7 @@ const BackButton = ({message}) => {
         //safeNavigate(-1);
     };
 
-    return <button onClick={handleGoBack} className='mb-3 mt-2 flex min-h-8 w-1/6 items-center justify-center rounded-xl bg-cach-l3 text-cach-l1'>{message || "Regresar"}</button>;
+    return <button onClick={handleGoBack} className='mb-3 mt-2 flex min-h-8 w-1/6 items-center justify-center rounded-xl bg-cach-l3 text-cach-l1'>{message}</button>;
 };
 
 export default BackButton;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { stateLogged } from "../store/utils";
+import { Link, useNavigate } from "react-router-dom";
 import { CachimboLogo } from "../components/icons/CachimoLogo";
 import ThemeButton from "../components/extras/ThemeButton";
 
@@ -8,6 +9,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const apiUrl = import.meta.env.VITE_API_URL;
+  const {setLogged} = stateLogged();
+  const move = useNavigate();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -21,7 +24,8 @@ const Login = () => {
     event.preventDefault(); // Evita que el formulario se envíe automáticamente
     
     try {
-      const response = await fetch(`${apiUrl}/test/api/auth/login`, {
+      //url adaptado al proxy del proyecto
+      const response = await fetch(`/api/test/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +40,9 @@ const Login = () => {
 
       if (response.ok) {
         // Manejar el éxito del inicio de sesión, por ejemplo, guardar el token en el almacenamiento local
-        console.log("Login successful:", data);
+        //console.log("Login successful:", data);
+        setLogged(true)
+        move("/dashboard/main");
         // Redirigir al usuario a la página principal u otra página
       } else {
         // Manejar el error de inicio de sesión

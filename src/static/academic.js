@@ -7,7 +7,7 @@ export const universities = [
   {
     sigle: "UTEC",
     name: "Universidad de Ingeniería y Tecnología",
-    logo: "",
+    logo: "https://utec.edu.pe/sites/default/files/isologo-utec.png",
   },
   {
     sigle: "UPC",

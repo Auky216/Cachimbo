@@ -20,7 +20,7 @@ import EventInfo from "../sections/Events/Eventinfo";
 import Sugerencias from "../sections/sugerencias/Suggestions";
 import SuggestionDetail from "../sections/sugerencias/SuggestionDetail";
 
-const router = [
+export const routerNormal = [
   {
     path: "/login",
     element: <Login />,
@@ -36,7 +36,10 @@ const router = [
   {
     path: "/welcome",
     element: <LandingPage />,
-  },
+  }
+];
+
+export const routerProtected = [
   {
     path: "/dashboard/main",
     element: <Principal />,
@@ -93,6 +96,4 @@ const router = [
     path: "/dashboard/main/sugerencias/:id",
     element: <SuggestionDetail />,
   }
-];
-
-export default router;
+]

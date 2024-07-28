@@ -8,6 +8,16 @@ export const useThemeStore = create(set => ({
   setTheme: theme => set({ theme: theme === "light" ? "dark" : "light" }),
 }));
 
+
+export const stateLogged = create(set => ({
+  logged: {
+    state: null,
+  },
+  setLogged: (login) => set(state => ({
+    logged: { state: login },
+  })),
+}));
+
 /*I added new attributes*/
 export const useUserStore = create(set => ({
   user: {

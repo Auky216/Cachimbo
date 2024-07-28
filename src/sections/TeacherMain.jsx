@@ -23,7 +23,7 @@ const TeacherMain = () => {
 
         
             const raw = JSON.stringify({
-                "name": "Juan",
+                "name": "A",
                 "token": token
             });
     
@@ -37,7 +37,7 @@ const TeacherMain = () => {
             try {
                 const response = await fetch("/api/test/api/teacher/find_teacher", requestOptions);
                 const result = await response.json();
-                console.log(result);
+                console.log(JSON.parse(result.body));
             } catch (error) {
                 console.error('Error:', error);
             }

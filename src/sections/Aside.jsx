@@ -8,14 +8,17 @@ import asistantIcon from "../assets/ia-icon.png";
 import groupsIcon from "../assets/groups-icon.png";
 import settingIcon from "../assets/setting-icon.png";
 import logOutIcon from "../assets/logout-icon.png";
-import { NavLink, useLocation } from "react-router-dom";
-import { useUserStore } from "../store/utils";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useUserStore, stateLogged } from "../store/utils";
 import { useState } from "react";
 import Modal from "../components/Modal";
 import SubmitFile from "../components/submitFile";
 
 const Aside = () => {
   const location = useLocation();
+  const { logged, setLogged } = stateLogged();
+  
+  const url = useNavigate();
   const user = useUserStore(state => state.user);
   const [modal, setModal] = useState(false);
   const [namefile, setNamefile] = useState("");
@@ -157,7 +160,8 @@ const Aside = () => {
           </NavLink>
           <button
             onClick={() => {
-              window.location.href = "/";
+              setLogged(false);
+              url("/");
             }}
             className="flex items-center gap-3 p-1 font-bold text-cach-l5 dark:text-cach-l1"
           >
