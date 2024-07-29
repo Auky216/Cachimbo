@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import {routerNormal, routerProtected} from "./routes/root.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
@@ -10,11 +10,14 @@ import Cookies from "js-cookie";
 const App = () => {
   const { isAuthenticated, checkAuth } = stateLogged();
   //console.log(lgState.state);
-  const route = useThemeStore(state => state.route);
+  const {setRoute, history} = useThemeStore();
+  const location = useLocation();
+  const newRoute = location.pathname;
   useEffect(() => {
-    useThemeStore.setState({ route: window.location.pathname });
+    setRoute(newRoute);
+    console.log('history', history);
     checkAuth();
-  }, [route, checkAuth]);
+  }, [newRoute, checkAuth]);
   const showMainPage = isAuthenticated;
 
   return (
@@ -32,7 +35,6 @@ const App = () => {
               element={route.element}
             ></Route>
             ))}
-            <Route key="*" path="*" element={<Navigate to="./"/>}/>
         </Routes>
       )}
     </div>

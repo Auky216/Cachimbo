@@ -1,13 +1,52 @@
 import { create } from "zustand";
 import Cookies from 'js-cookie';
+import { useLocation } from "react-router-dom";
+import { useRef } from "react";
 
 
 export const useThemeStore = create(set => ({
   theme: localStorage.getItem("theme") || "light",
-  route: location.pathname,
+  route: window.location.href,
+  history: [],
   // background: "bg-white dark:bg-cach-l4",
   // setBackground: background => set({ background }),
   setTheme: theme => set({ theme: theme === "light" ? "dark" : "light" }),
+  setRoute: (route) => {
+    set(state => {
+      const newHistory = [...state.history];
+
+      if (route !== state.route) {
+        newHistory.push(route);
+      }
+      
+      return {
+        route: route,
+        history: newHistory,
+      };
+    });
+  },
+  goBack: () => {
+    set(state => {
+      const newHistory = [...state.history];
+      console.log(state.history);
+      if (newHistory.length > 1) {
+        newHistory.pop(); 
+        console.log("nuevo Historial", newHistory);
+        const previousRoute = newHistory[newHistory.length - 1]; 
+        
+        return {
+          route: previousRoute,
+          history: newHistory,
+        };
+      }
+      else{
+        return{
+          route: "/dashboard/main",
+          history: newHistory,
+        }
+      } 
+    });
+  },
 }));
 
 

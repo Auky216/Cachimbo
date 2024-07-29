@@ -38,6 +38,10 @@ export const routerNormal = [
     path: "/welcome",
     element: <LandingPage />,
   },
+  {
+    path: "*",
+    element: <LandingPage />,
+  },
 ];
 
 export const routerProtected = [
@@ -96,5 +100,5 @@ export const routerProtected = [
   {
     path: "/dashboard/main/sugerencias/:id",
     element: <SuggestionDetail />,
-  }
+  },
 ]

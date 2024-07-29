@@ -39,7 +39,7 @@ const TeachersIndividualPage = () => {
         setComment("")
     }
     return (
-        <div className='overflow-scroll h-full'>
+        <div className='overflow-scroll h-full' key={params.id}>
             <div className='w-full mt-16'>
                 <BackButton></BackButton>
             </div>
@@ -55,7 +55,7 @@ const TeachersIndividualPage = () => {
                         </h1>
                         <div className='flex w-full justify-between mt-3 mb-3'>
                             {stars.map((_, index) => (
-                                <Star className="" item={index} bg={index < Math.round(teacher.rate)} l="19"
+                                <Star key={index} className="" item={index} bg={index < Math.round(teacher.rate)} l="19"
                                 onClick={() => handleStarClick(index)}></Star>
                             ))}
                         </div>

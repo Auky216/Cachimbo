@@ -1,9 +1,15 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { stateLogged } from "../store/utils";
 import { Navigate, Outlet } from "react-router-dom";
+import { check } from "prettier";
 
 const ProtectedRoutes = ({children, url="/"}) => {
-    const {isAuthenticated} = stateLogged();
+    const {isAuthenticated, checkAuth} = stateLogged();
+    
+    useEffect(() => {
+        checkAuth();
+    }, []);
+    
     if (!isAuthenticated) {
         return (
             <Navigate to={url} />

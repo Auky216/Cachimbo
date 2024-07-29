@@ -20,10 +20,8 @@ const TeacherMain = () => {
         const fetchData = async () => {
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-
-        
             const raw = JSON.stringify({
-                "name": "A",
+                "name": "J",
                 "token": token
             });
     
@@ -33,11 +31,10 @@ const TeacherMain = () => {
                 body: raw,
                 redirect: "follow"
             };
-    
             try {
                 const response = await fetch("/api/test/api/teacher/find_teacher", requestOptions);
                 const result = await response.json();
-                console.log(JSON.parse(result.body));
+                console.log((JSON.parse(result.body)));
             } catch (error) {
                 console.error('Error:', error);
             }
@@ -47,9 +44,8 @@ const TeacherMain = () => {
     }, []); 
 
 
-    const filterTeachersByCourse = (e) => {
+    const changeInputValue = (e) => {
         setInputValue(e.target.value)
-        filterTeachers(teachers.filter(teacher => (teacher.name.toLocaleLowerCase()).includes((e.target.value).toLocaleLowerCase())));
     }
     
     return (
@@ -65,8 +61,11 @@ const TeacherMain = () => {
             </p>
             <div className="w-full">
                 <input
-                    onChange={e => filterTeachersByCourse(e)}
+                    onChange={e => changeInputValue(e)}
                     type="text"
+                    onKeyUp={e => {
+                        if (e.key === "Enter") filterTeachers(teachers.filter(teacher => teacher.name.includes(inputValue)));
+                    }}
                     value={inputValue}
                     placeholder="Prof."
                     className="w-full my-5 rounded-full border border-cach-l3 bg-cach-l1 bg-transparent px-5 py-2 text-cach-l3 placeholder-cach-l3/70 focus:outline-none dark:border-cach-l2 dark:text-cach-l2 dark:placeholder-cach-l2/40"
@@ -77,6 +76,7 @@ const TeacherMain = () => {
                 {techers_section.map((teacher, index) => (
                     <NavLink to={`/dashboard/main/teachers/${teacher.id}`} key={teacher.id}>
                         <TeacherMiniCard
+                            key={index}
                             name={teacher.name.split(' ').slice(0, 2).join(' ')}
                             imageRoute={teacher.photo}
                             course={getCursos[teacher.courses[0]].title} // Asumiendo que quieres mostrar el primer curso

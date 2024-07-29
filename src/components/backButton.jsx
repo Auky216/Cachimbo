@@ -1,47 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useLocation, useNavigationType, useNavigate } from 'react-router-dom';
-
-const useSafeNavigate = () => {
-    const navigate = useNavigate();
-
-    const safeNavigate = (steps) => {
-        navigate(steps);
-    };
-
-    return safeNavigate;
-};
-
-const usePreviousUrl = () => {
-    const [previousUrl, setPreviousUrl] = useState(null);
-    const location = useLocation();
-    const navigationType = useNavigationType();
-    const prevLocationRef = useRef(location);
-    useEffect(() => {
-        if (navigationType === 'PUSH') {
-            setPreviousUrl(prevLocationRef.current.pathname + prevLocationRef.current.search);
-        }
-        prevLocationRef.current = location;
-    }, [location, navigationType]);  
-    console.log('previousUrl', previousUrl);
-    return previousUrl;
-};
+import React, { useEffect } from 'react';
+import {useNavigate } from 'react-router-dom';
+import { useThemeStore } from '../store/utils';
 
 const BackButton = ({message="Regresar"}) => {
-    const last_path = usePreviousUrl();
-    const safeNavigate = useSafeNavigate();
+    const {route, history, goBack} = useThemeStore();
     const navigate = useNavigate();
 
     const handleGoBack = () => {
-        //console.log('safeNavigate', last_path);
-        if (last_path) {
-            safeNavigate(-1);
+        goBack();
+    };
+    useEffect(() => {
+        if (history.length > 0) {
+            //console.log('history', history);
+            //console.log('route', route);
+            navigate(route);
         }
         else{
             navigate('/dashboard/main');
         }
-        //safeNavigate(-1);
-    };
 
+    }, [route, history, navigate]);
+    //console.log('Route del utils', route);
     return <button onClick={handleGoBack} className='mb-3 mt-2 flex min-h-8 w-1/6 items-center justify-center rounded-xl bg-cach-l3 text-cach-l1'>{message}</button>;
 };
 
