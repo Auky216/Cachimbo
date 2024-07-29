@@ -59,6 +59,13 @@ const Register = () => {
     setCurrentSlide(currentSlide + 1);
   };
 
+  const nextUser = data => {
+    setChangeUser(data.name, "name");
+    setChangeUser(data.lastname, "lastname");
+    setChangeUser(data.nickname, "nickname");
+    setCurrentSlide(currentSlide + 1);
+  };
+
   const finalize = () => {
     // se realizaria un POST a la API para registrar al usuario
     // dirigir al dashboard
@@ -70,7 +77,7 @@ const Register = () => {
     <Career next={nextSlide} />,
     <Academic next={nextAcademic} />,
     // <OtherCourses next={nextSlide} />,
-    // <GetUser next={nextSlide} />,
+    <GetUser next={nextUser} />,
     // <Password next={nextSlide} />,
     // <Verify next={nextSlide} />,
     // <PhotoProfile next={nextSlide} />,
