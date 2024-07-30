@@ -28,10 +28,10 @@ export const useThemeStore = create(set => ({
   goBack: () => {
     set(state => {
       const newHistory = [...state.history];
-      console.log(state.history);
+      //console.log(state.history);
       if (newHistory.length > 1) {
         newHistory.pop(); 
-        console.log("nuevo Historial", newHistory);
+        //console.log("nuevo Historial", newHistory);
         const previousRoute = newHistory[newHistory.length - 1]; 
         
         return {

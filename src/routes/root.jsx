@@ -2,6 +2,7 @@
  * Agregar las rutas necesarias para las secciones para testear
  */
 import React from "react";
+import { Navigate } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import LandingPage from "../pages/LandingPage";
@@ -40,7 +41,7 @@ export const routerNormal = [
   },
   {
     path: "*",
-    element: <LandingPage />,
+    element: <Navigate to="/" />,
   },
 ];
 

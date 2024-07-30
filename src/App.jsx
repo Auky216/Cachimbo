@@ -15,7 +15,7 @@ const App = () => {
   const newRoute = location.pathname;
   useEffect(() => {
     setRoute(newRoute);
-    console.log('history', history);
+    //console.log('history', history);
     checkAuth();
   }, [newRoute, checkAuth]);
   const showMainPage = isAuthenticated;

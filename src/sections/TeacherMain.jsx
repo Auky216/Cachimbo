@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import {teachers} from '../constant/teachers';
 import { getCursos } from "../constant/course";
 import BackButton from "../components/backButton";
+import Loader from "../components/Loading";
 
 const TeacherMain = () => {
     /** Estoy pensando en que cuando se pase
@@ -14,33 +15,38 @@ const TeacherMain = () => {
     const cursosArray = Object.keys(getCursos);
     const [techers_section, filterTeachers] = useState(teachers);
     const [inputValue, setInputValue] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
 
     const token = import.meta.env.VITE_TOKEN;
-    useEffect(() => {
-        const fetchData = async () => {
-            const myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            const raw = JSON.stringify({
-                "name": "J",
-                "token": token
-            });
     
-            const requestOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: raw,
-                redirect: "follow"
-            };
-            try {
-                const response = await fetch("/api/test/api/teacher/find_teacher", requestOptions);
-                const result = await response.json();
-                console.log((JSON.parse(result.body)));
-            } catch (error) {
-                console.error('Error:', error);
-            }
-            };
-        
-        fetchData();
+    const fetchData = async (search_value) => {
+        setIsLoading(true);
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        const raw = JSON.stringify({
+            "name": search_value,
+            "token": token
+        });
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+        try {
+            const response = await fetch("/api/test/api/teacher/find_teacher", requestOptions);
+            const result = await response.json();
+            filterTeachers((JSON.parse(result.body)));
+            setIsLoading(false);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+    
+
+    useEffect(() => {
+        fetchData("a");
     }, []); 
 
 
@@ -64,26 +70,30 @@ const TeacherMain = () => {
                     onChange={e => changeInputValue(e)}
                     type="text"
                     onKeyUp={e => {
-                        if (e.key === "Enter") filterTeachers(teachers.filter(teacher => teacher.name.includes(inputValue)));
+                        if (e.key === "Enter") {
+                            fetchData(inputValue);
+                        }
                     }}
                     value={inputValue}
                     placeholder="Prof."
                     className="w-full my-5 rounded-full border border-cach-l3 bg-cach-l1 bg-transparent px-5 py-2 text-cach-l3 placeholder-cach-l3/70 focus:outline-none dark:border-cach-l2 dark:text-cach-l2 dark:placeholder-cach-l2/40"
                 />
             </div>
-            <div className="grid grid-cols-[repeat(auto-fill,_minmax(224px,_1fr))] gap-4">
+            <div className="w-full flex justify-center items-center">
                 {/* Se usará un map para generar todos los teaches mini card necesarios */}
-                {techers_section.map((teacher, index) => (
-                    <NavLink to={`/dashboard/main/teachers/${teacher.id}`} key={teacher.id}>
+                {isLoading ? <Loader/> : <div className="w-full grid grid-cols-[repeat(auto-fill,_minmax(224px,_1fr))] gap-4">
+                    {techers_section.map((teacher, index) => (
+                    <NavLink to={`/dashboard/main/teachers/${teacher.name}`} key={teacher.name}>
                         <TeacherMiniCard
                             key={index}
                             name={teacher.name.split(' ').slice(0, 2).join(' ')}
-                            imageRoute={teacher.photo}
-                            course={getCursos[teacher.courses[0]].title} // Asumiendo que quieres mostrar el primer curso
-                            rate={teacher.rate}
+                            imageRoute={teacher.img}
+                            course={"Curso"}//getCursos[teacher.courses[0]].title} // Asumiendo que quieres mostrar el primer curso
+                            rate={2}
                         />
                     </NavLink>
-                ))
+                ))}
+                </div>
                 }
             </div>
         </div>
