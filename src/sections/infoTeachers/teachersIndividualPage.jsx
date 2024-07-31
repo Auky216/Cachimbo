@@ -12,42 +12,28 @@ import TOpinion from './TOpinion';
 import { getCursos } from '../../constant/course';
 import BackButton from '../../components/backButton';
 import Loader from '../../components/Loading';
+import fetchDataCustom from '../../components/fetchingData';
+import { useUserStore } from '../../store/utils';
 
 const TeachersIndividualPage = () => {
     const params = useParams();
     const [isLoading, setIsLoading] = useState(true);
-
+    const {user} = useUserStore();
     const[info, setInfo] = useState();
     const name = params.id;
     //const teacher = teachers.find(t => t.id === parseInt(params.id));
     
-    const token = import.meta.env.VITE_TOKEN;
+    const token = user.token;
     
     const fetchData = async (search_value) => {
         setIsLoading(true);
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        const raw = JSON.stringify({
+        const [result, body, state] = await fetchDataCustom({
             "name": search_value,
             "token": token
-        });
-
-        const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: raw,
-            redirect: "follow"
-        };
-        try {
-            const response = await fetch("/api/test/api/teacher/get_information", requestOptions);
-            const result = await response.json();
-            const newInfo = JSON.parse(result.body);
-            setInfo(newInfo);
-            setIsLoading(false);
-            console.log(info);
-        } catch (error) {
-            console.error('Error:', error);
-        }
+        }, "test/api/teacher/get_information")
+        
+        setInfo(body);
+        setIsLoading(state);
     };
     
 

@@ -3,6 +3,7 @@ import { stateLogged } from "../store/utils";
 import { Link, useNavigate } from "react-router-dom";
 import { CachimboLogo } from "../components/icons/CachimoLogo";
 import ThemeButton from "../components/extras/ThemeButton";
+import fetchDataCustom from "../components/fetchingData";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -21,37 +22,21 @@ const Login = () => {
   };
 
   const handleLogin = async (event) => {
-    event.preventDefault(); // Evita que el formulario se envíe automáticamente
     
-    try {
-      //url adaptado al proxy del proyecto
-      const response = await fetch(`/api/test/api/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+    
+    event.preventDefault(); // Evita que el formulario se envíe automáticamente
+    const [result, body, state] = await fetchDataCustom({
+      "email": email,
+      "password": password,
+    }, "test/api/auth/login");
+    //console.log(result, body)
 
-      const data = await response.json();
-
-      if (response.ok) {
-        // Manejar el éxito del inicio de sesión, por ejemplo, guardar el token en el almacenamiento local
-        //console.log("Login successful:", data);
-        login();
-        move("/dashboard/main");
-        // Redirigir al usuario a la página principal u otra página
-      } else {
-        // Manejar el error de inicio de sesión
-        setError(data.message || "Error de inicio de sesión");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      setError("Error de red");
-    }
+    if (body.message){
+      login();
+      move("/dashboard/main");
+    } else if (body.error){
+      setError(body.error || "Error de inicio de sesión");
+    }; 
   };
 
   return (

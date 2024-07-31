@@ -1,7 +1,5 @@
 import { create } from "zustand";
 import Cookies from 'js-cookie';
-import { useLocation } from "react-router-dom";
-import { useRef } from "react";
 
 
 export const useThemeStore = create(set => ({
@@ -81,6 +79,7 @@ export const useUserStore = create(set => ({
     password: "",
     confirmPassword: "",
     profileDescription: "I love to code and learn new things",
+    token:import.meta.env.VITE_TOKEN,
   },
   resetUser: () =>
     set(state => {

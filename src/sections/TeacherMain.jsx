@@ -5,6 +5,8 @@ import {teachers} from '../constant/teachers';
 import { getCursos } from "../constant/course";
 import BackButton from "../components/backButton";
 import Loader from "../components/Loading";
+import fetchDataCustom from "../components/fetchingData";
+import { useUserStore } from "../store/utils";
 
 const TeacherMain = () => {
     /** Estoy pensando en que cuando se pase
@@ -16,32 +18,19 @@ const TeacherMain = () => {
     const [techers_section, filterTeachers] = useState(teachers);
     const [inputValue, setInputValue] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+    const {user} = useUserStore();
 
-    const token = import.meta.env.VITE_TOKEN;
+    const token = user.token;
     
     const fetchData = async (search_value) => {
-        setIsLoading(true);
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        const raw = JSON.stringify({
-            "name": search_value,
-            "token": token
-        });
+        setIsLoading(true)
+        const [result, data, state] = await fetchDataCustom({
+            name: search_value,
+            token: token
+        }, "test/api/teacher/find_teacher");
+        filterTeachers(data);
+        setIsLoading(state);
 
-        const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: raw,
-            redirect: "follow"
-        };
-        try {
-            const response = await fetch("/api/test/api/teacher/find_teacher", requestOptions);
-            const result = await response.json();
-            filterTeachers((JSON.parse(result.body)));
-            setIsLoading(false);
-        } catch (error) {
-            console.error('Error:', error);
-        }
     };
     
 

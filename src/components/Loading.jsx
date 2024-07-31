@@ -3,7 +3,7 @@ import React from 'react';
 const Loader = () => {
     return (
         <div className="flex items-center justify-center">
-            <div className="loader ease-linear rounded-full border-8 border-t-8 border-zinc-200 h-32 w-32"></div>
+            <div className="loader ease-linear rounded-full border-8 border-t-8 border-zinc-200 h-12 w-12"></div>
             <style>
                 {`
                 .loader {
