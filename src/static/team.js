@@ -5,6 +5,8 @@ import Adrian from "../assets/TeamPhoto/Adrian.jpeg";
 // import Noe from "../assets/TeamPhoto/Noe.jpeg";
 import Danilo from "../assets/TeamPhoto/Danilo.jpeg";
 import Javier from "../assets/TeamPhoto/Javier.jpeg";
+import Joseph  from "../assets/TeamPhoto/Joseph.jpeg";
+
 
 export const Team = [
   {
@@ -13,6 +15,14 @@ export const Team = [
     email: "adrian.auqui@utec.edu.pe",
     role: "Presidente",
     image: Antonio,
+  },
+
+  {
+    name: "Joseph Anderson",
+    lastName: "Cose Rojas",
+    email: "joseph.cose@utec.edu.pe",
+    role: "Frontend Developerr",
+    image: Joseph,
   },
   {
     name: "Yanelit",
