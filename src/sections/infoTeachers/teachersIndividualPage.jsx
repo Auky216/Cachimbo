@@ -8,6 +8,7 @@ import CommentInput from './CustomInput';
 import TOpinion from './TOpinion';
 import BackButton from '../../components/backButton';
 import Loader from '../../components/Loading';
+import { carrers } from '../../static/academic';
 import fetchDataCustom from '../../components/fetchingData';
 import { useUserStore } from '../../store/utils';
 
@@ -16,7 +17,9 @@ const TeachersIndividualPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const {user} = useUserStore();
     const[info, setInfo] = useState();
-    //const teacher = teachers.find(t => t.id === parseInt(params.id));
+    const careerName = carrers[user.university].find(
+        carr => carr.code === user.career,
+    ).name;
     
     const [opinions, setOpinions] = useState([]);
     
@@ -33,20 +36,25 @@ const TeachersIndividualPage = () => {
         setComment(event.target.value);
     };
 
-    const sendOpinion = () => {
+    const sendOpinion = async () => {
         // Aquí se enviaría la opinión
+        //console.log(opinions);
+        const [res, body, state] = await fetchDataCustom({
+            teacher_name: name,
+            nickname: user.nickname,
+            career: careerName,
+            comment,
+            score: selectedRate,
+            token: user.token,
+        }, "test/api/teacher/calification/send")
+        //console.log(res, body, state);
         const new_comment = {comment: comment, 
-            rate: selectedRate, 
-            author: user.nickname,
-            nickname: user.career, 
+            teacher_name: name,
+            score: selectedRate,
+            career: careerName,
+            nickname: user.nickname, 
             date: `${new Date().toISOString()}`};
         setOpinions([...opinions, new_comment]);
-        //console.log(opinions);
-        /* 
-        
-        Código para hacer el post va a ir aqui Bv
-
-        */
         setComment("")
     }
 
@@ -59,7 +67,7 @@ const TeachersIndividualPage = () => {
             "token": token
         }, "test/api/teacher/get_information")
         const [result2, body2, state2] = await fetchDataCustom({"teacher_name":name, "token":token}, "test/api/teacher/calification/get")
-        console.log(body2.comments, result2);
+        //console.log(body2.comments, result2);
         
         if (result2.statusCode == 200){
             setOpinions(body2.comments)
@@ -162,7 +170,7 @@ const TeachersIndividualPage = () => {
                                     <TOpinion
                                         key={opinion.date} // Asumiendo que cada 'opinion' tiene un 'id' único. Es importante proporcionar una prop 'key' cuando se renderizan listas.
                                         profile_author_route={opinion.profile_author_route}
-                                        rate={opinion.rate}
+                                        rate={opinion.score}
                                         author={opinion.nickname}
                                         date={opinion.date.split('T')[0]}
                                         comment={opinion.comment}
