@@ -16,34 +16,17 @@ import fetchDataCustom from '../../components/fetchingData';
 import { useUserStore } from '../../store/utils';
 
 const TeachersIndividualPage = () => {
-    const params = useParams();
+    const {name} = useParams();
     const [isLoading, setIsLoading] = useState(true);
+    const [comsLoading, setComsLoading] = useState(true);
     const {user} = useUserStore();
     const[info, setInfo] = useState();
-    const name = params.id;
     //const teacher = teachers.find(t => t.id === parseInt(params.id));
     
-    const token = user.token;
-    
-    const fetchData = async (search_value) => {
-        setIsLoading(true);
-        const [result, body, state] = await fetchDataCustom({
-            "name": search_value,
-            "token": token
-        }, "test/api/teacher/get_information")
-        
-        setInfo(body);
-        setIsLoading(state);
-    };
-    
-
-    useEffect(() => {
-        fetchData(name);
-    }, []); 
-
-    const [opinions, setOpinions] = useState(TeachersOpinion.filter(o => o.teachercode === params.id));
+    const [opinions, setOpinions] = useState([]);
     
     const stars = Array(MAX_RATE).fill(0);
+    const [teacherRate, setTheacherRate] = useState(4);
     const [selectedRate, setSelectedRate] = useState(4);
     
     const handleStarClick = (index) => {
@@ -55,15 +38,54 @@ const TeachersIndividualPage = () => {
         setComment(event.target.value);
     };
 
-    
     const sendOpinion = () => {
         // Aquí se enviaría la opinión
-        const new_comment = {teachercode: params.id, description: comment, rate: selectedRate, carrerUser: "Computer Science", timestamp: `${new Date().toISOString().split('T')[0]}`};
+        const new_comment = {description: comment, 
+            rate: selectedRate, 
+            author: "Computer Science",
+            nickname: "Anónimo", 
+            timestamp: `${new Date().toISOString().split('T')[0]}`};
         setOpinions([...opinions, new_comment]);
+        //console.log(opinions);
+        /* 
+        
+        Código para hacer el post va a ir aqui Bv
+
+        */
         setComment("")
     }
+
+    const token = user.token;
+    
+    const fetchData = async (search_value) => {
+        setIsLoading(true);
+        setComsLoading(true);
+        const [result, body, state] = await fetchDataCustom({
+            "name": search_value,
+            "token": token
+        }, "test/api/teacher/get_information")
+        const [result2, body2, state2] = await fetchDataCustom({"teacher_name":name, "token":token}, "test/api/teacher/calification/get")
+        //console.log(body2.comments, result2);
+        
+        if (!result2.statusCode == 404){
+            setOpinions(body2.comments)
+            setSelectedRate(body2.score);
+        };
+        setInfo(body);
+        
+        setIsLoading(state);
+        setComsLoading(state2);
+        
+    };
+    
+
+    useEffect(() => {
+        fetchData(name);
+    }, []); 
+
+    
     return (
-        <div className='overflow-scroll h-full' key={params.id}>
+        <div className='overflow-scroll h-full'>
             {isLoading ? <Loader/> : 
                 <div className='w-full'>
                     <div className='w-full mt-16'>
@@ -81,7 +103,7 @@ const TeachersIndividualPage = () => {
                                 </h1>
                                 <div className='flex w-full justify-between mt-3 mb-3'>
                                     {stars.map((_, index) => (
-                                        <Star key={index} className="" item={index} bg={index < Math.round(4)} l="19"
+                                        <Star key={index} className="" item={index} bg={index < Math.round(teacherRate)} l="19"
                                         onClick={() => handleStarClick(index)}></Star>
                                     ))}
                                 </div>
@@ -144,10 +166,10 @@ const TeachersIndividualPage = () => {
                                 ) : (
                                     opinions.map((opinion) => (
                                     <TOpinion
-                                        key={opinion.id} // Asumiendo que cada 'opinion' tiene un 'id' único. Es importante proporcionar una prop 'key' cuando se renderizan listas.
+                                        key={opinion.date} // Asumiendo que cada 'opinion' tiene un 'id' único. Es importante proporcionar una prop 'key' cuando se renderizan listas.
                                         profile_author_route={opinion.profile_author_route}
                                         rate={opinion.rate}
-                                        author={opinion.carrerUser}
+                                        author={opinion.nickname}
                                         date={opinion.timestamp}
                                         comment={opinion.description}
                                     />
@@ -163,5 +185,4 @@ const TeachersIndividualPage = () => {
 };
 
 export default TeachersIndividualPage;
-
             

@@ -17,6 +17,7 @@ const App = () => {
     setRoute(newRoute);
     //console.log('history', history);
     checkAuth();
+    //console.log(history)
   }, [newRoute, checkAuth]);
   const showMainPage = isAuthenticated;
 
@@ -35,6 +36,16 @@ const App = () => {
               element={route.element}
             ></Route>
             ))}
+          <Route element={<ProtectedRoutes/>}>
+            {routerProtected.map(route => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              ></Route>
+              ))
+            }
+          </Route>
         </Routes>
       )}
     </div>

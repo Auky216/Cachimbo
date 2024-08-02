@@ -24,6 +24,10 @@ import HomePage from "../pages/HomePage";
 
 export const routerNormal = [
   {
+    path: "/",
+    element: <LandingPage />,
+  },
+  {
     path: "/login",
     element: <Login />,
   },
@@ -32,16 +36,8 @@ export const routerNormal = [
     element: <Register />,
   },
   {
-    path: "/",
-    element: <LandingPage />,
-  },
-  {
     path: "/welcome",
     element: <LandingPage />,
-  },
-  {
-    path: "*",
-    element: <Navigate to="/" />,
   },
 ];
 
@@ -79,8 +75,8 @@ export const routerProtected = [
     element: <TeacherMain />,
   },
   {
-    path: "/dashboard/main/teachers/:id",
-    element: <TeachersIndividualPage/>,
+    path: "/dashboard/main/teachers/:name", 
+    element: <TeachersIndividualPage />,
   },
   {
     path: "/dashboard/main/nextcourses",
@@ -102,4 +98,8 @@ export const routerProtected = [
     path: "/dashboard/main/sugerencias/:id",
     element: <SuggestionDetail />,
   },
-]
+  {
+    path: "*",
+    element: <Navigate to="/dashboard/main" />,
+  }
+];

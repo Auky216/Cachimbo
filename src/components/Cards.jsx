@@ -100,8 +100,8 @@ export const CardNumberStat = ({ title, number, imgsrc }) => {
   );
 };
 
-export const TeacherMiniCard = ({ name, imageRoute, rate, course }) => {
-  const stars = Array(MAX_RATE).fill(0);
+export const TeacherMiniCard = ({ name, imageRoute, rate }) => {
+  //const stars = Array(MAX_RATE).fill(0);
   //console.log(course);
   //console.log(getCursos[course[0]]);
   return (
@@ -115,8 +115,7 @@ export const TeacherMiniCard = ({ name, imageRoute, rate, course }) => {
       </div>
       <div className="flex flex-1 flex-col items-center justify-center">
         <span className="text-center">{name}</span>
-        <span className="text-center">{course}</span>
-        <span className="flex flex-row">
+        {/* <span className="flex flex-row">
           {stars.map((_, index) => (
             <Star
               className=""
@@ -125,7 +124,7 @@ export const TeacherMiniCard = ({ name, imageRoute, rate, course }) => {
               l="10"
             ></Star>
           ))}
-        </span>
+        </span> */}
       </div>
     </div>
   );

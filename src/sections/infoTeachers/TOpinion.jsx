@@ -12,13 +12,14 @@ const TOpinion = ({profile_author_route, rate, author, date, comment}) =>{
                     <img src={profile_author_route || Default} alt="profile_image" className='w-20'/>
                 </div>
                 <div className='text-sm'>
+                    
+                    <h1>{author}</h1>
                     <div className='flex'>
                         {Array(5).fill(0).map((_, index) => (
                             <Star key={index} bg={index < Math.round(rate)} l="11" />
                         ))}
                     </div>
-                    <h1>{author}</h1>
-                    {/* <cite>{date}</cite> */}
+                    <cite>{date}</cite>
                 </div>
                 
             </div>

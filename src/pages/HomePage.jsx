@@ -2,6 +2,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Aside from "../sections/Aside";
 import {routerProtected} from "../routes/root";
 import ProtectedRoutes from "../routes/protectedRoutes";
+import TeachersIndividualPage from "../sections/infoTeachers/teachersIndividualPage";
 
 const HomePage = () => {
   return (
@@ -12,14 +13,14 @@ const HomePage = () => {
           {/*Routes protected*/}
           <Route element={<ProtectedRoutes/>}>
             {routerProtected.map(route => (
-              <Route
-                key={route.path}
-                path={route.path}
-                element={route.element}
-              ></Route>
-              ))}
-            </Route>
-            <Route key="*" path="*" element={<Navigate to="/dashboard/main"/>}/>
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.element}
+                ></Route>
+                ))
+              }
+          </Route>
         </Routes>
       </section>
       <aside className="h-screen min-w-[12%] px-4 py-7">

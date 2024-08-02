@@ -49,7 +49,7 @@ export const useThemeStore = create(set => ({
 
 
 export const stateLogged = create((set) => ({
-  isAuthenticated: false,
+  isAuthenticated: Cookies.get('isAuthenticated') || false,
   login: () => {
     Cookies.set('isAuthenticated', true, { expires: 7 });
     set({ isAuthenticated: true });

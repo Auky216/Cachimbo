@@ -1,5 +1,5 @@
 import { TeacherMiniCard } from "../components/Cards";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import {teachers} from '../constant/teachers';
 import { getCursos } from "../constant/course";
@@ -28,7 +28,7 @@ const TeacherMain = () => {
             name: search_value,
             token: token
         }, "test/api/teacher/find_teacher");
-        filterTeachers(data);
+        filterTeachers(data.items);
         setIsLoading(state);
 
     };
@@ -70,18 +70,18 @@ const TeacherMain = () => {
             </div>
             <div className="w-full flex justify-center items-center">
                 {/* Se usará un map para generar todos los teaches mini card necesarios */}
+                
                 {isLoading ? <Loader/> : <div className="w-full grid grid-cols-[repeat(auto-fill,_minmax(224px,_1fr))] gap-4">
-                    {techers_section.map((teacher, index) => (
-                    <NavLink to={`/dashboard/main/teachers/${teacher.name}`} key={teacher.name}>
-                        <TeacherMiniCard
-                            key={index}
-                            name={teacher.name.split(' ').slice(0, 2).join(' ')}
-                            imageRoute={teacher.img}
-                            course={"Curso"}//getCursos[teacher.courses[0]].title} // Asumiendo que quieres mostrar el primer curso
-                            rate={2}
-                        />
-                    </NavLink>
-                ))}
+                        {techers_section.map((teacher, index) => (
+                            <Link to={`/dashboard/main/teachers/${teacher.name}`} key={index}>
+                                <TeacherMiniCard
+                                    key={index}
+                                    name={teacher.name}//.split(' ').slice(0, 2).join(' ')}
+                                    imageRoute={teacher.img}
+                                    rate={2}
+                                />
+                            </Link>
+                    ))}
                 </div>
                 }
             </div>
