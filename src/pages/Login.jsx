@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { stateLogged } from "../store/utils";
+import { stateLogged, useUserStore } from "../store/utils";
 import { Link, useNavigate } from "react-router-dom";
 import { CachimboLogo } from "../components/icons/CachimoLogo";
 import ThemeButton from "../components/extras/ThemeButton";
@@ -11,6 +11,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const apiUrl = import.meta.env.VITE_API_URL;
   const {login} = stateLogged();
+  const {setChange} = useUserStore();
   const move = useNavigate();
 
   const handleEmailChange = (event) => {
@@ -34,6 +35,7 @@ const Login = () => {
     if (body.message){
       login();
       move("/dashboard/main");
+      setChange(result.token, "token");
     } else if (body.error){
       setError(body.error || "Error de inicio de sesión");
     }; 
