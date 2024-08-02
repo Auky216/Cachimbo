@@ -5,7 +5,7 @@ const CDescrip = ({ courseTeachers, cursoObj }) => {
   return (
     <div className="my-2 w-full">
       <article className="my-4 w-full rounded-3xl bg-transparent px-7 py-6 text-center shadow-xl dark:bg-cach-l2/20 dark:text-white">
-        {cursoObj.info}
+        {cursoObj.description}
       </article>
       <div className="flex w-full flex-col gap-3 pb-10">
         <div className="my-4 text-center text-3xl font-bold text-cach-l3 dark:text-white ">
@@ -16,12 +16,12 @@ const CDescrip = ({ courseTeachers, cursoObj }) => {
             <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
               {courseTeachers.map(c => (
                 <MiniCard
-                  key={c}
+                  key={courseTeachers.indexOf(c)}
                   classimg="size-24"
                   classcont="text-md w-32 pr-3"
-                  link={`/dashboard/main/teachers/${c.id}`}
+                  link={`/dashboard/main/teachers/${c}`}
                   image={c.photo}
-                  title={c.name}
+                  title={c}
                 />
               ))}
             </div>
@@ -37,12 +37,12 @@ const CDescrip = ({ courseTeachers, cursoObj }) => {
             <div className="flex flex-col gap-3">
               {cursoObj.reqcourses.map(c => (
                 <MiniCard
-                  key={c}
+                  key={cursoObj.indexOf(c)}
                   classimg="size-[50px]"
                   classcont="text-sm w-32"
                   link={`/dashboard/main/course/${c}`}
                   image={(getCursos[c] || {}).photo}
-                  title={(getCursos[c] || {}).title}
+                  title={c}
                 />
               ))}
             </div>
@@ -64,8 +64,8 @@ const CDescrip = ({ courseTeachers, cursoObj }) => {
                   classimg="size-[20px]"
                   classcont="text-[13px] w-32"
                   link={`/dashboard/main/course/${c}`}
-                  image={(getCursos[c] || {}).photo}
-                  title={(getCursos[c] || {}).title}
+                  image=""
+                  title={c}
                 />
               ))}
             </div>

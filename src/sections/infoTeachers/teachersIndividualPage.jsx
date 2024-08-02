@@ -1,15 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from "react-router-dom";
-import { teachers } from '../../constant/teachers';
 import Default from "../../assets/profile-template.png";
-import { NavLink } from "react-router-dom";
 import { Star } from "../../components/icons/Star";
 import { MAX_RATE } from "../../constant/opinion";
 import StarRating from './teacherRater';
 import CommentInput from './CustomInput';
-import {TeachersOpinion} from '../../constant/opinion'
 import TOpinion from './TOpinion';
-import { getCursos } from '../../constant/course';
 import BackButton from '../../components/backButton';
 import Loader from '../../components/Loading';
 import fetchDataCustom from '../../components/fetchingData';
@@ -18,7 +14,6 @@ import { useUserStore } from '../../store/utils';
 const TeachersIndividualPage = () => {
     const {name} = useParams();
     const [isLoading, setIsLoading] = useState(true);
-    const [comsLoading, setComsLoading] = useState(true);
     const {user} = useUserStore();
     const[info, setInfo] = useState();
     //const teacher = teachers.find(t => t.id === parseInt(params.id));
@@ -40,11 +35,11 @@ const TeachersIndividualPage = () => {
 
     const sendOpinion = () => {
         // Aquí se enviaría la opinión
-        const new_comment = {description: comment, 
+        const new_comment = {comment: comment, 
             rate: selectedRate, 
-            author: "Computer Science",
-            nickname: "Anónimo", 
-            timestamp: `${new Date().toISOString().split('T')[0]}`};
+            author: user.nickname,
+            nickname: user.career, 
+            date: `${new Date().toISOString()}`};
         setOpinions([...opinions, new_comment]);
         //console.log(opinions);
         /* 
@@ -59,22 +54,21 @@ const TeachersIndividualPage = () => {
     
     const fetchData = async (search_value) => {
         setIsLoading(true);
-        setComsLoading(true);
         const [result, body, state] = await fetchDataCustom({
             "name": search_value,
             "token": token
         }, "test/api/teacher/get_information")
         const [result2, body2, state2] = await fetchDataCustom({"teacher_name":name, "token":token}, "test/api/teacher/calification/get")
-        //console.log(body2.comments, result2);
+        console.log(body2.comments, result2);
         
-        if (!result2.statusCode == 404){
+        if (result2.statusCode == 200){
             setOpinions(body2.comments)
+            setTheacherRate(body2.score);
             setSelectedRate(body2.score);
         };
         setInfo(body);
         
         setIsLoading(state);
-        setComsLoading(state2);
         
     };
     
@@ -170,8 +164,8 @@ const TeachersIndividualPage = () => {
                                         profile_author_route={opinion.profile_author_route}
                                         rate={opinion.rate}
                                         author={opinion.nickname}
-                                        date={opinion.timestamp}
-                                        comment={opinion.description}
+                                        date={opinion.date.split('T')[0]}
+                                        comment={opinion.comment}
                                     />
                                     ))
                                 )

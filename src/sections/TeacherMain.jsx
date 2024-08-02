@@ -25,6 +25,9 @@ const TeacherMain = () => {
     const token = user.token;
     
     const fetchData = async (search_value, page) => {
+        if (search_value === ""){
+            search_value = "a"
+        }
         setIsLoading(true)
         const [result, data, state] = await fetchDataCustom({
             name: search_value,
@@ -72,6 +75,7 @@ const TeacherMain = () => {
                     type="text"
                     onKeyUp={e => {
                         if (e.key === "Enter") {
+                            setPage(1)
                             fetchData(inputValue, page);
                         }
                     }}

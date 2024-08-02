@@ -69,7 +69,7 @@ const COpinion = ({ listOpinions }) => {
       </div>
       <div className="flex w-[85%] flex-col items-center justify-center space-y-4 pb-3">
         {listCourse.map(opinion => (
-          <CardOpinion key={opinion.timestamp} {...opinion} />
+          <CardOpinion key={listCourse.indexOf(opinion)} {...opinion} />
         ))}
       </div>
     </div>

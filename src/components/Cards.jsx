@@ -50,7 +50,7 @@ export const CardInfo = ({ iconfile, title, info }) => {
   );
 };
 
-export const MiniCard = ({ classimg, classcont, link, image, title }) => {
+export const MiniCard = ({classimg, classcont, link, image, title }) => {
   return (
     <Link to={link}>
       <button className="flex h-fit items-center justify-around rounded-xl border-2 border-cach-l2 px-2 py-1 font-bold text-cach-l5 dark:text-cach-l1">

@@ -19,7 +19,7 @@ const Principal = () => {
         <div className="mx-6 grid grid-cols-1 gap-4 pt-3 md:grid-cols-2">
           {(user.enrolledCourses).map((c) => (
             <MiniCard
-              key={c}
+              key={c.toString()}
               classimg="size-[50px]"
               classcont="text-md w-64"
               link={`/dashboard/main/course/${c}`}

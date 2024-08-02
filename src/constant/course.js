@@ -83,7 +83,7 @@ export const getCursos = {
   },
   labcom1:{
     bannerImage: Antonio,
-    title: "Laboratorio de comunicación I",
+    title: "Laboratorio de Comunicación I",
     info: "Lectura y lectura y más lecturas",
     reqcourses: [],
     nextCourses: ["labcom2"],
