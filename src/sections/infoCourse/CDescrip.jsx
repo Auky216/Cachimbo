@@ -1,5 +1,4 @@
 import { MiniCard } from "../../components/Cards";
-import { getCursos } from "../../constant/course";
 
 const CDescrip = ({ courseTeachers, cursoObj }) => {
   return (
@@ -37,11 +36,11 @@ const CDescrip = ({ courseTeachers, cursoObj }) => {
             <div className="flex flex-col gap-3">
               {cursoObj.reqcourses.map(c => (
                 <MiniCard
-                  key={cursoObj.indexOf(c)}
-                  classimg="size-[50px]"
+                  key={c}
+                  classimg="size-[20px]"
                   classcont="text-sm w-32"
                   link={`/dashboard/main/course/${c}`}
-                  image={(getCursos[c] || {}).photo}
+                  image={""}
                   title={c}
                 />
               ))}
@@ -62,7 +61,7 @@ const CDescrip = ({ courseTeachers, cursoObj }) => {
                 <MiniCard
                   key={c}
                   classimg="size-[20px]"
-                  classcont="text-[13px] w-32"
+                  classcont="text-sm w-32"
                   link={`/dashboard/main/course/${c}`}
                   image=""
                   title={c}

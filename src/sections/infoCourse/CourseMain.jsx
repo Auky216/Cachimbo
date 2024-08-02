@@ -11,9 +11,11 @@ import {carrers} from "../../static/academic";
 import BackButton from "../../components/backButton";
 import fetchDataCustom from "../../components/fetchingData";
 import Loader from "../../components/Loading";
+import bannerImage from "../../assets/TeamPhoto/Antonio.jpg";
 const CourseMain = () => {
   const params = useParams();
-  const curso = getCursos[params.course];
+  const curso = params.course;
+  //console.log(curso);
   const [info, setInfo] = useState(null);
   const [opinions, setOpinions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,20 +26,24 @@ const CourseMain = () => {
 
   const loadData = async ()=>{
     setLoading(true)
-    const [response, body, status] = await fetchDataCustom({token:user.token, course:curso.title, university: user.university}, "test/api/course/about")
+    const [response, body, status] = await fetchDataCustom({token:user.token, course:curso, university: user.university}, "test/api/course/about")
     setInfo(body[0])
-    const [response2, body2, status2] = await fetchDataCustom({token:user.token, course:curso.title, university: user.university, career:careerName}, "test/api/course/prerequisites_nextcourses")
+    const [response2, body2, status2] = await fetchDataCustom({token:user.token, course:curso, university: user.university, career:careerName}, "test/api/course/prerequisites_nextcourses")
     //console.log(response2, body2, status2)
-    setInfo(prev => ({...prev, reqcourses: body2.prerequisites == null ? []:body2.prerequisites, nextCourses: body2.next_courses}))
+    setInfo(prev => ({...prev, 
+      reqcourses: body2.prerequisites == null ? [] : Array.isArray(body2.prerequisites) ? body2.prerequisites : [body2.prerequisites], 
+      nextCourses: body2.next_courses == null ? []:body2.next_courses}))
+    //console.log(info)
+
     //console.log(info)
     setLoading(status2)
-    const [res, bodyOp, state3] = await fetchDataCustom({course_name:curso.title, university: user.university, token:user.token}, "test/api/course/calification/get")
-    console.log(res, bodyOp, state3)
+    //const [res, bodyOp, state3] = await fetchDataCustom({course_name:curso, university: user.university, token:user.token}, "test/api/course/calification/get")
+    //console.log(res, bodyOp, state3)
   }
 
   useEffect( () => {
     loadData()
-  }, []);
+  }, [curso]);
 
 
   const [section, setSection] = useState("desc");
@@ -77,7 +83,7 @@ const CourseMain = () => {
           </div>
           <div
             className="flex h-24 w-full flex-col items-center justify-center rounded-2xl bg-slate-100"
-            style={{ backgroundImage: `url(${curso.bannerImage})` }}
+            style={{ backgroundImage: `url(${curso.bannerImage || bannerImage})` }}
           >
             <div className="text-3xl font-extrabold text-white">{info.course_name}</div>
           </div>

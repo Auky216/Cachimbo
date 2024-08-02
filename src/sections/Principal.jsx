@@ -24,7 +24,7 @@ const Principal = () => {
               classcont="text-md w-64"
               link={`/dashboard/main/course/${c}`}
               image={Curso}
-              title={getCursos[c].title}
+              title={c}
             />
           ))}
         </div>

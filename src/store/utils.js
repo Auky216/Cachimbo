@@ -71,7 +71,7 @@ export const useUserStore = create(set => ({
     career: "CS",
     nickname: "@Jojiz",
     cycle: "1",
-    enrolledCourses: ["calcvar", "matedisc1", "progra1", "pi1", "labcom1"],
+    enrolledCourses: ["Cálculo de una Variable", "Matemáticas Discretas I", "Programación I", "Proyectos Interdisciplinarios I", "Laboratorio de Comunicación I"],
     otherCourses: [],
     name: "Juan Salvatierra",
     lastname: "Perez Gonzales",
