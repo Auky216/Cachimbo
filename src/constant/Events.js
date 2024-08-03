@@ -6,37 +6,37 @@ export const getEvents = {
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nuncl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. ",
         address : "Jr. Medrano Silva 165, Barranco 15063",
         organizer: "Jojiz",
-        image: "url_to_image1.jpg",
+        image: "/src/assets/Events/hackaton.png",
     },
 
     evento2: {
         title: "Hackathon",
         date: "12/12/2023",
         hour: "12:00",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nuncl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. ",
         address :"Jr. Medrano Silva 165, Barranco 15063",
         organizer: "Jojiz",
-        image: "url_to_image2.jpg",
+        image: "/src/assets/Events/hackaton.png",
     },
 
     evento3: {
         title: "Campamento Programación",
         date: "20/12/2022",
         hour: "10:00",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nuncl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. ",
         address : "Jr. Medrano Silva 165, Barranco 15063",
         organizer: "Jojiz",
-        image: "url_to_image3.jpg",
+        image: "/src/assets/Events/hackaton.png",
     },
 
     evento4: {
         title: "Chocolatada",
         date: "12/12/2021",
         hour: "17:00",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nuncl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc. ",
         address : "Jr. Medrano Silva 165, Barranco 15063",
         organizer: "Jojiz",
-        image: "url_to_image4.jpg",
+        image: "/src/assets/Events/hackaton.png",
     },
 
 }

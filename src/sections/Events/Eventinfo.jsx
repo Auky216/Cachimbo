@@ -1,6 +1,7 @@
 import React from "react";
 import { getEvents } from "../../constant/Events";
 import { useParams, useNavigate } from "react-router-dom";
+import image from "../../assets/Events/hackaton.png";
 
 const EventInfo = () => {
   const { event } = useParams();
@@ -10,6 +11,10 @@ const EventInfo = () => {
   const handleBackClick = () => {
     navigate("/dashboard/main/events");
   };
+
+  console.log(image);
+  console.log(eventData.image);
+  console.log(image === eventData.image);
 
   return (
     <section id="event-info" className="py-10 pr-8">

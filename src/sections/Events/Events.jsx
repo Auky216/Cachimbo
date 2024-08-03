@@ -6,6 +6,7 @@ const Events = () => {
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState("");
   const [events, setEvents] = useState(Object.entries(getEvents));
+  console.log(events);
 
   const handleSearch = () => {
     const filteredEvents = Object.entries(getEvents).filter(([_, event]) => {
