@@ -5,7 +5,7 @@ import {teachers} from '../constant/teachers';
 import { getCursos } from "../constant/course";
 import BackButton from "../components/backButton";
 import Loader from "../components/Loading";
-import fetchDataCustom from "../components/fetchingData";
+import {fetchDataCustom} from "../components/fetchingData";
 import { useUserStore } from "../store/utils";
 
 const TeacherMain = () => {

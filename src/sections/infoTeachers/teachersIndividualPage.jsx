@@ -9,7 +9,7 @@ import TOpinion from './TOpinion';
 import BackButton from '../../components/backButton';
 import Loader from '../../components/Loading';
 import { carrers } from '../../static/academic';
-import fetchDataCustom from '../../components/fetchingData';
+import {fetchDataCustom} from '../../components/fetchingData';
 import { useUserStore } from '../../store/utils';
 
 const TeachersIndividualPage = () => {

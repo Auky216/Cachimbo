@@ -9,7 +9,7 @@ import { CoursesOpinion } from "../../constant/opinion";
 import { useUserStore } from "../../store/utils";
 import {carrers} from "../../static/academic";
 import BackButton from "../../components/backButton";
-import fetchDataCustom from "../../components/fetchingData";
+import {fetchDataCustom} from "../../components/fetchingData";
 import Loader from "../../components/Loading";
 import bannerImage from "../../assets/TeamPhoto/Antonio.jpg";
 const CourseMain = () => {
@@ -34,7 +34,7 @@ const CourseMain = () => {
       reqcourses: body2.prerequisites == null ? [] : Array.isArray(body2.prerequisites) ? body2.prerequisites : [body2.prerequisites], 
       nextCourses: body2.next_courses == null ? []:body2.next_courses}))
     //console.log(info)
-
+    console.log(body)
     //console.log(info)
     setLoading(status2)
     //const [res, bodyOp, state3] = await fetchDataCustom({course_name:curso, university: user.university, token:user.token}, "test/api/course/calification/get")
@@ -90,7 +90,7 @@ const CourseMain = () => {
           <div className="flex h-[70vh] flex-col overflow-scroll">
             {/* si marca descripcion ↓ */}
             {section === "desc" && (
-              <CDescrip courseTeachers={info.teachers ? info.teachers: []} cursoObj={info} key={1}/>
+              <CDescrip courseTeachers={info.teachers == null ? []: info.teachers} cursoObj={info} key={1}/>
             )}
             {/* si marca opinion ↓ */}
             {section === "opinion" && <COpinion listOpinions={CoursesOpinion}  key={2}/>}

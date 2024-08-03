@@ -3,7 +3,7 @@ import { stateLogged, useUserStore } from "../store/utils";
 import { Link, useNavigate } from "react-router-dom";
 import { CachimboLogo } from "../components/icons/CachimoLogo";
 import ThemeButton from "../components/extras/ThemeButton";
-import fetchDataCustom from "../components/fetchingData";
+import {fetchDataCustom} from "../components/fetchingData";
 
 const Login = () => {
   const [email, setEmail] = useState("");

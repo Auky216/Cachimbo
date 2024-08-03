@@ -21,6 +21,7 @@ import EventInfo from "../sections/Events/Eventinfo";
 import Sugerencias from "../sections/sugerencias/Suggestions";
 import SuggestionDetail from "../sections/sugerencias/SuggestionDetail";
 import HomePage from "../pages/HomePage";
+import FileUploadForm from "../pages/upload";
 
 export const routerNormal = [
   {
@@ -49,6 +50,10 @@ export const routerProtected = [
   {
     path: "/dashboard/profile",
     element: <Profile />,
+  },
+  {
+    path: "/dashboard/upload",
+    element: <FileUploadForm />, 
   },
   {
     path: "/dashboard/library",
