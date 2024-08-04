@@ -129,19 +129,17 @@ export const TeacherMiniCard = ({ name, imageRoute, rate }) => {
     </div>
   );
 };
-export const EventMiniCard = ({ title, date, hour, link, image }) => {
+export const EventMiniCard = ({ title, date, hour, link, image, information }) => {
+  //console.log(info);
   return (
     <div className="flex h-[250px] w-[200px] flex-col items-center justify-between rounded-2xl border border-cach-l3 text-gray-800 shadow-lg dark:border-cach-l2 dark:text-gray-200">
       <div className="h-[50%] w-full">
-        <img src={image} alt={title} className="h-full w-full object-cover rounded-t-2xl" />
+        <img src={image} alt={title} className="h-full w-full overflow-hidden object-cover rounded-t-2xl" />
       </div>
       <div className="w-full border-t border-cach-l3 dark:border-cach-l2"></div>
       <div className="flex h-[40%] w-full flex-col items-center justify-center p-4 text-center">
         <h3 className="text-lg font-bold">
-          <Link
-            to={link}
-            className="text-cach-l3 hover:underline dark:text-cach-l2"
-          >
+          <Link to={link} state={information} className="text-cach-l3 hover:underline dark:text-cach-l2" unstable_viewTransition>
             {title}
           </Link>
         </h3>

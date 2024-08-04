@@ -1,11 +1,33 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { EventMiniCard } from "../../components/Cards";
 import { getEvents } from "../../constant/Events";
+import { fetchDataCustom } from "../../components/fetchingData"
+import {useUserStore} from "../../store/utils"
+import Loader from "../../components/Loading";
+import DefaultEventIcon from "../../assets/hat.png";
 
 const Events = () => {
+  const {user} = useUserStore();
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState("");
-  const [events, setEvents] = useState(Object.entries(getEvents));
+  const [events, setEvents] = useState(null);//useState(Object.entries(getEvents));
+  const [isLoading, setIsLoading] = useState(true);
+
+  const myFetch = async () => {
+    const [result, body, loading, error] = await fetchDataCustom({
+      token: user.token,
+      title: "Evento",
+      page: "1",
+    }, "test/api/group/findGroups");
+    //console.log(result);
+    //console.log(body);
+    setEvents(body.items);
+    setIsLoading(loading);
+  }
+
+  useEffect(() => {
+    myFetch();
+  }, []);
 
   const handleSearch = () => {
     const filteredEvents = Object.entries(getEvents).filter(([_, event]) => {
@@ -58,17 +80,22 @@ const Events = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
-        {events.map(([id, event]) => (
+      <div className="w-full">
+        {!isLoading ? 
+        <div className="grid grid-cols-3 gap-4">
+          {events.map((event) => (
           <EventMiniCard
-            key={id}
+            key={events.indexOf(event)}
             title={event.title}
             date={event.date}
             hour={event.hour}
-            link={`/dashboard/main/events/${id}`}
-            image={event.image} 
+            link={`/dashboard/main/events/${events.indexOf(event)}`} //${event.title}
+            image={event.image || DefaultEventIcon} 
+            information={event}
           />
         ))}
+        </div>
+        : <Loader/>}
       </div>
     </section>
   );

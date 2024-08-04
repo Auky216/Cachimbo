@@ -1,27 +1,33 @@
 import React from "react";
 import { getEvents } from "../../constant/Events";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import BackButton from "../../components/backButton";
 
 const EventInfo = () => {
-  const { event } = useParams();
-  const eventData = getEvents[event];
+  const location = useLocation();
   const navigate = useNavigate();
+  const eventData = getEvents["evento1"];
+  //const eventData = location.state;
+  //console.log(eventData);
+  // Accede al estado pasado desde el Link
+
 
   const handleBackClick = () => {
     navigate("/dashboard/main/events");
   };
 
   return (
-    <section id="event-info" className="py-10 pr-8">
+    <section id="event-info" className="py-10 pr-8 h-screen overflow-y-auto">
       <div className="mx-auto max-w-3xl rounded-lg p-6">
-        <div className="flex justify-end mb-4">
-          <button
+        <div className="flex justify-end mb-1">
+          {/* <button
             onClick={handleBackClick}
             className="rounded-full bg-cach-l3 px-5 py-1 text-cach-l1"
 
           >
             Regresar
-          </button>
+          </button> */}
+          <BackButton />
         </div>
         <h1 className="mb-4 text-3xl font-bold text-cach-l3 dark:text-cach-l2">
           {eventData.title}
