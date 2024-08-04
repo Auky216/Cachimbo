@@ -2,7 +2,6 @@ import React from "react";
 import { getEvents } from "../../constant/Events";
 import { useNavigate, useLocation } from "react-router-dom";
 import BackButton from "../../components/backButton";
-import { useParams, useNavigate } from "react-router-dom";
 import image from "../../assets/Events/hackaton.png";
 
 const EventInfo = () => {
