@@ -2,6 +2,8 @@ import React from "react";
 import { getEvents } from "../../constant/Events";
 import { useNavigate, useLocation } from "react-router-dom";
 import BackButton from "../../components/backButton";
+import { useParams, useNavigate } from "react-router-dom";
+import image from "../../assets/Events/hackaton.png";
 
 const EventInfo = () => {
   const location = useLocation();
@@ -15,6 +17,10 @@ const EventInfo = () => {
   const handleBackClick = () => {
     navigate("/dashboard/main/events");
   };
+
+  console.log(image);
+  console.log(eventData.image);
+  console.log(image === eventData.image);
 
   return (
     <section id="event-info" className="py-10 pr-8 h-screen overflow-y-auto">
