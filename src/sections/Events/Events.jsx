@@ -4,7 +4,7 @@ import { getEvents } from "../../constant/Events";
 import { fetchDataCustom } from "../../components/fetchingData"
 import {useUserStore} from "../../store/utils"
 import Loader from "../../components/Loading";
-import DefaultEventIcon from "../../assets/hat.png";
+import DefaultEventIcon from "../../assets/event_icon_default.png";
 
 const Events = () => {
   const {user} = useUserStore();
@@ -22,11 +22,25 @@ const Events = () => {
     //console.log(result);
     //console.log(body);
     setEvents(body.items);
+    //console.log(events);
     setIsLoading(loading);
+    const cachedEvents = localStorage.getItem("events");
+    //si hay algun evento cacheado, lo borramos para pasarle informacion más actualizada
+    if (cachedEvents) {
+      localStorage.removeItem("events");
+      localStorage.setItem("events", JSON.stringify(body.items));
+      //console.log(events);
+    } else{
+      //si no, lo seteamos diractemente en el caché
+      localStorage.setItem("events", JSON.stringify(body.items));
+    }
   }
 
   useEffect(() => {
+    
     myFetch();
+    //console.log(events);
+    
   }, []);
 
   const handleSearch = () => {
@@ -89,7 +103,7 @@ const Events = () => {
             title={event.title}
             date={event.date}
             hour={event.hour}
-            link={`/dashboard/main/events/${events.indexOf(event)}`} //${event.title}
+            link={`/dashboard/main/events/${event.id}`} //${event.title}
             image={event.image || DefaultEventIcon} 
             information={event}
           />
