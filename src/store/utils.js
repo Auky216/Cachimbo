@@ -70,7 +70,7 @@ export const useUserStore = create(set => ({
     university: "UTEC",
     career: "CS",
     nickname: "@Jojiz",
-    cycle: "1",
+    cycle: 1,
     enrolledCourses: ["Cálculo de una Variable", "Matemáticas Discretas I", "Programación I", "Proyectos Interdisciplinarios I", "Laboratorio de Comunicación I"],
     otherCourses: [],
     name: "Juan Salvatierra",

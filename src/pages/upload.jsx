@@ -4,8 +4,8 @@ import UploadTargetIcon from '../assets/upload-target-icon.png';
 import { useUserStore } from '../store/utils';
 import { universities } from '../static/academic';
 import UniDefault from "../assets/university-icon.png"
-
-
+import Curso from "../assets/icons8-cursos-96.png";
+import { Checkbox } from '../components/backButton';
 // const UploadIcon = () => {
 //     return(
 //     <svg 
@@ -34,14 +34,13 @@ const FileUploadForm = () => {
     const [isAnonymous, setIsAnonymous] = useState(false);
     const [file, setFile] = useState(null);
     const [isReceiving, setIsReceiving] = useState(true);
-    const [indexUSelected, setIndexUSelected] = useState(null);
     const location = useLocation();
 
 
     useEffect(() => {
         if (location.state) {
             setFile(location.state.file);
-            console.log(location.state.file);
+            //console.log(location.state.file);
         }
     }, []);
 
@@ -57,7 +56,7 @@ const FileUploadForm = () => {
         const reader = new FileReader();
         reader.onloadend = () => {
             const fileContentBase64 = btoa(reader.result);
-
+            console.log(fileContentBase64);
             const requestBody = {
                 university,
                 course,
@@ -88,15 +87,15 @@ const FileUploadForm = () => {
     };
 
     return (
-        <div className='w-full h-screen overflow-y-auto'>
+        <div className='w-full h-screen overflow-y-auto dark:text-cach-l1'>
             <form onSubmit={handleSubmit} className='w-full max-w-md mx-auto my-5'>
-                <div className='flex mx-auto'>
+                <div className='flex mx-auto font-semibold'>
                     <div className='w-1/2 flex items-center justify-center'>
                         <img src={UploadTargetIcon} alt="xd" width={150}/>
                     </div>
-                    <div className='flex flex-col'>
+                    <div className='w-1/2 flex flex-col'>
                         <div className='flex flex-col'>
-                            <label className='flex flex-row' >
+                            <label className='flex' >
                                 Título:
                             </label>
                             <input 
@@ -104,6 +103,7 @@ const FileUploadForm = () => {
                                     value={title} 
                                     onChange={(e) => setTitle(e.target.value)} 
                                     required 
+                                    className='border-2 border-cach-l2 rounded focus:outline-cach-l3 dark:border-cach-l3 dark:focus:outline-cach-l2'
                                 />
                         </div>
                         <div className='flex flex-col'>
@@ -114,7 +114,8 @@ const FileUploadForm = () => {
                                     type="text" 
                                     value={description} 
                                     onChange={(e) => setDescription(e.target.value)} 
-                                    required 
+                                    required
+                                    className='border-2 border-cach-l2 rounded focus:outline-cach-l3 dark:border-cach-l3 dark:focus:outline-cach-l2' 
                                 />
                         </div>
                     </div>
@@ -122,17 +123,16 @@ const FileUploadForm = () => {
                 </div>
                 <br />
                 <div className='w-full flex flex-col justify-center items-center'>
-                    <label>
+                    <label className='font-semibold my-4 text-xl'>
                         Universidad:
                     </label>
                     <div className='w-full grid grid-cols-[repeat(auto-fill,_minmax(110px,_1fr))] gap-4'>
                         {universities.map((uni, index) => (
-                            <div className={`flex items-center rounded-xl border-2 ${indexUSelected == index ? "border-cach-l3": "border-cach-l2"} p-2 cursor-pointer`} onClick={()=>{
-                                setIndexUSelected(index)
+                            <div className={`flex items-center rounded-xl border-2 ${university == uni.sigle ? "border-cach-l3 bg-cach-l2 dark:text-cach-l4": "border-cach-l2"} p-2 cursor-pointer`} onClick={()=>{
                                 setUniversity(uni.sigle)
-                                }}>
-                                <div className='mx-2'>
-                                    <img src={uni.logo || UniDefault} width={50}/>
+                                }} key={index}>
+                                <div className='mx-2 min-w-11 flex items-center justify-center'>
+                                    <img src={uni.logo || UniDefault} width={40}/>
                                 </div>
                                 <div>
                                     {uni.sigle}
@@ -142,37 +142,48 @@ const FileUploadForm = () => {
                     </div>
                     
                 </div>
-                <br /><br />
-                <div>
-                    <label>
+                <div className='w-full flex flex-col justify-center items-center'>
+                    <label className='font-semibold my-4 text-xl'>
                         Curso:
-                        <input 
-                            type="text" 
-                            value={course} 
-                            onChange={(e) => setCourse(e.target.value)} 
-                            required 
-                        />
                     </label>
+                    <div className='w-full grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-4'>
+                        {user.enrolledCourses.map((course_list, index) => (
+                            <div className={`flex items-center rounded-xl border-2 ${course == course_list && university!=null? "border-cach-l3 bg-cach-l2 dark:text-cach-l4": "border-cach-l2"} p-2 ${university == null ? "cursor-no-drop":"cursor-pointer"}`} onClick={()=>{
+                                if (university == null) {
+                                    alert("Por favor, selecciona una universidad")
+                                    return
+                                } else {
+                                    setCourse(course_list)
+                                }}} key={index}>
+                                <div className='mx-2 min-w-11 flex items-center justify-center'>
+                                    <img src={Curso} className='w-[50px]'/>
+                                </div>
+                                <div className='text-center'>
+                                    {course_list}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    
                 </div>
 
                 <br /><br />
 
-                <div>
-                    <label>
+                <div className='flex w-full'>
+                    <label className='font-semibold w-1/2 text-center'>
                         ¿Es anónimo?
-                        <input 
-                            type="checkbox" 
-                            checked={isAnonymous} 
-                            onChange={(e) => setIsAnonymous(e.target.checked)} 
-                        />
                     </label>
+                    <div className='w-1/2 flex items-center justify-center'>
+                        <Checkbox checked={isAnonymous} handleChange={(e) => setIsAnonymous(e.target.checked)}/>
+                    </div>
+                    
                 </div>
 
                 <br /><br />
 
                 {file ? <div>
                     {file.name}
-                    <button type="button" onClick={()=>{setFile(null)}}> Delete</button>
+                    <button type="button" onClick={()=>{setFile(null)}} className='font-semibold'> Delete</button>
                     </div> : <div>
                         <label>
                             Selecciona un archivo:
