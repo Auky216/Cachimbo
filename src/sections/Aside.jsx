@@ -8,7 +8,7 @@ import asistantIcon from "../assets/ia-icon.png";
 import groupsIcon from "../assets/groups-icon.png";
 import settingIcon from "../assets/setting-icon.png";
 import logOutIcon from "../assets/logout-icon.png";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate, Navigate } from "react-router-dom";
 import { useUserStore, stateLogged } from "../store/utils";
 import { useState } from "react";
 import Modal from "../components/Modal";
@@ -21,15 +21,15 @@ const Aside = () => {
   const url = useNavigate();
   const user = useUserStore(state => state.user);
   const [modal, setModal] = useState(false);
-  const [namefile, setNamefile] = useState("");
 
   const handleUpload = e => {
     const file = e.target.files[0];
     if (!file) return;
     const formData = new FormData();
     formData.append("file", file);
-    setModal(true);
-    setNamefile(file.name);
+    url("/dashboard/upload", { state: { file } });
+    //setModal(true);
+    //setNamefile(file.name);
     // await fetch("http://..../upload", {
     //   method: "POST",
     //   body: formData,
@@ -173,7 +173,7 @@ const Aside = () => {
 
       {/*  Modal cuando se sube un archivo */}
       <Modal isOpen={modal} onClose={() => setModal(false)}>
-        <SubmitFile namefile={namefile} />
+        {/* <SubmitFile namefile={namefile} /> */}
       </Modal>
     </aside>
   );

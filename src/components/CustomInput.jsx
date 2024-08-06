@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const CommentInput = ({ value, label, placeholder, maxLength, className, onChange}) => {
+const CommentInput = ({ value, label, placeholder, maxLength, className, onChange, rows=4}) => {
     const [isFocused, setIsFocused] = useState(false);
 
     return (
@@ -15,7 +15,7 @@ const CommentInput = ({ value, label, placeholder, maxLength, className, onChang
                 onBlur={() => setIsFocused(false)}
                 className={`w-full p-2 bg-cach-l1 border rounded ${isFocused ? 'border-blue-400 shadow-outline' : 'border-gray-300'
                 }`}
-                rows="4" 
+                rows={rows}
             />
         </div>
     );

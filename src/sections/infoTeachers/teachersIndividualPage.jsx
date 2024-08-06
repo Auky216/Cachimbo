@@ -4,7 +4,7 @@ import Default from "../../assets/profile-template.png";
 import { Star } from "../../components/icons/Star";
 import { MAX_RATE } from "../../constant/opinion";
 import StarRating from './teacherRater';
-import CommentInput from './CustomInput';
+import CommentInput from '../../components/CustomInput';
 import TOpinion from './TOpinion';
 import BackButton from '../../components/backButton';
 import Loader from '../../components/Loading';
