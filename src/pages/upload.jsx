@@ -56,7 +56,7 @@ const FileUploadForm = () => {
         const reader = new FileReader();
         reader.onloadend = () => {
             const fileContentBase64 = btoa(reader.result);
-            console.log(fileContentBase64);
+            //console.log(fileContentBase64);
             const requestBody = {
                 university,
                 course,
@@ -74,7 +74,7 @@ const FileUploadForm = () => {
                 },
                 body: JSON.stringify(requestBody)
             })
-            .then(response => console.log(response))
+            .then(response => response)
             .then(data => {
                 alert('Archivo subido con éxito y registrado en DynamoDB');
             })
@@ -83,7 +83,7 @@ const FileUploadForm = () => {
             });
         };
 
-        reader.readAsArrayBuffer(file);
+        reader.readAsBinaryString(file);
     };
 
     return (
@@ -103,7 +103,7 @@ const FileUploadForm = () => {
                                     value={title} 
                                     onChange={(e) => setTitle(e.target.value)} 
                                     required 
-                                    className='border-2 border-cach-l2 rounded focus:outline-cach-l3 dark:border-cach-l3 dark:focus:outline-cach-l2'
+                                    className=' text-cach-l4 font-normal border-2 border-cach-l2 rounded focus:outline-cach-l3 dark:border-cach-l3 dark:focus:outline-cach-l2'
                                 />
                         </div>
                         <div className='flex flex-col'>
@@ -115,7 +115,7 @@ const FileUploadForm = () => {
                                     value={description} 
                                     onChange={(e) => setDescription(e.target.value)} 
                                     required
-                                    className='border-2 border-cach-l2 rounded focus:outline-cach-l3 dark:border-cach-l3 dark:focus:outline-cach-l2' 
+                                    className='text-cach-l4 font-normal border-2 border-cach-l2 rounded focus:outline-cach-l3 dark:border-cach-l3 dark:focus:outline-cach-l2' 
                                 />
                         </div>
                     </div>
