@@ -6,6 +6,8 @@ import { universities } from '../static/academic';
 import UniDefault from "../assets/university-icon.png"
 import Curso from "../assets/icons8-cursos-96.png";
 import { Checkbox } from '../components/backButton';
+import Loader, {PageDefaultSearch} from '../components/Loading';
+import { fetchDataCustom } from '../components/fetchingData';
 // const UploadIcon = () => {
 //     return(
 //     <svg 
@@ -28,12 +30,15 @@ const FileUploadForm = () => {
     const {user} = useUserStore();
     const [university, setUniversity] = useState(null);
     const [course, setCourse] = useState('');
+    const [termSearchCourse, setTermSearchCourse] = useState('');
     const [nickname, setNickname] = useState(user.nickname);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [isAnonymous, setIsAnonymous] = useState(false);
     const [file, setFile] = useState(null);
-    const [isReceiving, setIsReceiving] = useState(true);
+    const [pageSelected, setPageSelected] = useState(1);
+    const [listCourses, setListCourses] = useState([]);
+    const [isLoading, setIsloading] = useState(null);
     const location = useLocation();
 
 
@@ -60,6 +65,7 @@ const FileUploadForm = () => {
             const requestBody = {
                 university,
                 course,
+                description,
                 nickname,
                 is_anonymous: isAnonymous,
                 file_name: file.name,
@@ -86,14 +92,49 @@ const FileUploadForm = () => {
         reader.readAsBinaryString(file);
     };
 
+    const handleCourseSearchKeyDown = async(event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            setIsloading(true);
+            const [result, data, state, errorObject] = await fetchDataCustom({
+                name: termSearchCourse,
+                university: university,
+                token: user.token,
+                page: pageSelected
+            }, 'test/api/course/find');
+            setIsloading(state);
+            setListCourses(data.course_names);
+            //console.log(result, data, state, errorObject);
+        }
+    };
+
     return (
         <div className='w-full h-screen overflow-y-auto dark:text-cach-l1'>
             <form onSubmit={handleSubmit} className='w-full max-w-md mx-auto my-5'>
-                <div className='flex mx-auto font-semibold'>
-                    <div className='w-1/2 flex items-center justify-center'>
-                        <img src={UploadTargetIcon} alt="xd" width={150}/>
+                <div className='flex mx-auto font-semibold gap-5'>
+                    <div className='w-1/3 flex items-center justify-center'>
+                        <div>
+                            <button type="submit" className='w-full p-4 border-2 rounded-3xl border-cach-l4 dark:border-cach-l1'>
+                                <img src={UploadTargetIcon} className='dark:invert' alt="xd" width={100}/>
+                                Subir
+                            </button>
+                        </div>
                     </div>
-                    <div className='w-1/2 flex flex-col'>
+                    <div className='w-2/3 flex flex-col'>
+                        {file ? <div className='flex flex-col m-5 text-center'>
+                        {file.name}
+                        <button type="button" onClick={()=>{setFile(null)}} className='font-semibold text-red-600'> Delete</button>
+                        </div> : <div className='flex flex-col m-5'>
+                            <label>
+                                Selecciona un archivo:
+                            </label>
+                            <input 
+                                    type="file" 
+                                    onChange={(e) => setFile(e.target.files[0])} 
+                                    required 
+                                    accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png"
+                                />
+                        </div> }
                         <div className='flex flex-col'>
                             <label className='flex' >
                                 Título:
@@ -108,7 +149,7 @@ const FileUploadForm = () => {
                         </div>
                         <div className='flex flex-col'>
                             <label>
-                                Descripcción:
+                                Descripción:
                             </label>
                             <textarea 
                                     type="text" 
@@ -146,30 +187,44 @@ const FileUploadForm = () => {
                     <label className='font-semibold my-4 text-xl'>
                         Curso:
                     </label>
-                    <div className='w-full grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-4'>
-                        {user.enrolledCourses.map((course_list, index) => (
-                            <div className={`flex items-center rounded-xl border-2 ${course == course_list && university!=null? "border-cach-l3 bg-cach-l2 dark:text-cach-l4": "border-cach-l2"} p-2 ${university == null ? "cursor-no-drop":"cursor-pointer"}`} onClick={()=>{
-                                if (university == null) {
-                                    alert("Por favor, selecciona una universidad")
-                                    return
-                                } else {
-                                    setCourse(course_list)
-                                }}} key={index}>
-                                <div className='mx-2 min-w-11 flex items-center justify-center'>
-                                    <img src={Curso} className='w-[50px]'/>
-                                </div>
-                                <div className='text-center'>
-                                    {course_list}
-                                </div>
-                            </div>
-                        ))}
+                    <div>
+                        <input
+                            type="text"
+                            value={termSearchCourse}
+                            disabled={university == null}
+                            onChange={(e) => setTermSearchCourse(e.target.value)}
+                            onKeyDown={handleCourseSearchKeyDown}
+                            placeholder="Buscar curso"
+                            className='mb-4 text-cach-l4 font-normal border-2 border-cach-l2 rounded focus:outline-cach-l3 dark:text-cach-l4 dark:border-cach-l3 dark:focus:outline-cach-l2'
+                        />
                     </div>
+                    {isLoading == null ? <PageDefaultSearch text='Primero selecciona una universidad, después escribe el nombre de tu curso, le das al ENTER y selecciona el tuyo'/> : 
+                        <div className='w-full'>
+                            {isLoading ? <Loader/> : <div className='w-full grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-4'>
+                                {listCourses.map((course_list, index) => (
+                                <div className={`flex items-center rounded-xl border-2 ${course == course_list && university!=null? "border-cach-l3 bg-cach-l2 dark:text-cach-l4": "border-cach-l2"} p-2 ${university == null ? "cursor-no-drop":"cursor-pointer"}`} onClick={()=>{
+                                    if (university == null) {
+                                        alert("Por favor, selecciona una universidad")
+                                        return
+                                    } else {
+                                        setCourse(course_list)
+                                    }}} key={index}>
+                                    <div className='mx-2 min-w-11 flex items-center justify-center'>
+                                        <img src={Curso} className='w-[50px]'/>
+                                    </div>
+                                    <div className='text-center'>
+                                        {course_list}
+                                    </div>
+                                </div>
+                            ))}
+                            </div>}
+                        </div>
+                        
+                    }
                     
                 </div>
 
-                <br /><br />
-
-                <div className='flex w-full'>
+                <div className='flex w-full mt-10'>
                     <label className='font-semibold w-1/2 text-center'>
                         ¿Es anónimo?
                     </label>
@@ -180,26 +235,6 @@ const FileUploadForm = () => {
                 </div>
 
                 <br /><br />
-
-                {file ? <div>
-                    {file.name}
-                    <button type="button" onClick={()=>{setFile(null)}} className='font-semibold'> Delete</button>
-                    </div> : <div>
-                        <label>
-                            Selecciona un archivo:
-                            <input 
-                                type="file" 
-                                onChange={(e) => setFile(e.target.files[0])} 
-                                required 
-                                accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png"
-                            />
-                        </label>
-                    </div> }
-                <br /><br />
-                
-                <div>
-                    <button type="submit">Subir Archivo</button>
-                </div>
             </form>
         </div>
     );
