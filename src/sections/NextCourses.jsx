@@ -5,7 +5,7 @@ import { getCursos } from "../constant/course";
 import {MiniCard } from "../components/Cards";
 import { useUserStore } from '../store/utils';
 import Curso from "../assets/icons8-cursos-96.png";
-import BackButton from '../components/backButton';
+import BackButton from '../components/buttons';
 
 const TeacherMain = () => {
 

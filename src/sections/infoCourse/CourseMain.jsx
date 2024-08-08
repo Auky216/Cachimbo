@@ -8,7 +8,7 @@ import { teachers } from "../../constant/teachers";
 import { CoursesOpinion } from "../../constant/opinion";
 import { useUserStore } from "../../store/utils";
 import {carrers} from "../../static/academic";
-import BackButton from "../../components/backButton";
+import BackButton from "../../components/buttons";
 import {fetchDataCustom} from "../../components/fetchingData";
 import Loader from "../../components/Loading";
 import bannerImage from "../../assets/TeamPhoto/Antonio.jpg";
@@ -20,9 +20,7 @@ const CourseMain = () => {
   const [opinions, setOpinions] = useState([]);
   const [loading, setLoading] = useState(true);
   const {user} = useUserStore();
-  const careerName = carrers[user.university].find(
-    carr => carr.code === user.career,
-  ).name;
+  const careerName = user.career
 
   const loadData = async ()=>{
     setLoading(true)
@@ -34,7 +32,7 @@ const CourseMain = () => {
       reqcourses: body2.prerequisites == null ? [] : Array.isArray(body2.prerequisites) ? body2.prerequisites : [body2.prerequisites], 
       nextCourses: body2.next_courses == null ? []:body2.next_courses}))
     //console.log(info)
-    console.log(body)
+    //console.log(body)
     //console.log(info)
     setLoading(status2)
     //const [res, bodyOp, state3] = await fetchDataCustom({course_name:curso, university: user.university, token:user.token}, "test/api/course/calification/get")

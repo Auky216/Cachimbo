@@ -9,14 +9,15 @@ import groupsIcon from "../assets/groups-icon.png";
 import settingIcon from "../assets/setting-icon.png";
 import logOutIcon from "../assets/logout-icon.png";
 import { NavLink, useLocation, useNavigate, Navigate } from "react-router-dom";
-import { useUserStore, stateLogged } from "../store/utils";
+import { useUserStore } from "../store/utils";
+import { useAuthStore } from "../store/session";
 import { useState } from "react";
 import Modal from "../components/Modal";
 import SubmitFile from "../components/submitFile";
 
 const Aside = () => {
   const location = useLocation();
-  const { logout} = stateLogged();
+  const { logout} = useAuthStore();
 
   const url = useNavigate();
   const user = useUserStore(state => state.user);
@@ -67,7 +68,7 @@ const Aside = () => {
                 to="/dashboard/profile"
                 className="text-base text-cach-l3 dark:text-cach-l2"
               >
-                {user.nickname}
+                @{user.nickname}
               </NavLink>
             </div>
           </div>
@@ -94,7 +95,7 @@ const Aside = () => {
             className="hidden"
             onChange={handleUpload}
             // extensiones permitidas
-            accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png"
+            accept='.pdf, .jpg, .jpeg, .png'
           />
           <label
             htmlFor="submit-file"

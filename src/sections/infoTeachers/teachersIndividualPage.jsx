@@ -6,7 +6,7 @@ import { MAX_RATE } from "../../constant/opinion";
 import StarRating from './teacherRater';
 import CommentInput from '../../components/CustomInput';
 import TOpinion from './TOpinion';
-import BackButton from '../../components/backButton';
+import BackButton from '../../components/buttons';
 import Loader from '../../components/Loading';
 import { carrers } from '../../static/academic';
 import {fetchDataCustom} from '../../components/fetchingData';
@@ -109,9 +109,9 @@ const TeachersIndividualPage = () => {
                                         onClick={() => handleStarClick(index)}></Star>
                                     ))}
                                 </div>
-                                <div className='flex justify-center gap-3'>
+                                {/* <div className='flex justify-center gap-3'>
                                     Curso Teacher
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <br />

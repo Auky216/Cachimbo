@@ -5,9 +5,10 @@ import { useUserStore } from '../store/utils';
 import { universities } from '../static/academic';
 import UniDefault from "../assets/university-icon.png"
 import Curso from "../assets/icons8-cursos-96.png";
-import { Checkbox } from '../components/backButton';
+import { Checkbox } from '../components/buttons';
 import Loader, {PageDefaultSearch} from '../components/Loading';
 import { fetchDataCustom } from '../components/fetchingData';
+import uploadIcon from "../assets/upload-icon.png";
 // const UploadIcon = () => {
 //     return(
 //     <svg 
@@ -69,6 +70,7 @@ const FileUploadForm = () => {
                 nickname,
                 is_anonymous: isAnonymous,
                 file_name: file.name,
+                type: file.name.slice(-3),
                 file_content: fileContentBase64,
                 title
             };
@@ -112,29 +114,27 @@ const FileUploadForm = () => {
         <div className='w-full h-screen overflow-y-auto dark:text-cach-l1'>
             <form onSubmit={handleSubmit} className='w-full max-w-md mx-auto my-5'>
                 <div className='flex mx-auto font-semibold gap-5'>
-                    <div className='w-1/3 flex items-center justify-center'>
-                        <div>
-                            <button type="submit" className='w-full p-4 border-2 rounded-3xl border-cach-l4 dark:border-cach-l1'>
-                                <img src={UploadTargetIcon} className='dark:invert' alt="xd" width={100}/>
-                                Subir
-                            </button>
-                        </div>
-                    </div>
-                    <div className='w-2/3 flex flex-col'>
+                    <div className='w-1/2 flex items-center justify-center'>
                         {file ? <div className='flex flex-col m-5 text-center'>
-                        {file.name}
-                        <button type="button" onClick={()=>{setFile(null)}} className='font-semibold text-red-600'> Delete</button>
-                        </div> : <div className='flex flex-col m-5'>
-                            <label>
-                                Selecciona un archivo:
-                            </label>
-                            <input 
-                                    type="file" 
-                                    onChange={(e) => setFile(e.target.files[0])} 
-                                    required 
-                                    accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png"
-                                />
-                        </div> }
+                                {file.name}
+                                <button type="button" onClick={()=>{setFile(null)}} className='font-semibold text-red-600' accept='.pdf, .jpg, .jpeg, .png'> Delete</button>
+                            </div> : 
+                            <div className='flex flex-col m-5 w-full'>
+                                <label className='cursor-pointer flex flex-col border-cach-l4 dark:border-cach-l1 items-center border-2 p-2 rounded-2xl'>
+                                    <img src={UploadTargetIcon} className='dark:invert' alt="xd" width={100}/>
+                                    <p className='w-full text-center'>Selecciona un archivo</p>
+                                    <input 
+                                        type="file" 
+                                        onChange={(e) => setFile(e.target.files[0])} 
+                                        required 
+                                        className='hidden'
+                                        
+                                        accept='.pdf, .jpg, .jpeg, .png'
+                                    />
+                                </label>
+                            </div> }
+                    </div>
+                    <div className='w-1/2 flex flex-col justify-center'>
                         <div className='flex flex-col'>
                             <label className='flex' >
                                 Título:
@@ -195,7 +195,7 @@ const FileUploadForm = () => {
                             onChange={(e) => setTermSearchCourse(e.target.value)}
                             onKeyDown={handleCourseSearchKeyDown}
                             placeholder="Buscar curso"
-                            className='mb-4 text-cach-l4 font-normal border-2 border-cach-l2 rounded focus:outline-cach-l3 dark:text-cach-l4 dark:border-cach-l3 dark:focus:outline-cach-l2'
+                            className='mb-4 text-cach-l4 px-3 py-2 font-normal border-2 border-cach-l2 rounded focus:outline-cach-l3 dark:text-cach-l4 dark:border-cach-l3 dark:focus:outline-cach-l2'
                         />
                     </div>
                     {isLoading == null ? <PageDefaultSearch text='Primero selecciona una universidad, después escribe el nombre de tu curso, le das al ENTER y selecciona el tuyo'/> : 
@@ -233,8 +233,20 @@ const FileUploadForm = () => {
                     </div>
                     
                 </div>
-
-                <br /><br />
+                <br />
+                <div className='w-2/3 mx-auto'>
+                    {/* <button type="submit" className='flex flex-col justify-center items-center text-center w-full p-4 border-2 rounded-3xl border-cach-l4 dark:border-cach-l1'>
+                        <img src={UploadTargetIcon} className='dark:invert' alt="xd" width={100}/>
+                        <p className='w-full text-center'>Subir</p>
+                    </button> */}
+                    <button type="submit"
+                        className="mb-3 mt-2 flex min-h-8 w-full cursor-pointer items-center justify-center rounded-xl bg-cach-l3 text-cach-l1"
+                    >
+                        <img src={uploadIcon} alt="icon" className="mr-1 w-4 invert" />
+                        Subir
+                    </button>
+                </div>
+                <br />
             </form>
         </div>
     );

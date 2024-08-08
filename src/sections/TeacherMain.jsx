@@ -3,8 +3,8 @@ import { NavLink, Link } from "react-router-dom";
 import React, { useState, useEffect, useRef } from 'react';
 import {teachers} from '../constant/teachers';
 import { getCursos } from "../constant/course";
-import BackButton from "../components/backButton";
-import Loader from "../components/Loading";
+import BackButton from "../components/buttons";
+import Loader, {PageDefaultSearch} from "../components/Loading";
 import {fetchDataCustom} from "../components/fetchingData";
 import { useUserStore } from "../store/utils";
 
@@ -17,7 +17,7 @@ const TeacherMain = () => {
     const cursosArray = Object.keys(getCursos);
     const [techers_section, filterTeachers] = useState(teachers);
     const [inputValue, setInputValue] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(null);
     const [page,setPage] = useState(1);
     const [last_page, setLastPage] = useState(20);
     const {user} = useUserStore();
@@ -26,7 +26,7 @@ const TeacherMain = () => {
     
     const fetchData = async (search_value, page) => {
         if (search_value === ""){
-            search_value = "a"
+            return;
         }
         setIsLoading(true)
         const [result, data, state] = await fetchDataCustom({
@@ -41,9 +41,6 @@ const TeacherMain = () => {
     };
     
 
-    useEffect(() => {
-        fetchData("a", page);
-    }, []); 
 
 
     const changeInputValue = (e) => {
@@ -86,16 +83,16 @@ const TeacherMain = () => {
             </div>
             {/* Sección de páginas */}
             <div className="w-full my-6">
-                <div className=" w-5/6 justify-between m-auto flex items-center gap-2">
-                    <button className="text-cach-l1 border-2 p-1 rounded-lg" onClick={()=>{
+                <div className="text-cach-l4 w-5/6 justify-between m-auto flex items-center gap-2">
+                    <button className="dark:text-cach-l1 border-2 p-1 rounded-lg" onClick={()=>{
                         if (page > 1){
                             setPage(parseInt(inputRef.current.value)-1)
                             fetchData(inputValue, page)
                         }
                         }}> Página anterior</button>
-                    { page > 1 ? <span className="text-cach-l2">{1}</span>:<span className="text-cach-l2"></span>}
-                    { page <= 2  ? <span></span> : <span className="text-cach-l2">....</span>}
-                    <input ref={inputRef} className="w-10 text-center bg-transparent border-cach-l3 border-2 rounded text-cach-l1" value={page} onChange={ e => changePage(e)} onKeyUp={ e =>{
+                    { page > 1 ? <span className="dark:text-cach-l2">{1}</span>:<span className="dark:text-cach-l2"></span>}
+                    { page <= 2  ? <span></span> : <span className="dark:text-cach-l2">....</span>}
+                    <input ref={inputRef} className="w-10 text-center bg-transparent border-cach-l3 border-2 rounded dark:text-cach-l1" value={page} onChange={ e => changePage(e)} onKeyUp={ e =>{
                         if (e.key === "Enter"){
                             if (inputRef.current){
                                 fetchData(inputValue, page);
@@ -103,9 +100,9 @@ const TeacherMain = () => {
                             }
                         }
                     }}/>
-                    { page >= last_page - 1 ? <span></span> : <span className="text-cach-l2">....</span>}
-                    { page == last_page ? <span></span> : <span className="text-cach-l2">{last_page}</span>}
-                    <button className="text-cach-l1 border-2 p-1 rounded-lg"  onClick={()=>{
+                    { page >= last_page - 1 ? <span></span> : <span className="dark:text-cach-l2">....</span>}
+                    { page == last_page ? <span></span> : <span className="text-cach-l4 dark:text-cach-l2">{last_page}</span>}
+                    <button className="dark:text-cach-l1 border-2 p-1 rounded-lg"  onClick={()=>{
                         if (page < last_page){
                             setPage(1 + parseInt(inputRef.current.value))
                             fetchData(inputValue, page)
@@ -115,8 +112,7 @@ const TeacherMain = () => {
             </div>
             <div className="w-full flex justify-center items-center">
                 {/* Se usará un map para generar todos los teaches mini card necesarios */}
-                
-                {isLoading ? <Loader/> : <div className="w-full grid grid-cols-[repeat(auto-fill,_minmax(224px,_1fr))] gap-4">
+                {isLoading === null ? <PageDefaultSearch/> : isLoading==true ? <Loader/> : <div className="w-full grid grid-cols-[repeat(auto-fill,_minmax(224px,_1fr))] gap-4">
                         {techers_section.map((teacher, index) => (
                             <Link to={`/dashboard/main/teachers/${teacher.name}`} key={index}>
                                 <TeacherMiniCard
@@ -127,8 +123,8 @@ const TeacherMain = () => {
                                 />
                             </Link>
                     ))}
-                </div>
-                }
+                </div>}
+
             </div>
         </div>
     );

@@ -21,8 +21,8 @@ const LibraryItem = ({ item, link}) => {
           <img src={pdflogo} alt="PDF" className="h-[4rem] w-[4rem]" />
           <div>
             <h3 className="text-10 text-lg font-bold text-cach-l3">
-              <Link to={link} className="text-cach-l3 dark:text-cach-l2 hover:underline">
-                {item.title}
+              <Link to={`/dashboard/library/${item.university}/${item.course}/${item.id}/${item.type}`} className="text-cach-l3 dark:text-cach-l2 hover:underline">
+                {item.title} - {item.course}
               </Link>
             </h3>
             <div className="flex items-center space-x-2">
@@ -31,13 +31,13 @@ const LibraryItem = ({ item, link}) => {
                 alt="profile"
                 className="h-8 w-8 grayscale filter dark:invert"
               />
-              <p className="pr-3 text-cach-l5 dark:text-cach-l3">@{item.autor}</p>
+              <p className="pr-3 text-cach-l5 dark:text-cach-l3">@{item.nickname}</p>
               <img
                 src={universitylogo}
                 alt="Universidad"
                 className="h-8 w-8 grayscale filter"
               />
-              <p className="text-cach-l5 dark:text-cach-l3">UTEC</p>
+              <p className="text-cach-l5 dark:text-cach-l3">{item.university}</p>
             </div>
           </div>
         </div>

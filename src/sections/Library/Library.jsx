@@ -1,25 +1,43 @@
 import { useState, useRef } from "react";
 import LibraryItem from "../../components/LibraryItem";
 import { getPdfs } from "../../constant/pdfs";
+import { PageDefaultSearch } from "../../components/Loading";
+import { fetchDataCustom } from "../../components/fetchingData";
+import { useUserStore } from "../../store/utils";
 
 const Library = () => {
   const inputRef = useRef(null);
+  const { user } = useUserStore();
   const [outputPdfs, setOutputPdfs] = useState(Object.entries(getPdfs));
   const [inputValue, setInputValue] = useState("");
+  const [isSearching, setIsSearching] = useState(null);
 
-  const handleOutputPdfs = () => {
-    const filteredPdfs = Object.entries(getPdfs).filter(([_, item]) => {
-      // quitando tildes o caracteres encima de las letras
-      const itemTitle = item.title
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-      return itemTitle.includes(inputValue.toLowerCase());
-    });
-    setOutputPdfs(filteredPdfs);
+  const handleOutputPdfs = async() => {
+    if (!inputValue) {
+      setIsSearching(null);
+      return
+    };
+
+    const [res, data, state, err] = await fetchDataCustom({
+      title: inputValue,
+      token: user.token,
+      page: 1,
+    }, "test/api/library/find");
+    console.log(res, data, state, err);
+    setIsSearching(true);
+    // const filteredPdfs = Object.entries(getPdfs).filter(([_, item]) => {
+    //   // quitando tildes o caracteres encima de las letras
+    //   const itemTitle = item.title
+    //     .toLowerCase()
+    //     .normalize("NFD")
+    //     .replace(/[\u0300-\u036f]/g, "");
+    //   return itemTitle.includes(inputValue.toLowerCase());
+    // });
+    setOutputPdfs(data.items);
+    setIsSearching(false);
   };
   return (
-    <section id="library" className="py-10 pr-8">
+    <section id="library" className="py-10 pr-8 h-screen overflow-y-auto">
       <div className="mb-4">
         <input
           onChange={e => setInputValue(e.target.value)}
@@ -57,11 +75,10 @@ const Library = () => {
         </button>
       </div>
 
-      {outputPdfs.map(([id, item]) => (
+      {isSearching == null ? <PageDefaultSearch/> : outputPdfs.map((item, id) => (
         <LibraryItem
           key={id}
           item={item}
-          link={`/dashboard/library/pdf/${id}`}
         />
       ))}
     </section>

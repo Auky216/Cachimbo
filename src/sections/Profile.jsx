@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
-import BackButton from "../components/backButton";
+import BackButton from "../components/buttons";
 import { useUserStore } from "../store/utils";
 import profileTemplate from "../assets/profile-template.png";
 import uniDefault from "../assets/icons8-university-48.png";
@@ -9,12 +9,14 @@ import materialUploaded from "../assets/icons8-electivo-96.png";
 import rating from "../assets/starRating.png";
 import { universities, carrers } from "../static/academic";
 import { CardNumberStat } from "../components/Cards";
+import Loader from "../components/Loading";
 
 const Profile = () => {
-  const user = useUserStore(state => state.user);
-  const careerName = carrers[user.university].find(
-    carr => carr.code === user.career,
-  ).name;
+  const {user} = useUserStore();
+  // const careerName = carrers[user.university].find(
+  //   carr => carr.code === user.career,
+  // ).name;
+  const careerName = user.career;
   const uniImage =
     universities.filter(u => u.sigle === user.university)[0].logo || uniDefault;
 
@@ -28,7 +30,7 @@ const Profile = () => {
           <img
             src={profileTemplate}
             alt="profile"
-            className="w-9/12 rounded-full border dark:invert"
+            className="w-9/12 rounded-full border-2 border-cach-l4 dark:invert"
           />
         </div>
         <div className="2/3 flex flex-col gap-2 py-4">

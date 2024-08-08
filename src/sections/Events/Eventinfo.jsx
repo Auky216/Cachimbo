@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 //import { getEvents } from "../../constant/Events";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
-import BackButton from "../../components/backButton";
+import BackButton from "../../components/buttons";
 import image from "../../assets/Events/hackaton.png";
 import Loader from "../../components/Loading";
 

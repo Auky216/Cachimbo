@@ -60,6 +60,10 @@ export const routerProtected = [
     element: <Library />,
   },
   {
+    path: "/dashboard/library/:uni/:course/:id/:extension",//:course:/:element/:extension",
+    element: <PdfLibrary />,
+  },
+  {
     path: "/dashboard/intergroups",
     element: <InteractionGroups />,
   },
@@ -70,10 +74,6 @@ export const routerProtected = [
   {
     path: "/dashboard/main/course/:course",
     element: <CourseMain />,
-  },
-  {
-    path: "/dashboard/library/pdf/:pdf",
-    element: <PdfLibrary />,
   },
   {
     path: "/dashboard/main/teachers/",
