@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import profileTemplate from '../assets/profile-template.png';
 import pdflogo from '../assets/pdf-icon.png';
@@ -14,6 +14,10 @@ const LibraryItem = ({ item, link}) => {
     setLikeCount(likeCount + (isFavorite ? -1 : 1));
   };
 
+  useEffect(() => {
+    //console.log(item);
+  }, []);
+
   return (
     <div className="mb-4 rounded-2xl border border-cach-l3 px-4 py-2 dark:border-cach-l2">
       <div className="flex items-center justify-between">
@@ -21,8 +25,8 @@ const LibraryItem = ({ item, link}) => {
           <img src={pdflogo} alt="PDF" className="h-[4rem] w-[4rem]" />
           <div>
             <h3 className="text-10 text-lg font-bold text-cach-l3">
-              <Link to={`/dashboard/library/${item.university}/${item.course}/${item.id}/${item.type}`} className="text-cach-l3 dark:text-cach-l2 hover:underline">
-                {item.title} - {item.course}
+              <Link to={`/dashboard/library/${item.university}/${item.course}/${item.id}/${item.file_name.slice(-3)}`} className="text-cach-l3 dark:text-cach-l2 hover:underline">
+                {item.title} - {item.course} - {item.file_name.slice(-3)}
               </Link>
             </h3>
             <div className="flex items-center space-x-2">

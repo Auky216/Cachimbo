@@ -67,22 +67,22 @@ export const stateLogged = create((set) => ({
 /*I added new attributes*/
 export const useUserStore = create(
     persist(
-        set => ({
+        (set) => ({
             user: {
-                university: "UTEC",
-                career: "CS",
-                nickname: "Jojiz",
+                university: "",
+                career: "",
+                nickname: "",
                 cycle: 1,
-                enrolledCourses: ["Programación I"],
+                enrolledCourses: [],
                 otherCourses: [],
                 numberFilesUploaded: 0,
                 numberFriends: 0,
-                name: "Juan Salvatierra",
-                lastname: "Perez Gonzales",
-                email: "pepito@gonzales.com",
+                name: "",
+                lastname: "",
+                email: "",
                 password: "",
                 confirmPassword: "",
-                profileDescription: "I love to code and learn new things",
+                profileDescription: "",
                 token: import.meta.env.VITE_TOKEN,
             },
             resetUser: () =>
@@ -91,7 +91,7 @@ export const useUserStore = create(
                         university: "",
                         career: "",
                         nickname: "",
-                        cycle: null,
+                        cycle: 1,
                         enrolledCourses: [],
                         otherCourses: [],
                         numberFilesUploaded: 0,
@@ -106,15 +106,13 @@ export const useUserStore = create(
                     },
                 })),
             setChange: (data, atr) =>
-                set(state => {
+                set((state) => {
                     state.user[atr] = data;
-                    // console.log(state);
                     return state;
                 }),
         }),
         {
             name: 'user-storage',
-            storage: localStorage,
         }
-
-    ));
+    )
+);

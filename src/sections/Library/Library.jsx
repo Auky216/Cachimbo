@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import LibraryItem from "../../components/LibraryItem";
 import { getPdfs } from "../../constant/pdfs";
-import { PageDefaultSearch } from "../../components/Loading";
+import Loader, { PageDefaultSearch } from "../../components/Loading";
 import { fetchDataCustom } from "../../components/fetchingData";
 import { useUserStore } from "../../store/utils";
 
@@ -17,14 +17,14 @@ const Library = () => {
       setIsSearching(null);
       return
     };
-
+    setIsSearching(true);
     const [res, data, state, err] = await fetchDataCustom({
       title: inputValue,
       token: user.token,
       page: 1,
     }, "test/api/library/find");
     console.log(res, data, state, err);
-    setIsSearching(true);
+    
     // const filteredPdfs = Object.entries(getPdfs).filter(([_, item]) => {
     //   // quitando tildes o caracteres encima de las letras
     //   const itemTitle = item.title
@@ -75,7 +75,7 @@ const Library = () => {
         </button>
       </div>
 
-      {isSearching == null ? <PageDefaultSearch/> : outputPdfs.map((item, id) => (
+      {isSearching == null ? <PageDefaultSearch/> : isSearching == true ? <Loader></Loader> : outputPdfs.map((item, id) => (
         <LibraryItem
           key={id}
           item={item}

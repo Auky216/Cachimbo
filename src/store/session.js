@@ -16,16 +16,16 @@ export const useAuthStore = create((set) => ({
                 
                 useUserStore.getState().setChange(result.token, 'token');
 
-                
-            
                 const [res, data, state2, err] = await fetchDataCustom({
-                    "token": result.token,
-                    "email": credentials.email,
-                }, "test/api/student/get")
+                    token: result.token,
+                    email: credentials.email,
+                }, "test/api/student/get");
                 
+                useAuthStore.getState().setDataUsers(
+                    [data.name, data.university, data.files, data.nickname, data.friends, data.term, data.interestedCourses, data.description],
+                    ["name", "university", "numberFilesUploaded", "nickname", "numberFriends", "career", "enrolledCourses", "profileDescription"]
+                );
 
-                useAuthStore.getState().setDataUsers([data.name, data.university, data.files, data.nickname, data.frined, data.term, data.interestedCourses, data.desciption], ["name", "university", "numberFilesUploaded", "nickname", "numberFriends", "career", "enrolledCourses", "profileDescription"]);
-                
                 stateLogged.getState().login();
             } else if (body.error) {
                 throw new Error(body.error);
@@ -38,13 +38,11 @@ export const useAuthStore = create((set) => ({
         }
     },
 
-
     logout: () => {
         stateLogged.getState().logout();
-        //useUserStore.getState().resetUser();
-        set({ isLoading:null, error: null });
+        useUserStore.getState().resetUser(); // Elimina los datos del usuario
+        set({ isLoading: null, error: null });
     },
-
 
     setDataUsers: (dataList, attributes) => {
         dataList.forEach((data, index) => {
