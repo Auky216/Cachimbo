@@ -25,7 +25,7 @@ const LibraryItem = ({ item, link}) => {
           <img src={pdflogo} alt="PDF" className="h-[4rem] w-[4rem]" />
           <div>
             <h3 className="text-10 text-lg font-bold text-cach-l3">
-              <Link to={`/dashboard/library/${item.university}/${item.course}/${item.id}/${item.file_name.slice(-3)}`} className="text-cach-l3 dark:text-cach-l2 hover:underline">
+              <Link to={`/dashboard/library/${item.university}/${item.course}/${item.id}/${item.file_name.slice(-3)}`} className="text-cach-l3 dark:text-cach-l2 hover:underline" state={item}>
                 {item.title} - {item.course} - {item.file_name.slice(-3)}
               </Link>
             </h3>
