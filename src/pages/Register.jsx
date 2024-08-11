@@ -36,7 +36,7 @@ const Register = () => {
   // debera haber un boton de siguiente y atras para cambiar de vista manteniedo los datos del usuario
 
   const [currentSlide, setCurrentSlide] = useState(
-    /* parseInt(localStorage.getItem("currentSlide")) || */ 2,
+    /* parseInt(localStorage.getItem("currentSlide")) || */ 4,
   );
 
   const [setChangeUser, resetUser] = useUserStore(state => [
@@ -62,14 +62,20 @@ const Register = () => {
   const nextUser = data => {
     setChangeUser(data.name, "name");
     setChangeUser(data.lastname, "lastname");
-    setChangeUser(data.nickname, "nickname");
+    setChangeUser(data.email, "email");
     setCurrentSlide(currentSlide + 1);
+  };
+
+  const exitRegister = () => {
+    resetUser();
+    // dirigir al dashboard
+    window.location.href = "/";
   };
 
   const finalize = () => {
     // se realizaria un POST a la API para registrar al usuario
-    // dirigir al dashboard
-    window.location.href = "/dashboard/main";
+    // fetch("https:// .....").then(res => { });
+    exitRegister();
   };
 
   const slides = [
@@ -78,9 +84,9 @@ const Register = () => {
     <Academic next={nextAcademic} />,
     // <OtherCourses next={nextSlide} />,
     <GetUser next={nextUser} />,
-    // <Password next={nextSlide} />,
-    // <Verify next={nextSlide} />,
-    // <PhotoProfile next={nextSlide} />,
+    <Verify next={() => setCurrentSlide(currentSlide + 1)} />,
+    <Password next={nextSlide} />,
+    <PhotoProfile next={nextSlide} />,
     // <DescFinal final={finalize} />,
   ];
 
@@ -93,14 +99,14 @@ const Register = () => {
           <ThemeButton />
         </div>
         <div className="mb-6">
-          <Link to="/">
-            <button
-              className="text-xl text-cach-l3 dark:text-cach-l2"
-              onClick={resetUser}
-            >
-              ← Volver
-            </button>
-          </Link>
+          {/* <Link to="/"> */}
+          <button
+            className="text-xl text-cach-l3 dark:text-cach-l2"
+            onClick={exitRegister}
+          >
+            ← Volver
+          </button>
+          {/* </Link> */}
         </div>
       </div>
       {slides[currentSlide]}
