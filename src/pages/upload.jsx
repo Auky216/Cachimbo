@@ -66,6 +66,7 @@ const FileUploadForm = () => {
             const requestBody = {
                 university,
                 course,
+                token: user.token,
                 description,
                 nickname,
                 is_anonymous: isAnonymous,

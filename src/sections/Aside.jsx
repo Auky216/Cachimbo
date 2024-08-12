@@ -76,15 +76,15 @@ const Aside = () => {
           {/* Caracteristicas */}
           <div className="ml-5 mr-5 flex items-center justify-between pb-5 text-base text-cach-l5 dark:text-cach-l1 ">
             <div className="flex cursor-pointer flex-col items-center justify-center">
-              <p className="font-extrabold">30</p>
+              <p className="font-extrabold">{user.numberFriends || 0}</p>
               <p className="font-semibold">Amigos</p>
             </div>
             <div className="flex cursor-pointer flex-col items-center justify-center">
-              <p className="font-extrabold">12</p>
+              <p className="font-extrabold">{user.numberFilesUploaded || 0}</p>
               <p className="font-semibold">Subidos</p>
             </div>
             <div className="flex flex-col items-center justify-center">
-              <p className="font-extrabold">150</p>
+              <p className="font-extrabold">{user.score|| 0}</p>
               <p className="font-semibold">Puntos</p>
             </div>
           </div>
