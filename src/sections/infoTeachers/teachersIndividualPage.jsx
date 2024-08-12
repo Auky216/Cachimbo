@@ -16,7 +16,7 @@ const TeachersIndividualPage = () => {
     const {name} = useParams();
     const [isLoading, setIsLoading] = useState(true);
     const {user} = useUserStore();
-    const[info, setInfo] = useState();
+    const[info, setInfo] = useState([[]]);
     const careerName = carrers[user.university].find(
         carr => carr.code === user.career,
     ).name;
@@ -70,13 +70,13 @@ const TeachersIndividualPage = () => {
         //console.log(body2.comments, result2);
         
         if (result2.statusCode == 200){
+            setInfo(body);
+        
+            setIsLoading(state);
             setOpinions(body2.comments)
             setTheacherRate(body2.score);
             setSelectedRate(body2.score);
         };
-        setInfo(body);
-        
-        setIsLoading(state);
         
     };
     
@@ -88,7 +88,7 @@ const TeachersIndividualPage = () => {
     
     return (
         <div className='overflow-scroll h-full'>
-            {isLoading ? <Loader/> : 
+            {isLoading && info? <Loader/> : 
                 <div className='w-full'>
                     <div className='w-full mt-16'>
                         <BackButton></BackButton>

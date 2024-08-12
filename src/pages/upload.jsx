@@ -67,7 +67,6 @@ const FileUploadForm = () => {
                 university,
                 course,
                 token: user.token,
-                description,
                 nickname,
                 is_anonymous: isAnonymous,
                 file_name: file.name,
