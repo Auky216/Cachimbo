@@ -6,14 +6,6 @@
   <h1>💻 <em>Cachimbo</em> 💻</h1>
 </div>
 
-### Propuestas 
-
-#### Por mejora de UX, se puede guardar en un localStorage el seccion dentro de la página para que cuando se recargue la página, se mantenga en la misma sección
-
-#### Se crearia un stack de secciones en un useEffect, donde al ir atrás hace un pop, y al ir adelante hace un push para mantener el historial
-
-#### WTF con la distrib. de iconos xD
-
 ### Inicializando
 
     npm install

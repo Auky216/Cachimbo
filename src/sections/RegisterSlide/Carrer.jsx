@@ -3,40 +3,40 @@ import { carrers } from "../../static/academic";
 import { useUserStore } from "../../store/utils";
 import StampCarrer from "../../components/StampCarrer";
 
-// segunda vista de registro: seleccion de carrera
-const Carrer = ({ next }) => {
+// segunda vista de registro: seleccion de careera
+const Career = ({ next }) => {
   const loadUniv = useUserStore(state => state.user.university);
   const resetable = {
     [carrers[loadUniv].map(key => key.code)]: false,
   };
-  const [clicked_per_carrer, setClicked_per_carrer] = useState(resetable);
-  const [carrer, setCarrer] = useState("");
+  const [clicked_per_career, setClicked_per_career] = useState(resetable);
+  const [career, setCareer] = useState("");
   const [carr_name, setCarr_name] = useState("");
 
   useEffect(() => {
     let find = "";
-    if (carrer)
-      find = carrers[loadUniv].find(carr => carr.code === carrer).name;
+    if (career)
+      find = carrers[loadUniv].find(carr => carr.code === career).name;
     setCarr_name(find);
-  }, [carrer]);
+  }, [career]);
 
   const handleClick = e => {
-    const sele = e.target.getAttribute("carrer");
-    if (clicked_per_carrer[sele]) {
-      setCarrer("");
-      setClicked_per_carrer({ [sele]: false });
+    const sele = e.target.getAttribute("career");
+    if (clicked_per_career[sele]) {
+      setCareer("");
+      setClicked_per_career({ [sele]: false });
     } else {
-      setCarrer(sele);
-      setClicked_per_carrer(resetable);
-      setClicked_per_carrer({ [sele]: true });
+      setCareer(sele);
+      setClicked_per_career(resetable);
+      setClicked_per_career({ [sele]: true });
     }
   };
 
-  const carrersFirstHalf = carrers[loadUniv].slice(
+  const careersFirstHalf = carrers[loadUniv].slice(
     0,
     Math.ceil(carrers[loadUniv].length / 2),
   );
-  const carrersSecondHalf = carrers[loadUniv].slice(
+  const careersSecondHalf = carrers[loadUniv].slice(
     Math.ceil(carrers[loadUniv].length / 2),
   );
 
@@ -44,15 +44,15 @@ const Carrer = ({ next }) => {
     <section className="flex h-full w-full flex-col items-center rounded-[3.5rem]">
       <div className="flex h-[80%] w-full flex-col items-center">
         <div className="mt-2 flex px-1 text-center text-[1.6rem] font-bold text-cach-l4 dark:text-cach-l1">
-          Elige tu carrera
+          Elige tu careera
         </div>
         <div className="flex h-full w-full flex-col items-center justify-center">
           <div className="flex w-full justify-around">
-            {carrersFirstHalf.map(carr => (
+            {careersFirstHalf.map(carr => (
               <button
                 key={carr.code}
-                carrer={carr.code} // custom attribute
-                className={`z-10 min-h-8 w-[8em] items-center justify-center rounded-xl ${clicked_per_carrer[carr.code] ? "bg-cach-l3/40" : "bg-cach-l3"}  p-2 text-cach-l1`}
+                career={carr.code} // custom attribute
+                className={`z-10 min-h-8 w-[8em] items-center justify-center rounded-xl ${clicked_per_career[carr.code] ? "bg-cach-l3/40" : "bg-cach-l3"}  p-2 text-cach-l1`}
                 onClick={handleClick}
               >
                 {/* con web scraping obtendremos los iconos de las universidades */}
@@ -66,11 +66,11 @@ const Carrer = ({ next }) => {
             <em>{carr_name}</em>
           </div>
           <div className="flex w-full justify-around">
-            {carrersSecondHalf.map(carr => (
+            {careersSecondHalf.map(carr => (
               <button
                 key={carr.code}
-                carrer={carr.code} // custom attribute
-                className={`z-10 min-h-8 w-[8em] items-center justify-center rounded-xl ${clicked_per_carrer[carr.code] ? "bg-cach-l3/40" : "bg-cach-l3"}  p-2 text-cach-l1`}
+                career={carr.code} // custom attribute
+                className={`z-10 min-h-8 w-[8em] items-center justify-center rounded-xl ${clicked_per_career[carr.code] ? "bg-cach-l3/40" : "bg-cach-l3"}  p-2 text-cach-l1`}
                 onClick={handleClick}
               >
                 {/* con web scraping obtendremos los iconos de las universidades */}
@@ -84,17 +84,17 @@ const Carrer = ({ next }) => {
         <div className="flex w-full items-center justify-around">
           <button
             className="mb-3 mt-2 flex h-10 min-h-8 w-[20%] items-center justify-center rounded-xl bg-cach-l3 text-cach-l1 disabled:cursor-not-allowed disabled:opacity-50"
-            onClick={() => next(carrer, "carrer")}
-            disabled={carrer === ""}
+            onClick={() => next(career, "career")}
+            disabled={career === ""}
           >
             Siguiente
           </button>
         </div>
       </div>
 
-      <StampCarrer codeCarrer={carrer} />
+      <StampCarrer codeCarrer={career} />
     </section>
   );
 };
 
-export default Carrer;
+export default Career;
