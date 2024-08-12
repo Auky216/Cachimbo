@@ -10,8 +10,9 @@ import { useUserStore } from "../store/utils";
 import { useState, useEffect } from "react";
 
 const Principal = () => {
-  const {user} = useUserStore();
+  const { user } = useUserStore();
   const [cursos_user, setCursos_user] = useState(user.enrolledCourses);
+  // por ahora los existennte en getcursos
 
   useEffect(() => {
     setCursos_user(user.enrolledCourses);
@@ -23,14 +24,14 @@ const Principal = () => {
           Tus Cursos
         </div>
         <div className="mx-6 grid grid-cols-1 gap-4 pt-3 md:grid-cols-2">
-          {cursos_user.map((c) => (
+          {cursos_user.map(c => (
             <MiniCard
               key={c.toString()}
               classimg="size-[50px]"
               classcont="text-md w-64"
               link={`/dashboard/main/course/${c}`}
               image={Curso}
-              title={c}
+              title={getCursos[c]?.title}
             />
           ))}
         </div>
@@ -39,7 +40,7 @@ const Principal = () => {
         <div className="text-3xl font-extrabold text-cach-l3 dark:text-cach-l2">
           Explorando
         </div>
-        <div className="space-y-8 pt-10 flex flex-col">
+        <div className="flex flex-col space-y-8 pt-10">
           <NavLink to="/dashboard/main/teachers">
             <CardInfo
               iconfile={Profesores}
@@ -55,11 +56,11 @@ const Principal = () => {
             />
           </NavLink>
           <NavLink to="/dashboard/main/events">
-          <CardInfo
-            iconfile={Events}
-            title="Eventos"
-            info="Participa de los eventos que las organizaciones y comunidades de UTEC realizan en este semetres académico"
-          />
+            <CardInfo
+              iconfile={Events}
+              title="Eventos"
+              info="Participa de los eventos que las organizaciones y comunidades de UTEC realizan en este semetres académico"
+            />
           </NavLink>
           <NavLink to="/dashboard/main/sugerencias">
             <CardInfo

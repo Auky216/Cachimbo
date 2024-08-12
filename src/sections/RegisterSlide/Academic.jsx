@@ -8,7 +8,6 @@ const LIMIT_CREDITS = 24;
 // tercer slide del registro: seleccion de ciclo de ingreso y cursos matriculados
 const Academic = ({ next }) => {
   const loadCareer = useUserStore(state => state.user.career);
-
   const courses = UTECcourses[loadCareer];
   const resetCoursesLevel = {
     [Object.keys(courses.flat()).map(key => key.code)]: false,

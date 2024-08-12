@@ -1,17 +1,6 @@
 import { useState } from "react";
-
-// funcion para obtener el codigo de verificacion (INCOMPLETA)
-const fetchEmailCode = async () => {
-  const response = await fetch("https://api.example.com/email-code", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    // ...body
-  });
-  const data = await response.json();
-  return data;
-};
+import { useUserStore } from "../../store/utils";
+import { fetchDataCustom } from "../../components/fetchingData";
 
 // septimo slide del registro: confirmacion de la cuenta desde el correo institucional
 const Verify = ({ next }) => {
@@ -26,10 +15,15 @@ const Verify = ({ next }) => {
   });
   const [error, setError] = useState(""); // mensaje de error
   const [code, setCode] = useState(""); // codigo de verificacion
+  const [newMessage, setNewMessage] = useState(false);
 
-  const fetchData = async () => {
-    let responseCode = await fetchEmailCode();
-    setData(responseCode);
+  const getVerifCode = async () => {
+    const userEmail = useUserStore(state => state.user.email);
+    let response = await fetchDataCustom(
+      { id: 13, email: userEmail },
+      "//auth//sendCodeVerification",
+    );
+    setData(response["test"]["items"][0]["code"]);
   };
 
   const validate = (digit, inputIndex) => {
@@ -42,17 +36,17 @@ const Verify = ({ next }) => {
   };
 
   const matchCode = () => {
-    console.log(code, dataCode);
-    if (code === dataCode) {
-      next();
-    } else {
-      setError("El código ingresado no coincide");
-    }
+    if (code === dataCode) next();
+    else setError("El código ingresado no coincide");
   };
 
   const newCodeGenerate = () => {
-    // fetchData();
+    getVerifCode();
+    setNewMessage(true);
   };
+
+  // cuando se renderiza el componente se envia el correo con el codigo
+  // getVerifCode();
 
   return (
     <section className="flex h-full w-full flex-col items-center rounded-[3.5rem]">
@@ -62,7 +56,7 @@ const Verify = ({ next }) => {
           verificación
         </div>
         <div className="mb-4 text-center text-cach-l3 dark:text-cach-l2">
-          Escribe tu código aquí
+          Escribe tu {newMessage ? "nuevo código" : "código aqui"}
         </div>
         <div className="mb-16 flex h-[20%] w-[35%] flex-col pt-4">
           {/* Unos cuadraditos para ingresar cada digito del codigo */}

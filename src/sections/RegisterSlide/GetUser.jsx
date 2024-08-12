@@ -1,26 +1,62 @@
 import { useState } from "react";
+import { useUserStore } from "../../store/utils";
 
 // cuarto slide del registro: ingreso de nombre, apellido y correo institucional
 const GetUser = ({ next }) => {
+  const univUser = useUserStore(state => state.university) || "UTEC";
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
-  const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
-
+  const [errors, setErrors] = useState({
+    name: "",
+    lastname: "",
+    email: "",
+  });
+  let initName = true;
   const handleNameChange = e => {
+    e.preventDefault();
+    initName = false;
     setName(e.target.value);
+    if (!initName && e.target.value === "") {
+      setErrors({ ...errors, name: "El nombre es requerido" });
+    } else {
+      setErrors({ ...errors, name: "" });
+    }
   };
 
+  let initLastname = true;
   const handleLastnameChange = e => {
+    e.preventDefault();
+    initLastname = false;
     setLastname(e.target.value);
+    if (!initLastname && e.target.value === "") {
+      setErrors({ ...errors, lastname: "El apellido es requerido" });
+    } else {
+      setErrors({ ...errors, lastname: "" });
+    }
   };
 
-  const handleNicknameChange = e => {
-    setNickname(e.target.value);
-  };
-
+  let initEmail = true;
   const handleEmailChange = e => {
+    e.preventDefault();
+    initEmail = false;
     setEmail(e.target.value);
+    if (!initEmail && e.target.value === "") {
+      setErrors({ ...errors, email: "El correo es requerido" });
+      return;
+    }
+    // si el correo no tiene un patron: nombre@univ_dominio.edu.pe
+    if (!/^[^\s@]+@[^\s@]+\.edu\.pe+$/.test(e.target.value)) {
+      setErrors({ ...errors, email: "El correo no es válido" });
+      return;
+    }
+    let getDomain = e.target.value.split("@")[1].split(".")[0];
+    const univUserL = univUser.toLowerCase();
+    if (getDomain !== univUserL) {
+      setErrors({ ...errors, email: "El correo no es de la universidad" });
+      return;
+    }
+    setErrors({ ...errors, email: "" });
   };
 
   return (
@@ -34,7 +70,7 @@ const GetUser = ({ next }) => {
           <div className="mb-4">
             <label htmlFor="name">
               <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l3 placeholder:opacity-30 focus:outline-none dark:text-cach-l1 dark:placeholder:text-cach-l2"
                 type="name"
                 id="name"
                 placeholder="Nombre completo"
@@ -42,11 +78,16 @@ const GetUser = ({ next }) => {
                 onChange={handleNameChange}
               />
             </label>
+            {errors.name && (
+              <div className="mb-4 text-center text-red-400 dark:text-red-700">
+                {errors.name}
+              </div>
+            )}
           </div>
           <div className="mb-4">
             <label htmlFor="lastname">
               <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l3 placeholder:opacity-30 focus:outline-none dark:text-cach-l1 dark:placeholder:text-cach-l2"
                 type="text"
                 id="lastname"
                 placeholder="Apellidos completos"
@@ -54,11 +95,16 @@ const GetUser = ({ next }) => {
                 onChange={handleLastnameChange}
               />
             </label>
+            {errors.lastname && (
+              <div className="mb-4 text-center text-red-400 dark:text-red-700">
+                {errors.lastname}
+              </div>
+            )}
           </div>
           <div className="mb-6">
             <label htmlFor="email">
               <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l3 placeholder:opacity-30 focus:outline-none dark:text-cach-l1 dark:placeholder:text-cach-l2"
                 type="text"
                 id="email"
                 placeholder="Correo Institucional"
@@ -66,6 +112,11 @@ const GetUser = ({ next }) => {
                 onChange={handleEmailChange}
               />
             </label>
+            {errors.email && (
+              <div className="mb-4 text-center text-red-400 dark:text-red-700">
+                {errors.email}
+              </div>
+            )}
           </div>
         </div>
         <div className="flex h-[22%] w-full flex-col items-center justify-center">
