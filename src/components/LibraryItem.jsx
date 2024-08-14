@@ -4,19 +4,26 @@ import profileTemplate from '../assets/profile-template.png';
 import pdflogo from '../assets/pdf-icon.png';
 import universitylogo from '../assets/university-icon.png';
 import HeartLogo from '../components/icons/HearLogo.jsx';
+import { getIsLiked, sendLike } from '../store/services.js';
 
 const LibraryItem = ({ item, link}) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [likeCount, setLikeCount] = useState(item.likes);
 
   const handleLike = () => {
+    sendLike(item.id, !isFavorite ? 1 : 0);
     setIsFavorite(!isFavorite);
     setLikeCount(likeCount + (isFavorite ? -1 : 1));
   };
 
   useEffect(() => {
-    //console.log(item);
-  }, []);
+      getIsLiked(item.id).then((response) => {
+        setIsFavorite(response);
+      });
+      setLikeCount(item.likes);
+      //console.log(response);
+  }
+    , []);
 
   return (
     <div className="mb-4 rounded-2xl border border-cach-l3 px-4 py-2 dark:border-cach-l2">
