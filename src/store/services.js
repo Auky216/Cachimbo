@@ -46,3 +46,27 @@ export const sendLike = (id_library, like) =>{
         //console.log("done");
     });
 }
+
+/* Get teacher information */
+
+export const getDataTeacher = async (name) => {
+    const token = useUserStore.getState().user.token;
+    try {
+        const response = await fetch("/api/test/api/teacher/get_information", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name,
+                token,
+            }),
+        });
+        const data = await response.json();
+        const body = JSON.parse(data.body);
+        return body;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}

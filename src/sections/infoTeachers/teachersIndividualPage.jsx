@@ -17,9 +17,7 @@ const TeachersIndividualPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const {user} = useUserStore();
     const[info, setInfo] = useState([[]]);
-    const careerName = carrers[user.university].find(
-        carr => carr.code === user.career,
-    ).name;
+    const careerName = user.career;
     
     const [opinions, setOpinions] = useState([]);
     
@@ -67,7 +65,7 @@ const TeachersIndividualPage = () => {
             "token": token
         }, "test/api/teacher/get_information")
         const [result2, body2, state2] = await fetchDataCustom({"teacher_name":name, "token":token}, "test/api/teacher/calification/get")
-        //console.log(body2.comments, result2);
+        console.log(body2.comments, result2);
         
         if (result2.statusCode == 200){
             setInfo(body);
