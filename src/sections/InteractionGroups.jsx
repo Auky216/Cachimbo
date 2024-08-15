@@ -27,7 +27,7 @@ const InteractionGroups = () => {
   };
 
   return (
-    <section id="interactionGroups" className="py-10 pr-8">
+    <section id="interactionGroups" className="py-10 pr-8 h-screen overflow-y-auto">
       <div className="mb-4">
         <input
           type="text"

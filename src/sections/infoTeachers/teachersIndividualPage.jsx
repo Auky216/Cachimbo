@@ -156,7 +156,7 @@ const TeachersIndividualPage = () => {
                                         key={opinion.date} // Asumiendo que cada 'opinion' tiene un 'id' único. Es importante proporcionar una prop 'key' cuando se renderizan listas.
                                         profile_author_route={opinion.profile_author_route}
                                         rate={opinion.score}
-                                        author={opinion.nickname}
+                                        author={"@"+opinion.nickname}
                                         date={opinion.date.split('T')[0]}
                                         comment={opinion.comment}
                                     />

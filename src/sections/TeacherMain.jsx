@@ -1,6 +1,6 @@
 import { TeacherMiniCard } from "../components/Cards";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import {teachers} from '../constant/teachers';
 import { getCursos } from "../constant/course";
 import BackButton from "../components/buttons";
