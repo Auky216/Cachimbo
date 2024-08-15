@@ -11,25 +11,33 @@
   min-width: 320px;
   height: fit-content;
   /* scrollbar; */
-  
+
 }
 
-.aboutgrid {
-  grid-template-areas: 
-    "title title title"
-    "bleft cont bright";
-}
-  
-@media (width <= 768px) {
-  .aboutgrid {
-    grid-template-areas: 
-    "title title"
-    "cont cont"
-    "bleft bright";
+/* ONLY FOR TEST SPACES IN COMPONENTS*/
+@layer components {
+  .test {
+    border: 2px solid red;
   }
 }
 
-button, label {
+.aboutgrid {
+  grid-template-areas:
+    "title title title"
+    "bleft cont bright";
+}
+
+@media (width <=768px) {
+  .aboutgrid {
+    grid-template-areas:
+      "title title"
+      "cont cont"
+      "bleft bright";
+  }
+}
+
+button,
+label {
   transition: 0.3s;
 
   &:hover {
@@ -48,7 +56,7 @@ button, label {
 input[type="range"]::-webkit-slider-thumb {
   /* removing default appearance */
   -webkit-appearance: none;
-  appearance: none; 
+  appearance: none;
   /* creating a custom design */
   height: 15px;
   width: 15px;
