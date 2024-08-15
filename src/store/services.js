@@ -1,6 +1,6 @@
-import { json } from "react-router-dom";
 import { useUserStore } from "./utils";
 
+/* Library section */
 export const getIsLiked = async (id_library) => {
     try {
         const response = await fetch("/api/test/api/library/like/get", {
@@ -49,6 +49,28 @@ export const sendLike = (id_library, like) =>{
 
 /* Get teacher information */
 
+export const findTeachers = async (name, page) => {
+    try {
+        const response = await fetch("/api/test/api/teacher/find_teacher", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name,
+                page,
+                token: useUserStore.getState().user.token,
+            }),
+        });
+        const data = await response.json();
+        const body = JSON.parse(data.body);
+        return body;
+    } catch (error) {
+        console.error(error);
+        
+    }
+}
+
 export const getDataTeacher = async (name) => {
     const token = useUserStore.getState().user.token;
     try {
@@ -69,4 +91,41 @@ export const getDataTeacher = async (name) => {
         console.error(error);
         return null;
     }
+}
+
+export const getTeachersComments = async (teacher_name) => {
+    try {
+        const res = await fetch("/api/test/api/teacher/calification/get", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                teacher_name,
+                token: useUserStore.getState().user.token,
+            }),
+        });
+        const data = await res.json();
+        const body = JSON.parse(data.body);
+        return body;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const sendTeacherOpinion = async (teacher_name, comment, score) => {
+    const res = await fetch("/api/test/api/teacher/calification/send", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            teacher_name,
+            nickname: useUserStore.getState().user.nickname,
+            career: useUserStore.getState().user.career,
+            comment,
+            score,
+            token: useUserStore.getState().user.token,
+        }),
+    });
 }

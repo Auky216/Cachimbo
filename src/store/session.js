@@ -22,8 +22,8 @@ export const useAuthStore = create((set) => ({
                 }, "test/api/student/get");
                 //console.log(data);
                 useAuthStore.getState().setDataUsers(
-                    [data.name, data.university, data.files, data.nickname, data.friends, data.term, data.interestedCourses, data.description, data.points, data.files.length, data.friends.length],
-                    ["name", "university", "numberFilesUploaded", "nickname", "numberFriends", "career", "enrolledCourses", "profileDescription", "score", "numberFilesUploaded", "numberFriends"]
+                    [data.name, data.university, data.files, data.nickname, data.friends, data.term, data.interestedCourses, data.description, data.points, data.files.length, data.friends.length, data.files, data.startYear],
+                    ["name", "university", "numberFilesUploaded", "nickname", "numberFriends", "career", "enrolledCourses", "profileDescription", "score", "numberFilesUploaded", "numberFriends", "filesUploaded", "startYear"]
                 );
 
                 stateLogged.getState().login();

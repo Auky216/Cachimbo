@@ -25,7 +25,7 @@ const Profile = () => {
       <div className="my-5 flex w-full items-center justify-between">
         <BackButton></BackButton>
       </div>
-      <div className="flex">
+      <div className="flex mx-auto">
         <div className="flex w-1/3 items-center justify-center">
           <img
             src={profileTemplate}
@@ -33,32 +33,36 @@ const Profile = () => {
             className="w-9/12 rounded-full border-2 border-cach-l4 dark:invert"
           />
         </div>
-        <div className="2/3 flex flex-col gap-2 py-4">
+        <div className="w-2/3 flex flex-col gap-2 py-4">
           <h1 className="text-2xl font-bold text-cach-l3 dark:text-cach-l2">
             {user.name} {user.lastname}
           </h1>
-          <i className="text-lg font-medium text-cach-l3 dark:text-cach-l2">
-            {user.nickname}
+          <i className="text-lg items-center flex font-medium gap-7 text-cach-l3 dark:text-cach-l2">
+            @{user.nickname}    <img src={uniImage} alt="uniImage" className="w-6" />
           </i>
           <h1 className="text-xl font-semibold text-cach-l3 dark:text-cach-l2">
-            {careerName}
+            {careerName}  
           </h1>
-          <img src={uniImage} alt="uniImage" className="w-9" />
+          <i className="text-base font-semibold text-cach-l3 dark:text-cach-l2">Cachimbo {user.startYear}</i>
         </div>
       </div>
-
+      <div className="w-full">
+        <div className="w-10/12 mx-auto border-2 p-4 text-center rounded-xl my-6 text-cach-l4 dark:text-cach-l1">
+          {user.profileDescription || "No hay descripción"}
+        </div>
+      </div>
       <div className="m-auto my-5 w-11/12">
         <h1 className="text-2xl font-bold text-cach-l3 dark:text-cach-l2">
           Actividad
         </h1>
         <div className="my-3 grid grid-cols-[repeat(auto-fill,_minmax(150px,_1fr))] gap-4">
-          <CardNumberStat number={30} title="Amigos" imgsrc={friendsIcon} />
+          <CardNumberStat number={user.numberFriends || 0} title="Amigos" imgsrc={friendsIcon} />
           <CardNumberStat
-            number={12}
+            number={ user.numberFilesUploaded || 0}
             title="Subidos"
             imgsrc={materialUploaded}
           />
-          <CardNumberStat number={150} title="Puntos" imgsrc={rating} />
+          <CardNumberStat number={user.score || 0} title="Puntos" imgsrc={rating} />
         </div>
       </div>
     </div>

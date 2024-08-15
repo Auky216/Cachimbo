@@ -8,9 +8,8 @@ import CommentInput from '../../components/CustomInput';
 import TOpinion from './TOpinion';
 import BackButton from '../../components/buttons';
 import Loader from '../../components/Loading';
-import { carrers } from '../../static/academic';
-import {fetchDataCustom} from '../../components/fetchingData';
 import { useUserStore } from '../../store/utils';
+import { getDataTeacher, getTeachersComments, sendTeacherOpinion } from '../../store/services';
 
 const TeachersIndividualPage = () => {
     const {name} = useParams();
@@ -37,14 +36,10 @@ const TeachersIndividualPage = () => {
     const sendOpinion = async () => {
         // Aquí se enviaría la opinión
         //console.log(opinions);
-        const [res, body, state] = await fetchDataCustom({
-            teacher_name: name,
-            nickname: user.nickname,
-            career: careerName,
-            comment,
-            score: selectedRate,
-            token: user.token,
-        }, "test/api/teacher/calification/send")
+        sendTeacherOpinion(name, comment, selectedRate).catch((error) => {
+            console.log(error);
+            console.log("Error al enviar la opinión");
+        });
         //console.log(res, body, state);
         const new_comment = {comment: comment, 
             teacher_name: name,
@@ -55,27 +50,19 @@ const TeachersIndividualPage = () => {
         setOpinions([...opinions, new_comment]);
         setComment("")
     }
-
-    const token = user.token;
     
     const fetchData = async (search_value) => {
         setIsLoading(true);
-        const [result, body, state] = await fetchDataCustom({
-            "name": search_value,
-            "token": token
-        }, "test/api/teacher/get_information")
-        const [result2, body2, state2] = await fetchDataCustom({"teacher_name":name, "token":token}, "test/api/teacher/calification/get")
-        console.log(body2.comments, result2);
-        
-        if (result2.statusCode == 200){
-            setInfo(body);
-        
-            setIsLoading(state);
-            setOpinions(body2.comments)
-            setTheacherRate(body2.score);
-            setSelectedRate(body2.score);
-        };
-        
+        Promise.all([getDataTeacher(search_value), getTeachersComments(search_value)]).then((values) => {
+            setInfo(values[0]);
+            setOpinions(values[1].comments);
+            setTheacherRate(values[1].score);
+            setSelectedRate(values[1].score);
+        }).catch((error) => {
+            console.error(error);
+        }).finally(() => {
+            setIsLoading(false);
+        });
     };
     
 

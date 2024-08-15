@@ -1,12 +1,11 @@
 import { TeacherMiniCard } from "../components/Cards";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { useState, useEffect, useRef } from 'react';
 import {teachers} from '../constant/teachers';
 import { getCursos } from "../constant/course";
 import BackButton from "../components/buttons";
 import Loader, {PageDefaultSearch} from "../components/Loading";
-import {fetchDataCustom} from "../components/fetchingData";
-import { useUserStore } from "../store/utils";
+import { findTeachers } from "../store/services";
 
 const TeacherMain = () => {
     /** Estoy pensando en que cuando se pase
@@ -20,23 +19,16 @@ const TeacherMain = () => {
     const [isLoading, setIsLoading] = useState(null);
     const [page,setPage] = useState(1);
     const [last_page, setLastPage] = useState(20);
-    const {user} = useUserStore();
-
-    const token = user.token;
     
     const fetchData = async (search_value, page) => {
         if (search_value === ""){
             return;
         }
         setIsLoading(true)
-        const [result, data, state] = await fetchDataCustom({
-            name: search_value,
-            token: token,
-            page: page
-        }, "test/api/teacher/find_teacher");
+        const data= await findTeachers(search_value, page);
         filterTeachers(data.items);
         setLastPage(data.total_pages);
-        setIsLoading(state);
+        setIsLoading(false);
 
     };
     
