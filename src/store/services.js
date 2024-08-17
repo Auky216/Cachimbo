@@ -1,4 +1,5 @@
 import { useUserStore } from "./utils";
+import { SubmitFileError } from "./errors";
 
 /* Library section */
 export const getIsLiked = async (id_library) => {
@@ -128,4 +129,58 @@ export const sendTeacherOpinion = async (teacher_name, comment, score) => {
             token: useUserStore.getState().user.token,
         }),
     });
+}
+
+
+/* Upload File*/
+
+export const pushFile = async (file_content, file_name, type, title, university, course, is_anonymous) => {
+    console.log(file_name, type, title, university, course, is_anonymous);
+    const reqBody = {
+        file_content,
+        name: file_name,
+        title,
+        university,
+        course,
+        is_anonymous,
+        //token: useUserStore.getState().user.token,
+        nickname: useUserStore.getState().user.nickname,
+    };
+
+    const res = await fetch('/api/test/api/library/send', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/pdf'
+        },
+        body: JSON.stringify(reqBody)
+    })
+    const data = await res.json();
+    console.log(data);
+    if (data.errorMessage){
+        throw new SubmitFileError(data.errorMessage);
+    };
+}
+
+/* Course Section */
+
+export const findCourses = async (name, page, university) => {
+    try {
+        const res = await fetch("/api/test/api/course/find", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name,
+                page,
+                university,
+                token: useUserStore.getState().user.token,
+            }),
+        })
+        const data = await res.json();
+        const body = JSON.parse(data.body);
+        return body;
+    } catch (error) {
+        throw new error;
+    }
 }

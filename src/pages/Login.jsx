@@ -4,14 +4,12 @@ import { useAuthStore } from "../store/session";
 import { Link, useNavigate } from "react-router-dom";
 import { CachimboLogo } from "../components/icons/CachimoLogo";
 import ThemeButton from "../components/extras/ThemeButton";
-import { fetchDataCustom } from "../components/fetchingData";
 import Loader from "../components/Loading";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const apiUrl = import.meta.env.VITE_API_URL;
     const { login, isLoading, error } = useAuthStore();
 
     const move = useNavigate();
@@ -28,33 +26,8 @@ const Login = () => {
     const handleLogin = async (event) => {
 
 
-        event.preventDefault(); // Evita que el formulario se envíe automáticamente
+        event.preventDefault();
         login({ email, password });
-        // const [result, body, state] = await fetchDataCustom({
-        //     "email": email,
-        //     "password": password,
-        // }, "test/api/auth/login");
-        // //console.log(result, body)
-
-        // if (body.message) {
-        //     login();
-
-        //     setChange(result.token, "token");
-        //     const [res, data, state2, err] = await fetchDataCustom({
-        //         "token": result.token,
-        //         "email": email,
-        //     }, "test/api/student/get")
-        //     console.log(data, state2, err);
-
-        //     //resetUser();
-        //     if (setDataUsers([data.name, data.university, data.files, data.nickname, data.frined, data.term, data.interestedCourses, data.desciption], ["name", "university", "numberFilesUploaded", "nickname", "numberFriends", "career", "enrolledCourses", "profileDescription"])) {
-        //         move("/dashboard/main");
-        //     }
-
-
-        // } else if (body.error) {
-        //     setError(body.error || "Error de inicio de sesión");
-        // };
     };
 
     useEffect(() => {
