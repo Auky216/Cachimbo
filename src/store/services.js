@@ -1,5 +1,6 @@
 import { useUserStore } from "./utils";
-import { SubmitFileError } from "./errors";
+import { SubmitFileError, MissingDataError } from "./errors";
+
 
 /* Library section */
 export const getIsLiked = async (id_library) => {
@@ -46,6 +47,28 @@ export const sendLike = (id_library, like) =>{
     }).finally(() => {
         //console.log("done");
     });
+}
+
+export const getLibrary = async (uni, course, id, extension) => {
+    try {
+        const res = await fetch("/api/test/api/library/get", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                object_key: `${uni}/${course}/${id}.${extension}`,
+                expirtaion: 10,
+            }),
+        });
+        const data = await res.json();
+        const body = JSON.parse(data.body);
+        //console.log(body);
+        return body;
+    } catch (error) {
+        //console.log(error);
+        throw new error;
+    }
 }
 
 /* Get teacher information */
@@ -135,10 +158,14 @@ export const sendTeacherOpinion = async (teacher_name, comment, score) => {
 /* Upload File*/
 
 export const pushFile = async (file_content, file_name, type, title, university, course, is_anonymous) => {
-    console.log(file_name, type, title, university, course, is_anonymous);
+    //console.log(file_name, type, title, university, course, is_anonymous);
+    if (file_content || title === '' || university || course === '') {
+        throw new MissingDataError('Datos faltantes, necesitas completar todos los campos');
+    }
+    
     const reqBody = {
         file_content,
-        name: file_name,
+        file_name,
         title,
         university,
         course,
@@ -177,6 +204,50 @@ export const findCourses = async (name, page, university) => {
                 token: useUserStore.getState().user.token,
             }),
         })
+        const data = await res.json();
+        const body = JSON.parse(data.body);
+        return body;
+    } catch (error) {
+        throw new error;
+    }
+}
+
+
+export const getCourseInformation = async (course) => {
+    try {
+        const res = await fetch("/api/test/api/course/about", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                course,
+                university: useUserStore.getState().user.university,
+                token: useUserStore.getState().user.token,
+            }),
+        });
+        const data = await res.json();
+        const body = JSON.parse(data.body);
+        return body;
+    } catch (error) {
+        throw new error;
+    }
+}
+
+export const getPreRequisities_NextCourses = async (course) => {
+    try {
+        const res = await fetch("/api/test/api/course/prerequisites_nextcourses", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                course,
+                university: useUserStore.getState().user.university,
+                career: "Ciencia de la Computación", //valor por default, despues cuando se corriga adaptar este código
+                token: useUserStore.getState().user.token,
+            }),
+        });
         const data = await res.json();
         const body = JSON.parse(data.body);
         return body;

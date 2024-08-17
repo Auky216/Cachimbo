@@ -2,16 +2,13 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CDescrip from "./CDescrip";
 import COpinion from "./COpinion";
-// temporal files in local development
-import { getCursos } from "../../constant/course";
-import { teachers } from "../../constant/teachers";
 import { CoursesOpinion } from "../../constant/opinion";
 import { useUserStore } from "../../store/utils";
 import {carrers} from "../../static/academic";
 import BackButton from "../../components/buttons";
-import {fetchDataCustom} from "../../components/fetchingData";
 import Loader from "../../components/Loading";
 import bannerImage from "../../assets/TeamPhoto/Antonio.jpg";
+import { getCourseInformation, getPreRequisities_NextCourses } from "../../store/services";
 const CourseMain = () => {
   const params = useParams();
   const curso = params.course;
@@ -24,19 +21,17 @@ const CourseMain = () => {
 
   const loadData = async ()=>{
     setLoading(true)
-    const [response, body, status] = await fetchDataCustom({token:user.token, course:curso, university: user.university}, "test/api/course/about")
-    setInfo(body[0])
-    const [response2, body2, status2] = await fetchDataCustom({token:user.token, course:curso, university: user.university, career:careerName}, "test/api/course/prerequisites_nextcourses")
-    //console.log(response2, body2, status2)
-    setInfo(prev => ({...prev, 
-      reqcourses: body2.prerequisites == null ? [] : Array.isArray(body2.prerequisites) ? body2.prerequisites : [body2.prerequisites], 
-      nextCourses: body2.next_courses == null ? []:body2.next_courses}))
-    //console.log(info)
-    //console.log(body)
-    //console.log(info)
-    setLoading(status2)
-    //const [res, bodyOp, state3] = await fetchDataCustom({course_name:curso, university: user.university, token:user.token}, "test/api/course/calification/get")
-    //console.log(res, bodyOp, state3)
+    
+    Promise.all([getCourseInformation(curso), getPreRequisities_NextCourses(curso)])
+    .then(([info, req_next]) => {
+      setInfo(info[0])
+      setInfo(prev => ({...prev, 
+        reqcourses: req_next.prerequisites == null ? [] : Array.isArray(req_next.prerequisites) ? req_next.prerequisites : [req_next.prerequisites], 
+        nextCourses: req_next.next_courses == null ? []:req_next.next_courses}))
+    }
+    )
+    .catch((error)=>console.log(error))
+    .finally(()=>setLoading(false));
   }
 
   useEffect( () => {

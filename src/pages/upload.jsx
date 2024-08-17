@@ -47,12 +47,6 @@ const FileUploadForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-
-        if (!file || title === '' || description === '' || university === '' || course === '') {
-            alert('Por favor, completa todos los campos');
-            return;
-        }
-
         const reader = new FileReader();
         reader.onloadend = () => {
             const fileContentBase64 = btoa(reader.result);

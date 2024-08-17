@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { stateLogged, useUserStore } from "../store/utils";
 import { useAuthStore } from "../store/session";
 import { Link, useNavigate } from "react-router-dom";
 import { CachimboLogo } from "../components/icons/CachimoLogo";
