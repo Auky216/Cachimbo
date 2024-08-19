@@ -158,9 +158,10 @@ export const sendTeacherOpinion = async (teacher_name, comment, score) => {
 
 /* Upload File*/
 
-export const pushFile = async (file_content, file_name, type, title, university, course, is_anonymous) => {
+export const pushFile = async (file_content, file_name, description, title, university, course, is_anonymous) => {
     //console.log(file_name, type, title, university, course, is_anonymous);
-    if (file_content || title === '' || university || course === '') {
+    if (file_content==null || title === '' || university === null || course === '') {
+
         throw new MissingDataError('Datos faltantes, necesitas completar todos los campos');
     }
     
@@ -168,11 +169,12 @@ export const pushFile = async (file_content, file_name, type, title, university,
         file_content,
         file_name,
         title,
+        description,
         university,
         course,
         is_anonymous,
-        //token: useUserStore.getState().user.token,
-        nickname: useUserStore.getState().user.nickname,
+        token: useUserStore.getState().user.token,
+        nickname: is_anonymous ? "Anonymous" : useUserStore.getState().user.nickname, //el bug está en el user, porque solo acepta utecino
     };
 
     const res = await fetch('/api/test/api/library/send', {
@@ -184,6 +186,7 @@ export const pushFile = async (file_content, file_name, type, title, university,
     })
     const data = await res.json();
     console.log(data);
+
     if (data.errorMessage){
         throw new SubmitFileError(data.errorMessage);
     };

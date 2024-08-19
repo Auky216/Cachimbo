@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import UploadTargetIcon from '../assets/upload-target-icon.png';
 import { universities } from '../static/academic';
 import UniDefault from "../assets/university-icon.png"
@@ -30,6 +30,7 @@ const FileUploadForm = () => {
     const [isLoading, setIsloading] = useState(null);
     const location = useLocation();
     const {user} = useUserStore();
+    const move = useNavigate();
 
     const showModal = () => {
         setIsOpen(!isOpen);
@@ -50,62 +51,18 @@ const FileUploadForm = () => {
         event.preventDefault();
 
         const reader = new FileReader();
-        reader.onloadend = async () => {
+        reader.onloadend = () => {
             const fileContentBase64 = btoa(reader.result);
             //console.log(fileContentBase64);
             setIsPushing(true);
-            /* pushFile(fileContentBase64, file.name, file.name.split('.')[-1], title, university, course, isAnonymous).catch((error) => {
+            pushFile(fileContentBase64, file.name, description, title, university, course, isAnonymous).catch((error) => {
                 setError(error);
                 setIsPushing(false);
                 showModal();
-            }).finally(() => setIsPushing(false)); */
-            //console.log(fileContentBase64);
-            //type: file.name.split('.').pop(),
-            console.log(user.nickname, user.token, isAnonymous, university, course, file.name, title, description);
-            const requestBody = {
-                token: "c1ac4eca-b677-4bb6-aa53-41982ea3f656", //user.token,
-                university,
-                course: "Programación I",
-                file_name: file.name,
-                file_content: fileContentBase64,
-                nickname:"utecino", //user.nickname,
-                is_anonymous: isAnonymous,
-                title,
-                description
-            };
-            /* const uploadData = {
-                token: formData.get('token'),
-                university: formData.get('university'),
-                course: formData.get('course'),
-                file_name: file.name,
-                file_content: fileContentBase64,
-                nickname: formData.get('nickname') || 'Anonymous',
-                is_anonymous: formData.get('is_anonymous') === 'on',
-                title: formData.get('title'),
-                description: formData.get('description')
-            }; */
-            const res = await fetch('/api/test/api/library/send', {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(requestBody)
-            })
-            const data = await res.json();
-            console.log(data);
-            setIsPushing(false);
-            /* .then(data => {
-                console.log(data);
-                alert('Archivo subido con éxito y registrado en DynamoDB');
+            }).finally(() => {
                 setIsPushing(false);
-            })
-            .catch(error => {
-                setError(error);
-                setIsPushing(false);
-                setIsOpen(true);
-            }); */
-
+                move("/dashboard/main")
+            });
         };
 
         reader.readAsBinaryString(file);
