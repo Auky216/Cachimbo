@@ -87,6 +87,7 @@ export const findTeachers = async (name, page) => {
             }),
         });
         const data = await response.json();
+        //console.log(data, useUserStore.getState().user.token);
         const body = JSON.parse(data.body);
         return body;
     } catch (error) {
