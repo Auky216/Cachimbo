@@ -1,5 +1,5 @@
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
-
+import Loader from "./Loading";
 const Modal = ({ isOpen, onClose, children }) => {
   return (
     <Dialog className="relative z-10" open={isOpen} onClose={onClose}>
@@ -21,5 +21,28 @@ const Modal = ({ isOpen, onClose, children }) => {
     </Dialog>
   );
 };
+
+export const ErrorModal = ({isOpen, setIsOpen, errorHeader="Error",errorMessage}) => {
+  return (
+    <Modal isOpen={isOpen} onClose={setIsOpen}>
+      <DialogPanel transition className="bg-white dark:bg-cach-l3 rounded-lgtext-left relative transform p-4 overflow-hidden transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-lg data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95">
+        <h1 className="text-2xl text-red-700 my-2">{errorHeader}</h1>
+        <p className="bg-cach-l2 text-lg border-4 w-3/4 mx-auto my-3 rounded-2xl p-3 border-cach-l4">{errorMessage}</p>
+
+      </DialogPanel>
+      
+    </Modal>
+  );
+}
+
+export const LoadingModal = ({isOpen}) => {
+  return (
+    <Modal isOpen={isOpen} onClose={()=>{}}>
+      <DialogPanel transition className="rounded-lgtext-left relative transform p-4 overflow-hidden transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-lg data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95">
+        <Loader />
+      </DialogPanel>
+    </Modal>
+  );
+}
 
 export default Modal;

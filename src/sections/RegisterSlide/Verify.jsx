@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useUserStore } from "../../store/utils";
-import { fetchDataCustom } from "../../components/fetchingData";
+
+import { fetchDataCustom } from "../../components/fetchingData"; 
+// pronto lo eliminaré, es mejor crear un fetch especifico y añadirlo a services.js
 
 // septimo slide del registro: confirmacion de la cuenta desde el correo institucional
 const Verify = ({ next }) => {

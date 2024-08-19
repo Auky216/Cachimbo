@@ -1,38 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import UploadTargetIcon from '../assets/upload-target-icon.png';
-import { useUserStore } from '../store/utils';
 import { universities } from '../static/academic';
 import UniDefault from "../assets/university-icon.png"
 import Curso from "../assets/icons8-cursos-96.png";
 import { Checkbox } from '../components/buttons';
 import Loader, {PageDefaultSearch} from '../components/Loading';
-import { fetchDataCustom } from '../components/fetchingData';
+import { pushFile, findCourses } from '../store/services';
+import { ErrorModal, LoadingModal } from '../components/Modal';
 import uploadIcon from "../assets/upload-icon.png";
-// const UploadIcon = () => {
-//     return(
-//     <svg 
-//         xmlns="http://www.w3.org/2000/svg" 
-//         viewBox="0 0 64 64" 
-//         width="64" 
-//         height="64" 
-//         fill="currentColor" 
-//         stroke="currentColor"
-//     >
-//         <path 
-//             d="M32 8c-9.941 0-18 8.059-18 18 0 1.199.104 2.372.308 3.513A9.998 9.998 0 0 0 4 38c0 5.523 4.477 10 10 10h36c6.627 0 12-5.373 12-12s-5.373-12-12-12a11.968 11.968 0 0 0-4.923 1.075C46.413 17.62 39.742 12 32 12c-6.627 0-12 5.373-12 12H16c0-8.836 7.164-16 16-16s16 7.164 16 16H32V32H28v-8h-8v4h4v8h-4v4h4v4h4v-4h4v4h4v-4h-4v-4h4v-4h-4v-8h8v8h-4v4h4v-8h4c0-10.493-8.507-19-19-19zm0 0z" 
-//         />
-//     </svg>
-// )};
+import { useUserStore } from '../store/utils';
+
 
 
 
 const FileUploadForm = () => {
-    const {user} = useUserStore();
+    const [isOpen, setIsOpen] = useState(false);
+    const [isPushing, setIsPushing] = useState(false);
+    const [error, setError] = useState(null);
     const [university, setUniversity] = useState(null);
-    const [course, setCourse] = useState('');
+    const [course, setCourse] = useState(null);
     const [termSearchCourse, setTermSearchCourse] = useState('');
-    const [nickname, setNickname] = useState(user.nickname);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [isAnonymous, setIsAnonymous] = useState(false);
@@ -41,7 +29,16 @@ const FileUploadForm = () => {
     const [listCourses, setListCourses] = useState([]);
     const [isLoading, setIsloading] = useState(null);
     const location = useLocation();
+    const {user} = useUserStore();
+    const move = useNavigate();
 
+    const showModal = () => {
+        setIsOpen(!isOpen);
+    }
+
+    const openPushing = () => {
+        setIsPushing(!isPushing);
+    }
 
     useEffect(() => {
         if (location.state) {
@@ -53,59 +50,37 @@ const FileUploadForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-
-        if (!file) {
-            alert('Por favor, selecciona un archivo');
-            return;
-        }
-
         const reader = new FileReader();
         reader.onloadend = () => {
             const fileContentBase64 = btoa(reader.result);
             //console.log(fileContentBase64);
-            const requestBody = {
-                university,
-                course,
-                token: user.token,
-                nickname,
-                is_anonymous: isAnonymous,
-                file_name: file.name,
-                type: file.name.slice(-3),
-                file_content: fileContentBase64,
-                title
-            };
-            //console.log(requestBody);
-            fetch('/api/test/api/library/send', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(requestBody)
-            })
-            .then(response => response)
-            .then(data => {
-                alert('Archivo subido con éxito y registrado en DynamoDB');
-            })
-            .catch(error => {
-                alert('Error al subir el archivo: ' + error.message);
+            setIsPushing(true);
+            pushFile(fileContentBase64, file.name, description, title, university, course, isAnonymous).catch((error) => {
+                setError(error);
+                setIsPushing(false);
+                showModal();
+            }).finally(() => {
+                setIsPushing(false);
+                move("/dashboard/main")
             });
         };
 
         reader.readAsBinaryString(file);
     };
 
-    const handleCourseSearchKeyDown = async(event) => {
+    const handleCourseSearchKeyDown = (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
             setIsloading(true);
-            const [result, data, state, errorObject] = await fetchDataCustom({
-                name: termSearchCourse,
-                university: university,
-                token: user.token,
-                page: pageSelected
-            }, 'test/api/course/find');
-            setIsloading(state);
-            setListCourses(data.course_names);
+
+            findCourses(termSearchCourse, pageSelected, university)
+            .then((data) => {
+                setListCourses(data.course_names);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => setIsloading(false));
             //console.log(result, data, state, errorObject);
         }
     };
@@ -115,8 +90,10 @@ const FileUploadForm = () => {
             <form onSubmit={handleSubmit} className='w-full max-w-md mx-auto my-5'>
                 <div className='flex mx-auto font-semibold gap-5'>
                     <div className='w-1/2 flex items-center justify-center'>
-                        {file ? <div className='flex flex-col m-5 text-center'>
-                                {file.name}
+                        {file ? <div className='flex flex-col m-5 text-center w-full'>
+                                <p className='break-words'>
+                                    {file.name}
+                                </p>
                                 <button type="button" onClick={()=>{setFile(null)}} className='font-semibold text-red-600' accept='.pdf, .jpg, .jpeg, .png'> Delete</button>
                             </div> : 
                             <div className='flex flex-col m-5 w-full'>
@@ -126,9 +103,7 @@ const FileUploadForm = () => {
                                     <input 
                                         type="file" 
                                         onChange={(e) => setFile(e.target.files[0])} 
-                                        required 
                                         className='hidden'
-                                        
                                         accept='.pdf, .jpg, .jpeg, .png'
                                     />
                                 </label>
@@ -248,6 +223,8 @@ const FileUploadForm = () => {
                 </div>
                 <br />
             </form>
+            <ErrorModal isOpen={isOpen} setIsOpen={showModal} errorHeader={error ? error.name : null} errorMessage={error ? error.message: ""}/>
+            <LoadingModal isOpen={isPushing}/>
         </div>
     );
 }

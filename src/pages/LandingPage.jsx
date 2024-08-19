@@ -54,14 +54,6 @@ const LandingPage = () => {
               >
                 Iniciar Sesión
               </Link>
-              <Link to="/dashboard/main"
-                onClick={() => {
-                  login();
-                }}
-                className="w-full rounded-full bg-cach-l3 px-8 py-3 text-center text-lg font-semibold text-white transition duration-300 hover:bg-cach-l2/50 lg:w-auto"
-              >
-                Ir a dashboard
-              </Link>
             </div>
           </div>
         </div>

@@ -10,6 +10,7 @@ import DislikeIcon from "../../components/icons/dislike.jsx";
 import ZoomIcon from "../../components/icons/zoom.jsx";
 import BackButton from "../../components/buttons";
 import { fetchDataCustom } from "../../components/fetchingData.jsx";
+import { getLibrary } from "../../store/services.js";
 
 // import samplePdf from "/src/assets/PDF/cg-practise-for-final-exam.pdf";
 
@@ -34,18 +35,20 @@ const PdfLibrary = () => {
     }
     const fetchUrl = async () => {
       setIsLoaded(true);
-      const [res, data, state, err] = await fetchDataCustom({
-        object_key: `${uni}/${course}/${id}.${extension}`,
-      }, "test/api/library/get");
+      getLibrary(uni, course, id, extension)
+      .then((data) => {setUrl(data.url)})
+      .catch((error) => console.log(error))
+      .finally(() => setIsLoaded(false));
+
       //console.log(res, data.url, state, err);
-      setUrl(data.url);
+
       //await console.log(url);
       //window.open(data.url, "_blank");
-      setIsLoaded(false);
+
     }
     //console.log(uni, course, id, extension);
     fetchUrl();
-    console.log(location.state);
+    //console.log(location.state);
   }, []);
 
   // console.log(pdfData);
