@@ -3,7 +3,6 @@ import { useUserStore, stateLogged } from './utils';
 import { fetchDataCustom } from '../components/fetchingData';
 
 export const useAuthStore = create((set) => ({
-    isLoading: null,
     error: null,
 
     login: async (credentials) => {
@@ -14,7 +13,7 @@ export const useAuthStore = create((set) => ({
 
             if (body.message) {
                 useUserStore.getState().setChange(result.token, 'token');
-                useAuthStore.getState().setGeneralData(credentials.email, result.token)
+                await useAuthStore.getState().setGeneralData(credentials.email, result.token)
                     .finally(()=>{stateLogged.getState().login()});
                 
             } else if (body.error) {
@@ -23,8 +22,6 @@ export const useAuthStore = create((set) => ({
 
         } catch (error) {
             set({ error: error.message });
-        } finally {
-            set({ isLoading: false });
         }
     },
 

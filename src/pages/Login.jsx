@@ -8,8 +8,9 @@ import Loader from "../components/Loading";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
-    const { login, isLoading, error } = useAuthStore();
+    const { login, error } = useAuthStore();
 
     const move = useNavigate();
 
@@ -24,16 +25,13 @@ const Login = () => {
 
     const handleLogin = async (event) => {
 
-
+        setIsLoading(true);
         event.preventDefault();
-        login({ email, password });
+        login({ email, password }).finally(() => {
+            setIsLoading(false);
+            move("/dashboard/main");
+        });
     };
-
-    useEffect(() => {
-        if (isLoading == false && error == null) {
-            move("/dashboard/main")
-        }
-    }, [isLoading]);
 
     return (
         // DIV para ajustar el centrado con todo el h-screen del #App
