@@ -1,8 +1,33 @@
 import { useUserStore } from "./utils";
+import { useAuthStore } from "./session";
 import { SubmitFileError, MissingDataError } from "./errors";
 
 
 /* Library section */
+
+export const findLibrary = async (title, page="1") => {
+    try {
+        const response = await fetch("/api/test/api/library/find", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title,
+                page,
+                token: useUserStore.getState().user.token,
+            }),
+        });
+        const data = await response.json();
+        const body = JSON.parse(data.body);
+        console.log(body);
+        return body;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 export const getIsLiked = async (id_library) => {
     try {
         const response = await fetch("/api/test/api/library/like/get", {
@@ -160,7 +185,7 @@ export const sendTeacherOpinion = async (teacher_name, comment, score) => {
 
 export const pushFile = async (file_content, file_name, description, title, university, course, is_anonymous) => {
     //console.log(file_name, type, title, university, course, is_anonymous);
-    if (file_content==null || title === '' || university === null || course === '') {
+    if (file_content==null || title === ''|| description === '' || university === null || course === '') {
 
         throw new MissingDataError('Datos faltantes, necesitas completar todos los campos');
     }
@@ -185,7 +210,11 @@ export const pushFile = async (file_content, file_name, description, title, univ
         body: JSON.stringify(reqBody)
     })
     const data = await res.json();
-    console.log(data);
+
+    if (data.statusCode === 200) {
+        await useAuthStore.getState().setGeneralData(useUserStore.getState().user.email, useUserStore.getState().user.token);
+    }
+    //console.log(data);
 
     if (data.errorMessage){
         throw new SubmitFileError(data.errorMessage);

@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import LibraryItem from "../../components/LibraryItem";
 import { getPdfs } from "../../constant/pdfs";
 import Loader, { PageDefaultSearch } from "../../components/Loading";
-import { fetchDataCustom } from "../../components/fetchingData";
+import { findLibrary } from "../../store/services";
 import { useUserStore } from "../../store/utils";
 
 const Library = () => {
@@ -18,12 +18,13 @@ const Library = () => {
       return
     };
     setIsSearching(true);
-    const [res, data, state, err] = await fetchDataCustom({
-      title: inputValue,
-      token: user.token,
-      page: 1,
-    }, "test/api/library/find");
-    console.log(res, data, state, err);
+    
+    findLibrary(inputValue)
+      .then((data) => {setOutputPdfs(data.items)})
+      .catch((error) => console.log(error))
+      .finally(() => setIsSearching(false));
+    
+    //console.log(res, data, state, err);
     
     // const filteredPdfs = Object.entries(getPdfs).filter(([_, item]) => {
     //   // quitando tildes o caracteres encima de las letras
@@ -33,8 +34,8 @@ const Library = () => {
     //     .replace(/[\u0300-\u036f]/g, "");
     //   return itemTitle.includes(inputValue.toLowerCase());
     // });
-    setOutputPdfs(data.items);
-    setIsSearching(false);
+    //setOutputPdfs(data.items);
+    //setIsSearching(false);
   };
   return (
     <section id="library" className="py-10 pr-8 h-screen overflow-y-auto">
@@ -60,7 +61,7 @@ const Library = () => {
         EJ: Derivadas, Combinatoria, Jacobi, etc */}
       {/* Asi, se hará una busqueda y que ademas se agraga como query params para cargar desde otras secciones */}
       {/* ( OTRA POPUESTA XD ) */}
-      <div className="my-8 flex space-x-4">
+      {/* <div className="my-8 flex space-x-4">
         <button className="rounded-full bg-cach-l3 px-5 py-1 text-cach-l1 focus:outline-none">
           Todos
         </button>
@@ -73,7 +74,7 @@ const Library = () => {
         <button className="rounded-full bg-cach-l3 px-5 py-1 text-cach-l1 focus:outline-none">
           Recientes
         </button>
-      </div>
+      </div> */}
 
       {isSearching == null ? <PageDefaultSearch/> : isSearching == true ? <Loader></Loader> : outputPdfs.map((item, id) => (
         <LibraryItem

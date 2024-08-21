@@ -29,16 +29,11 @@ const FileUploadForm = () => {
     const [listCourses, setListCourses] = useState([]);
     const [isLoading, setIsloading] = useState(null);
     const location = useLocation();
-    const {user} = useUserStore();
     const move = useNavigate();
 
     const showModal = () => {
         setIsOpen(!isOpen);
-    }
-
-    const openPushing = () => {
-        setIsPushing(!isPushing);
-    }
+    };
 
     useEffect(() => {
         if (location.state) {

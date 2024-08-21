@@ -8,8 +8,8 @@ import LikeIcon from "../../components/icons/like.jsx";
 import ShareIcon from "../../components/icons/share.jsx";
 import DislikeIcon from "../../components/icons/dislike.jsx";
 import ZoomIcon from "../../components/icons/zoom.jsx";
+import ZoomOutIcon from "../../components/icons/zoomOut.jsx";
 import BackButton from "../../components/buttons";
-import { fetchDataCustom } from "../../components/fetchingData.jsx";
 import { getLibrary } from "../../store/services.js";
 
 // import samplePdf from "/src/assets/PDF/cg-practise-for-final-exam.pdf";
@@ -30,10 +30,8 @@ const PdfLibrary = () => {
     if (location.state == null) {
       window.open("/dashboard/library", "_self");
     } else { setPdfData(location.state) };
-    if (!pdfData) {
-      return <p>PDF no encontrado</p>;
-    }
-    const fetchUrl = async () => {
+
+    const fetchUrl = () => {
       setIsLoaded(true);
       getLibrary(uni, course, id, extension)
       .then((data) => {setUrl(data.url)})
@@ -64,7 +62,7 @@ const PdfLibrary = () => {
           {pdfData.title}
         </h1>
         <BackButton></BackButton>
-        <p className="mb-6 text-cach-l5 dark:text-cach-l1 font-bold">Autor: {pdfData.autor}</p>
+        <p className="mb-6 text-cach-l5 dark:text-cach-l1 font-bold">Autor:  @{pdfData.nickname}</p>
 
         <div className="mb-4">
           <div className="rounded-lg border border-cach-l2 p-4">
@@ -72,7 +70,7 @@ const PdfLibrary = () => {
           </div>
         </div>
 
-        <div className="mb-4 flex items-center justify-between">
+        {/* <div className="mb-4 flex items-center justify-between">
           <div className="flex space-x-4 text-cach-l2">
             <button className="flex items-center space-x-1 hover:text-cach-l3">
               <BookmarkIcon className="h-5 w-5" />
@@ -90,18 +88,17 @@ const PdfLibrary = () => {
                <PrintIcon className="h-5 w-5" />
              </button>
           </div>
-        </div>
+        </div> */}
 
         <div className="mt-4 flex justify-between space-x-2 p-4">
-           <a
-             href={url}
-             download
-             className="flex items-center space-x-1 rounded bg-cach-l3 px-2 py-1 text-cach-l1 hover:bg-cach-l2"
+           {/* <button
+              onClick={handleDownload}
+              className="flex items-center space-x-1 rounded bg-cach-l3 px-2 py-1 text-cach-l1 hover:bg-cach-l2"
            >
              <span>Descargar</span>
-           </a>
+           </button> */}
 
-           <div className="flex items-center space-x-2">
+           {/* <div className="flex items-center space-x-2">
              <button
                onClick={handlePrev}
                disabled={page === 1}
@@ -119,16 +116,16 @@ const PdfLibrary = () => {
              >
                {">"}
              </button>
-           </div>
+           </div> */}
 
-           <button className="flex items-center space-x-1 rounded bg-cach-l3 px-2 py-1 text-cach-l1 hover:bg-cach-l2">
-             <ZoomIcon className="h-5 w-5" />
-           </button>
+           {/* <button className="flex items-center space-x-1 rounded bg-cach-l3 px-2 py-1 text-cach-l1 hover:bg-cach-l2">
+            {isMaximaxed ? <ZoomOutIcon className="h-5 w-5" onClick={minWindow}/> : <ZoomIcon className="h-5 w-5" onClick={maxWindow}/>}
+           </button> */}
          </div>
-
-        <object data={getPdfs["calculo1"].pdf} type="application/pdf" width="100%" height="500px" onError={() => console.error("Error loading PDF")}>
+        {extension != "pdf" ? <img src={url} alt="xd3" className="w-full" style={{ pointerEvents: 'none' }}/>: <object data={url} type={"application/pdf"} width="100%" height="500px" onError={() => console.error("Error loading PDF")} >
           <p>Alternative text - include a link <a href={url}>to the PDF!</a></p>
-        </object>
+        </object>}
+        
 
 
 

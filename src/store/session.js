@@ -13,20 +13,10 @@ export const useAuthStore = create((set) => ({
             const [result, body, state] = await fetchDataCustom(credentials, "test/api/auth/login");
 
             if (body.message) {
-                
                 useUserStore.getState().setChange(result.token, 'token');
-                //console.log(result.token);
-                const [res, data, state2, err] = await fetchDataCustom({
-                    token: result.token,
-                    email: credentials.email,
-                }, "test/api/student/get");
-                //console.log(data);
-                useAuthStore.getState().setDataUsers(
-                    [data.name, data.lastname, data.university, data.files, data.nickname, data.friends, data.term, data.interestedCourses, data.description, data.points, data.files.length, data.friends.length, data.files, data.startYear],
-                    ["name","lastname", "university", "numberFilesUploaded", "nickname", "numberFriends", "career", "enrolledCourses", "profileDescription", "score", "numberFilesUploaded", "numberFriends", "filesUploaded", "startYear"]
-                );
-
-                stateLogged.getState().login();
+                useAuthStore.getState().setGeneralData(credentials.email, result.token)
+                    .finally(()=>{stateLogged.getState().login()});
+                
             } else if (body.error) {
                 throw new Error(body.error);
             }
@@ -42,6 +32,19 @@ export const useAuthStore = create((set) => ({
         stateLogged.getState().logout();
         useUserStore.getState().resetUser(); // Elimina los datos del usuario
         set({ isLoading: null, error: null });
+    },
+
+    setGeneralData: async (email, token) => {
+                //console.log(result.token);
+        const [res, data, state2, err] = await fetchDataCustom({
+            token: token,
+            email: email,
+        }, "test/api/student/get");
+        //console.log(data);
+        useAuthStore.getState().setDataUsers(
+            [email, data.name, data.lastname, data.university, data.files, data.nickname, data.friends, data.term, data.interestedCourses, data.description, data.points, data.startYear],
+            ["email","name","lastname", "university", "numberFilesUploaded", "nickname", "numberFriends", "career", "enrolledCourses", "profileDescription", "score", "startYear"]
+        );
     },
 
     setDataUsers: (dataList, attributes) => {
