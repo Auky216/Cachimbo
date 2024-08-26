@@ -20,7 +20,7 @@ export const findLibrary = async (title, page="1") => {
         });
         const data = await response.json();
         const body = JSON.parse(data.body);
-        console.log(body);
+        //console.log(body);
         return body;
     } catch (error) {
         console.error(error);

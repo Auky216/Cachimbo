@@ -102,6 +102,8 @@ const TeacherMain = () => {
                         }}> Página siguiente </button>
                 </div>
             </div>
+
+            
             <div className="w-full flex justify-center items-center">
                 {/* Se usará un map para generar todos los teaches mini card necesarios */}
                 {isLoading === null ? <PageDefaultSearch/> : isLoading==true ? <Loader/> : <div className="w-full grid grid-cols-[repeat(auto-fill,_minmax(224px,_1fr))] gap-4">

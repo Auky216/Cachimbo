@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useParams, Navigate, useLocation } from "react-router-dom";
 import { getPdfs } from "../../constant/pdfs.js";
 import Loader from "../../components/Loading.jsx";
-import PrintIcon from "../../components/icons/print.jsx";
+/* import PrintIcon from "../../components/icons/print.jsx";
 import BookmarkIcon from "../../components/icons/bookmark.jsx";
 import LikeIcon from "../../components/icons/like.jsx";
 import ShareIcon from "../../components/icons/share.jsx";
 import DislikeIcon from "../../components/icons/dislike.jsx";
-import ZoomIcon from "../../components/icons/zoom.jsx";
+import ZoomIcon from "../../components/icons/zoom.jsx"; */
 import BackButton from "../../components/buttons";
 import { getLibrary } from "../../store/services.js";
 
