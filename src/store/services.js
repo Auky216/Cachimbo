@@ -2,7 +2,6 @@ import { useUserStore } from "./utils";
 import { useAuthStore } from "./session";
 import { SubmitFileError, MissingDataError } from "./errors";
 
-
 /* Library section */
 
 export const findLibrary = async (title, page="1") => {
@@ -43,7 +42,8 @@ export const getIsLiked = async (id_library) => {
         });
         const data = await response.json();
         const body = JSON.parse(data.body);
-        return body.like;
+        
+        return body;
     } catch (error) {
         //console.log(error);
         return null; // Retorna un valor por defecto en caso de error.
@@ -60,7 +60,6 @@ export const sendLike = (id_library, like) =>{
         body: JSON.stringify({
             "nickname": useUserStore.getState().user.nickname,
             id_library,
-            like,
             "token": useUserStore.getState().user.token,
         })}
     )

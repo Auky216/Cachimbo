@@ -21,6 +21,7 @@ const Library = () => {
 
     findLibrary(inputValue, pageDefault)
       .then((data) => {
+        console.log(data)
         setPage(data.page);
         setLastPage(parseInt((data.total_items + data.items_per_page - 1)/data.items_per_page) );
         setOutputPdfs(data.items);

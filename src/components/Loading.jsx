@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Loader = ({dimensions_container="w-full", dimensions_loader="h-12 w-12", margin="my-10"}, color="#7f6afc") => {
+const Loader = ({dimensions_container="w-full", dimensions_loader="h-12 w-12", margin="my-10", color="#7f6afc"}) => {
     return (
         <div className={`${dimensions_container} flex items-center justify-center`}>
             <div className={`loader ${margin} ease-linear rounded-full border-8 border-t-8 border-zinc-200 ${dimensions_loader}`} ></div>

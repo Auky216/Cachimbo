@@ -7,25 +7,30 @@ import universitylogo from '../assets/university-icon.png';
 import HeartLogo from '../components/icons/HearLogo.jsx';
 import { getIsLiked, sendLike } from '../store/services.js';
 import { universities } from '../static/academic.js';
+import Loader from './Loading.jsx';
 
 const LibraryItem = ({ item }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const [likeCount, setLikeCount] = useState(item.likes);
+  const [likeCount, setLikeCount] = useState(0);
+  const [isLoadingLike, setIsLoadingLike] = useState(true);
 
   const imgUni = universities.find((uni) => uni.sigle === item.university);
 
   const handleLike = () => {
-    sendLike(item.id, !isFavorite ? 1 : 0);
+    setIsLoadingLike(true);
+    sendLike(item.id);
     setIsFavorite(!isFavorite);
     setLikeCount(likeCount + (isFavorite ? -1 : 1));
+    setIsLoadingLike(false);
   };
 
   useEffect(() => {
-      getIsLiked(item.id).then((response) => {
+      getIsLiked(item.id)
+      .then((response) => {
         //console.log(response);
-        setIsFavorite(response);
-      });
-      setLikeCount(item.likes);
+        setIsFavorite(response.like);
+        setLikeCount(response.count);
+      }).finally(() => setIsLoadingLike(false));
       //console.log(response);
   }
     , []);
@@ -71,7 +76,7 @@ const LibraryItem = ({ item }) => {
           className={`flex items-center space-x-1 px-2 py-1 duration-100 ${isFavorite ? "text-red-500" : "text-cach-l3 dark:text-cach-l2"}`}
         >
           <div>
-            <HeartLogo filled={isFavorite} />
+            {isLoadingLike ? <Loader color='#ef4444' margin='my-1' dimensions_loader='h-10 w-10'/> :<HeartLogo filled={isFavorite} />}
             <p>{likeCount}</p>
           </div>
         </button>
