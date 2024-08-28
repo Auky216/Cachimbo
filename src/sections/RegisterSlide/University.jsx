@@ -1,25 +1,44 @@
-import { useState } from "react";
-import { universities } from "../../static/academic";
-import { useUserStore } from "../../store/utils";
+import { useState, useEffect } from "react";
 
-// primera vista de registro, se muestra al principio del registro
+// Primera vista de registro, se muestra al principio del registro
 const University = ({ next }) => {
-  const loadUniv = useUserStore(state => state.user.university);
-  const resetable = {
-    [Object.keys(universities).map(key => universities[key].sigle)]: false,
-  };
-  const [clicked_per_univ, setClicked_per_univ] = useState(resetable);
-  const [univ, setUniv] = useState(loadUniv);
+  const [universities, setUniversities] = useState([]);
+  const [clickedPerUniv, setClickedPerUniv] = useState({});
+  const [univ, setUniv] = useState("");
 
-  const handleClick = e => {
+  useEffect(() => {
+    const fetchUniversities = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/test/api/university/get`);
+        const data = await response.json();
+
+        // Parsear el body de la respuesta
+        const universityNames = JSON.parse(data.body);
+
+        // Crear un objeto para el estado clickedPerUniv
+        const resetable = {};
+        universityNames.forEach((name) => {
+          resetable[name] = false;
+        });
+
+        setClickedPerUniv(resetable);
+        setUniversities(universityNames);
+      } catch (error) {
+        console.error("Error fetching universities:", error);
+      }
+    };
+
+    fetchUniversities();
+  }, []);
+
+  const handleClick = (e) => {
     const sele = e.target.getAttribute("sigle");
-    if (clicked_per_univ[sele]) {
+    if (clickedPerUniv[sele]) {
       setUniv("");
-      setClicked_per_univ({ [sele]: false });
+      setClickedPerUniv({ ...clickedPerUniv, [sele]: false });
     } else {
       setUniv(sele);
-      setClicked_per_univ(resetable);
-      setClicked_per_univ({ [sele]: true });
+      setClickedPerUniv({ ...clickedPerUniv, [sele]: true });
     }
   };
 
@@ -31,15 +50,16 @@ const University = ({ next }) => {
         </div>
         <div className="flex h-full items-center justify-center">
           <div className="flex flex-row justify-between gap-8">
-            {universities.map(uni => (
+            {universities.map((uni) => (
               <button
-                key={uni.sigle}
-                sigle={uni.sigle} // custom attribute
-                className={`min-h-8 w-[10rem] items-center justify-center rounded-xl ${clicked_per_univ[uni.sigle] ? "bg-cach-l3/40" : "bg-cach-l3"}  p-2 text-cach-l1`}
+                key={uni}
+                sigle={uni} // custom attribute
+                className={`min-h-8 w-[10rem] items-center justify-center rounded-xl ${
+                  clickedPerUniv[uni] ? "bg-cach-l3/40" : "bg-cach-l3"
+                }  p-2 text-cach-l1`}
                 onClick={handleClick}
               >
-                {/* con web scraping obtendremos los iconos de las universidades */}
-                {uni.name} {/* temporal */}
+                {uni} {/* temporal */}
               </button>
             ))}
           </div>
@@ -47,12 +67,6 @@ const University = ({ next }) => {
       </div>
       <div className="flex h-[22%] w-full items-center justify-center">
         <div className="flex w-full items-center justify-around">
-          {/* <button
-            className="mb-3 mt-2 flex h-10 min-h-8 w-[20%] items-center justify-center rounded-xl bg-cach-l3 text-cach-l1"
-            onClick={prev}
-          >
-            Atras
-          </button> */}
           <button
             className="mb-3 mt-2 flex h-10 min-h-8 w-[20%] items-center justify-center rounded-xl bg-cach-l3 text-cach-l1 disabled:cursor-not-allowed disabled:opacity-50"
             onClick={() => next(univ, "university")}
