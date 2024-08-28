@@ -19,7 +19,7 @@ const LandingPage = () => {
   const [showAbout, setShowAbout] = useState(false);
   const activeAbout = () => setShowAbout(true);
   const deactiveAbout = () => setShowAbout(false);
-  const { login} = stateLogged();
+  const { login } = stateLogged();
 
   return (
     <main className="max-h-screen overflow-auto">

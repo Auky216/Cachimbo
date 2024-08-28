@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useThemeStore } from "../../store/utils";
+import { FaRegMoon } from "react-icons/fa";
+import { MdOutlineWbSunny } from "react-icons/md";
 
 const ThemeButton = () => {
   const theme = useThemeStore(state => state.theme);
@@ -16,10 +18,10 @@ const ThemeButton = () => {
 
   return (
     <button
-      className="m-auto rounded-2xl border border-cach-l3 bg-slate-200 px-4 py-1 text-sm text-cach-l3 dark:border-cach-l2 dark:bg-transparent dark:text-cach-l1"
+      className="m-auto px-4 py-1 text-sm text-cach-l3 dark:border-cach-l2 dark:bg-transparent dark:text-cach-l1"
       onClick={() => setTheme(theme)}
     >
-      {theme === "light" ? "dark" : "light"}
+      {theme === "light" ? (<FaRegMoon size={25} />) : (<MdOutlineWbSunny size={25} />)}
     </button>
   );
 };
