@@ -90,7 +90,7 @@ export const UTECcourses = {
       },
       {
         credits: 4,
-        name: "Matemáticas Discreta I",
+        name: "Matemáticas Discretas I",
         code: "matedisc1",
       },
       {

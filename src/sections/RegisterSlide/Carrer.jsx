@@ -14,6 +14,13 @@ const Career = ({ next }) => {
   const [carr_name, setCarr_name] = useState("");
 
   useEffect(() => {
+    /* fetch(`/api/test/api/career/get/`, {
+      method: "POST",
+      body: JSON.stringify({ university: loadUniv }),
+    })
+    .then(res => res.json())
+    .then(data => JSON.parse(data.body))
+    .then(careers => console.log(careers)); */
     let find = "";
     if (career)
       find = carrers[loadUniv].find(carr => carr.code === career).name;

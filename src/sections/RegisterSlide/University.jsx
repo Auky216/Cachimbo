@@ -9,7 +9,7 @@ const University = ({ next }) => {
   useEffect(() => {
     const fetchUniversities = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/test/api/university/get`);
+        const response = await fetch(`/api/test/api/university/get`);
         const data = await response.json();
 
         // Parsear el body de la respuesta
