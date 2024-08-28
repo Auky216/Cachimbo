@@ -17,7 +17,7 @@ import SubmitFile from "../components/submitFile";
 
 const Aside = () => {
   const location = useLocation();
-  const { logout} = useAuthStore();
+  const { logout } = useAuthStore();
 
   const url = useNavigate();
   const user = useUserStore(state => state.user);
@@ -74,7 +74,7 @@ const Aside = () => {
           </div>
 
           {/* Caracteristicas */}
-          <div className="ml-5 mr-5 flex items-center justify-between pb-5 text-base text-cach-l5 dark:text-cach-l1 ">
+          <div className="ml-5 mr-5 flex items-center justify-between pb-5 text-base text-cach-l5 dark:text-cach-l1">
             <div className="flex cursor-pointer flex-col items-center justify-center">
               <p className="font-extrabold">{user.numberFriends || 0}</p>
               <p className="font-semibold">Amigos</p>
@@ -84,7 +84,7 @@ const Aside = () => {
               <p className="font-semibold">Subidos</p>
             </div>
             <div className="flex flex-col items-center justify-center">
-              <p className="font-extrabold">{user.score|| 0}</p>
+              <p className="font-extrabold">{user.score || 0}</p>
               <p className="font-semibold">Puntos</p>
             </div>
           </div>
@@ -107,68 +107,69 @@ const Aside = () => {
         </div>
 
         {/* componente de section buttons */}
-        <div className="mb-7 mt-7 flex flex-col justify-start space-y-1 text-lg">
-          <NavLink
-            to="/dashboard/main"
-            className={`flex items-center gap-3 p-2 ${location.pathname.includes("main") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
-          >
-            <img src={mainIcon} alt="icon" className="mr-2 w-7 dark:invert" />{" "}
-            Inicio
-          </NavLink>
-          <NavLink
-            to="/dashboard/library"
-            className={`flex items-center gap-3 p-2 ${location.pathname.includes("library") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
-          >
-            <img src={lbIcon} alt="icon" className="mr-2 w-7 dark:invert" />{" "}
-            Biblioteca
-          </NavLink>
-          <NavLink
-            to="/dashboard/asistant"
-            className={`flex items-center gap-3 p-2 ${location.pathname.includes("asistant") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
-          >
-            <img
-              src={asistantIcon}
-              alt="icon"
-              className="mr-2 w-7 dark:invert"
-            />{" "}
-            Asistente IA
-          </NavLink>
-          <NavLink
-            to="/dashboard/intergroups"
-            className={`flex items-center gap-3 p-2 ${location.pathname.includes("intergroups") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
-          >
-            <img
-              src={groupsIcon}
-              alt="icon"
-              className="mr-2 w-7 dark:invert "
-            />{" "}
-            Grupos
-          </NavLink>
-        </div>
-
-        {/* componente de config y logout */}
-        <div className="absolute bottom-0 space-y-3 text-lg">
-          <NavLink
-            to="/dashboard/setting"
-            className={`flex items-center gap-3 p-1 ${location.pathname.includes("setting") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
-          >
-            <img
-              src={settingIcon}
-              alt="icon"
-              className="mr-2 w-7 dark:invert"
-            />
-            Configuracion
-          </NavLink>
-          <button
-            onClick={() => {
-              logout();
-              url("/");
-            }}
-            className="flex items-center gap-3 p-1 font-bold text-cach-l5 dark:text-cach-l1"
-          >
-            <img src={logOutIcon} alt="icon" className="mr-2 w-7 dark:invert" />
-            Cerrar Sesión
-          </button>
+        <div className="mb-7 mt-7 flex flex-col space-y-1 text-lg">
+          <div className="flex flex-col">
+            <NavLink
+              to="/dashboard/main"
+              className={`flex items-center gap-3 p-2 ${location.pathname.includes("main") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            >
+              <img src={mainIcon} alt="icon" className="mr-2 w-7 dark:invert" />{" "}
+              Inicio
+            </NavLink>
+            <NavLink
+              to="/dashboard/library"
+              className={`flex items-center gap-3 p-2 ${location.pathname.includes("library") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            >
+              <img src={lbIcon} alt="icon" className="mr-2 w-7 dark:invert" />{" "}
+              Biblioteca
+            </NavLink>
+            <NavLink
+              to="/dashboard/asistant"
+              className={`flex items-center gap-3 p-2 ${location.pathname.includes("asistant") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            >
+              <img
+                src={asistantIcon}
+                alt="icon"
+                className="mr-2 w-7 dark:invert"
+              />{" "}
+              Asistente IA
+            </NavLink>
+            <NavLink
+              to="/dashboard/intergroups"
+              className={`flex items-center gap-3 p-2 ${location.pathname.includes("intergroups") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            >
+              <img
+                src={groupsIcon}
+                alt="icon"
+                className="mr-2 w-7 dark:invert "
+              />{" "}
+              Grupos
+            </NavLink>
+          </div>
+          {/* componente de config y logout */}
+          <div className="bottom-0 space-y-3 text-lg w-full">
+            <NavLink
+              to="/dashboard/setting"
+              className={`flex items-center gap-3 p-1 ${location.pathname.includes("setting") ? "font-bold text-cach-l3" : "font-bold text-cach-l5 dark:text-cach-l1"}`}
+            >
+              <img
+                src={settingIcon}
+                alt="icon"
+                className="mr-2 w-7 dark:invert"
+              />
+              Configuracion
+            </NavLink>
+            <button
+              onClick={() => {
+                logout();
+                url("/");
+              }}
+              className="flex items-center gap-3 p-1 font-bold text-cach-l5 dark:text-cach-l1"
+            >
+              <img src={logOutIcon} alt="icon" className="mr-2 w-7 dark:invert" />
+              Cerrar Sesión
+            </button>
+          </div>
         </div>
       </div>
 
