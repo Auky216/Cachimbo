@@ -143,7 +143,7 @@ const FileUploadForm = () => {
                                 setUniversity(uni.sigle)
                                 }} key={index}>
                                 <div className='mx-2 min-w-11 flex items-center justify-center'>
-                                    <img src={uni.logo || UniDefault} width={40}/>
+                                    <img src={uni.logo || UniDefault} width={40} className='bg-white rounded-full'/>
                                 </div>
                                 <div>
                                     {uni.sigle}

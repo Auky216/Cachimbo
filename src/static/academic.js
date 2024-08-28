@@ -2,17 +2,17 @@ export const universities = [
   {
     sigle: "PUCP",
     name: "Pontificia Universidad Católica del Perú",
-    logo: "",
+    logo: "https://cide.pucp.edu.pe/wp-content/uploads/2021/07/cropped-favicon-512px.png",
   },
   {
     sigle: "UTEC",
     name: "Universidad de Ingeniería y Tecnología",
-    logo: "https://utec.edu.pe/sites/default/files/isologo-utec.png",
+    logo: "",
   },
   {
     sigle: "UPC",
     name: "Universidad Peruana de Ciencias Aplicadas",
-    logo: "",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7gOeexEO6AXRa2ms2EQcIpgqjzgMAkTeCww&s",
   },
 ];
 

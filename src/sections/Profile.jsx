@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
 import BackButton from "../components/buttons";
 import { useUserStore } from "../store/utils";
-import profileTemplate from "../assets/profile-template.png";
+import profileTemplate from "../assets/profile-template.jpg";
 import uniDefault from "../assets/icons8-university-48.png";
 import friendsIcon from "../assets/icons8-grupo-de-primer-plano-seleccionado-96.png";
 import materialUploaded from "../assets/icons8-electivo-96.png";
@@ -29,7 +29,7 @@ const Profile = () => {
           <img
             src={profileTemplate}
             alt="profile"
-            className="w-9/12 rounded-full border-2 border-cach-l4 dark:invert"
+            className="w-9/12 rounded-full border-cach-l4"
           />
         </div>
         <div className="w-2/3 flex flex-col gap-2 py-4">

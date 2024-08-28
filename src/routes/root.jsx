@@ -22,7 +22,7 @@ import Sugerencias from "../sections/sugerencias/Suggestions";
 import SuggestionDetail from "../sections/sugerencias/SuggestionDetail";
 import HomePage from "../pages/HomePage";
 import FileUploadForm from "../pages/upload";
-
+import ComingSoon from "../sections/ComingSoon";
 export const routerNormal = [
   {
     path: "/",
@@ -69,7 +69,7 @@ export const routerProtected = [
   },
   {
     path: "/dashboard/asistant",
-    element: <ChatAssistant />,
+    element: <ComingSoon/>,//<ChatAssistant />,
   },
   {
     path: "/dashboard/main/course/:course",
@@ -85,7 +85,7 @@ export const routerProtected = [
   },
   {
     path: "/dashboard/main/nextcourses",
-    element: <NextCourses />,
+    element: <ComingSoon/>//<NextCourses />,
   },
   {
     path: "/dashboard/main/events",

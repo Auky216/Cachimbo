@@ -1,6 +1,6 @@
 import { CachimboLogo } from "../components/icons/CachimoLogo";
 import ThemeButton from "../components/extras/ThemeButton";
-import profileTemplate from "../assets/profile-template.png";
+import profileTemplate from "../assets/profile-template.jpg";
 import uploadIcon from "../assets/upload-icon.png";
 import mainIcon from "../assets/main-icon.png";
 import lbIcon from "../assets/library-icon.png";
@@ -54,7 +54,7 @@ const Aside = () => {
               <img
                 src={profileTemplate}
                 alt="profile"
-                className="w-20 dark:invert"
+                className="w-16 mx-5 rounded-full"
               />
             </NavLink>
             <div className="items-left flex flex-col justify-center font-extrabold">
