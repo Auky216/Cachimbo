@@ -16,6 +16,7 @@ import { useUserStore } from "../store/utils";
 const Register = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const user = useUserStore(state => state.user);
+  const [dataRegister, setDataRegister] = useState({});
   const [setChangeUser, resetUser] = useUserStore(state => [
     state.setChange,
     state.resetUser,
@@ -26,7 +27,7 @@ const Register = () => {
   }, [currentSlide]);
 
   const nextSlide = (data, atr) => {
-    setChangeUser(data, atr);
+    setDataRegister({ ...dataRegister, [atr]: data });
     setCurrentSlide(currentSlide + 1);
   };
 

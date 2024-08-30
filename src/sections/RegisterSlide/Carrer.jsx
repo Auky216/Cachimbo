@@ -1,29 +1,46 @@
-import { useEffect, useState } from "react";
-import { carrers } from "../../static/academic";
+import { useEffect, useState, useTransition } from "react";
+//import { carrers } from "../../static/academic";
+import Loader from "../../components/Loading";
 import { useUserStore } from "../../store/utils";
 import StampCarrer from "../../components/StampCarrer";
 
 // segunda vista de registro: seleccion de careera
 const Career = ({ next }) => {
   const loadUniv = useUserStore(state => state.user.university);
-  const resetable = {
+  /* const resetable = {
     [carrers[loadUniv].map(key => key.code)]: false,
-  };
-  const [clicked_per_career, setClicked_per_career] = useState(resetable);
+  }; */
+  const [resetable, setResetable] = useState({});
+  const [carrers, setCarrers] = useState([]);
+  
+  
+  const [clicked_per_career, setClicked_per_career] = useState({});
   const [career, setCareer] = useState("");
   const [carr_name, setCarr_name] = useState("");
+  const [isLoading, startTransition] = useTransition();
 
   useEffect(() => {
-    /* fetch(`/api/test/api/career/get/`, {
-      method: "POST",
-      body: JSON.stringify({ university: loadUniv }),
-    })
-    .then(res => res.json())
-    .then(data => JSON.parse(data.body))
-    .then(careers => console.log(careers)); */
+    startTransition(() => {
+      fetch(`/api/test/api/career/get/`, {
+        method: "POST",
+        body: JSON.stringify({ university: loadUniv }),
+      })
+        .then(res => res.json())
+        .then(data => JSON.parse(data.body))
+        .then(careers => {
+          setCarrers(careers);
+          setClicked_per_career(careers.reduce((obj, item) =>{
+            obj[item]= false;
+            return obj;
+          }, {}))
+        });
+    });
+  }, []);
+
+  useEffect(() => {
     let find = "";
     if (career)
-      find = carrers[loadUniv].find(carr => carr.code === career).name;
+      find = carrers.find(carr => carr === career);
     setCarr_name(find);
   }, [career]);
 
@@ -39,12 +56,12 @@ const Career = ({ next }) => {
     }
   };
 
-  const careersFirstHalf = carrers[loadUniv].slice(
+  const careersFirstHalf = carrers.slice(
     0,
-    Math.ceil(carrers[loadUniv].length / 2),
+    Math.ceil(carrers.length / 2),
   );
-  const careersSecondHalf = carrers[loadUniv].slice(
-    Math.ceil(carrers[loadUniv].length / 2),
+  const careersSecondHalf = carrers.slice(
+    Math.ceil(carrers.length / 2),
   );
 
   return (
@@ -53,17 +70,17 @@ const Career = ({ next }) => {
         <div className="mt-2 flex px-1 text-center text-[1.6rem] font-bold text-cach-l4 dark:text-cach-l1">
           Elige tu careera
         </div>
-        <div className="flex h-full w-full flex-col items-center justify-center">
+        {isLoading ? <Loader/> : <div className="flex h-full w-full flex-col items-center justify-center">
           <div className="flex w-full justify-around">
             {careersFirstHalf.map(carr => (
               <button
-                key={carr.code}
-                career={carr.code} // custom attribute
-                className={`z-10 min-h-8 w-[8em] items-center justify-center rounded-xl ${clicked_per_career[carr.code] ? "bg-cach-l3/40" : "bg-cach-l3"}  p-2 text-cach-l1`}
+                key={careersFirstHalf.indexOf(carr)}
+                career={carr} // custom attribute
+                className={`z-10 min-h-8 w-[8em] items-center justify-center rounded-xl ${clicked_per_career[carr] ? "bg-cach-l3/40" : "bg-cach-l3"}  p-2 text-cach-l1`}
                 onClick={handleClick}
               >
                 {/* con web scraping obtendremos los iconos de las universidades */}
-                {carr.name} {/* temporal */}
+                {carr} {/* temporal */}
               </button>
             ))}
           </div>
@@ -75,17 +92,17 @@ const Career = ({ next }) => {
           <div className="flex w-full justify-around">
             {careersSecondHalf.map(carr => (
               <button
-                key={carr.code}
-                career={carr.code} // custom attribute
-                className={`z-10 min-h-8 w-[8em] items-center justify-center rounded-xl ${clicked_per_career[carr.code] ? "bg-cach-l3/40" : "bg-cach-l3"}  p-2 text-cach-l1`}
+                key={careersSecondHalf.indexOf(carr)}
+                career={carr} // custom attribute
+                className={`z-10 min-h-8 w-[8em] items-center justify-center rounded-xl ${clicked_per_career[carr] ? "bg-cach-l3/40" : "bg-cach-l3"}  p-2 text-cach-l1`}
                 onClick={handleClick}
               >
                 {/* con web scraping obtendremos los iconos de las universidades */}
-                {carr.name} {/* temporal */}
+                {carr} {/* temporal */}
               </button>
             ))}
           </div>
-        </div>
+        </div>}
       </div>
       <div className="flex h-[22%] w-full items-center justify-center">
         <div className="flex w-full items-center justify-around">
@@ -98,8 +115,8 @@ const Career = ({ next }) => {
           </button>
         </div>
       </div>
-
-      <StampCarrer codeCarrer={career} />
+      {/* In the future when the code of each career will be given by the api this component will be used*/}
+      {/* <StampCarrer codeCarrer={career} /> */} 
     </section>
   );
 };

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 
 // Primera vista de registro, se muestra al principio del registro
 const University = ({ next }) => {
