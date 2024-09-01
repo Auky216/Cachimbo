@@ -1,62 +1,61 @@
 import { useState } from "react";
 import { useUserStore } from "../../store/utils";
 
-// cuarto slide del registro: ingreso de nombre, apellido y correo institucional
+// cuarto slide del registro: ingreso de nombre, apellido, correo institucional y nickname
 const GetUser = ({ next }) => {
   const univUser = useUserStore(state => state.university) || "UTEC";
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
+  const [nickname, setNickname] = useState("");
   const [errors, setErrors] = useState({
     name: "",
     lastname: "",
     email: "",
+    nickname: "",
   });
-  let initName = true;
+
   const handleNameChange = e => {
     e.preventDefault();
-    initName = false;
     setName(e.target.value);
-    if (!initName && e.target.value === "") {
-      setErrors({ ...errors, name: "El nombre es requerido" });
-    } else {
-      setErrors({ ...errors, name: "" });
-    }
+    setErrors({ ...errors, name: e.target.value ? "" : "El nombre es requerido" });
   };
 
-  let initLastname = true;
   const handleLastnameChange = e => {
     e.preventDefault();
-    initLastname = false;
     setLastname(e.target.value);
-    if (!initLastname && e.target.value === "") {
-      setErrors({ ...errors, lastname: "El apellido es requerido" });
-    } else {
-      setErrors({ ...errors, lastname: "" });
-    }
+    setErrors({ ...errors, lastname: e.target.value ? "" : "El apellido es requerido" });
   };
 
-  let initEmail = true;
   const handleEmailChange = e => {
     e.preventDefault();
-    initEmail = false;
     setEmail(e.target.value);
-    if (!initEmail && e.target.value === "") {
+
+    if (e.target.value === "") {
       setErrors({ ...errors, email: "El correo es requerido" });
       return;
     }
-    // si el correo no tiene un patron: nombre@univ_dominio.edu.pe
+
+    // Validar que el correo tenga un patrón válido: nombre@univ_dominio.edu.pe
     if (!/^[^\s@]+@[^\s@]+\.edu\.pe+$/.test(e.target.value)) {
       setErrors({ ...errors, email: "El correo no es válido" });
       return;
     }
+
     let getDomain = e.target.value.split("@")[1].split(".")[0];
     const univUserL = univUser.toLowerCase();
     if (getDomain !== univUserL) {
       setErrors({ ...errors, email: "El correo no es de la universidad" });
       return;
     }
+
     setErrors({ ...errors, email: "" });
+  };
+
+  const handleNicknameChange = e => {
+    e.preventDefault();
+    setNickname(e.target.value);
+    setErrors({ ...errors, nickname: e.target.value ? "" : "El nickname es requerido" });
   };
 
   return (
@@ -71,7 +70,7 @@ const GetUser = ({ next }) => {
             <label htmlFor="name">
               <input
                 className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l3 placeholder:opacity-30 focus:outline-none dark:text-cach-l1 dark:placeholder:text-cach-l2"
-                type="name"
+                type="text"
                 id="name"
                 placeholder="Nombre completo"
                 value={name}
@@ -101,6 +100,23 @@ const GetUser = ({ next }) => {
               </div>
             )}
           </div>
+          <div className="mb-4">
+            <label htmlFor="nickname">
+              <input
+                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l3 placeholder:opacity-30 focus:outline-none dark:text-cach-l1 dark:placeholder:text-cach-l2"
+                type="text"
+                id="nickname"
+                placeholder="Nickname"
+                value={nickname}
+                onChange={handleNicknameChange}
+              />
+            </label>
+            {errors.nickname && (
+              <div className="mb-4 text-center text-red-400 dark:text-red-700">
+                {errors.nickname}
+              </div>
+            )}
+          </div>
           <div className="mb-6">
             <label htmlFor="email">
               <input
@@ -123,8 +139,8 @@ const GetUser = ({ next }) => {
           <div className="flex w-full items-center justify-around">
             <button
               className="mb-3 mt-2 flex h-10 min-h-8 w-[20%] items-center justify-center rounded-xl bg-cach-l3 text-cach-l1 disabled:cursor-not-allowed disabled:opacity-50"
-              onClick={() => next({ name, lastname, email })}
-              disabled={name === "" || lastname === "" || email === ""}
+              onClick={() => next({ name, lastname, email, nickname })}
+              disabled={name === "" || lastname === "" || email === "" || nickname === ""}
             >
               Siguiente
             </button>
