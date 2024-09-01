@@ -220,6 +220,57 @@ export const pushFile = async (file_content, file_name, description, title, univ
     };
 }
 
+export const pushFileWithProgress = async (file_content, file_name, description, title, university, course, is_anonymous, onProgress) => {
+    if (file_content == null || title === '' || description === '' || university === null || course === '') {
+        throw new MissingDataError('Datos faltantes, necesitas completar todos los campos');
+    }
+
+    const reqBody = {
+        file_content,
+        file_name,
+        title,
+        description,
+        university,
+        course,
+        is_anonymous,
+        token: useUserStore.getState().user.token,
+        nickname: is_anonymous ? "Anonymous" : useUserStore.getState().user.nickname
+    };
+
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/api/test/api/library/send', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.upload.onprogress = (event) => {
+            if (event.lengthComputable && onProgress) {
+                const percentComplete = Math.round((event.loaded / event.total) * 100);
+                onProgress(percentComplete);
+            }
+        };
+
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+                if (data.statusCode === 200) {
+                    useAuthStore.getState().setGeneralData(useUserStore.getState().user.email, useUserStore.getState().user.token);
+                    resolve(data);
+                } else if (data.errorMessage) {
+                    reject(new SubmitFileError(data.errorMessage));
+                }
+            } else {
+                reject(new SubmitFileError('Error al subir el archivo.'));
+            }
+        };
+
+        xhr.onerror = () => {
+            reject(new SubmitFileError('Error al subir el archivo.'));
+        };
+
+        xhr.send(JSON.stringify(reqBody));
+    });
+};
+
 /* Course Section */
 
 export const findCourses = async (name, page, university) => {

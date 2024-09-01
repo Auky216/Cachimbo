@@ -1,6 +1,6 @@
 import { UTECcourses } from "../../static/academic";
 import { useUserStore } from "../../store/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "../../components/Modal";
 
 const LIMIT_CREDITS = 24;
@@ -8,14 +8,12 @@ const LIMIT_CREDITS = 24;
 // tercer slide del registro: seleccion de ciclo de ingreso y cursos matriculados
 const Academic = ({ next }) => {
   const loadCareer = useUserStore(state => state.user.career);
-  const courses = UTECcourses[loadCareer];
-  const resetCoursesLevel = {
-    [Object.keys(courses.flat()).map(key => key.code)]: false,
-  };
+  const loadUni = useUserStore(state => state.user.university);
+  const [courses, setCourses] = useState([]);
+  const [resetCoursesLevel, setReset] = useState({});
 
   // curso si es seleccionado o no
-  const [clicked_per_Course, setClicked_per_Course] =
-    useState(resetCoursesLevel);
+  const [clicked_per_Course, setClicked_per_Course] = useState(resetCoursesLevel);
   // acumulador de cursos seleccionados
   const [selectedCourses, setSelectedCourses] = useState([]);
   // nivel de cursos
@@ -29,29 +27,56 @@ const Academic = ({ next }) => {
 
   const handleClick = e => {
     const sele = e.target.getAttribute("course");
-    const credits = Number(e.target.getAttribute("credits"));
+    //const credits = Number(e.target.getAttribute("credits"));
 
     // bool para saber si el curso ya fue seleccionado
     const current = clicked_per_Course[sele];
-
+    //console.log(current);
     if (current) {
       setSelectedCourses(selectedCourses.filter(course => course !== sele));
-      setCreditsAcum(creditsAcum - credits);
+      //setCreditsAcum(creditsAcum - credits);
     } else {
-      if (creditsAcum + credits <= LIMIT_CREDITS) {
-        setSelectedCourses([...selectedCourses, sele]);
-        setCreditsAcum(creditsAcum + credits);
-      } else {
-        setActivateLimitModal(true);
-        return;
-      }
+      //if (creditsAcum + credits <= LIMIT_CREDITS) {
+      setSelectedCourses([...selectedCourses, sele]);
+      //  //setCreditsAcum(creditsAcum + credits);
+      //} else {
+      //  //setActivateLimitModal(true);
+      //}
     }
     setClicked_per_Course({ ...clicked_per_Course, [sele]: !current });
   };
 
+  const filtredCourseByLevel = (term) => {
+    return courses.filter(course => course.term === term);
+  }
+
   const handleChangeLevel = ({ target }) => {
     setLevel(Number(target.value));
   };
+
+  useEffect(() => {
+    fetch(`/api/test/api/course/getcoursebycareer/`, {
+      method: "POST",
+      body: JSON.stringify({
+        career: loadCareer,
+        university: loadUni
+      }),
+      })
+      .then(res => res.json())
+      .then(data => JSON.parse(data.body))
+      .then(coursesData => {
+        setCourses(coursesData);
+        setReset(coursesData.reduce((acc, current) => {
+          acc[current.course] = false;
+          return acc;
+        }, {}))
+        setClicked_per_Course(coursesData.reduce((acc, current) => {
+          acc[current.course] = false;
+          return acc;
+        }, {}));
+        //console.log(coursesData.flat());
+      });
+  }, [])
 
   return (
     <section className="flex h-full w-full flex-col items-center rounded-[3.5rem]">
@@ -66,7 +91,7 @@ const Academic = ({ next }) => {
               <input
                 type="range"
                 min={0}
-                max={1}
+                max={10}
                 value={level}
                 className="h-[22rem] w-10 cursor-pointer appearance-none overflow-hidden rounded-md bg-gray-200 duration-200 hover:bg-cach-l2 focus:outline-none dark:duration-200"
                 onChange={handleChangeLevel}
@@ -87,7 +112,9 @@ const Academic = ({ next }) => {
                 onChange={({ target }) => setNumberCycle(Number(target.value))}
                 required
               >
-                {courses.map((_, i) => (
+                {
+                /* experimental, in the future this will be changed by the data provided in the api */
+                [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((_, i) => (
                   <option className="text-black" key={i} value={i + 1}>
                     {i + 1}
                   </option>
@@ -100,15 +127,15 @@ const Academic = ({ next }) => {
 
             {/* </div> */}
             <div className="flex justify-around gap-5">
-              {courses[level].map(course => (
+              {filtredCourseByLevel(level).map(course => (
                 <button
-                  key={course.code}
-                  course={course.code} // custom attribute
-                  credits={course.credits}
-                  className={`z-10 min-h-8 w-fit items-center justify-center rounded-xl ${clicked_per_Course[course.code] ? "bg-cach-l3/40" : "bg-cach-l3"}  p-2 text-cach-l1`}
+                  key={courses.indexOf(course)}
+                  course={course.course} // custom attribute
+                  //credits={course.credits}
+                  className={`z-10 min-h-8 w-fit items-center justify-center rounded-xl ${clicked_per_Course[course.course] ? "bg-cach-l3/40" : "bg-cach-l3"}  p-2 text-cach-l1`}
                   onClick={handleClick}
                 >
-                  {course.name}
+                  {course.course}
                 </button>
               ))}
             </div>
@@ -130,7 +157,8 @@ const Academic = ({ next }) => {
       </div>
 
       {/* Modal de limite de creditos */}
-      <Modal isOpen={activateLimitModal} onClose={setActivateLimitModal}>
+      {/*Deprecated by the api */}
+      {/* <Modal isOpen={activateLimitModal} onClose={setActivateLimitModal}>
         <div className="flex flex-col items-center justify-center">
           <p className="text-center">
             Has excedido el límite de créditos permitidos para su ciclo.
@@ -142,7 +170,7 @@ const Academic = ({ next }) => {
             Aceptar
           </button>
         </div>
-      </Modal>
+      </Modal> */}
     </section>
   );
 };
