@@ -70,7 +70,7 @@ const Career = ({ next }) => {
         <div className="mt-2 flex px-1 text-center text-[1.6rem] font-bold text-cach-l4 dark:text-cach-l1">
           Elige tu careera
         </div>
-        {isLoading ? <Loader/> : <div className="flex h-full w-full flex-col items-center justify-center">
+        {isLoading ? <Loader/>: <div className="flex h-full w-full flex-col items-center justify-center">
           <div className="flex w-full justify-around">
             {careersFirstHalf.map(carr => (
               <button

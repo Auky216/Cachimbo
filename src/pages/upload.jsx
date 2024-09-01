@@ -6,10 +6,9 @@ import UniDefault from "../assets/university-icon.png"
 import Curso from "../assets/icons8-cursos-96.png";
 import { Checkbox } from '../components/buttons';
 import Loader, {PageDefaultSearch} from '../components/Loading';
-import { pushFile, findCourses } from '../store/services';
+import { pushFile, pushFileWithProgress, findCourses } from '../store/services';
 import { ErrorModal, LoadingModal } from '../components/Modal';
 import uploadIcon from "../assets/upload-icon.png";
-import { useUserStore } from '../store/utils';
 
 
 

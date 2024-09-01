@@ -45,4 +45,10 @@ export const LoadingModal = ({isOpen}) => {
   );
 }
 
+export const MiniModal = ({isOpen, onClose, typeOfInfo}) => {
+  return (
+    <div></div>
+  );
+}
+
 export default Modal;

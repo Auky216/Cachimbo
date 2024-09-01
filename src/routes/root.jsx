@@ -89,11 +89,11 @@ export const routerProtected = [
   },
   {
     path: "/dashboard/main/events",
-    element: <Events />,
+    element: <ComingSoon />,
   },
   {
     path: "/dashboard/main/events/:event",
-    element: <EventInfo />,
+    element: <ComingSoon />,
   },
   {
     path: "/dashboard/main/Sugerencias",

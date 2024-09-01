@@ -16,7 +16,6 @@ import { useUserStore } from "../store/utils";
 const Register = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const user = useUserStore(state => state.user);
-  const [dataRegister, setDataRegister] = useState({});
   const [setChangeUser, resetUser] = useUserStore(state => [
     state.setChange,
     state.resetUser,
@@ -27,12 +26,12 @@ const Register = () => {
   }, [currentSlide]);
 
   const nextSlide = (data, atr) => {
-    setDataRegister({ ...dataRegister, [atr]: data });
+    setChangeUser(data, atr);
     setCurrentSlide(currentSlide + 1);
   };
 
   const nextAcademic = data => {
-    setChangeUser(String(data.cycle), "cycle");
+    setChangeUser(data.cycle, "cycle");
     setChangeUser(data.courses, "enrolledCourses");
     setCurrentSlide(currentSlide + 1);
   };
