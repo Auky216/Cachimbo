@@ -13,6 +13,7 @@ import LastRegister from "../sections/RegisterSlide/LastRegister";
 
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../store/utils";
+import { useAuthStore } from "../store/session";
 
 const Register = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -24,11 +25,12 @@ const Register = () => {
     "insignia": [],
     "eventFavorites": [],
     "points": 0,
-    "files": [],
+    "files": 0,
     "userPhoto": ""
   });
-  const userLocalToDataRegister = {"university":"university", "career":"term", };
+  const userLocalToDataRegister = {"university":"university", "career":"term", "password":"password"};
 
+  const {register} = useAuthStore();
   const user = useUserStore(state => state.user);
   const [setChangeUser, resetUser] = useUserStore(state => [
     state.setChange,
@@ -51,7 +53,8 @@ const Register = () => {
   const nextAcademic = data => {
     setChangeUser(data.cycle, "cycle");
     setChangeUser(data.courses, "enrolledCourses");
-    setDataRegister({ ...dataRegister, cycle: data.cycle, enrolledCourses: data.courses });
+    setChangeUser(data.startYear, "startYear")
+    setDataRegister({ ...dataRegister, interestedCourses: data.courses, startYear:data.startYear });
     setCurrentSlide(currentSlide + 1);
   };
 
@@ -72,7 +75,7 @@ const Register = () => {
     move("/"); // redirigir a la página principal
   };
 
-  const finalize = data => {
+  const finalize = () => {
     
     //console.log(user);
 
@@ -81,12 +84,19 @@ const Register = () => {
     // dirigir al dashboard
     // resetUser();
     // Propuesta: redirigir al dashboard con un mensaje de bienvenida antes
-    move("/dashboard/main");
+    register(dataRegister).then(res =>{
+      move("/dashboard/main")
+    });
   };
 
   const nextProfile = data => {
+    //let nck = data.nickname;
+    //let dscpt = data.description;
     setChangeUser(data.nickname, "nickname");
     setChangeUser(data.description, "profileDescription");
+    setDataRegister({...dataRegister, nickname:data.nickname, description:data.description})
+    setCurrentSlide(currentSlide + 1);
+    //console.log(nck, dscpt)
   }
 
   const slides = [
