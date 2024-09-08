@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useUserStore } from "../../store/utils";
 import { SecurityCodeInput } from "../../components/CustomInput";
 
@@ -48,6 +48,10 @@ const Verify = ({ next }) => {
     getVerifCode();
     setNewMessage(true);
   };
+
+  useEffect(()=>{
+    //console.log("test")
+  }, [])
 
   // cuando se renderiza el componente se envia el correo con el codigo
   // getVerifCode();

@@ -2,13 +2,13 @@ import { useState } from "react";
 
 // octavo slide del registro: ingreso de foto de perfil
 const LastRegister = ({ next }) => {
-  const [uploadedImage, setUploadedImage] = useState(null);
+  //const [uploadedImage, setUploadedImage] = useState(null);
   const [nickname, setNickname] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
 
   const handleNickameChange = e => {
-    e.preventDefault();
+    //e.preventDefault();
     setNickname(e.target.value);
     if (e.target.value === "") {
       setError("Sería genial si aplicas un alias");
@@ -18,7 +18,7 @@ const LastRegister = ({ next }) => {
   };
 
   const handleDescriptionChange = e => {
-    e.preventDefault();
+    //e.preventDefault();
     setDescription(e.target.value);
   };
 
@@ -66,7 +66,7 @@ const LastRegister = ({ next }) => {
                 <span className="text-xl font-bold text-cach-l2">@</span>
                 <input
                   className="focus:shadow-outline mt-3 w-[14rem] h-[2.5rem] rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
-                  type="name"
+                  type="text"
                   id="nickname"
                   value={nickname}
                   onChange={handleNickameChange}
@@ -103,7 +103,7 @@ const LastRegister = ({ next }) => {
             onClick={() => next({ nickname, description })}
             disabled={nickname === ""}
           >
-            Finalizar
+            Siguiente
           </button>
         </div>
         <div className="text-xl text-cach-l3 opacity-30 dark:text-cach-l2">

@@ -24,7 +24,9 @@ const Academic = ({ next }) => {
   const [creditsAcum, setCreditsAcum] = useState(0);
   // modal de limite de creditos si se excede
   const [activateLimitModal, setActivateLimitModal] = useState(false);
-
+  const[currentCycle, setCurrentCycle] = useState('')
+  //cilos
+  const cycles = ["2024-II", "2024-I", "2023-II", "2023-I", "2022-II", "2022-I", "2021-II", "2021-I", "2020-II", "2020-I"]
   const handleClick = e => {
     const sele = e.target.getAttribute("course");
     //const credits = Number(e.target.getAttribute("credits"));
@@ -121,7 +123,23 @@ const Academic = ({ next }) => {
                 ))}
               </select>
             </div>
-            <div className="py-6 text-xl dark:text-white">
+            <div className="flex w-full items-center justify-center gap-10 pt-1 dark:text-white">
+              Ciclo:
+              <select
+                className=" p-1 text-black"
+                value={numberCycle}
+                onChange={({ target }) => setNumberCycle(target.value)}
+                required
+              >
+                {
+                cycles.map((strC, i) => (
+                  <option className="text-black" key={i} value={strC}>
+                    {strC}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="py-2 text-xl dark:text-white">
               Selecciona tus cursos matriculados:
             </div>
 
@@ -147,7 +165,7 @@ const Academic = ({ next }) => {
           <button
             className="mb-3 mt-2 flex h-10 min-h-8 w-[20%] items-center justify-center rounded-xl bg-cach-l3 text-cach-l1 disabled:cursor-not-allowed disabled:opacity-50"
             onClick={() =>
-              next({ courses: selectedCourses, cycle: numberCycle })
+              next({ courses: selectedCourses, cycle: numberCycle, startYear:currentCycle })
             }
             disabled={selectedCourses.length === 0}
           >

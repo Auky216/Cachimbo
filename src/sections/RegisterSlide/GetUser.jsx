@@ -50,12 +50,6 @@ const GetUser = ({ next }) => {
     setErrors({ ...errors, email: "" });
   };
 
-  const handleNicknameChange = e => {
-    e.preventDefault();
-    setNickname(e.target.value);
-    setErrors({ ...errors, nickname: e.target.value ? "" : "El nickname es requerido" });
-  };
-
   return (
     <section className="flex h-full w-full flex-col items-center rounded-[3.5rem]">
       <div className="flex h-[84%] w-full flex-col items-center">

@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { useUserStore, stateLogged } from './utils'; 
 import { fetchDataCustom } from '../components/fetchingData';
+import Register from '../pages/Register';
 
 export const useAuthStore = create((set) => ({
     error: null,
@@ -50,4 +51,8 @@ export const useAuthStore = create((set) => ({
             useUserStore.getState().setChange(data, attributes[index]);
         });
     },
+    register: async (credentials) =>{
+        await stateLogged.getState().login();
+        return true;
+    }
 }));
