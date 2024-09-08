@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import profileTemplate from '../assets/profile-template.png';
-import pdflogo from '../assets/pdf-icon.png';
+import pdflogo from '../assets/iconFileType/pdf-icon.png';
+
+//nuevos logos
+import pptIcon from '../assets/iconFileType/pdf.jpg';
+import docIcon from '../assets/iconFileType/docx.jpg';
+import xlsIcon from '../assets/iconFileType/xlsx.jpg';
+import pngIcon from '../assets/iconFileType/png.jpg';
+
 import iconCurso from '../assets/icons8-cursos-96.png';
 import universitylogo from '../assets/university-icon.png';
 import HeartLogo from '../components/icons/HearLogo.jsx';
@@ -13,8 +20,14 @@ const LibraryItem = ({ item }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [isLoadingLike, setIsLoadingLike] = useState(true);
-
-  const imgUni = universities.find((uni) => uni.sigle === item.university);
+  const [extension, setExtension] = useState(item.file_name.split('.').pop());
+  const inconsImages = {
+    "ppt": pptIcon,
+    "docx": docIcon,
+    "xlsx": xlsIcon,
+    "png": pngIcon
+  }
+  const imgUni = universities.find((uni) => uni.sigle === item.university).logo || universitylogo;
 
   const handleLike = () => {
     setIsLoadingLike(true);
@@ -39,11 +52,11 @@ const LibraryItem = ({ item }) => {
     <div className="mb-4 rounded-2xl border border-cach-l3 px-4 py-2 dark:border-cach-l2">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <img src={pdflogo} alt="PDF" className="h-[4rem] w-[4rem]" />
+          <img src={inconsImages[extension] || pdflogo} alt="PDF" className="h-[4rem] w-[4rem]" />
           <div>
             <h3 className="text-10 text-lg font-bold text-cach-l3">
-              <Link to={`/dashboard/library/${item.university}/${item.course}/${item.id}/${item.file_name.slice(-3)}`} className="text-cach-l3 dark:text-cach-l2 hover:underline" state={item}>
-                {item.title} - {item.file_name.slice(-3)}
+              <Link to={`/dashboard/library/${item.university}/${item.course}/${item.id}/${extension}`} className="text-cach-l3 dark:text-cach-l2 hover:underline" state={item}>
+                {item.title} - {extension}
               </Link>
             </h3>
             <div className="flex items-center space-x-2">
@@ -54,7 +67,7 @@ const LibraryItem = ({ item }) => {
               />
               <p className="pr-3 text-cach-l5 dark:text-cach-l3">@{item.nickname}</p>
               <img
-                src={imgUni.logo}
+                src={imgUni}
                 alt="Universidad"
                 className="h-8 filter"
               />

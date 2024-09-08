@@ -7,12 +7,10 @@ const GetUser = ({ next }) => {
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
-  const [nickname, setNickname] = useState("");
   const [errors, setErrors] = useState({
     name: "",
     lastname: "",
     email: "",
-    nickname: "",
   });
 
   const handleNameChange = e => {
@@ -100,23 +98,6 @@ const GetUser = ({ next }) => {
               </div>
             )}
           </div>
-          <div className="mb-4">
-            <label htmlFor="nickname">
-              <input
-                className="focus:shadow-outline w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l3 placeholder:opacity-30 focus:outline-none dark:text-cach-l1 dark:placeholder:text-cach-l2"
-                type="text"
-                id="nickname"
-                placeholder="Nickname"
-                value={nickname}
-                onChange={handleNicknameChange}
-              />
-            </label>
-            {errors.nickname && (
-              <div className="mb-4 text-center text-red-400 dark:text-red-700">
-                {errors.nickname}
-              </div>
-            )}
-          </div>
           <div className="mb-6">
             <label htmlFor="email">
               <input
@@ -139,8 +120,8 @@ const GetUser = ({ next }) => {
           <div className="flex w-full items-center justify-around">
             <button
               className="mb-3 mt-2 flex h-10 min-h-8 w-[20%] items-center justify-center rounded-xl bg-cach-l3 text-cach-l1 disabled:cursor-not-allowed disabled:opacity-50"
-              onClick={() => next({ name, lastname, email, nickname })}
-              disabled={name === "" || lastname === "" || email === "" || nickname === ""}
+              onClick={() => next({ name, lastname, email })}
+              disabled={name === "" || lastname === "" || email === ""}
             >
               Siguiente
             </button>

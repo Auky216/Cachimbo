@@ -27,9 +27,14 @@ const Login = () => {
 
         setIsLoading(true);
         event.preventDefault();
-        login({ email, password }).finally(() => {
-            setIsLoading(false);
-            move("/dashboard/main");
+        login({ email, password })
+        .then( res => {
+            if(!res){
+                setIsLoading(res);
+                move("/dashboard/main");
+            } else {
+                setIsLoading(!res);
+            };
         });
     };
 

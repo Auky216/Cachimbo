@@ -11,15 +11,32 @@ import Password from "../sections/RegisterSlide/Password";
 import Verify from "../sections/RegisterSlide/Verify";
 import LastRegister from "../sections/RegisterSlide/LastRegister";
 
+import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../store/utils";
 
 const Register = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [dataRegister, setDataRegister] = useState(
+    {"friends": [],
+    "libraryFavorites": [],
+    "studyGroups": [],
+    "passedCourses": [],
+    "insignia": [],
+    "eventFavorites": [],
+    "points": 0,
+    "files": [],
+    "userPhoto": ""
+  });
+  const userLocalToDataRegister = {"university":"university", "career":"term", };
+
   const user = useUserStore(state => state.user);
   const [setChangeUser, resetUser] = useUserStore(state => [
     state.setChange,
     state.resetUser,
   ]);
+  const move = useNavigate();
+
+  
 
   useEffect(() => {
     localStorage.setItem("currentSlide", currentSlide);
@@ -27,12 +44,14 @@ const Register = () => {
 
   const nextSlide = (data, atr) => {
     setChangeUser(data, atr);
+    setDataRegister({ ...dataRegister, [userLocalToDataRegister[atr]]: data });
     setCurrentSlide(currentSlide + 1);
   };
 
   const nextAcademic = data => {
     setChangeUser(data.cycle, "cycle");
     setChangeUser(data.courses, "enrolledCourses");
+    setDataRegister({ ...dataRegister, cycle: data.cycle, enrolledCourses: data.courses });
     setCurrentSlide(currentSlide + 1);
   };
 
@@ -40,6 +59,7 @@ const Register = () => {
     setChangeUser(data.name, "name");
     setChangeUser(data.lastname, "lastname");
     setChangeUser(data.email, "email");
+    setDataRegister({ ...dataRegister, name: data.name, lastname: data.lastname, email: data.email });
     setCurrentSlide(currentSlide + 1);
   };
 
@@ -49,21 +69,25 @@ const Register = () => {
       return;
     resetUser();
     // dirigir al dashboard
-    window.location.href = "/";
+    move("/"); // redirigir a la página principal
   };
 
   const finalize = data => {
-    setChangeUser(data.nickname, "nickname");
-    setChangeUser(data.description, "profileDescription");
-    console.log(user);
+    
+    //console.log(user);
 
     // se realizaria un POST a la API para registrar al usuario
     // fetch("https:// .....").then(res => { });
     // dirigir al dashboard
     // resetUser();
     // Propuesta: redirigir al dashboard con un mensaje de bienvenida antes
-    window.location.href = "/dashboard/main";
+    move("/dashboard/main");
   };
+
+  const nextProfile = data => {
+    setChangeUser(data.nickname, "nickname");
+    setChangeUser(data.description, "profileDescription");
+  }
 
   const slides = [
     <University next={nextSlide} />,
@@ -71,9 +95,10 @@ const Register = () => {
     <Academic next={nextAcademic} />,
     // <OtherCourses next={nextSlide} />,
     <GetUser next={nextUser} />,
-    <Verify next={() => setCurrentSlide(currentSlide + 1)} />,
     <Password next={nextSlide} />,
-    <LastRegister next={finalize} />,
+    <LastRegister next={nextProfile} />,
+    <Verify next={finalize} />,
+    
   ];
 
   return (

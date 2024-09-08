@@ -86,7 +86,7 @@ export const useUserStore = create(
                 confirmPassword: "",
                 profileDescription: "",
                 startYear:"",
-                token: import.meta.env.VITE_TOKEN,
+                token: "",
             },
             resetUser: () =>
                 set(() => ({
@@ -108,7 +108,7 @@ export const useUserStore = create(
                         confirmPassword: "",
                         profileDescription: "",
                         startYear:"",
-                        token: import.meta.env.VITE_TOKEN,
+                        token: "",
                     },
                 })),
             setChange: (data, atr) =>

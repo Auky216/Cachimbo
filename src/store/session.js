@@ -15,13 +15,14 @@ export const useAuthStore = create((set) => ({
                 useUserStore.getState().setChange(result.token, 'token');
                 await useAuthStore.getState().setGeneralData(credentials.email, result.token)
                     .finally(()=>{stateLogged.getState().login()});
-                
+                return false;
             } else if (body.error) {
                 throw new Error(body.error);
             }
 
         } catch (error) {
             set({ error: error.message });
+            return true;
         }
     },
 
