@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useUserStore } from "../../store/utils";
+import { SecurityCodeInput } from "../../components/CustomInput";
 
 import { fetchDataCustom } from "../../components/fetchingData"; 
 // pronto lo eliminaré, es mejor crear un fetch especifico y añadirlo a services.js
 
 // septimo slide del registro: confirmacion de la cuenta desde el correo institucional
 const Verify = ({ next }) => {
-  const [dataCode, setData] = useState("123456"); // datos de la peticion
+  const [dataCode, setData] = useState("1234"); // datos de la peticion
+  
   const [inputs, setInputs] = useState({
     code1: "",
     code2: "",
@@ -62,7 +64,8 @@ const Verify = ({ next }) => {
         </div>
         <div className="mb-16 flex h-[20%] w-[35%] flex-col pt-4">
           {/* Unos cuadraditos para ingresar cada digito del codigo */}
-          <div className="flex flex-row justify-around pb-3">
+          <SecurityCodeInput value={code} setChange={setCode}/>
+          {/* <div className="flex flex-row justify-around pb-3">
             <input
               id="code-1"
               className="focus:shadow-outline h-14 w-14 rounded-xl border border-cach-l3 bg-transparent text-center text-xl text-gray-700 dark:text-cach-l1"
@@ -111,7 +114,7 @@ const Verify = ({ next }) => {
               maxLength="1"
               value={inputs.code6}
             />
-          </div>
+          </div> */}
           {/* alink para solicitar un nuevo codigo */}
           <div className="mb-4 text-center text-cach-l3 dark:text-cach-l2">
             <a
@@ -129,12 +132,13 @@ const Verify = ({ next }) => {
             {error}
           </div>
         )}
+        
         <div className="flex h-[20%] w-full flex-col items-center justify-center">
           <div className="flex w-full items-center justify-around">
             <button
               className="mb-3 mt-2 flex h-10 min-h-8 w-[20%] items-center justify-center rounded-xl bg-cach-l3 text-cach-l1 disabled:cursor-not-allowed disabled:opacity-50"
               onClick={matchCode}
-              disabled={code.length < 6}
+              disabled={code.length < 4}
             >
               Siguiente
             </button>

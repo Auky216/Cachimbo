@@ -17,7 +17,7 @@ const Profile = () => {
   //   carr => carr.code === user.career,
   // ).name;
   const careerName = user.career;
-  const uniImage = user.university != '' ? universities.filter(u => u.sigle === user.university)[0].logo : uniDefault;
+  const uniImage = user.university != '' ? universities.filter(u => u.sigle === user.university)[0].logo || uniDefault : uniDefault;
 
   return (
     <div>

@@ -28,8 +28,8 @@ const LastRegister = ({ next }) => {
         <div className="mb-10 mt-2 flex px-1 text-center text-[1.8rem] font-bold text-cach-l4 dark:text-cach-l1">
           ¡ Lo último !
         </div>
-        <div className="flex h-full w-[90%] flex-row">
-          <div className="flex h-[80%] w-[40%] flex-col items-center justify-center gap-10">
+        <div className="flex h-full w-[90%] flex-row justify-center">
+          {/* <div className="flex h-[80%] w-[40%] flex-col items-center justify-center gap-10">
             <div className="border-3 flex size-[17rem] items-center justify-center rounded-3xl border border-cach-l3 bg-cach-l3 bg-transparent text-cach-l1">
               {uploadedImage ? (
                 <img
@@ -56,19 +56,23 @@ const LastRegister = ({ next }) => {
                 onChange={e => setUploadedImage(e.target.files[0])}
               />
             </div>
-          </div>
-          <div className="w-[22rem]">
-            <label htmlFor="nickname">
+          </div> */}
+          <div className="w-[28rem]">
+            <label htmlFor="nickname" className="flex flex-col items-center">
               <span className="font-bold text-cach-l2">
                 Dinos una forma de llamarte
               </span>
-              <input
-                className="focus:shadow-outline mt-3 w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
-                type="name"
-                id="nickname"
-                value={nickname}
-                onChange={handleNickameChange}
-              />
+              <div className="flex items-center gap-3">
+                <span className="text-xl font-bold text-cach-l2">@</span>
+                <input
+                  className="focus:shadow-outline mt-3 w-[14rem] h-[2.5rem] rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-gray-700 placeholder:text-cach-l2 focus:outline-none dark:text-cach-l1"
+                  type="name"
+                  id="nickname"
+                  value={nickname}
+                  onChange={handleNickameChange}
+                />
+              </div>
+              
             </label>
             {error && (
               <div className="text-center text-orange-400 dark:text-orange-700">
@@ -81,7 +85,7 @@ const LastRegister = ({ next }) => {
                   Alguna descripción sobre ti
                 </span>
                 <textarea
-                  className="focus:shadow-outline mt-3 h-[11rem] w-[30rem] rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-xs text-gray-700 placeholder:text-cach-l3 placeholder:opacity-30 focus:outline-none dark:text-cach-l1 dark:placeholder:text-cach-l2"
+                  className="focus:shadow-outline mt-3 h-[9rem] w-full rounded-xl border border-cach-l3 bg-transparent px-4 py-3 text-xs text-gray-700 placeholder:text-cach-l3 placeholder:opacity-30 focus:outline-none dark:text-cach-l1 dark:placeholder:text-cach-l2"
                   id="description"
                   placeholder=" (opcional)"
                   value={description}

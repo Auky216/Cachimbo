@@ -86,7 +86,7 @@ const Academic = ({ next }) => {
         </div>
         <div className="flex h-full w-full">
           <div className="flex h-full flex-col items-center">
-            <div className="dark:text-white">Nivel {level + 1}</div>
+            <div className="dark:text-white">Nivel {level }</div>
             <div className="flex h-full w-56 items-center justify-center">
               <input
                 type="range"
@@ -98,7 +98,7 @@ const Academic = ({ next }) => {
                 style={{
                   writingMode: "vertical-lr",
                   direction: "rtl",
-                }}
+                }}  
                 id="customRange1"
               />
             </div>

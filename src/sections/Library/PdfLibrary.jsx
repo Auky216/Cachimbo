@@ -65,7 +65,7 @@ const PdfLibrary = () => {
 
         <div className="mb-4">
           <div className="rounded-lg border border-cach-l2 p-4">
-            <p className="text-cach-l5 dark:text-cach-l1">{pdfData.description || getPdfs["calculo1"].descripcion}</p>
+            <p className="text-cach-l5 dark:text-cach-l1">{pdfData.description || "No hay descripción"}</p>
           </div>
         </div>
 
