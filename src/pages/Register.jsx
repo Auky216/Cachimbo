@@ -49,7 +49,7 @@ const Register = () => {
   }, [currentSlide]);
 
   useEffect(() => {
-    console.log(dataRegister)
+    //console.log(dataRegister)
   }, [dataRegister])
 
   const nextSlide = (data, atr) => {
@@ -100,6 +100,7 @@ const Register = () => {
   };
 
   const sendRegister = async (toRegister) => {
+    //console.log(toRegister);
     const res = await fetch("/api/test/api/auth/register", {
       method: "POST",
       body: JSON.stringify(toRegister),
@@ -114,10 +115,11 @@ const Register = () => {
     //let dscpt = data.description;
     setChangeUser(data.nickname, "nickname");
     setChangeUser(data.description, "profileDescription");
+    const finalDataUpdated = {...dataRegister, nickname:data.nickname, description:data.description}
     await setDataRegister({...dataRegister, nickname:data.nickname, description:data.description})
     //console.log(nck, dscpt)
     await setIsLoading(true);
-    await sendRegister(dataRegister).finally(() => setIsLoading(false));
+    await sendRegister(finalDataUpdated).finally(() => setIsLoading(false));
     await setCurrentSlide(currentSlide + 1);
   }
 
