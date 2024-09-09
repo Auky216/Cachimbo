@@ -45,7 +45,7 @@ const GetUser = ({ next }) => {
     if (getDomain !== univUserL) {
       setErrors({ ...errors, email: "El correo no es de la universidad" });
       return;
-    }
+    } 
 
     setErrors({ ...errors, email: "" });
   };

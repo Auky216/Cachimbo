@@ -17,7 +17,7 @@ const EventInfo = () => {
       //si existe el evento en el local storage, filtramos por el id pasado en el params y lo seteamos
       const currentEvent = eventData.find((e) => e.id === event);
       setEvent(currentEvent);
-      console.log(currentEvent);
+      //console.log(currentEvent);
       setLoading(false);
     }
     else {

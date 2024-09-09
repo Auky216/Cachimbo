@@ -10,6 +10,7 @@ import GetUser from "../sections/RegisterSlide/GetUser";
 import Password from "../sections/RegisterSlide/Password";
 import Verify from "../sections/RegisterSlide/Verify";
 import LastRegister from "../sections/RegisterSlide/LastRegister";
+import Loader from "../components/Loading";
 
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../store/utils";
@@ -17,6 +18,8 @@ import { useAuthStore } from "../store/session";
 
 const Register = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [idUser, setIdUser] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [dataRegister, setDataRegister] = useState(
     {"friends": [],
     "libraryFavorites": [],
@@ -31,18 +34,23 @@ const Register = () => {
   const userLocalToDataRegister = {"university":"university", "career":"term", "password":"password"};
 
   const {register} = useAuthStore();
-  const user = useUserStore(state => state.user);
   const [setChangeUser, resetUser] = useUserStore(state => [
     state.setChange,
     state.resetUser,
   ]);
   const move = useNavigate();
 
-  
+  useEffect(() => {
+    resetUser();
+  },[]);
 
   useEffect(() => {
     localStorage.setItem("currentSlide", currentSlide);
   }, [currentSlide]);
+
+  useEffect(() => {
+    console.log(dataRegister)
+  }, [dataRegister])
 
   const nextSlide = (data, atr) => {
     setChangeUser(data, atr);
@@ -75,7 +83,7 @@ const Register = () => {
     move("/"); // redirigir a la página principal
   };
 
-  const finalize = () => {
+  const finalize = async () => {
     
     //console.log(user);
 
@@ -84,19 +92,33 @@ const Register = () => {
     // dirigir al dashboard
     // resetUser();
     // Propuesta: redirigir al dashboard con un mensaje de bienvenida antes
-    register(dataRegister).then(res =>{
-      move("/dashboard/main")
+    //await console.log(dataRegister);
+    await register(dataRegister)
+    .then((res) => {
+      if (res) move("/dashboard/main")
     });
   };
 
-  const nextProfile = data => {
+  const sendRegister = async (toRegister) => {
+    const res = await fetch("/api/test/api/auth/register", {
+      method: "POST",
+      body: JSON.stringify(toRegister),
+    });
+    const data = await res.json();
+    await setIdUser(data.id);
+    //console.log(data);
+  }
+
+  const nextProfile = async data => {
     //let nck = data.nickname;
     //let dscpt = data.description;
     setChangeUser(data.nickname, "nickname");
     setChangeUser(data.description, "profileDescription");
-    setDataRegister({...dataRegister, nickname:data.nickname, description:data.description})
-    setCurrentSlide(currentSlide + 1);
+    await setDataRegister({...dataRegister, nickname:data.nickname, description:data.description})
     //console.log(nck, dscpt)
+    await setIsLoading(true);
+    await sendRegister(dataRegister).finally(() => setIsLoading(false));
+    await setCurrentSlide(currentSlide + 1);
   }
 
   const slides = [
@@ -107,7 +129,7 @@ const Register = () => {
     <GetUser next={nextUser} />,
     <Password next={nextSlide} />,
     <LastRegister next={nextProfile} />,
-    <Verify next={finalize} />,
+    <Verify next={finalize} id={idUser}/>,
     
   ];
 
@@ -126,7 +148,7 @@ const Register = () => {
           </button>
         </div>
       </div>
-      {slides[currentSlide]}
+      {isLoading ? <Loader/> : slides[currentSlide]}
     </section>
   );
 };

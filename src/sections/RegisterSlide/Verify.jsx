@@ -2,56 +2,74 @@ import { useState, useEffect } from "react";
 import { useUserStore } from "../../store/utils";
 import { SecurityCodeInput } from "../../components/CustomInput";
 
-import { fetchDataCustom } from "../../components/fetchingData"; 
+//import { fetchDataCustom } from "../../components/fetchingData"; 
 // pronto lo eliminaré, es mejor crear un fetch especifico y añadirlo a services.js
 
 // septimo slide del registro: confirmacion de la cuenta desde el correo institucional
-const Verify = ({ next }) => {
-  const [dataCode, setData] = useState("1234"); // datos de la peticion
+const Verify = ({ next, id }) => {
+  //const [dataCode, setData] = useState("1234");
+  const userEmail = useUserStore(state => state.user.email); // datos de la peticion
   
-  const [inputs, setInputs] = useState({
+  /* const [inputs, setInputs] = useState({
     code1: "",
     code2: "",
     code3: "",
     code4: "",
     code5: "",
     code6: "",
-  });
+  }); */
   const [error, setError] = useState(""); // mensaje de error
   const [code, setCode] = useState(""); // codigo de verificacion
   const [newMessage, setNewMessage] = useState(false);
+  const [isSended, setIsSeded] = useState(false);
 
   const getVerifCode = async () => {
-    const userEmail = useUserStore(state => state.user.email);
-    let response = await fetchDataCustom(
+    const res = await fetch("/api/test/api/auth/getCodeVerification", {
+      method: "POST",
+      body: JSON.stringify({ email: userEmail }),
+    })
+    const data = await res.json();
+    //console.log(data);
+    //setData(data.test.Item.code);
+    /* let response = await fetchDataCustom(
       { id: 13, email: userEmail },
       "//auth//sendCodeVerification",
     );
-    setData(response["test"]["items"][0]["code"]);
+    setData(response["test"]["items"][0]["code"]); */
   };
 
-  const validate = (digit, inputIndex) => {
-    let changeInput = { ...inputs };
+  const validate = async() => {
+    /* let changeInput = { ...inputs };
     changeInput[`code${inputIndex}`] = digit;
     setInputs(changeInput);
     setCode(Object.values(changeInput).join(""));
     if (isNaN(digit)) setError("El código solo puede contener números");
-    else setError("");
+    else setError(""); */
+
+    const res = await fetch("/api/test/api/auth/sendCodeVerification", {
+      method: "POST",
+      body: JSON.stringify({ id, email: userEmail, code}),
+    });
+    //console.log({ id, email: userEmail, code})
+
+    const data = await res.json();
+    //console.log(data);
+    if (data.statusCode === 200){
+    } else setError("El código ingresado no coincide");
+    
+
   };
 
   const matchCode = () => {
-    if (code === dataCode) next();
-    else setError("El código ingresado no coincide");
+    validate().finally( ()=>next());
   };
 
   const newCodeGenerate = () => {
     getVerifCode();
+    setIsSeded(true);
     setNewMessage(true);
   };
 
-  useEffect(()=>{
-    //console.log("test")
-  }, [])
 
   // cuando se renderiza el componente se envia el correo con el codigo
   // getVerifCode();
@@ -68,7 +86,7 @@ const Verify = ({ next }) => {
         </div>
         <div className="mb-16 flex h-[20%] w-[35%] flex-col pt-4">
           {/* Unos cuadraditos para ingresar cada digito del codigo */}
-          <SecurityCodeInput value={code} setChange={setCode}/>
+          {isSended ? <SecurityCodeInput value={code} setChange={setCode}/> : <div></div> }
           {/* <div className="flex flex-row justify-around pb-3">
             <input
               id="code-1"
@@ -126,7 +144,7 @@ const Verify = ({ next }) => {
               className="text-cach-l3 dark:text-cach-l2"
               onClick={newCodeGenerate}
             >
-              Solicitar nuevo código
+              {isSended ? "Reenviar código" : "Solicitar código"}
             </a>
           </div>
         </div>

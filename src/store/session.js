@@ -6,7 +6,7 @@ import Register from '../pages/Register';
 export const useAuthStore = create((set) => ({
     error: null,
 
-    login: async (credentials) => {
+    login: async (credentials, fromRegister=true) => {
         set({ isLoading: true, error: null });
 
         try {
@@ -14,9 +14,11 @@ export const useAuthStore = create((set) => ({
 
             if (body.message) {
                 useUserStore.getState().setChange(result.token, 'token');
-                await useAuthStore.getState().setGeneralData(credentials.email, result.token)
+                
+                if (fromRegister) await useAuthStore.getState().setGeneralData(credentials.email, result.token)
                     .finally(()=>{stateLogged.getState().login()});
-                return false;
+                
+                    return false;
             } else if (body.error) {
                 throw new Error(body.error);
             }
@@ -41,7 +43,7 @@ export const useAuthStore = create((set) => ({
         }, "test/api/student/get");
         //console.log(data);
         useAuthStore.getState().setDataUsers(
-            [email, data.name, data.lastname, data.university, data.files, data.nickname, data.friends, data.term, data.interestedCourses, data.description, data.points, data.startYear],
+            [email, data.name, data.lastname, data.university, data.files, data.nickname, data.friends.lenght, data.term, data.interestedCourses, data.description, data.points, data.startYear],
             ["email","name","lastname", "university", "numberFilesUploaded", "nickname", "numberFriends", "career", "enrolledCourses", "profileDescription", "score", "startYear"]
         );
     },
@@ -52,7 +54,14 @@ export const useAuthStore = create((set) => ({
         });
     },
     register: async (credentials) =>{
-        await stateLogged.getState().login();
-        return true;
+        await useAuthStore.getState().login({ email: credentials.email, password: credentials.password })
+        .then(
+            res => {
+                if (!res) {
+                    return true;
+                }
+            }
+        );
+        
     }
 }));

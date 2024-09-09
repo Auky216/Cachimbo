@@ -1,34 +1,39 @@
 import { useState, useEffect, useTransition } from "react";
+import Loader from "../../components/Loading";
 
 // Primera vista de registro, se muestra al principio del registro
 const University = ({ next }) => {
   const [universities, setUniversities] = useState([]);
   const [clickedPerUniv, setClickedPerUniv] = useState({});
   const [univ, setUniv] = useState("");
+  const [ispPendig, setTransition] = useState();
+
+  const fetchUniversities = async () => {
+    try {
+      const response = await fetch(`/api/test/api/university/get`);
+      const data = await response.json();
+
+      // Parsear el body de la respuesta
+      const universityNames = JSON.parse(data.body);
+
+      // Crear un objeto para el estado clickedPerUniv
+      const resetable = {};
+      universityNames.forEach((name) => {
+        resetable[name] = false;
+      });
+
+      setClickedPerUniv(resetable);
+      setUniversities(universityNames);
+    } catch (error) {
+      console.error("Error fetching universities:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchUniversities = async () => {
-      try {
-        const response = await fetch(`/api/test/api/university/get`);
-        const data = await response.json();
-
-        // Parsear el body de la respuesta
-        const universityNames = JSON.parse(data.body);
-
-        // Crear un objeto para el estado clickedPerUniv
-        const resetable = {};
-        universityNames.forEach((name) => {
-          resetable[name] = false;
-        });
-
-        setClickedPerUniv(resetable);
-        setUniversities(universityNames);
-      } catch (error) {
-        console.error("Error fetching universities:", error);
-      }
-    };
-
-    fetchUniversities();
+    setTransition(true);
+    fetchUniversities().finally(
+      () => setTransition(false)
+    );
   }, []);
 
   const handleClick = (e) => {
@@ -50,7 +55,8 @@ const University = ({ next }) => {
         </div>
         <div className="flex h-full items-center justify-center">
           <div className="flex flex-row justify-between gap-8">
-            {universities.map((uni) => (
+            
+            {ispPendig ? <Loader/> : universities.map((uni) => (
               <button
                 key={uni}
                 sigle={uni} // custom attribute
