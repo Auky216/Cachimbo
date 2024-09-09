@@ -17,24 +17,26 @@ const Career = ({ next }) => {
   const [clicked_per_career, setClicked_per_career] = useState({});
   const [career, setCareer] = useState("");
   const [carr_name, setCarr_name] = useState("");
-  const [isLoading, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState();
 
+  const startTransition = () => {
+    fetch(`/api/test/api/career/get/`, {
+      method: "POST",
+      body: JSON.stringify({ university: loadUniv }),
+    })
+      .then(res => res.json())
+      .then(data => JSON.parse(data.body))
+      .then(careers => {
+        setCarrers(careers);
+        setClicked_per_career(careers.reduce((obj, item) =>{
+          obj[item]= false;
+          return obj;
+        }, {}))
+      }).finally(() => setIsLoading(false));
+  };
   useEffect(() => {
-    startTransition(() => {
-      fetch(`/api/test/api/career/get/`, {
-        method: "POST",
-        body: JSON.stringify({ university: loadUniv }),
-      })
-        .then(res => res.json())
-        .then(data => JSON.parse(data.body))
-        .then(careers => {
-          setCarrers(careers);
-          setClicked_per_career(careers.reduce((obj, item) =>{
-            obj[item]= false;
-            return obj;
-          }, {}))
-        });
-    });
+    setIsLoading(true);
+    startTransition();
   }, []);
 
   useEffect(() => {
@@ -67,7 +69,7 @@ const Career = ({ next }) => {
   return (
     <section className="flex h-full w-full flex-col items-center rounded-[3.5rem]">
       <div className="flex h-[80%] w-full flex-col items-center">
-        <div className="mt-2 flex px-1 text-center text-[1.6rem] font-bold text-cach-l4 dark:text-cach-l1">
+        <div className="my-2 flex px-1 text-center text-[1.6rem] font-bold text-cach-l4 dark:text-cach-l1">
           Elige tu careera
         </div>
         {isLoading ? <Loader/>: <div className="flex h-full w-full flex-col items-center justify-center">

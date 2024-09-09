@@ -3,7 +3,7 @@ import { useUserStore } from "../../store/utils";
 import { useState, useEffect } from "react";
 import Modal from "../../components/Modal";
 
-const LIMIT_CREDITS = 24;
+//const LIMIT_CREDITS = 24;
 
 // tercer slide del registro: seleccion de ciclo de ingreso y cursos matriculados
 const Academic = ({ next }) => {
@@ -24,7 +24,7 @@ const Academic = ({ next }) => {
   const [creditsAcum, setCreditsAcum] = useState(0);
   // modal de limite de creditos si se excede
   const [activateLimitModal, setActivateLimitModal] = useState(false);
-  const[currentCycle, setCurrentCycle] = useState('')
+  const[currentCycle, setCurrentCycle] = useState('2024-II')
   //cilos
   const cycles = ["2024-II", "2024-I", "2023-II", "2023-I", "2022-II", "2022-I", "2021-II", "2021-I", "2020-II", "2020-I"]
   const handleClick = e => {
@@ -127,8 +127,8 @@ const Academic = ({ next }) => {
               Ciclo:
               <select
                 className=" p-1 text-black"
-                value={numberCycle}
-                onChange={({ target }) => setNumberCycle(target.value)}
+                value={currentCycle}
+                onChange={({ target }) => setCurrentCycle(target.value)}
                 required
               >
                 {
