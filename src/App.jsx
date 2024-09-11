@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import {routerNormal, routerProtected} from "./routes/root.jsx";
+import { routerNormal, routerProtected } from "./routes/root.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
 import { useThemeStore, stateLogged } from "./store/utils.js";
@@ -10,7 +10,7 @@ import Cookies from "js-cookie";
 const App = () => {
   const { isAuthenticated, checkAuth } = stateLogged();
   //console.log(lgState.state);
-  const {setRoute, history} = useThemeStore();
+  const { setRoute, history } = useThemeStore();
   const location = useLocation();
   const newRoute = location.pathname;
   useEffect(() => {
@@ -27,7 +27,7 @@ const App = () => {
 
       {showMainPage || (
         <Routes>
-          <Route index element={<LandingPage/>}>
+          <Route index element={<LandingPage />}>
           </Route>
           {routerNormal.map(route => (
             <Route
@@ -35,15 +35,15 @@ const App = () => {
               path={route.path}
               element={route.element}
             ></Route>
-            ))}
-          <Route element={<ProtectedRoutes/>}>
+          ))}
+          <Route element={<ProtectedRoutes />}>
             {routerProtected.map(route => (
               <Route
                 key={route.path}
                 path={route.path}
                 element={route.element}
               ></Route>
-              ))
+            ))
             }
           </Route>
         </Routes>
