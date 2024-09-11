@@ -23,18 +23,19 @@ const Principal = () => {
         <div className="pb-4 pt-3 text-3xl font-extrabold text-cach-l3 dark:text-cach-l2">
           Tus Cursos
         </div>
-        <div className="mx-6 grid grid-cols-1 gap-4 pt-3 md:grid-cols-2">
+        <div className="flex flex-wrap justify-center gap-4 pt-3">
           {cursos_user.map(c => (
             <MiniCard
               key={c.toString()}
               classimg="size-[50px]"
-              classcont="text-md w-64"
+              classcont="text-md w-full sm:w-64" // Ancho completo en pantallas pequeñas, fijo en pantallas medianas
               link={`/dashboard/main/course/${c}`}
               image={Curso}
               title={c}
             />
           ))}
         </div>
+
       </article>
       <article>
         <div className="text-3xl font-extrabold text-cach-l3 dark:text-cach-l2">
