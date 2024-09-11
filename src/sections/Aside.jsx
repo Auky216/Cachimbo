@@ -88,7 +88,7 @@ const Aside = () => {
         {isMenuOpen && (
           <div
             ref={menuRef}
-            className="absolute bottom-0 left-0 w-full bg-white dark:bg-gray-800 shadow-lg rounded-t-xl p-4 transform transition-transform duration-300"
+            className="absolute bottom-0 left-0 w-full bg-white dark:bg-gray-800 shadow-lg rounded-xl p-4 transform transition-transform duration-300"
           >
             <div className="flex flex-row justify-between">
               <div className="flex justify-center mb-4">
@@ -151,9 +151,9 @@ const Aside = () => {
                 logout();
                 navigate("/");
               }}
-              className="w-full flex items-center justify-center gap-3 py-2 font-bold text-cach-l5 dark:text-cach-l1 bg-cach-l3 dark:bg-cach-l2 rounded-lg"
+              className="w-full flex items-center justify-center gap-3 py-2 font-bold text-cach-l5 dark:text-cach-l1 bg-cach-l4 dark:bg-cach-l2 rounded-lg"
             >
-              <img src={logOutIcon} alt="Cerrar Sesión" className="w-6 dark:invert" />
+              <img src={logOutIcon} alt="Cerrar Sesión" className="w-6 invert" />
               <p className="text-white">Cerrar Sesión</p>
             </button>
           </div>
