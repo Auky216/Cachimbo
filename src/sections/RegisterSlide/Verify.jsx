@@ -82,7 +82,7 @@ const Verify = ({ next, id }) => {
           verificación
         </div>
         <div className="mb-4 text-center text-cach-l3 dark:text-cach-l2">
-          Escribe tu {newMessage ? "nuevo código" : "código aqui"}
+          {isSended ?  `Escribe tu ${newMessage ? "nuevo código" : "código aqui"}`: " "}
         </div>
         <div className="mb-16 flex h-[20%] w-[35%] flex-col pt-4">
           {/* Unos cuadraditos para ingresar cada digito del codigo */}
