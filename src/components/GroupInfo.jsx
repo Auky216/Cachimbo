@@ -20,17 +20,22 @@ const GroupInfo = ({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center rounded-xl border border-solid border-cach-l3 px-6 py-3 dark:border-cach-l2">
-      <div className="flex items-center space-x-4">
-        <img src={icon} className="h-34 w-40" alt="panelistas" loading="lazy" />
-        <div>
+    <div className="flex flex-col items-center justify-center rounded-xl border border-solid border-cach-l3 px-4 py-4 dark:border-cach-l w-full max-w-72 min-w-[200px]">
+      <div className="flex flex-col lg:flex-row items-center w-full space-y-4 lg:space-y-0 lg:space-x-4 h-full">
+        <img
+          src={icon}
+          className="h-24 w-24 object-contain"
+          alt="panelistas"
+          loading="lazy"
+        />
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
           <h1 className="text-lg font-bold text-cach-l3 dark:text-cach-l2">
             {title}
           </h1>
           <div className="flex items-center space-x-2">
             <img
               src={students}
-              className="w-15 h-16"
+              className="w-8 h-8"
               alt="fig asistente"
               loading="lazy"
             />
@@ -42,11 +47,11 @@ const GroupInfo = ({
       </div>
 
       {/* Mostrar iconos de redes sociales*/}
-      <div className="mt-2 flex items-center space-x-4">
+      <div className="mt-4 flex items-center flex-col space-x-0 space-y-2 lg:space-x-4 lg:space-y-0 lg:flex-row">
         <div className="flex items-center space-x-2">
           <img
             src={discordIcon}
-            className="h-8 w-8 cursor-pointer"
+            className="h-6 w-6 cursor-pointer"
             alt="Discord Icon"
             loading="lazy"
             onClick={openDiscordLink}
@@ -61,7 +66,7 @@ const GroupInfo = ({
         <div className="flex items-center space-x-2">
           <img
             src={whatsappIcon}
-            className="h-8 w-8 cursor-pointer"
+            className="h-6 w-6 cursor-pointer"
             alt="WhatsApp Icon"
             loading="lazy"
             onClick={openWhatsappLink}
@@ -75,10 +80,10 @@ const GroupInfo = ({
         </div>
       </div>
 
-      <div className="mt-4 flex w-full justify-center">
+      <div className="mt-4 flex justify-center w-full">
         <button
           onClick={toggleTempInfo}
-          className="ml-4 rounded-full bg-cach-l3 px-8 py-2 text-sm text-cach-l1 focus:outline-none"
+          className="rounded-full bg-cach-l3 px-6 py-2 text-sm text-cach-l1 focus:outline-none"
         >
           Información
         </button>
