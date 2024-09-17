@@ -27,7 +27,7 @@ const InteractionGroups = () => {
   };
 
   return (
-    <section id="interactionGroups" className="py-10 pr-8 h-screen overflow-y-auto">
+    <section id="interactionGroups" className="py-10 pr-8 overflow-y-auto">
       <div className="mb-4">
         <input
           type="text"
@@ -45,7 +45,7 @@ const InteractionGroups = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 gap-7">
+      <div className="flex flex-wrap justify-center gap-4 lg:gap-8"> 
         {/* Para manejar la distancia de sepracion de los cuadros de los grupos */}
         {arr.map(id => (
           <GroupInfo
