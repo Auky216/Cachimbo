@@ -13,7 +13,8 @@ export const useAuthStore = create((set) => ({
             const [result, body, state] = await fetchDataCustom(credentials, "test/api/auth/login");
 
             if (body.message) {
-                useUserStore.getState().setChange(result.token, 'token');
+                //console.log(result.token);
+                await useUserStore.getState().setChange(result.token, 'token');
                 
                 if (fromRegister) await useAuthStore.getState().setGeneralData(credentials.email, result.token)
                     .finally(()=>{stateLogged.getState().login()});
