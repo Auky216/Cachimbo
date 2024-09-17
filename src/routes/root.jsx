@@ -97,11 +97,11 @@ export const routerProtected = [
   },
   {
     path: "/dashboard/main/Sugerencias",
-    element: <Sugerencias />,
+    element: <ComingSoon/>,
   },
   {
     path: "/dashboard/main/sugerencias/:id",
-    element: <SuggestionDetail />,
+    element: <ComingSoon/>,
   },
   {
     path: "*",
