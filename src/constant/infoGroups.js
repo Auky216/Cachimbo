@@ -2,42 +2,27 @@ import left from "../assets/left4.png";
 import Integral from "../assets/integral.png";
 import Marker from "../assets/marker.png";
 import Chess from "../assets/chess.png";
+import UtecGaming from "../assets/UtecGaming.jpg";
+import CachimboLogoGroup from "../assets/CachimboLogoGroup.png";
 
 export const infoGroups = [
   {
-    title: "Grupo de ajedrez",
-    icon: Chess,
-    numMembers: 12,
+    title: "Utec Gaming",
+    icon: UtecGaming,
+    numMembers: 300,
     description:
-      "Aquí puedes encontrar torneos de ajedrez tanto online como presencial en los talleres de UTEC",
+      "Somos una organización que busca utilizar los videojuegos de forma enriquecedora y recreativa 👾",
     discordLink: "https://discord.gg/ajedrez",
-    whatsappLink: "https://chat.whatsapp.com/",
+    whatsappLink: "https://chat.whatsapp.com/IhMGiykM1o6HHJ2YjN0Jpg",
   },
   {
-    title: "Calculo 1 se pasa Solo",
-    icon: Integral,
-    numMembers: 99,
+    title: "Cachimbo",
+    icon: CachimboLogoGroup,
+    numMembers: 10,
     description:
-      "Aquí puedes encontrar recursos y apoyo para aprobar Calculo 1 de manera efectiva",
-    discordLink: "https://discord.gg/calculo1",
-    whatsappLink: "https://chat.whatsapp.com/",
+      "Somos Organización Cachimbo 🚀 de la @utecuniversidad . Usamos IA 🤖 para mejorar tus estudios. ¡Únete y potencia tu aprendizaje completamente Gratis! 🎓",
+    discordLink: "https://discord.gg/mx4vG2sz3N",
+    whatsappLink: "https://chat.whatsapp.com/IEtliuiQutgJly7JMOwWE4",
   },
-  {
-    title: "Los Marketeros",
-    icon: Marker,
-    numMembers: 2,
-    description:
-      "Aquí puedes encontrar gente con la misma pasión por el marketing",
-    discordLink: "https://discord.gg/marketing",
-    whatsappLink: "https://chat.whatsapp.com/",
-  },
-  {
-    title: "Group Left 4 Dead 2",
-    icon: left,
-    numMembers: 122,
-    description:
-      "Aquí puedes encontrar gente con la misma pasión por el juego Left 4 Dead 2",
-    discordLink: "https://discord.gg/left4dead2",
-    whatsappLink: "https://chat.whatsapp.com/",
-  },
+  
 ];
