@@ -3,20 +3,16 @@ import Cookies from 'js-cookie';
 import { persist } from 'zustand/middleware';
 
 export const useThemeStore = create(set => ({
-    theme: localStorage.getItem("theme") || "light",
-    route: window.location.href,
+    theme: typeof window !== 'undefined' ? localStorage.getItem("theme") || "light" : "light",
+    route: typeof window !== 'undefined' ? window.location.href : '/',
     history: [],
-    // background: "bg-white dark:bg-cach-l4",
-    // setBackground: background => set({ background }),
     setTheme: theme => set({ theme: theme === "light" ? "dark" : "light" }),
     setRoute: (route) => {
         set(state => {
             const newHistory = [...state.history];
-
             if (route !== state.route) {
                 newHistory.push(route);
             }
-
             return {
                 route: route,
                 history: newHistory,
@@ -26,30 +22,25 @@ export const useThemeStore = create(set => ({
     goBack: () => {
         set(state => {
             const newHistory = [...state.history];
-            //console.log(state.history);
             if (newHistory.length > 1) {
                 newHistory.pop();
-                //console.log("nuevo Historial", newHistory);
                 const previousRoute = newHistory[newHistory.length - 1];
-
                 return {
                     route: previousRoute,
                     history: newHistory,
                 };
-            }
-            else {
+            } else {
                 return {
                     route: "/dashboard/main",
                     history: newHistory,
-                }
+                };
             }
         });
     },
 }));
 
-
 export const stateLogged = create((set) => ({
-    isAuthenticated: Cookies.get('isAuthenticated') || false,
+    isAuthenticated: Cookies.get('isAuthenticated') === 'true' || false,
     login: () => {
         Cookies.set('isAuthenticated', true, { expires: 7 });
         set({ isAuthenticated: true });
@@ -64,7 +55,6 @@ export const stateLogged = create((set) => ({
     },
 }));
 
-/*I added new attributes*/
 export const useUserStore = create(
     persist(
         (set) => ({
@@ -76,7 +66,7 @@ export const useUserStore = create(
                 enrolledCourses: [],
                 otherCourses: [],
                 numberFilesUploaded: 0,
-                filesUploaded:[],
+                filesUploaded: [],
                 numberFriends: 0,
                 score: 0,
                 name: "",
@@ -85,7 +75,7 @@ export const useUserStore = create(
                 password: "",
                 confirmPassword: "",
                 profileDescription: "",
-                startYear:"",
+                startYear: "",
                 token: "",
             },
             resetUser: () =>
@@ -98,7 +88,7 @@ export const useUserStore = create(
                         enrolledCourses: [],
                         otherCourses: [],
                         numberFilesUploaded: 0,
-                        filesUploaded:[],
+                        filesUploaded: [],
                         numberFriends: 0,
                         score: 0,
                         name: "",
@@ -107,7 +97,7 @@ export const useUserStore = create(
                         password: "",
                         confirmPassword: "",
                         profileDescription: "",
-                        startYear:"",
+                        startYear: "",
                         token: "",
                     },
                 })),
@@ -119,6 +109,7 @@ export const useUserStore = create(
         }),
         {
             name: 'user-storage',
+            getStorage: () => localStorage, // Asegura el uso de localStorage
         }
     )
 );
