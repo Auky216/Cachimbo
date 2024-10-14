@@ -24,7 +24,7 @@ const Academic = ({ next }) => {
   const [creditsAcum, setCreditsAcum] = useState(0);
   // modal de limite de creditos si se excede
   const [activateLimitModal, setActivateLimitModal] = useState(false);
-  const[currentCycle, setCurrentCycle] = useState('2024-II')
+  const [currentCycle, setCurrentCycle] = useState('2024-II')
   //cilos
   const cycles = ["2024-II", "2024-I", "2023-II", "2023-I", "2022-II", "2022-I", "2021-II", "2021-I", "2020-II", "2020-I"]
   const handleClick = e => {
@@ -57,13 +57,15 @@ const Academic = ({ next }) => {
   };
 
   useEffect(() => {
-    fetch(`/api/test/api/course/getcoursebycareer/`, {
+    const url_api = import.meta.env.VITE_API_URL;
+
+    fetch(`${url_api}/test/api/course/getcoursebycareer/`, {
       method: "POST",
       body: JSON.stringify({
         career: loadCareer,
         university: loadUni
       }),
-      })
+    })
       .then(res => res.json())
       .then(data => JSON.parse(data.body))
       .then(coursesData => {
@@ -88,7 +90,7 @@ const Academic = ({ next }) => {
         </div>
         <div className="flex h-full w-full">
           <div className="flex h-full flex-col items-center">
-            <div className="dark:text-white">Nivel {level }</div>
+            <div className="dark:text-white">Nivel {level}</div>
             <div className="flex h-full w-56 items-center justify-center">
               <input
                 type="range"
@@ -100,7 +102,7 @@ const Academic = ({ next }) => {
                 style={{
                   writingMode: "vertical-lr",
                   direction: "rtl",
-                }}  
+                }}
                 id="customRange1"
               />
             </div>
@@ -115,12 +117,12 @@ const Academic = ({ next }) => {
                 required
               >
                 {
-                /* experimental, in the future this will be changed by the data provided in the api */
-                [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((_, i) => (
-                  <option className="text-black" key={i} value={i + 1}>
-                    {i + 1}
-                  </option>
-                ))}
+                  /* experimental, in the future this will be changed by the data provided in the api */
+                  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((_, i) => (
+                    <option className="text-black" key={i} value={i + 1}>
+                      {i + 1}
+                    </option>
+                  ))}
               </select>
             </div>
             <div className="flex w-full items-center justify-center gap-10 pt-1 dark:text-white">
@@ -132,11 +134,11 @@ const Academic = ({ next }) => {
                 required
               >
                 {
-                cycles.map((strC, i) => (
-                  <option className="text-black" key={i} value={strC}>
-                    {strC}
-                  </option>
-                ))}
+                  cycles.map((strC, i) => (
+                    <option className="text-black" key={i} value={strC}>
+                      {strC}
+                    </option>
+                  ))}
               </select>
             </div>
             <div className="py-2 text-xl dark:text-white">
@@ -165,7 +167,7 @@ const Academic = ({ next }) => {
           <button
             className="mb-3 mt-2 flex h-10 min-h-8 w-[20%] items-center justify-center rounded-xl bg-cach-l3 text-cach-l1 disabled:cursor-not-allowed disabled:opacity-50"
             onClick={() =>
-              next({ courses: selectedCourses, cycle: numberCycle, startYear:currentCycle })
+              next({ courses: selectedCourses, cycle: numberCycle, startYear: currentCycle })
             }
             disabled={selectedCourses.length === 0}
           >

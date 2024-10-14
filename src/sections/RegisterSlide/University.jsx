@@ -10,7 +10,8 @@ const University = ({ next }) => {
 
   const fetchUniversities = async () => {
     try {
-      const response = await fetch(`/api/test/api/university/get`);
+      const url_api = import.meta.env.VITE_API_URL;
+      const response = await fetch(`${url_api}/test/api/university/get`);
       const data = await response.json();
 
       // Parsear el body de la respuesta
@@ -55,14 +56,13 @@ const University = ({ next }) => {
         </div>
         <div className="flex h-full items-center justify-center">
           <div className="flex flex-row justify-between gap-8">
-            
-            {ispPendig ? <Loader/> : universities.map((uni) => (
+
+            {ispPendig ? <Loader /> : universities.map((uni) => (
               <button
                 key={uni}
                 sigle={uni} // custom attribute
-                className={`min-h-8 w-[10rem] items-center justify-center rounded-xl ${
-                  clickedPerUniv[uni] ? "bg-cach-l3/40" : "bg-cach-l3"
-                }  p-2 text-cach-l1`}
+                className={`min-h-8 w-[10rem] items-center justify-center rounded-xl ${clickedPerUniv[uni] ? "bg-cach-l3/40" : "bg-cach-l3"
+                  }  p-2 text-cach-l1`}
                 onClick={handleClick}
               >
                 {uni} {/* temporal */}

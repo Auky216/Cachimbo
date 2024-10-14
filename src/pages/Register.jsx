@@ -21,19 +21,20 @@ const Register = () => {
   const [idUser, setIdUser] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [dataRegister, setDataRegister] = useState(
-    {"friends": [],
-    "libraryFavorites": [],
-    "studyGroups": [],
-    "passedCourses": [],
-    "insignia": [],
-    "eventFavorites": [],
-    "points": 0,
-    "files": 0,
-    "userPhoto": ""
-  });
-  const userLocalToDataRegister = {"university":"university", "career":"term", "password":"password"};
+    {
+      "friends": [],
+      "libraryFavorites": [],
+      "studyGroups": [],
+      "passedCourses": [],
+      "insignia": [],
+      "eventFavorites": [],
+      "points": 0,
+      "files": 0,
+      "userPhoto": ""
+    });
+  const userLocalToDataRegister = { "university": "university", "career": "term", "password": "password" };
 
-  const {register} = useAuthStore();
+  const { register } = useAuthStore();
   const [setChangeUser, resetUser] = useUserStore(state => [
     state.setChange,
     state.resetUser,
@@ -42,7 +43,7 @@ const Register = () => {
 
   useEffect(() => {
     resetUser();
-  },[]);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("currentSlide", currentSlide);
@@ -62,7 +63,7 @@ const Register = () => {
     setChangeUser(data.cycle, "cycle");
     setChangeUser(data.courses, "enrolledCourses");
     setChangeUser(data.startYear, "startYear")
-    setDataRegister({ ...dataRegister, interestedCourses: data.courses, startYear:data.startYear });
+    setDataRegister({ ...dataRegister, interestedCourses: data.courses, startYear: data.startYear });
     setCurrentSlide(currentSlide + 1);
   };
 
@@ -84,7 +85,7 @@ const Register = () => {
   };
 
   const finalize = async () => {
-    
+
     //console.log(user);
 
     // se realizaria un POST a la API para registrar al usuario
@@ -94,14 +95,15 @@ const Register = () => {
     // Propuesta: redirigir al dashboard con un mensaje de bienvenida antes
     //await console.log(dataRegister);
     await register(dataRegister)
-    .then((res) => {
-      if (res) move("/dashboard/main")
-    });
+      .then((res) => {
+        if (res) move("/dashboard/main")
+      });
   };
 
   const sendRegister = async (toRegister) => {
     //console.log(toRegister);
-    const res = await fetch("/api/test/api/auth/register", {
+    const api_url = import.meta.env.VITE_API_URL;
+    const res = await fetch(`${api_url}/test/api/auth/register`, {
       method: "POST",
       body: JSON.stringify(toRegister),
     });
@@ -115,8 +117,8 @@ const Register = () => {
     //let dscpt = data.description;
     setChangeUser(data.nickname, "nickname");
     setChangeUser(data.description, "profileDescription");
-    const finalDataUpdated = {...dataRegister, nickname:data.nickname, description:data.description}
-    await setDataRegister({...dataRegister, nickname:data.nickname, description:data.description})
+    const finalDataUpdated = { ...dataRegister, nickname: data.nickname, description: data.description }
+    await setDataRegister({ ...dataRegister, nickname: data.nickname, description: data.description })
     //console.log(nck, dscpt)
     await setIsLoading(true);
     await sendRegister(finalDataUpdated).finally(() => setIsLoading(false));
@@ -131,8 +133,8 @@ const Register = () => {
     <GetUser next={nextUser} />,
     <Password next={nextSlide} />,
     <LastRegister next={nextProfile} />,
-    <Verify next={finalize} id={idUser}/>,
-    
+    <Verify next={finalize} id={idUser} />,
+
   ];
 
   return (
@@ -150,7 +152,7 @@ const Register = () => {
           </button>
         </div>
       </div>
-      {isLoading ? <Loader/> : slides[currentSlide]}
+      {isLoading ? <Loader /> : slides[currentSlide]}
     </section>
   );
 };

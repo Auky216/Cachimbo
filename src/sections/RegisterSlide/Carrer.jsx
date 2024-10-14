@@ -12,15 +12,16 @@ const Career = ({ next }) => {
   }; */
   const [resetable, setResetable] = useState({});
   const [carrers, setCarrers] = useState([]);
-  
-  
+
+
   const [clicked_per_career, setClicked_per_career] = useState({});
   const [career, setCareer] = useState("");
   const [carr_name, setCarr_name] = useState("");
   const [isLoading, setIsLoading] = useState();
 
   const startTransition = () => {
-    fetch(`/api/test/api/career/get/`, {
+    const url_api = import.meta.env.VITE_API_URL;
+    fetch(`${url_api}/test/api/career/get/`, {
       method: "POST",
       body: JSON.stringify({ university: loadUniv }),
     })
@@ -28,8 +29,8 @@ const Career = ({ next }) => {
       .then(data => JSON.parse(data.body))
       .then(careers => {
         setCarrers(careers);
-        setClicked_per_career(careers.reduce((obj, item) =>{
-          obj[item]= false;
+        setClicked_per_career(careers.reduce((obj, item) => {
+          obj[item] = false;
           return obj;
         }, {}))
       }).finally(() => setIsLoading(false));
@@ -72,7 +73,7 @@ const Career = ({ next }) => {
         <div className="my-2 flex px-1 text-center text-[1.6rem] font-bold text-cach-l4 dark:text-cach-l1">
           Elige tu careera
         </div>
-        {isLoading ? <Loader/>: <div className="flex h-full w-full flex-col items-center justify-center">
+        {isLoading ? <Loader /> : <div className="flex h-full w-full flex-col items-center justify-center">
           <div className="flex w-full justify-around">
             {careersFirstHalf.map(carr => (
               <button
@@ -118,7 +119,7 @@ const Career = ({ next }) => {
         </div>
       </div>
       {/* In the future when the code of each career will be given by the api this component will be used*/}
-      {/* <StampCarrer codeCarrer={career} /> */} 
+      {/* <StampCarrer codeCarrer={career} /> */}
     </section>
   );
 };

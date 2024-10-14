@@ -4,12 +4,12 @@ import { SecurityCodeInput } from "../../components/CustomInput";
 
 //import { fetchDataCustom } from "../../components/fetchingData"; 
 // pronto lo eliminaré, es mejor crear un fetch especifico y añadirlo a services.js
-
+const url_api = import.meta.env.VITE_API_URL;
 // septimo slide del registro: confirmacion de la cuenta desde el correo institucional
 const Verify = ({ next, id }) => {
   //const [dataCode, setData] = useState("1234");
   const userEmail = useUserStore(state => state.user.email); // datos de la peticion
-  
+
   /* const [inputs, setInputs] = useState({
     code1: "",
     code2: "",
@@ -24,7 +24,7 @@ const Verify = ({ next, id }) => {
   const [isSended, setIsSeded] = useState(false);
 
   const getVerifCode = async () => {
-    const res = await fetch("/api/test/api/auth/getCodeVerification", {
+    const res = await fetch(`${url_api}/test/api/auth/getCodeVerification`, {
       method: "POST",
       body: JSON.stringify({ email: userEmail }),
     })
@@ -38,7 +38,7 @@ const Verify = ({ next, id }) => {
     setData(response["test"]["items"][0]["code"]); */
   };
 
-  const validate = async() => {
+  const validate = async () => {
     /* let changeInput = { ...inputs };
     changeInput[`code${inputIndex}`] = digit;
     setInputs(changeInput);
@@ -46,22 +46,22 @@ const Verify = ({ next, id }) => {
     if (isNaN(digit)) setError("El código solo puede contener números");
     else setError(""); */
 
-    const res = await fetch("/api/test/api/auth/sendCodeVerification", {
+    const res = await fetch(`${url_api}/test/api/auth/sendCodeVerification`, {
       method: "POST",
-      body: JSON.stringify({ id, email: userEmail, code}),
+      body: JSON.stringify({ id, email: userEmail, code }),
     });
     //console.log({ id, email: userEmail, code})
 
     const data = await res.json();
     //console.log(data);
-    if (data.statusCode === 200){
+    if (data.statusCode === 200) {
     } else setError("El código ingresado no coincide");
-    
+
 
   };
 
   const matchCode = () => {
-    validate().finally( ()=>next());
+    validate().finally(() => next());
   };
 
   const newCodeGenerate = () => {
@@ -82,11 +82,11 @@ const Verify = ({ next, id }) => {
           verificación
         </div>
         <div className="mb-4 text-center text-cach-l3 dark:text-cach-l2">
-          {isSended ?  `Escribe tu ${newMessage ? "nuevo código" : "código aqui"}`: " "}
+          {isSended ? `Escribe tu ${newMessage ? "nuevo código" : "código aqui"}` : " "}
         </div>
         <div className="mb-16 flex h-[20%] w-[35%] flex-col pt-4">
           {/* Unos cuadraditos para ingresar cada digito del codigo */}
-          {isSended ? <SecurityCodeInput value={code} setChange={setCode}/> : <div></div> }
+          {isSended ? <SecurityCodeInput value={code} setChange={setCode} /> : <div></div>}
           {/* <div className="flex flex-row justify-around pb-3">
             <input
               id="code-1"
@@ -154,7 +154,7 @@ const Verify = ({ next, id }) => {
             {error}
           </div>
         )}
-        
+
         <div className="flex h-[20%] w-full flex-col items-center justify-center">
           <div className="flex w-full items-center justify-around">
             <button

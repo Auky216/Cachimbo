@@ -4,9 +4,11 @@ import { SubmitFileError, MissingDataError } from "./errors";
 
 /* Library section */
 
-export const findLibrary = async (title, page="1") => {
+const url_api = import.meta.env.VITE_API_URL;
+
+export const findLibrary = async (title, page = "1") => {
     try {
-        const response = await fetch("/api/test/api/library/find", {
+        const response = await fetch(`${url_api}/test/api/library/find`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -29,7 +31,7 @@ export const findLibrary = async (title, page="1") => {
 
 export const getIsLiked = async (id_library) => {
     try {
-        const response = await fetch("/api/test/api/library/like/get", {
+        const response = await fetch(`${url_api}/test/api/library/like/get`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -42,7 +44,7 @@ export const getIsLiked = async (id_library) => {
         });
         const data = await response.json();
         const body = JSON.parse(data.body);
-        
+
         return body;
     } catch (error) {
         //console.log(error);
@@ -51,8 +53,8 @@ export const getIsLiked = async (id_library) => {
 };
 
 
-export const sendLike = (id_library, like) =>{
-    fetch("/api/test/api/library/like/send",{ 
+export const sendLike = (id_library, like) => {
+    fetch(`${url_api}/test/api/library/like/send`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -61,21 +63,22 @@ export const sendLike = (id_library, like) =>{
             "nickname": useUserStore.getState().user.nickname,
             id_library,
             "token": useUserStore.getState().user.token,
-        })}
+        })
+    }
     )
-    .then((res) => res.json())
-    .then((data) => {
-        //console.log(data);
-    }).catch((error) => {
-        console.log(error);
-    }).finally(() => {
-        //console.log("done");
-    });
+        .then((res) => res.json())
+        .then((data) => {
+            //console.log(data);
+        }).catch((error) => {
+            console.log(error);
+        }).finally(() => {
+            //console.log("done");
+        });
 }
 
 export const getLibrary = async (uni, course, id, extension) => {
     try {
-        const res = await fetch("/api/test/api/library/get", {
+        const res = await fetch(`${url_api}/test/api/library/get`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -99,7 +102,7 @@ export const getLibrary = async (uni, course, id, extension) => {
 
 export const findTeachers = async (name, page) => {
     try {
-        const response = await fetch("/api/test/api/teacher/find_teacher", {
+        const response = await fetch(`${url_api}/test/api/teacher/find_teacher`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -116,14 +119,14 @@ export const findTeachers = async (name, page) => {
         return body;
     } catch (error) {
         console.error(error);
-        
+
     }
 }
 
 export const getDataTeacher = async (name) => {
     const token = useUserStore.getState().user.token;
     try {
-        const response = await fetch("/api/test/api/teacher/get_information", {
+        const response = await fetch(`${url_api}/test/api/teacher/get_information`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -144,7 +147,7 @@ export const getDataTeacher = async (name) => {
 
 export const getTeachersComments = async (teacher_name) => {
     try {
-        const res = await fetch("/api/test/api/teacher/calification/get", {
+        const res = await fetch(`${url_api}/test/api/teacher/calification/get`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -163,7 +166,7 @@ export const getTeachersComments = async (teacher_name) => {
 }
 
 export const sendTeacherOpinion = async (teacher_name, comment, score) => {
-    const res = await fetch("/api/test/api/teacher/calification/send", {
+    const res = await fetch(`${url_api}/test/api/teacher/calification/send`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -184,11 +187,11 @@ export const sendTeacherOpinion = async (teacher_name, comment, score) => {
 
 export const pushFile = async (file_content, file_name, description, title, university, course, is_anonymous) => {
     //console.log(file_name, type, title, university, course, is_anonymous);
-    if (file_content==null || title === ''|| description === '' || university === null || course === '') {
+    if (file_content == null || title === '' || description === '' || university === null || course === '') {
 
         throw new MissingDataError('Datos faltantes, necesitas completar todos los campos');
     }
-    
+
     const reqBody = {
         file_content,
         file_name,
@@ -201,7 +204,7 @@ export const pushFile = async (file_content, file_name, description, title, univ
         nickname: is_anonymous ? "Anonymous" : useUserStore.getState().user.nickname, //el bug está en el user, porque solo acepta utecino
     };
 
-    const res = await fetch('/api/test/api/library/send', {
+    const res = await fetch(`${url_api}/test/api/library/send`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/pdf'
@@ -215,7 +218,7 @@ export const pushFile = async (file_content, file_name, description, title, univ
     }
     //console.log(data);
 
-    if (data.errorMessage){
+    if (data.errorMessage) {
         throw new SubmitFileError(data.errorMessage);
     };
 }
@@ -239,7 +242,7 @@ export const pushFileWithProgress = async (file_content, file_name, description,
 
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', '/api/test/api/library/send', true);
+        xhr.open('POST', `${url_api}/test/api/library/send`, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.upload.onprogress = (event) => {
@@ -275,7 +278,7 @@ export const pushFileWithProgress = async (file_content, file_name, description,
 
 export const findCourses = async (name, page, university) => {
     try {
-        const res = await fetch("/api/test/api/course/find", {
+        const res = await fetch(`${url_api}/test/api/course/find`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -298,7 +301,7 @@ export const findCourses = async (name, page, university) => {
 
 export const getCourseInformation = async (course) => {
     try {
-        const res = await fetch("/api/test/api/course/about", {
+        const res = await fetch(`${url_api}/test/api/course/about`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -319,7 +322,7 @@ export const getCourseInformation = async (course) => {
 
 export const getPreRequisities_NextCourses = async (course) => {
     try {
-        const res = await fetch("/api/test/api/course/prerequisites_nextcourses", {
+        const res = await fetch(`${url_api}/test/api/course/prerequisites_nextcourses`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
