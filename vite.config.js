@@ -19,6 +19,9 @@ export default defineConfig(({ mode }) => {
         }
       },
       historyApiFallback: true,
-    }
+    },
+    build: {
+      chunkSizeWarningLimit: 700,
+    },
   };
 });
