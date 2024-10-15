@@ -36,102 +36,111 @@ const PdfLibrary = () => {
       .then((data) => {setUrl(data.url)})
       .catch((error) => console.log(error))
       .finally(() => setIsLoaded(false));
-
-      //console.log(res, data.url, state, err);
-
-      //await console.log(url);
-      //window.open(data.url, "_blank");
-
     }
-    //console.log(uni, course, id, extension);
+
     fetchUrl();
-    //console.log(location.state);
   }, []);
 
-  // console.log(pdfData);
-  // console.log(pdfData.pdf === samplePdf);
-  // console.log(pdfData.pdf);
-  // console.log(samplePdf);
+  const renderDocument = () => {
+    const officeViewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${url}`;
+
+    if (extension === "pdf") {
+      return (
+        <object data={url} type={"application/pdf"} width="100%" height="500px" onError={() => console.error("Error loading PDF")}>
+          <p>Alternative text - include a link <a href={url}>to the PDF!</a></p>
+        </object>
+      );
+    } else if (["docx", "pptx", "xlsx"].includes(extension)) {
+      return (
+        <iframe
+          src={officeViewerUrl}
+          width="100%"
+          height="500px"
+          frameBorder="0"
+          onError={() => console.error("Error loading document")}
+          title="Office Document Viewer"
+        >
+          <p>Alternative text - include a link <a href={url}>to the document!</a></p>
+        </iframe>
+      );
+    } else {
+      return <img src={url} alt="File Preview" className="w-full" style={{ pointerEvents: 'none' }} />;
+    }
+  };
 
   return (
     <div>
       {isLoaded ? <Loader /> : <section id="library" className="py-10 pr-8 h-screen overflow-y-auto">
-      <div className="mx-auto max-w-3xl rounded-lg p-6">
-        <h1 className="mb-4 text-3xl font-bold text-cach-l3 dark:text-cach-l2">
-          {pdfData.title}
-        </h1>
-        <BackButton></BackButton>
-        <p className="mb-6 text-cach-l5 dark:text-cach-l1 font-bold">Autor:  @{pdfData.nickname}</p>
+        <div className="mx-auto max-w-3xl rounded-lg p-6">
+          <h1 className="mb-4 text-3xl font-bold text-cach-l3 dark:text-cach-l2">
+            {pdfData.title}
+          </h1>
+          <BackButton></BackButton>
+          <p className="mb-6 text-cach-l5 dark:text-cach-l1 font-bold">Autor:  @{pdfData.nickname}</p>
 
-        <div className="mb-4">
-          <div className="rounded-lg border border-cach-l2 p-4">
-            <p className="text-cach-l5 dark:text-cach-l1">{pdfData.description || "No hay descripción"}</p>
+          <div className="mb-4">
+            <div className="rounded-lg border border-cach-l2 p-4">
+              <p className="text-cach-l5 dark:text-cach-l1">{pdfData.description || "No hay descripción"}</p>
+            </div>
           </div>
+
+          {/* <div className="mb-4 flex items-center justify-between">
+            <div className="flex space-x-4 text-cach-l2">
+              <button className="flex items-center space-x-1 hover:text-cach-l3">
+                <BookmarkIcon className="h-5 w-5" />
+              </button>
+              <button className="flex items-center space-x-1 hover:text-cach-l3">
+                <LikeIcon className="h-5 w-5" />
+              </button>
+              <button className="flex items-center space-x-1 hover:text-cach-l3">
+                <DislikeIcon className="h-5 w-5" />
+              </button>
+              <button className="flex items-center space-x-1 hover:text-cach-l3">
+                 <ShareIcon className="h-5 w-5" />
+               </button>
+               <button className="flex items-center space-x-1 hover:text-cach-l3">
+                 <PrintIcon className="h-5 w-5" />
+               </button>
+            </div>
+          </div> */}
+
+          <div className="mt-4 flex justify-between space-x-2 p-4">
+             {/* <button
+                onClick={handleDownload}
+                className="flex items-center space-x-1 rounded bg-cach-l3 px-2 py-1 text-cach-l1 hover:bg-cach-l2"
+             >
+               <span>Descargar</span>
+             </button> */}
+
+             {/* <div className="flex items-center space-x-2">
+               <button
+                 onClick={handlePrev}
+                 disabled={page === 1}
+                 className="rounded bg-cach-l3 px-2 py-1 text-cach-l1 hover:bg-cach-l2 disabled:opacity-50"
+               >
+                 {"<"}
+               </button>
+               <span className="rounded border bg-cach-l3 px-2 py-1 text-cach-l1">
+                 {page} - {totalPages}
+               </span>
+               <button
+                 onClick={handleNext}
+                 disabled={page === totalPages}
+                 className="rounded bg-cach-l3 px-2 py-1 text-cach-l1 hover:bg-cach-l2 disabled:opacity-50"
+               >
+                 {">"}
+               </button>
+             </div> */}
+
+             {/* <button className="flex items-center space-x-1 rounded bg-cach-l3 px-2 py-1 text-cach-l1 hover:bg-cach-l2">
+              {isMaximaxed ? <ZoomOutIcon className="h-5 w-5" onClick={minWindow}/> : <ZoomIcon className="h-5 w-5" onClick={maxWindow}/>}
+             </button> */}
+           </div>
+
+          {renderDocument()}
         </div>
-
-        {/* <div className="mb-4 flex items-center justify-between">
-          <div className="flex space-x-4 text-cach-l2">
-            <button className="flex items-center space-x-1 hover:text-cach-l3">
-              <BookmarkIcon className="h-5 w-5" />
-            </button>
-            <button className="flex items-center space-x-1 hover:text-cach-l3">
-              <LikeIcon className="h-5 w-5" />
-            </button>
-            <button className="flex items-center space-x-1 hover:text-cach-l3">
-              <DislikeIcon className="h-5 w-5" />
-            </button>
-            <button className="flex items-center space-x-1 hover:text-cach-l3">
-               <ShareIcon className="h-5 w-5" />
-             </button>
-             <button className="flex items-center space-x-1 hover:text-cach-l3">
-               <PrintIcon className="h-5 w-5" />
-             </button>
-          </div>
-        </div> */}
-
-        <div className="mt-4 flex justify-between space-x-2 p-4">
-           {/* <button
-              onClick={handleDownload}
-              className="flex items-center space-x-1 rounded bg-cach-l3 px-2 py-1 text-cach-l1 hover:bg-cach-l2"
-           >
-             <span>Descargar</span>
-           </button> */}
-
-           {/* <div className="flex items-center space-x-2">
-             <button
-               onClick={handlePrev}
-               disabled={page === 1}
-               className="rounded bg-cach-l3 px-2 py-1 text-cach-l1 hover:bg-cach-l2 disabled:opacity-50"
-             >
-               {"<"}
-             </button>
-             <span className="rounded border bg-cach-l3 px-2 py-1 text-cach-l1">
-               {page} - {totalPages}
-             </span>
-             <button
-               onClick={handleNext}
-               disabled={page === totalPages}
-               className="rounded bg-cach-l3 px-2 py-1 text-cach-l1 hover:bg-cach-l2 disabled:opacity-50"
-             >
-               {">"}
-             </button>
-           </div> */}
-
-           {/* <button className="flex items-center space-x-1 rounded bg-cach-l3 px-2 py-1 text-cach-l1 hover:bg-cach-l2">
-            {isMaximaxed ? <ZoomOutIcon className="h-5 w-5" onClick={minWindow}/> : <ZoomIcon className="h-5 w-5" onClick={maxWindow}/>}
-           </button> */}
-         </div>
-        {extension != "pdf" ? <img src={url} alt="xd3" className="w-full" style={{ pointerEvents: 'none' }}/>: <object data={url} type={"application/pdf"} width="100%" height="500px" onError={() => console.error("Error loading PDF")} >
-          <p>Alternative text - include a link <a href={url}>to the PDF!</a></p>
-        </object>}
-        
-
-
-
-      </div>
-    </section>}
+      </section>}
     </div>
-    
   );
 };
 

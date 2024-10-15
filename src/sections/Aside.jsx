@@ -213,7 +213,7 @@ const Aside = () => {
               id="submit-file-desktop"
               className="hidden"
               onChange={handleUpload}
-              accept=".pdf, .jpg, .jpeg, .png"
+              accept=".pdf, .jpg, .jpeg, .png, .docx, .xlsx, .pptx"
             />
             <label
               htmlFor="submit-file-desktop"
