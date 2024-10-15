@@ -43,14 +43,21 @@ const PdfLibrary = () => {
 
   const renderDocument = () => {
     const officeViewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${url}`;
-
+    const googleViewerUrl = `https://drive.google.com/viewerng/viewer?embedded=true&url=${url}`;
     if (extension === "pdf") {
       return (
-        <object data={url} type={"application/pdf"} width="100%" height="500px" onError={() => console.error("Error loading PDF")}>
-          <p>Alternative text - include a link <a href={url}>to the PDF!</a></p>
-        </object>
+        <iframe
+          src={googleViewerUrl}
+          width="100%"
+          height="600px"
+          frameBorder="0"
+          onError={() => console.error("Error loading PDF")}
+          title="PDF Viewer"
+        >
+          <p>Alternative text - include a link <a href={url}>to the document!</a></p>
+        </iframe>
       );
-    } else if (["docx", "pptx", "xlsx"].includes(extension)) {
+    } else if (["docx", "pptx", "xlsx","pdf"].includes(extension)) {
       return (
         <iframe
           src={officeViewerUrl}
