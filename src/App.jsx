@@ -6,19 +6,19 @@ import { useThemeStore, stateLogged } from "./store/utils.js";
 import { useEffect } from "react";
 import ProtectedRoutes from "./routes/protectedRoutes.jsx";
 import Cookies from "js-cookie";
+import { Analytics } from "@vercel/analytics/react"; 
 
 const App = () => {
   const { isAuthenticated, checkAuth } = stateLogged();
-  //console.log(lgState.state);
   const { setRoute, history } = useThemeStore();
   const location = useLocation();
   const newRoute = location.pathname;
+  
   useEffect(() => {
     setRoute(newRoute);
-    //console.log('history', history);
     checkAuth();
-    //console.log(history)
   }, [newRoute, checkAuth]);
+  
   const showMainPage = isAuthenticated;
 
   return (
@@ -26,27 +26,28 @@ const App = () => {
       {!showMainPage || <HomePage />}
 
       {showMainPage || (
-        <Routes>
-          <Route index element={<LandingPage />}>
-          </Route>
-          {routerNormal.map(route => (
-            <Route
-              key={route.path}
-              path={route.path}
-              element={route.element}
-            ></Route>
-          ))}
-          <Route element={<ProtectedRoutes />}>
-            {routerProtected.map(route => (
+        <>
+          <Routes>
+            <Route index element={<LandingPage />} />
+            {routerNormal.map(route => (
               <Route
                 key={route.path}
                 path={route.path}
                 element={route.element}
-              ></Route>
-            ))
-            }
-          </Route>
-        </Routes>
+              />
+            ))}
+            <Route element={<ProtectedRoutes />}>
+              {routerProtected.map(route => (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.element}
+                />
+              ))}
+            </Route>
+          </Routes>
+          <Analytics /> 
+        </>
       )}
     </div>
   );
