@@ -1,37 +1,36 @@
-<a name="readme-top"></a>
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-<div align="center">
-  <a href="https://https://github.com/Auky216/Cachimbo">
-  </a>
-  <h1>💻 <em>Cachimbo</em> 💻</h1>
-</div>
+## Getting Started
 
-### Inicializando
+First, run the development server:
 
-    npm install
-    npm run dev
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-> [!IMPORTANT]
-> **Activar Prettier Autoformatter y la Extensión Prettier de VsCode para un codigo más legible (ya incluído)**
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-    npm install -D prettier prettier-plugin-tailwindcss
-    npm install react-modal
-    npm install react-icons
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Learn More
 
-## Licencia
+To learn more about Next.js, take a look at the following resources:
 
-Este código fuente está licenciado bajo los siguientes términos y condiciones. La palabra "CACHIMBO" se refiere exclusivamente a la marca registrada y no a ninguna otra entidad o concepto.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-Los titulares de los derechos de autor de este código fuente, en adelante denominados "Titulares", otorgan el permiso a cualquier persona que obtenga una copia de este software y los archivos de documentación asociados (el "Software") para utilizar el Software únicamente en relación con la marca "CACHIMBO".
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-Queda expresamente prohibido el uso de este Software con fines distintos a los relacionados con la marca "CACHIMBO". Esto incluye, pero no se limita a, la comercialización, distribución, modificación y sublicencia del Software para cualquier otro propósito sin el consentimiento expreso por escrito de los Titulares.
+## Deploy on Vercel
 
-Los Titulares se reservan todos los derechos no otorgados expresamente en esta licencia. El Software se proporciona "tal cual" sin garantía de ningún tipo, expresa o implícita, incluyendo pero no limitado a las garantías de comerciabilidad, idoneidad para un propósito particular y no infracción. En ningún caso los Titulares serán responsables de ningún reclamo, daños u otras responsabilidades, ya sea en una acción de contrato, agravio o de otro modo, derivados de, fuera de o en conexión con el Software o el uso u otros tratos en el Software.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Para obtener más información sobre la marca "CACHIMBO" y los términos de uso, consulte a Adrian Antonio Auqui Perez.
-
-Todos los derechos reservados a los Titulares de los derechos de autor de este código fuente.
-
-<p align="right"><a href="#top">Back to top 🔼</a></p>
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
