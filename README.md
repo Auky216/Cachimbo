@@ -11,13 +11,13 @@ Aplicación web de Cachimbo desarrollada con React, Vite y Tailwind CSS. Este re
 ```bash
 git clone https://github.com/Auky216/Cachimbo.git
 cd Cachimbo
-npm install
+npm ci
 npm run dev
 ```
 
 Abre la dirección local que indique Vite. Para generar una versión de producción, ejecuta `npm run build`; para revisarla localmente, usa `npm run preview`.
 
-Las dependencias y los scripts ya están declarados en `package.json`. El proyecto incluye un enlace local `cachimbo: file:` en sus dependencias; si `npm install` falla, ese enlace debe corregirse antes de publicar una instalación reproducible. No se presenta aquí como una instalación verificada.
+Las dependencias y los scripts están declarados en `package.json`; `package-lock.json` fija sus versiones para una instalación reproducible.
 
 ## Estructura
 
