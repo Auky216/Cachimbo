@@ -1,24 +1,33 @@
-<a name="readme-top"></a>
+# Cachimbo
 
-<div align="center">
-  <a href="https://https://github.com/Auky216/Cachimbo">
-  </a>
-  <h1>💻 <em>Cachimbo</em> 💻</h1>
-</div>
+Aplicación web de Cachimbo desarrollada con React, Vite y Tailwind CSS. Este repositorio contiene el frontend y sus recursos estáticos. La aplicación móvil relacionada se desarrolla por separado en [Cachimbo-App](https://github.com/Auky216/Cachimbo-App).
 
-### Inicializando
+## Requisitos
 
-    npm install
-    npm run dev
+- Node.js y npm compatibles con las versiones de Vite declaradas en `package.json`.
 
-> [!IMPORTANT]
-> **Activar Prettier Autoformatter y la Extensión Prettier de VsCode para un codigo más legible (ya incluído)**
+## Instalación y uso
 
-    npm install -D prettier prettier-plugin-tailwindcss
-    npm install react-modal
-    npm install react-icons
+```bash
+git clone https://github.com/Auky216/Cachimbo.git
+cd Cachimbo
+npm install
+npm run dev
+```
 
+Abre la dirección local que indique Vite. Para generar una versión de producción, ejecuta `npm run build`; para revisarla localmente, usa `npm run preview`.
 
+Las dependencias y los scripts ya están declarados en `package.json`. El proyecto incluye un enlace local `cachimbo: file:` en sus dependencias; si `npm install` falla, ese enlace debe corregirse antes de publicar una instalación reproducible. No se presenta aquí como una instalación verificada.
+
+## Estructura
+
+- `src/`: componentes y lógica de la aplicación.
+- `public/`: archivos públicos.
+- `vite.config.js` y `tailwind.config.js`: configuración de desarrollo y estilos.
+
+## Contribuciones
+
+Antes de enviar cambios, revisa las condiciones de uso de la siguiente sección. Describe el cambio y cómo lo probaste en el PR. No incluyas datos de usuarios ni credenciales.
 
 ## Licencia
 
